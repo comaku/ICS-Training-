@@ -1,0 +1,2898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Muvia Air — Drone Delivery, Simplified</title>
+
+    <meta
+        name="description"
+        content="Muvia Air helps businesses deliver faster with autonomous drone delivery."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+   <style>
+/* =========================================
+   MUVIA AIR
+   MODERN SAAS LANDING PAGE
+========================================= */
+
+:root {
+    --bg: #05070b;
+    --bg-soft: #090d14;
+    --card: #0c111a;
+    --border: rgba(255,255,255,0.09);
+
+    --text: #f5f7fb;
+    --muted: #8993a4;
+
+    --blue: #5c8cff;
+    --cyan: #36e2ff;
+    --purple: #9b6cff;
+
+    --radius: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "DM Sans", sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+    width: min(1180px, 92%);
+    margin: auto;
+
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo > span:last-child {
+    color: var(--cyan);
+}
+
+.logo-mark {
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid rgba(54,226,255,.5);
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    transform: rotate(-10deg);
+}
+
+.logo-mark span {
+    width: 3px;
+    height: 11px;
+    background: var(--cyan);
+    border-radius: 4px;
+}
+
+.logo-mark span:nth-child(2) {
+    height: 17px;
+}
+
+.logo-mark span:nth-child(3) {
+    height: 7px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 34px;
+
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.nav-links a {
+    transition: .2s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.nav-button {
+    padding: 11px 18px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    background: rgba(255,255,255,.03);
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    width: min(1180px, 92%);
+    min-height: 800px;
+
+    margin: auto;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 105px;
+
+    overflow: visible;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 750px;
+    height: 500px;
+
+    top: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(82,119,255,.20),
+            rgba(131,78,255,.12),
+            transparent 68%
+        );
+
+    filter: blur(20px);
+
+    animation: heroGradient 9s ease-in-out infinite alternate;
+
+    pointer-events: none;
+}
+
+@keyframes heroGradient {
+
+    0% {
+        transform: translateX(-55%) translateY(-10px) scale(1);
+    }
+
+    50% {
+        transform: translateX(-45%) translateY(20px) scale(1.1);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-5px) scale(.95);
+    }
+
+}
+
+.hero-grid {
+    position: absolute;
+
+    width: 100vw;
+    height: 520px;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+    background-size: 55px 55px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent
+    );
+
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 760px;
+
+    text-align: center;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 13px;
+
+    border: 1px solid rgba(54,226,255,.18);
+    border-radius: 100px;
+
+    background: rgba(54,226,255,.05);
+
+    color: #a6eefa;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: .4px;
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+
+    background: #45e98a;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 10px #45e98a;
+
+    animation: livePulse 1.5s infinite;
+}
+
+@keyframes livePulse {
+
+    50% {
+        opacity: .35;
+    }
+
+}
+
+.hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(52px, 7vw, 86px);
+
+    line-height: .98;
+
+    letter-spacing: -4px;
+
+    margin-top: 25px;
+}
+
+.hero h1 span {
+    display: block;
+
+    background: linear-gradient(
+        100deg,
+        #ffffff,
+        #7ea6ff,
+        #36e2ff
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero-description {
+    max-width: 610px;
+
+    margin: 27px auto 0;
+
+    color: var(--muted);
+
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+    margin-top: 34px;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+
+    padding: 14px 20px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: .25s;
+}
+
+.primary-button {
+    background: white;
+    color: #05070b;
+}
+
+.primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(255,255,255,.13);
+}
+
+.secondary-button {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.035);
+}
+
+.secondary-button:hover {
+    background: rgba(255,255,255,.07);
+}
+
+.secondary-button span {
+    font-size: 9px;
+}
+
+.hero-note {
+    margin-top: 18px;
+
+    color: #596273;
+
+    font-size: 11px;
+}
+
+.hero-note span {
+    margin: 0 8px;
+}
+
+
+/* =========================================
+   PRODUCT WINDOW
+========================================= */
+
+.product-window {
+    width: min(100%, 920px);
+
+    margin-top: 70px;
+
+    position: relative;
+    z-index: 3;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    background: #090d14;
+
+    box-shadow:
+        0 40px 100px rgba(0,0,0,.55),
+        0 0 80px rgba(73,100,255,.10);
+
+    transform: perspective(1200px) rotateX(2deg);
+
+    transition: transform .5s;
+}
+
+.product-window:hover {
+    transform: perspective(1200px) rotateX(0deg) translateY(-5px);
+}
+
+.window-top {
+    height: 43px;
+
+    padding: 0 15px;
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #0c1119;
+}
+
+.window-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.window-dots i {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #39414f;
+}
+
+.window-title {
+    color: #667080;
+
+    font-size: 10px;
+}
+
+.online-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #59dc91;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.online-status span {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+    background: #59dc91;
+}
+
+
+/* Dashboard */
+
+.dashboard {
+    display: flex;
+
+    min-height: 400px;
+}
+
+.dashboard-sidebar {
+    width: 150px;
+
+    padding: 20px 10px;
+
+    border-right: 1px solid var(--border);
+
+    background: #080c12;
+}
+
+.dash-logo {
+    width: 30px;
+    height: 30px;
+
+    margin: 0 auto 30px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 8px;
+
+    background: linear-gradient(
+        135deg,
+        #5c8cff,
+        #36e2ff
+    );
+
+    color: white;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.side-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 10px;
+
+    margin-bottom: 4px;
+
+    border-radius: 7px;
+
+    color: #657080;
+
+    font-size: 10px;
+}
+
+.side-item span {
+    font-size: 13px;
+}
+
+.side-item.active {
+    color: white;
+
+    background: rgba(92,140,255,.12);
+}
+
+.dashboard-main {
+    flex: 1;
+
+    padding: 25px;
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-header small,
+.stat-card small {
+    color: #5f6979;
+
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.dashboard-header h3 {
+    margin-top: 5px;
+
+    font-family: "Space Grotesk";
+
+    font-size: 17px;
+}
+
+.date-pill {
+    padding: 7px 10px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    color: #717b8c;
+
+    font-size: 9px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.stat-card {
+    padding: 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: rgba(255,255,255,.02);
+}
+
+.stat-card strong {
+    display: block;
+
+    margin: 5px 0;
+
+    font-family: "Space Grotesk";
+
+    font-size: 21px;
+}
+
+.positive {
+    color: #4ed78b;
+
+    font-size: 8px;
+}
+
+.map-card {
+    margin-top: 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    overflow: hidden;
+}
+
+.map-label {
+    padding: 10px 13px;
+
+    color: #596475;
+
+    font-size: 8px;
+    letter-spacing: 1px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.map {
+    height: 200px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(75,118,255,.12),
+            transparent 50%
+        ),
+        #090e16;
+}
+
+.map::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+    background-size: 35px 35px;
+}
+
+.route {
+    position: absolute;
+
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #4e8fff,
+        transparent
+    );
+
+    transform-origin: left;
+}
+
+.route-one {
+    width: 280px;
+
+    left: 20%;
+    top: 65%;
+
+    transform: rotate(-20deg);
+}
+
+.route-two {
+    width: 220px;
+
+    left: 45%;
+    top: 35%;
+
+    transform: rotate(35deg);
+}
+
+.map-point {
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #36e2ff;
+
+    box-shadow: 0 0 15px #36e2ff;
+}
+
+.point-one {
+    left: 20%;
+    top: 65%;
+}
+
+.point-two {
+    left: 52%;
+    top: 35%;
+}
+
+.point-three {
+    left: 80%;
+    top: 70%;
+}
+
+.drone {
+    position: absolute;
+
+    display: grid;
+    place-items: center;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 6px;
+
+    background: #111c32;
+
+    border: 1px solid #5c8cff;
+
+    color: #7fa4ff;
+
+    font-size: 10px;
+
+    animation: droneMove 4s ease-in-out infinite alternate;
+}
+
+.drone-one {
+    left: 39%;
+    top: 48%;
+}
+
+.drone-two {
+    left: 68%;
+    top: 53%;
+
+    animation-delay: 1s;
+}
+
+@keyframes droneMove {
+
+    to {
+        transform: translate(20px,-10px);
+    }
+
+}
+
+
+/* =========================================
+   TRUST
+========================================= */
+
+.trust-section {
+    width: min(1050px, 90%);
+
+    margin: 70px auto 130px;
+
+    text-align: center;
+}
+
+.trust-section > p {
+    color: #4f5968;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.trust-items {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 25px;
+
+    color: #505a6a;
+
+    font-family: "Space Grotesk";
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   GENERAL SECTIONS
+========================================= */
+
+.section {
+    width: min(1100px, 90%);
+
+    margin: 0 auto 150px;
+}
+
+.section-heading {
+    max-width: 650px;
+
+    margin-bottom: 55px;
+}
+
+.section-label {
+    color: var(--cyan);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2,
+.how-content h2,
+.cta-content h2 {
+    margin-top: 13px;
+
+    font-family: "Space Grotesk";
+
+    font-size: clamp(36px,5vw,58px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+}
+
+.section-heading h2 span,
+.how-content h2 span,
+.cta-content h2 span {
+    color: #7188b8;
+}
+
+.section-heading p,
+.how-content > p {
+    margin-top: 17px;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 15px;
+}
+
+.feature-card {
+    min-height: 320px;
+
+    padding: 28px;
+
+    position: relative;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.01)
+        );
+
+    transition: .3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(92,140,255,.35);
+}
+
+.featured-feature {
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(54,226,255,.09),
+            transparent 45%
+        ),
+        var(--card);
+}
+
+.feature-icon {
+    width: 43px;
+    height: 43px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(92,140,255,.25);
+
+    border-radius: 10px;
+
+    background: rgba(92,140,255,.08);
+
+    color: #7da3ff;
+
+    font-size: 18px;
+}
+
+.feature-number {
+    position: absolute;
+
+    right: 28px;
+    top: 34px;
+
+    color: #394251;
+
+    font-size: 10px;
+}
+
+.feature-card h3 {
+    margin-top: 40px;
+
+    font-family: "Space Grotesk";
+
+    font-size: 21px;
+}
+
+.feature-card p {
+    margin-top: 11px;
+
+    color: var(--muted);
+
+    line-height: 1.65;
+
+    font-size: 13px;
+}
+
+.feature-line {
+    position: absolute;
+
+    bottom: 48px;
+    left: 28px;
+    right: 28px;
+
+    height: 1px;
+
+    background: var(--border);
+}
+
+.feature-tag {
+    position: absolute;
+
+    bottom: 25px;
+
+    color: #465162;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================
+   HOW IT WORKS
+========================================= */
+
+.how-section {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 100px;
+
+    align-items: center;
+}
+
+.steps {
+    margin-top: 38px;
+}
+
+.step {
+    display: flex;
+
+    gap: 20px;
+
+    padding: 20px 0;
+
+    border-top: 1px solid var(--border);
+}
+
+.step > span {
+    color: var(--cyan);
+
+    font-family: monospace;
+
+    font-size: 11px;
+}
+
+.step h3 {
+    font-family: "Space Grotesk";
+
+    font-size: 16px;
+}
+
+.step p {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* Radar */
+
+.flight-visual {
+    min-height: 470px;
+
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(67,106,255,.12),
+            transparent 60%
+        ),
+        #080c13;
+}
+
+.radar {
+    width: 330px;
+    height: 330px;
+
+    position: relative;
+
+    border: 1px solid rgba(54,226,255,.16);
+
+    border-radius: 50%;
+}
+
+.radar-ring {
+    position: absolute;
+
+    border: 1px solid rgba(54,226,255,.10);
+
+    border-radius: 50%;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%,-50%);
+}
+
+.ring-one {
+    width: 70%;
+    height: 70%;
+}
+
+.ring-two {
+    width: 45%;
+    height: 45%;
+}
+
+.ring-three {
+    width: 20%;
+    height: 20%;
+}
+
+.radar-line {
+    position: absolute;
+
+    width: 50%;
+    height: 1px;
+
+    left: 50%;
+    top: 50%;
+
+    transform-origin: left;
+
+    background: linear-gradient(
+        90deg,
+        #36e2ff,
+        transparent
+    );
+
+    animation: radarSpin 4s linear infinite;
+}
+
+@keyframes radarSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+.radar-drone {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%,-50%);
+
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #36e2ff;
+
+    border-radius: 10px;
+
+    background: #09131c;
+
+    color: #36e2ff;
+
+    box-shadow: 0 0 30px rgba(54,226,255,.25);
+}
+
+.flight-card {
+    position: absolute;
+
+    bottom: 25px;
+    left: 25px;
+
+    padding: 13px 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: rgba(8,12,19,.8);
+
+    backdrop-filter: blur(10px);
+
+    color: #6e7889;
+
+    font-size: 10px;
+}
+
+.flight-card strong {
+    display: block;
+
+    margin-top: 4px;
+
+    color: white;
+
+    font-size: 13px;
+}
+
+.flight-status {
+    display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 5px;
+
+    border-radius: 50%;
+
+    background: #4ed78b;
+}
+
+
+/* =========================================
+   PRICING
+========================================= */
+
+.pricing-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 15px;
+
+    align-items: stretch;
+}
+
+.price-card {
+    position: relative;
+
+    padding: 30px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: #090d14;
+}
+
+.price-card.recommended {
+    border: 1px solid rgba(92,140,255,.65);
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(92,140,255,.12),
+            transparent 45%
+        ),
+        #0b101a;
+
+    box-shadow:
+        0 20px 70px rgba(70,100,255,.13);
+
+    transform: translateY(-12px);
+}
+
+.popular-badge {
+    position: absolute;
+
+    top: -13px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 6px 11px;
+
+    border-radius: 100px;
+
+    background: linear-gradient(
+        90deg,
+        #5c8cff,
+        #36e2ff
+    );
+
+    color: white;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+.plan-name {
+    font-family: "Space Grotesk";
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.price-top p {
+    margin-top: 9px;
+
+    min-height: 42px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.price {
+    margin-top: 28px;
+
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.price strong {
+    font-family: "Space Grotesk";
+
+    font-size: 40px;
+
+    letter-spacing: -2px;
+}
+
+.price span {
+    color: #677182;
+
+    font-size: 11px;
+}
+
+.enterprise-price {
+    height: 48px;
+
+    font-family: "Space Grotesk";
+
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.price-button {
+    display: block;
+
+    margin-top: 22px;
+
+    padding: 12px;
+
+    text-align: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: .2s;
+}
+
+.price-card.recommended .price-button {
+    background: white;
+
+    color: #05070b;
+
+    border-color: white;
+}
+
+.price-button:hover {
+    background: rgba(255,255,255,.08);
+}
+
+.price-card.recommended .price-button:hover {
+    background: #dce5ff;
+}
+
+.includes {
+    margin-top: 28px;
+
+    color: #697383;
+
+    font-size: 10px;
+}
+
+.price-card ul {
+    margin-top: 15px;
+
+    list-style: none;
+
+    display: grid;
+
+    gap: 11px;
+}
+
+.price-card li {
+    color: #a5adba;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.cta-section {
+    position: relative;
+
+    max-width: 1100px;
+
+    padding: 100px 30px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(92,140,255,.16),
+            transparent 55%
+        ),
+        #090d14;
+}
+
+.cta-glow {
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    left: 50%;
+    top: 30%;
+
+    transform: translate(-50%,-50%);
+
+    background: rgba(54,226,255,.08);
+
+    filter: blur(70px);
+
+    pointer-events: none;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+}
+
+.cta-content h2 {
+    max-width: 700px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-content p {
+    max-width: 530px;
+
+    margin: 20px auto 0;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+.signup-box {
+    width: min(480px,100%);
+
+    margin: 30px auto 0;
+
+    display: flex;
+
+    padding: 5px;
+
+    border: 1px solid rgba(255,255,255,.13);
+
+    border-radius: 12px;
+
+    background: rgba(0,0,0,.2);
+}
+
+.signup-box input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 12px;
+}
+
+.signup-box input::placeholder {
+    color: #596475;
+}
+
+.signup-box button {
+    padding: 11px 17px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #05070b;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.signup-box button span {
+    margin-left: 8px;
+}
+
+#signupMessage {
+    display: block;
+
+    margin-top: 12px;
+
+    color: #4e5969;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    width: min(1100px,90%);
+
+    margin: 0 auto;
+
+    padding: 35px 0 45px;
+
+    border-top: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #4f5968;
+
+    font-size: 10px;
+}
+
+.footer-logo {
+    color: white;
+
+    font-family: "Space Grotesk";
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.footer-logo span {
+    color: var(--cyan);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        padding-top: 70px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2.5px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .product-window {
+        margin-top: 50px;
+    }
+
+    .dashboard-sidebar {
+        display: none;
+    }
+
+    .trust-items {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px 35px;
+    }
+
+    .feature-grid,
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-card.recommended {
+        transform: none;
+
+        order: -1;
+    }
+
+    .how-section {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+    .flight-visual {
+        min-height: 400px;
+    }
+
+    footer {
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .navbar {
+        height: 70px;
+    }
+
+    .nav-button {
+        padding: 9px 13px;
+    }
+
+    .hero {
+        min-height: auto;
+
+        padding-top: 60px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions a {
+        width: 100%;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-main {
+        padding: 15px;
+    }
+
+    .map {
+        height: 170px;
+    }
+
+    .radar {
+        width: 270px;
+        height: 270px;
+    }
+
+    .signup-box {
+        flex-direction: column;
+
+        gap: 5px;
+
+        border: 0;
+        padding: 0;
+
+        background: transparent;
+    }
+
+    .signup-box input {
+        width: 100%;
+
+        padding: 14px;
+
+        border: 1px solid var(--border);
+
+        border-radius: 9px;
+
+        background: #070b11;
+    }
+
+    .signup-box button {
+        width: 100%;
+
+        padding: 14px;
+    }
+
+}
+
+/* =========================================
+   MUVIA AIR — TECH STORE PRELOADER
+========================================= */
+
+#tech-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(54, 226, 255, 0.08),
+            transparent 35%
+        ),
+        #05070b;
+
+    overflow: hidden;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+#tech-preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* TECH GRID */
+
+.preloader-grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(54,226,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(54,226,255,.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+
+    animation: gridMove 8s linear infinite;
+}
+
+@keyframes gridMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(45px);
+    }
+
+}
+
+
+/* LOADER CONTAINER */
+
+.tech-loader {
+    position: relative;
+    z-index: 2;
+
+    width: min(350px, 85%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* LOGO */
+
+.loader-logo {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    border: 1px solid rgba(54,226,255,.35);
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(54,226,255,.12),
+            rgba(92,140,255,.04)
+        );
+
+    box-shadow:
+        0 0 35px rgba(54,226,255,.12),
+        inset 0 0 20px rgba(54,226,255,.04);
+
+    transform: rotate(-8deg);
+
+    animation:
+        loaderFloat 2.5s ease-in-out infinite,
+        logoGlow 2s ease-in-out infinite alternate;
+}
+
+.loader-bar {
+    width: 5px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        to top,
+        #5c8cff,
+        #36e2ff
+    );
+
+    box-shadow:
+        0 0 10px rgba(54,226,255,.8);
+}
+
+.loader-bar:nth-child(1) {
+    height: 20px;
+}
+
+.loader-bar:nth-child(2) {
+    height: 34px;
+}
+
+.loader-bar:nth-child(3) {
+    height: 14px;
+}
+
+@keyframes loaderFloat {
+
+    0%,100% {
+        transform: rotate(-8deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(-8deg) translateY(-8px);
+    }
+
+}
+
+@keyframes logoGlow {
+
+    from {
+        box-shadow:
+            0 0 25px rgba(54,226,255,.08);
+    }
+
+    to {
+        box-shadow:
+            0 0 45px rgba(54,226,255,.22);
+    }
+
+}
+
+
+/* BRAND */
+
+.loader-brand {
+    margin-top: 22px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: white;
+}
+
+.loader-brand span {
+    color: #36e2ff;
+}
+
+
+/* STATUS */
+
+.loader-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 15px;
+
+    color: #657080;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #45e98a;
+
+    box-shadow:
+        0 0 12px #45e98a;
+
+    animation: statusPulse 1s infinite;
+}
+
+@keyframes statusPulse {
+
+    0%,100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .35;
+        transform: scale(.7);
+    }
+
+}
+
+
+/* PROGRESS */
+
+.loader-progress {
+    width: 100%;
+    height: 2px;
+
+    margin-top: 35px;
+
+    overflow: hidden;
+
+    background: rgba(255,255,255,.07);
+
+    border-radius: 100px;
+}
+
+.loader-progress-bar {
+    width: 0%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #5c8cff,
+        #36e2ff
+    );
+
+    box-shadow:
+        0 0 15px rgba(54,226,255,.8);
+
+    transition: width .08s linear;
+}
+
+
+/* PERCENTAGE */
+
+.loader-percent {
+    margin-top: 12px;
+
+    color: #566172;
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+
+/* CORNER DECORATIONS */
+
+#tech-preloader::before,
+#tech-preloader::after {
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    border: 1px solid rgba(54,226,255,.15);
+}
+
+#tech-preloader::before {
+    top: 30px;
+    left: 30px;
+
+    border-right: 0;
+    border-bottom: 0;
+}
+
+#tech-preloader::after {
+    right: 30px;
+    bottom: 30px;
+
+    border-left: 0;
+    border-top: 0;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+    .tech-loader {
+        width: 80%;
+    }
+
+    .loader-logo {
+        width: 58px;
+        height: 58px;
+    }
+
+    .loader-brand {
+        font-size: 21px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= TECH STORE PRELOADER ================= -->
+
+<div id="tech-preloader">
+
+    <div class="preloader-grid"></div>
+
+    <div class="tech-loader">
+
+        <div class="loader-logo">
+            <span class="loader-bar"></span>
+            <span class="loader-bar"></span>
+            <span class="loader-bar"></span>
+        </div>
+
+        <div class="loader-brand">
+            MUVIA<span>AIR</span>
+        </div>
+
+        <div class="loader-status">
+            <span class="status-dot"></span>
+            INITIALIZING SYSTEM
+        </div>
+
+        <div class="loader-progress">
+            <div class="loader-progress-bar"></div>
+        </div>
+
+        <div class="loader-percent">
+            <span id="loaderPercent">0</span>%
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <a href="#" class="logo">
+        <span class="logo-mark">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+
+        Muvia<span>Air</span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#how-it-works">How it works</a>
+    </nav>
+
+    <a href="#signup" class="nav-button">
+        Get started
+    </a>
+
+</header>
+
+
+<main>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            <span class="live-dot"></span>
+            Autonomous delivery infrastructure
+        </div>
+
+        <h1>
+            Deliver faster.
+            <span>Fly smarter.</span>
+        </h1>
+
+        <p class="hero-description">
+            Muvia Air helps businesses move goods from A to B
+            with autonomous drone delivery — faster, smarter,
+            and with less friction.
+        </p>
+
+        <div class="hero-actions">
+
+            <a href="#signup" class="primary-button">
+                Start delivering
+                <span>→</span>
+            </a>
+
+            <a href="#how-it-works" class="secondary-button">
+                See how it works
+                <span>▶</span>
+            </a>
+
+        </div>
+
+        <div class="hero-note">
+            No hardware expertise required
+            <span>•</span>
+            Built for modern logistics
+        </div>
+
+    </div>
+
+
+    <!-- PRODUCT SCREENSHOT -->
+
+    <div class="product-window">
+
+        <div class="window-top">
+
+            <div class="window-dots">
+                <i></i>
+                <i></i>
+                <i></i>
+            </div>
+
+            <div class="window-title">
+                Muvia Air Control Center
+            </div>
+
+            <div class="online-status">
+                <span></span>
+                LIVE
+            </div>
+
+        </div>
+
+
+        <div class="dashboard">
+
+            <aside class="dashboard-sidebar">
+
+                <div class="dash-logo">
+                    MA
+                </div>
+
+                <div class="side-item active">
+                    <span>⌂</span>
+                    Overview
+                </div>
+
+                <div class="side-item">
+                    <span>◈</span>
+                    Deliveries
+                </div>
+
+                <div class="side-item">
+                    <span>◉</span>
+                    Fleet
+                </div>
+
+                <div class="side-item">
+                    <span>⌁</span>
+                    Analytics
+                </div>
+
+            </aside>
+
+
+            <div class="dashboard-main">
+
+                <div class="dashboard-header">
+
+                    <div>
+                        <small>OVERVIEW</small>
+                        <h3>Good morning, Muvia</h3>
+                    </div>
+
+                    <div class="date-pill">
+                        Today
+                    </div>
+
+                </div>
+
+
+                <div class="stats">
+
+                    <div class="stat-card">
+                        <small>ACTIVE DELIVERIES</small>
+                        <strong>24</strong>
+                        <span class="positive">+12.4%</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <small>AVG. DELIVERY</small>
+                        <strong>18m</strong>
+                        <span class="positive">−32%</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <small>FLEET STATUS</small>
+                        <strong>96%</strong>
+                        <span class="positive">Operational</span>
+                    </div>
+
+                </div>
+
+
+                <div class="map-card">
+
+                    <div class="map-label">
+                        LIVE DELIVERY NETWORK
+                    </div>
+
+                    <div class="map">
+
+                        <div class="route route-one"></div>
+                        <div class="route route-two"></div>
+
+                        <div class="map-point point-one"></div>
+                        <div class="map-point point-two"></div>
+                        <div class="map-point point-three"></div>
+
+                        <div class="drone drone-one">
+                            ✦
+                        </div>
+
+                        <div class="drone drone-two">
+                            ✦
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TRUST BAR ================= -->
+
+<section class="trust-section">
+
+    <p>
+        POWERING THE NEXT GENERATION OF DELIVERY
+    </p>
+
+    <div class="trust-items">
+
+        <span>LOGISTICS</span>
+        <span>HEALTHCARE</span>
+        <span>RETAIL</span>
+        <span>FOOD SERVICE</span>
+        <span>LAST-MILE</span>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features section" id="features">
+
+    <div class="section-heading">
+
+        <div class="section-label">
+            WHY MUVIA AIR
+        </div>
+
+        <h2>
+            Delivery infrastructure
+            <span>built for speed.</span>
+        </h2>
+
+        <p>
+            Replace slow, expensive delivery processes with
+            intelligent autonomous logistics.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <article class="feature-card">
+
+            <div class="feature-icon">
+                ↗
+            </div>
+
+            <span class="feature-number">
+                01
+            </span>
+
+            <h3>
+                Faster delivery
+            </h3>
+
+            <p>
+                Skip congested roads and move packages
+                directly from your dispatch point to the customer.
+            </p>
+
+            <div class="feature-line"></div>
+
+            <span class="feature-tag">
+                SPEED
+            </span>
+
+        </article>
+
+
+        <article class="feature-card featured-feature">
+
+            <div class="feature-icon">
+                ◉
+            </div>
+
+            <span class="feature-number">
+                02
+            </span>
+
+            <h3>
+                Autonomous fleet
+            </h3>
+
+            <p>
+                Monitor, manage, and coordinate your delivery
+                fleet from one intelligent control center.
+            </p>
+
+            <div class="feature-line"></div>
+
+            <span class="feature-tag">
+                AUTOMATION
+            </span>
+
+        </article>
+
+
+        <article class="feature-card">
+
+            <div class="feature-icon">
+                ≋
+            </div>
+
+            <span class="feature-number">
+                03
+            </span>
+
+            <h3>
+                Real-time visibility
+            </h3>
+
+            <p>
+                Know where every delivery is, track performance,
+                and make smarter logistics decisions in real time.
+            </p>
+
+            <div class="feature-line"></div>
+
+            <span class="feature-tag">
+                CONTROL
+            </span>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="how-section section" id="how-it-works">
+
+    <div class="how-content">
+
+        <div class="section-label">
+            HOW IT WORKS
+        </div>
+
+        <h2>
+            From order to
+            <span>airborne.</span>
+        </h2>
+
+        <p>
+            Muvia Air handles the complexity behind the scenes
+            so your team can focus on getting products to customers.
+        </p>
+
+        <div class="steps">
+
+            <div class="step">
+                <span>01</span>
+                <div>
+                    <h3>Create a delivery</h3>
+                    <p>Send your delivery request through the Muvia platform.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <span>02</span>
+                <div>
+                    <h3>We assign the drone</h3>
+                    <p>Our system selects the optimal available aircraft.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <span>03</span>
+                <div>
+                    <h3>Track it live</h3>
+                    <p>Monitor the delivery from takeoff to destination.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="flight-visual">
+
+        <div class="radar">
+
+            <div class="radar-ring ring-one"></div>
+            <div class="radar-ring ring-two"></div>
+            <div class="radar-ring ring-three"></div>
+
+            <div class="radar-line"></div>
+
+            <div class="radar-drone">
+                ✦
+            </div>
+
+        </div>
+
+        <div class="flight-card">
+            <span class="flight-status"></span>
+            Flight MU-204
+            <strong>In transit</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PRICING ================= -->
+
+<section class="pricing section" id="pricing">
+
+    <div class="section-heading">
+
+        <div class="section-label">
+            SIMPLE PRICING
+        </div>
+
+        <h2>
+            Start small.
+            <span>Scale fast.</span>
+        </h2>
+
+        <p>
+            Choose the plan that fits your delivery operation.
+        </p>
+
+    </div>
+
+
+    <div class="pricing-grid">
+
+
+        <!-- STARTER -->
+
+        <article class="price-card">
+
+            <div class="price-top">
+
+                <span class="plan-name">
+                    Starter
+                </span>
+
+                <p>
+                    For teams exploring drone delivery.
+                </p>
+
+            </div>
+
+            <div class="price">
+                <strong>$49</strong>
+                <span>/month</span>
+            </div>
+
+            <a href="#signup" class="price-button">
+                Get started
+            </a>
+
+            <div class="includes">
+                Includes:
+            </div>
+
+            <ul>
+                <li>✓ Up to 50 deliveries</li>
+                <li>✓ Basic fleet tracking</li>
+                <li>✓ Delivery dashboard</li>
+                <li>✓ Email support</li>
+            </ul>
+
+        </article>
+
+
+        <!-- RECOMMENDED -->
+
+        <article class="price-card recommended">
+
+            <div class="popular-badge">
+                MOST POPULAR
+            </div>
+
+            <div class="price-top">
+
+                <span class="plan-name">
+                    Growth
+                </span>
+
+                <p>
+                    For businesses scaling delivery operations.
+                </p>
+
+            </div>
+
+            <div class="price">
+                <strong>$149</strong>
+                <span>/month</span>
+            </div>
+
+            <a href="#signup" class="price-button">
+                Start with Growth
+            </a>
+
+            <div class="includes">
+                Everything in Starter, plus:
+            </div>
+
+            <ul>
+                <li>✓ Up to 500 deliveries</li>
+                <li>✓ Advanced fleet management</li>
+                <li>✓ Real-time analytics</li>
+                <li>✓ Automated dispatch</li>
+                <li>✓ Priority support</li>
+            </ul>
+
+        </article>
+
+
+        <!-- ENTERPRISE -->
+
+        <article class="price-card">
+
+            <div class="price-top">
+
+                <span class="plan-name">
+                    Enterprise
+                </span>
+
+                <p>
+                    For large-scale logistics networks.
+                </p>
+
+            </div>
+
+            <div class="price enterprise-price">
+                Custom
+            </div>
+
+            <a href="#signup" class="price-button">
+                Talk to sales
+            </a>
+
+            <div class="includes">
+                Everything in Growth, plus:
+            </div>
+
+            <ul>
+                <li>✓ Unlimited deliveries</li>
+                <li>✓ Multi-location operations</li>
+                <li>✓ Custom integrations</li>
+                <li>✓ Dedicated support</li>
+                <li>✓ Advanced reporting</li>
+            </ul>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta-section section" id="signup">
+
+    <div class="cta-glow"></div>
+
+    <div class="cta-content">
+
+        <div class="section-label">
+            EARLY ACCESS
+        </div>
+
+        <h2>
+            Ready to put your
+            <span>deliveries in the air?</span>
+        </h2>
+
+        <p>
+            Join the Muvia Air early-access list and be among
+            the first businesses to experience autonomous delivery.
+        </p>
+
+
+        <div class="signup-box">
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your work email"
+            >
+
+            <button id="signupBtn">
+                Join waitlist
+                <span>→</span>
+            </button>
+
+        </div>
+
+        <small id="signupMessage">
+            No spam. Just updates about Muvia Air.
+        </small>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        Muvia<span>Air</span>
+    </div>
+
+    <p>
+        Autonomous delivery infrastructure for a faster world.
+    </p>
+
+    <span>
+        © 2026 Muvia Air. All rights reserved.
+    </span>
+
+</footer>
+
+
+<script >
+/* =========================================
+   MUVIA AIR INTERACTIONS
+========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================
+       EMAIL SIGNUP UI
+    ===================================== */
+
+    const signupButton = document.getElementById("signupBtn");
+    const emailInput = document.getElementById("email");
+    const signupMessage = document.getElementById("signupMessage");
+
+    signupButton.addEventListener("click", () => {
+
+        const email = emailInput.value.trim();
+
+        if (!email) {
+
+            signupMessage.textContent =
+                "Please enter your email address.";
+
+            signupMessage.style.color = "#ff7d8a";
+
+            emailInput.focus();
+
+            return;
+        }
+
+
+        if (!email.includes("@") || !email.includes(".")) {
+
+            signupMessage.textContent =
+                "Please enter a valid email address.";
+
+            signupMessage.style.color = "#ff7d8a";
+
+            return;
+        }
+
+
+        /* UI ONLY — no real submission */
+
+        signupButton.innerHTML =
+            "You're on the list ✓";
+
+        signupButton.disabled = true;
+
+        signupMessage.textContent =
+            "Thanks! We'll keep you updated on Muvia Air.";
+
+        signupMessage.style.color = "#55db91";
+
+        emailInput.disabled = true;
+
+    });
+
+
+    /* =====================================
+       PRODUCT WINDOW PARALLAX
+    ===================================== */
+
+    const productWindow =
+        document.querySelector(".product-window");
+
+    if (productWindow && window.innerWidth > 800) {
+
+        document.addEventListener("mousemove", (event) => {
+
+            const x =
+                (event.clientX / window.innerWidth - 0.5) * 2;
+
+            const y =
+                (event.clientY / window.innerHeight - 0.5) * 2;
+
+            productWindow.style.transform =
+                `perspective(1200px)
+                 rotateX(${2 - y * 1.2}deg)
+                 rotateY(${x * 1.2}deg)`;
+
+        });
+
+    }
+
+
+    /* =====================================
+       SCROLL REVEAL
+    ===================================== */
+
+    const revealElements =
+        document.querySelectorAll(
+            ".feature-card, .price-card, .step, .flight-visual"
+        );
+
+    const observer =
+        new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach((entry) => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("revealed");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+    revealElements.forEach((element) => {
+
+        element.classList.add("reveal");
+
+        observer.observe(element);
+
+    });
+
+});
+
+/* =========================================
+   TECH PRELOADER
+========================================= */
+
+const preloader = document.getElementById("tech-preloader");
+const progressBar = document.querySelector(".loader-progress-bar");
+const loaderPercent = document.getElementById("loaderPercent");
+
+let progress = 0;
+
+const loaderInterval = setInterval(() => {
+
+    progress += Math.floor(Math.random() * 4) + 1;
+
+    if (progress >= 100) {
+        progress = 100;
+        clearInterval(loaderInterval);
+
+        progressBar.style.width = "100%";
+        loaderPercent.textContent = "100";
+
+        setTimeout(() => {
+            preloader.classList.add("loaded");
+        }, 500);
+    }
+
+    progressBar.style.width = `${progress}%`;
+    loaderPercent.textContent = progress;
+
+}, 45);
+</script>
+
+</body>
+</html>
