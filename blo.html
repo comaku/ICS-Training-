@@ -1,0 +1,3433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Akunna — Web Developer & Entrepreneur</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #f5f4ef;
+    color: #111;
+    line-height: 1.6;
+}
+
+body.project-open {
+    overflow: hidden;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+.container {
+    width: min(1180px, calc(100% - 48px));
+    margin: auto;
+}
+
+.section {
+    padding: 130px 0;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-bottom: 70px;
+}
+
+.section-number {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    color: #999;
+}
+
+.section-label {
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: .18em;
+
+    color: #777;
+}
+
+em {
+    font-family: Georgia, serif;
+    font-weight: 400;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+
+    background: rgba(245,244,239,.88);
+
+    backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid rgba(0,0,0,.07);
+}
+
+.nav-inner {
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.brand span {
+    color: #888;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #666;
+
+    transition: color .25s ease;
+}
+
+.nav-links a:hover {
+    color: #111;
+}
+
+.nav-button {
+    padding: 10px 17px;
+
+    border: 1px solid #111;
+    border-radius: 100px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        background .25s ease,
+        color .25s ease;
+}
+
+.nav-button:hover {
+    background: #111;
+    color: white;
+}
+
+.menu-button {
+    display: none;
+
+    border: 0;
+    background: none;
+
+    font-size: 22px;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    padding-top: 100px;
+}
+
+.hero-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.25fr)
+        minmax(300px, .75fr);
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+.availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 7px 12px;
+
+    border: 1px solid #ddd;
+    border-radius: 100px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    color: #666;
+
+    margin-bottom: 25px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #111;
+
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .3;
+    }
+
+}
+
+.hero-label {
+    margin-bottom: 18px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: .16em;
+
+    color: #888;
+}
+
+.hero h1 {
+    max-width: 900px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(55px, 8vw, 105px);
+
+    line-height: .91;
+
+    letter-spacing: -6px;
+}
+
+.hero h1 span {
+    display: block;
+
+    color: transparent;
+
+    -webkit-text-stroke: 1.5px #111;
+}
+
+.hero-description {
+    max-width: 570px;
+
+    margin-top: 30px;
+
+    color: #666;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 35px;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 20px;
+
+    border-radius: 100px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
+
+.primary-button {
+    background: #111;
+    color: white;
+}
+
+.primary-button:hover {
+    transform: translateY(-3px);
+}
+
+.secondary-button {
+    border: 1px solid #ccc;
+}
+
+.secondary-button:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+
+/* =====================================================
+   HERO VISUAL
+===================================================== */
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.visual-card {
+    position: relative;
+
+    width: 100%;
+    max-width: 400px;
+
+    aspect-ratio: 4 / 5;
+
+    overflow: hidden;
+
+    background: #151515;
+
+    color: white;
+
+    padding: 25px;
+
+    transform: rotate(3deg);
+
+    transition: transform .5s ease;
+}
+
+.visual-card:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.visual-top,
+.visual-bottom {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .15em;
+}
+
+.visual-top {
+    color: #999;
+}
+
+.visual-bottom {
+    position: absolute;
+
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
+
+    align-items: end;
+}
+
+.visual-bottom strong {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 34px;
+
+    line-height: .95;
+
+    letter-spacing: -2px;
+}
+
+.visual-bottom span {
+    color: #777;
+}
+
+.visual-shape {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shape-circle {
+    width: 180px;
+    height: 180px;
+
+    border: 1px solid #555;
+
+    border-radius: 50%;
+}
+
+.shape-square {
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    border: 1px solid white;
+
+    transform: rotate(45deg);
+}
+
+.shape-line {
+    position: absolute;
+
+    width: 250px;
+
+    height: 1px;
+
+    background: #555;
+
+    transform: rotate(-45deg);
+}
+
+
+/* =====================================================
+   SCROLL INDICATOR
+===================================================== */
+
+.hero-scroll {
+    position: absolute;
+
+    left: 50%;
+    bottom: 30px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    color: #999;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .16em;
+}
+
+.scroll-line {
+    width: 55px;
+    height: 1px;
+
+    background: #aaa;
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about {
+    background: #111;
+    color: white;
+}
+
+.about .section-label,
+.about .section-number {
+    color: #777;
+}
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 100px;
+}
+
+.about-grid h2,
+.work-intro h2 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(45px, 6vw, 75px);
+
+    line-height: .95;
+
+    letter-spacing: -4px;
+}
+
+.about-copy p {
+    max-width: 560px;
+
+    margin-bottom: 25px;
+
+    color: #aaa;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 35px;
+}
+
+.skills span {
+    padding: 8px 12px;
+
+    border: 1px solid #333;
+    border-radius: 100px;
+
+    color: #aaa;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   WORK
+===================================================== */
+
+.work {
+    background: #f5f4ef;
+}
+
+.work-intro {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: end;
+
+    margin-bottom: 55px;
+}
+
+.work-intro h2 {
+    max-width: 500px;
+}
+
+.work-intro p {
+    max-width: 300px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   PROJECT GRID
+===================================================== */
+
+.projects-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 75px 25px;
+}
+
+.project {
+    cursor: pointer;
+}
+
+.project-large {
+    grid-column: span 2;
+}
+
+.project-wide {
+    grid-column: span 2;
+}
+
+.project-image {
+    position: relative;
+
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+
+    background: #ddd;
+}
+
+.project-large .project-image,
+.project-wide .project-image {
+    aspect-ratio: 16 / 8;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter: grayscale(20%);
+
+    transition:
+        transform .7s cubic-bezier(.2,.7,.2,1),
+        filter .5s ease;
+}
+
+.project:hover .project-image img {
+    transform: scale(1.07);
+
+    filter: grayscale(0%);
+}
+
+
+/* =====================================================
+   PROJECT OVERLAY
+===================================================== */
+
+.project-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    background: rgba(0,0,0,.55);
+
+    color: white;
+
+    opacity: 0;
+
+    transition: opacity .35s ease;
+}
+
+.project:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-overlay span {
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: .1em;
+}
+
+.project-arrow {
+    font-size: 20px !important;
+}
+
+
+/* =====================================================
+   PROJECT INFO
+===================================================== */
+
+.project-info {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding-top: 20px;
+}
+
+.project-category {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #888;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .14em;
+}
+
+.project-info h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 25px;
+
+    letter-spacing: -.7px;
+}
+
+.project-info p {
+    max-width: 300px;
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 14px;
+}
+
+.project-tags span {
+    padding: 5px 9px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 100px;
+
+    color: #777;
+
+    font-size: 9px;
+}
+
+
+/* =====================================================
+   PROJECT DETAIL
+===================================================== */
+
+.project-detail {
+    display: none;
+
+    min-height: 100vh;
+
+    padding: 130px 0;
+
+    background: #111;
+
+    color: white;
+}
+
+.project-detail.active {
+    display: block;
+}
+
+.close-project {
+    border: 0;
+    background: none;
+
+    color: #aaa;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    margin-bottom: 70px;
+
+    transition: color .2s ease;
+}
+
+.close-project:hover {
+    color: white;
+}
+
+.detail-header {
+    max-width: 850px;
+
+    margin-bottom: 55px;
+}
+
+.detail-header h2 {
+    margin: 15px 0;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(45px, 7vw, 90px);
+
+    line-height: .95;
+
+    letter-spacing: -4px;
+}
+
+.detail-header p {
+    max-width: 600px;
+
+    color: #999;
+
+    font-size: 16px;
+}
+
+.detail-image {
+    width: 100%;
+
+    aspect-ratio: 16 / 8;
+
+    overflow: hidden;
+
+    margin-bottom: 60px;
+}
+
+.detail-image img {
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.detail-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 100px;
+
+    max-width: 850px;
+}
+
+.detail-label {
+    display: block;
+
+    margin-bottom: 15px;
+
+    color: #666;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .15em;
+}
+
+.detail-grid p {
+    color: #aaa;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+.detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.detail-tags span {
+    padding: 8px 12px;
+
+    border: 1px solid #333;
+
+    border-radius: 100px;
+
+    color: #aaa;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact {
+    background: #e7e5dc;
+}
+
+.contact-content {
+    text-align: center;
+
+    padding: 50px 0;
+}
+
+.contact-small {
+    margin-bottom: 20px;
+
+    color: #888;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .18em;
+}
+
+.contact h2 {
+    max-width: 850px;
+
+    margin: auto;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(50px, 8vw, 100px);
+
+    line-height: .9;
+
+    letter-spacing: -5px;
+}
+
+.email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-top: 50px;
+
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid #111;
+
+    font-size: clamp(18px, 3vw, 28px);
+
+    font-weight: 600;
+
+    transition:
+        gap .25s ease;
+}
+
+.email-link:hover {
+    gap: 25px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+
+    gap: 25px;
+
+    margin-top: 50px;
+}
+
+.social-links a {
+    color: #777;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: color .2s ease;
+}
+
+.social-links a:hover {
+    color: #111;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+    background: #111;
+
+    color: #777;
+
+    padding: 25px 0;
+}
+
+.footer-inner {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+    }
+
+    .hero {
+        padding-top: 130px;
+        padding-bottom: 100px;
+    }
+
+    .hero-visual {
+        justify-content: flex-start;
+    }
+
+    .visual-card {
+        max-width: 330px;
+    }
+
+    .about-grid {
+        gap: 50px;
+    }
+
+    .detail-grid {
+        gap: 50px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .container {
+        width: calc(100% - 30px);
+    }
+
+    .section {
+        padding: 90px 0;
+    }
+
+
+    /* NAV */
+
+    .nav-links,
+    .nav-button {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .mobile-menu {
+        padding: 15px;
+
+        flex-direction: column;
+
+        border-top: 1px solid #ddd;
+    }
+
+    .mobile-menu.open {
+        display: flex;
+    }
+
+    .mobile-menu a {
+        padding: 13px 0;
+
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: auto;
+
+        padding-top: 125px;
+        padding-bottom: 100px;
+    }
+
+    .hero h1 {
+        font-size: clamp(48px, 15vw, 75px);
+
+        letter-spacing: -4px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-actions {
+        flex-wrap: wrap;
+    }
+
+    .hero-visual {
+        justify-content: center;
+    }
+
+    .visual-card {
+        max-width: 280px;
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+
+
+    /* ABOUT */
+
+    .about-grid {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .about-grid h2,
+    .work-intro h2 {
+        font-size: 52px;
+
+        letter-spacing: -3px;
+    }
+
+
+    /* WORK */
+
+    .work-intro {
+        display: block;
+    }
+
+    .work-intro p {
+        margin-top: 20px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+    }
+
+    .project-large,
+    .project-wide {
+        grid-column: auto;
+    }
+
+    .project-large .project-image,
+    .project-wide .project-image {
+        aspect-ratio: 4 / 3;
+    }
+
+    .project-info {
+        display: block;
+    }
+
+    .project-info p {
+        margin-top: 10px;
+    }
+
+
+    /* PROJECT DETAIL */
+
+    .project-detail {
+        padding: 110px 0;
+    }
+
+    .detail-header h2 {
+        font-size: 48px;
+
+        letter-spacing: -3px;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+
+    /* CONTACT */
+
+    .contact h2 {
+        font-size: 55px;
+
+        letter-spacing: -3px;
+    }
+
+    .email-link {
+        font-size: 18px;
+    }
+
+
+    /* FOOTER */
+
+    .footer-inner {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+}
+
+/* =====================================================
+   TECH SYSTEM PRELOADER
+===================================================== */
+
+.tech-loader {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 999999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #050505;
+
+    color: #fff;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+
+}
+
+
+/* Finished state */
+
+.tech-loader.finished {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
+   BACKGROUND GRID
+===================================================== */
+
+.tech-grid {
+
+    position: absolute;
+
+    inset: -100px;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        50px 50px;
+
+    transform:
+        perspective(500px)
+        rotateX(55deg)
+        scale(1.5);
+
+    transform-origin:
+        center bottom;
+
+    animation:
+        gridMove 8s linear infinite;
+
+}
+
+
+@keyframes gridMove {
+
+    from {
+
+        background-position:
+            0 0,
+            0 0;
+
+    }
+
+    to {
+
+        background-position:
+            0 50px,
+            50px 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   SCANNING LINE
+===================================================== */
+
+.scan-line {
+
+    position: absolute;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 1px;
+
+    top: -5%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.4),
+            transparent
+        );
+
+    box-shadow:
+        0 0 25px rgba(255,255,255,.3);
+
+    opacity: .5;
+
+    animation:
+        scanScreen 4s linear infinite;
+
+}
+
+
+@keyframes scanScreen {
+
+    0% {
+        top: -5%;
+    }
+
+    100% {
+        top: 105%;
+    }
+
+}
+
+
+/* =====================================================
+   AMBIENT GLOW
+===================================================== */
+
+.tech-glow {
+
+    position: absolute;
+
+    width: 400px;
+
+    height: 400px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: .08;
+
+    background: white;
+
+    pointer-events: none;
+
+}
+
+
+.glow-one {
+
+    top: -200px;
+
+    left: -150px;
+
+}
+
+
+.glow-two {
+
+    right: -150px;
+
+    bottom: -200px;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.tech-loader-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: min(
+        560px,
+        calc(100% - 40px)
+    );
+
+}
+
+
+/* =====================================================
+   SYSTEM INDICATOR
+===================================================== */
+
+.system-indicator {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-bottom: 20px;
+
+    color: #777;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: .22em;
+
+}
+
+
+.indicator-dot {
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.7);
+
+    animation:
+        indicatorPulse 1s infinite;
+
+}
+
+
+@keyframes indicatorPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .25;
+    }
+
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.tech-logo {
+
+    text-align: center;
+
+    font-family:
+        "Space Grotesk",
+        "Arial",
+        sans-serif;
+
+    font-size:
+        clamp(48px, 9vw, 82px);
+
+    font-weight: 700;
+
+    line-height: .9;
+
+    letter-spacing:
+        -5px;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    animation:
+        logoBoot .8s ease forwards;
+
+}
+
+
+.logo-bracket {
+
+    color: #666;
+
+    font-weight: 400;
+
+}
+
+
+@keyframes logoBoot {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   SUBTITLE
+===================================================== */
+
+.tech-subtitle {
+
+    margin-top: 12px;
+
+    text-align: center;
+
+    color: #666;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .3em;
+
+}
+
+
+/* =====================================================
+   TERMINAL
+===================================================== */
+
+.terminal-window {
+
+    margin-top: 40px;
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.12);
+
+    background:
+        rgba(255,255,255,.025);
+
+    box-shadow:
+
+        0 20px 70px
+        rgba(0,0,0,.5);
+
+}
+
+
+.terminal-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    height: 28px;
+
+    padding: 0 12px;
+
+    border-bottom:
+
+        1px solid
+        rgba(255,255,255,.08);
+
+}
+
+
+.terminal-header > span {
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #444;
+
+}
+
+
+.terminal-header small {
+
+    margin-left: auto;
+
+    color: #444;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+}
+
+
+.terminal-body {
+
+    padding: 18px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 11px;
+
+}
+
+
+.terminal-symbol {
+
+    color: #777;
+
+}
+
+
+#terminalCommand {
+
+    color: #ddd;
+
+}
+
+
+.cursor {
+
+    color: white;
+
+    animation:
+        cursorBlink .8s infinite;
+
+}
+
+
+@keyframes cursorBlink {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+.terminal-status {
+
+    margin-top: 8px;
+
+    color: #555;
+
+    font-size: 9px;
+
+}
+
+
+/* =====================================================
+   LOADING INFO
+===================================================== */
+
+.tech-loading-info {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 22px;
+
+    margin-bottom: 8px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+
+    color: #666;
+
+}
+
+
+#techPercentage {
+
+    color: #fff;
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.tech-progress {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 2px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    overflow: visible;
+
+}
+
+
+.tech-progress-bar {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 0%;
+
+    height: 100%;
+
+    background: #fff;
+
+    transition:
+        width .08s linear;
+
+}
+
+
+.progress-glow {
+
+    position: absolute;
+
+    top: -3px;
+
+    left: 0;
+
+    width: 0%;
+
+    height: 8px;
+
+    background: #fff;
+
+    filter: blur(7px);
+
+    opacity: .25;
+
+    transition:
+        width .08s linear;
+
+}
+
+
+/* =====================================================
+   MODULES
+===================================================== */
+
+.system-modules {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    margin-top: 20px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    color: #333;
+
+}
+
+
+.system-modules span {
+
+    transition:
+        color .3s ease,
+        text-shadow .3s ease;
+
+}
+
+
+.system-modules span.active {
+
+    color: #aaa;
+
+    text-shadow:
+        0 0 8px
+        rgba(255,255,255,.3);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.tech-loader-footer {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    margin-top: 35px;
+
+    color: #333;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .12em;
+
+}
+
+
+.online-dot {
+
+    display: inline-block;
+
+    width: 5px;
+
+    height: 5px;
+
+    margin-right: 5px;
+
+    border-radius: 50%;
+
+    background: #777;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .tech-loader-content {
+
+        width:
+            calc(100% - 35px);
+
+    }
+
+
+    .tech-logo {
+
+        font-size: 48px;
+
+        letter-spacing: -3px;
+
+    }
+
+
+    .terminal-window {
+
+        margin-top: 30px;
+
+    }
+
+
+    .system-modules {
+
+        font-size: 7px;
+
+    }
+
+
+    .tech-loader-footer {
+
+        margin-top: 25px;
+
+        font-size: 6px;
+
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tech-loader *,
+    .tech-loader {
+
+        animation: none !important;
+
+        transition: none !important;
+
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================
+     TECH SYSTEM PRELOADER
+========================================= -->
+
+<div class="tech-loader" id="techLoader">
+
+    <!-- Background grid -->
+    <div class="tech-grid"></div>
+
+    <!-- Scanning line -->
+    <div class="scan-line"></div>
+
+    <!-- Ambient glow -->
+    <div class="tech-glow glow-one"></div>
+    <div class="tech-glow glow-two"></div>
+
+
+    <div class="tech-loader-content">
+
+        <!-- System indicator -->
+
+        <div class="system-indicator">
+
+            <span class="indicator-dot"></span>
+
+            <span>SYSTEM BOOT</span>
+
+        </div>
+
+
+        <!-- Main logo -->
+
+        <div class="tech-logo">
+
+            <span class="logo-bracket">&lt;</span>
+
+            TECH
+
+            <span class="logo-bracket">/&gt;</span>
+
+        </div>
+
+
+        <div class="tech-subtitle">
+            DIGITAL EXPERIENCE INITIALIZING
+        </div>
+
+
+        <!-- Terminal -->
+
+        <div class="terminal-window">
+
+            <div class="terminal-header">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <small>
+                    system.exe
+                </small>
+
+            </div>
+
+
+            <div class="terminal-body">
+
+                <div>
+                    <span class="terminal-symbol">
+                        $
+                    </span>
+
+                    <span id="terminalCommand">
+                        initializing_system
+                    </span>
+
+                    <span class="cursor">
+                        _
+                    </span>
+                </div>
+
+
+                <div
+                    class="terminal-status"
+                    id="terminalStatus"
+                >
+                    Establishing connection...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Loading percentage -->
+
+        <div class="tech-loading-info">
+
+            <span id="techLoadingText">
+                INITIALIZING
+            </span>
+
+            <strong id="techPercentage">
+                0%
+            </strong>
+
+        </div>
+
+
+        <!-- Loading bar -->
+
+        <div class="tech-progress">
+
+            <div
+                class="tech-progress-bar"
+                id="techProgressBar"
+            ></div>
+
+                <div
+                    class="progress-glow"
+                    id="progressGlow"
+                ></div>
+
+        </div>
+
+
+        <!-- Modules -->
+
+        <div class="system-modules">
+
+            <span id="module1">
+                UI
+            </span>
+
+            <span id="module2">
+                API
+            </span>
+
+            <span id="module3">
+                DATA
+            </span>
+
+            <span id="module4">
+                SECURITY
+            </span>
+
+            <span id="module5">
+                CORE
+            </span>
+
+        </div>
+
+
+        <!-- Footer -->
+
+        <div class="tech-loader-footer">
+
+            <span>
+                BUILD 2026.01
+            </span>
+
+            <span>
+                <span class="online-dot"></span>
+                SECURE CONNECTION
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="container nav-inner">
+
+            <a href="#home" class="brand">
+                A<span>.</span>
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="#about">About</a>
+                <a href="#work">Work</a>
+                <a href="#contact">Contact</a>
+
+            </nav>
+
+            <a href="#contact" class="nav-button">
+                Let's talk
+            </a>
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open menu"
+            >
+                ☰
+            </button>
+
+        </div>
+
+        <nav class="mobile-menu" id="mobileMenu">
+
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="hero" id="home">
+
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+
+                    <div class="availability">
+
+                        <span class="status-dot"></span>
+
+                        Available for opportunities
+
+                    </div>
+
+
+                    <p class="hero-label">
+                        WEB DEVELOPER · ENTREPRENEUR
+                    </p>
+
+
+                    <h1>
+                        I turn ideas into
+                        <span>digital products.</span>
+                    </h1>
+
+
+                    <p class="hero-description">
+                        I build modern websites and digital experiences
+                        that combine clean design, thoughtful interaction,
+                        and practical technology.
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="#work"
+                            class="primary-button"
+                        >
+                            View my work
+                            <span>↗</span>
+                        </a>
+
+                        <a
+                            href="#contact"
+                            class="secondary-button"
+                        >
+                            Contact me
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual">
+
+                    <div class="visual-card">
+
+                        <div class="visual-top">
+
+                            <span>SELECTED</span>
+
+                            <span>01 / 04</span>
+
+                        </div>
+
+
+                        <div class="visual-shape">
+
+                            <div class="shape-circle"></div>
+
+                            <div class="shape-square"></div>
+
+                            <div class="shape-line"></div>
+
+                        </div>
+
+
+                        <div class="visual-bottom">
+
+                            <strong>
+                                Build.
+                                <br>
+                                Launch.
+                                <br>
+                                Grow.
+                            </strong>
+
+                            <span>
+                                2026
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-scroll">
+
+                <span>SCROLL TO EXPLORE</span>
+
+                <span class="scroll-line"></span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section class="about section" id="about">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        01
+                    </span>
+
+                    <span class="section-label">
+                        ABOUT ME
+                    </span>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <h2>
+                        Building things that
+                        <em>matter.</em>
+                    </h2>
+
+
+                    <div class="about-copy">
+
+                        <p>
+                            I'm a web developer and entrepreneur who enjoys
+                            turning ideas into products people can actually
+                            use.
+                        </p>
+
+                        <p>
+                            My work sits between design, technology and
+                            business. I care about how something looks,
+                            how it works and whether it solves the problem
+                            it was created for.
+                        </p>
+
+
+                        <div class="skills">
+
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Python basic</span>
+                            
+                            <span>Google Sheets</span>
+                            <span>APIs</span>
+                            <span>UI/UX</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WORK
+        ========================== -->
+
+        <section class="work section" id="work">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        02
+                    </span>
+
+                    <span class="section-label">
+                        SELECTED WORK
+                    </span>
+
+                </div>
+
+
+                <div class="work-intro">
+
+                    <h2>
+                        Things I've
+                        <em>built.</em>
+                    </h2>
+
+                    <p>
+                        A selection of products, websites and experiments
+                        I've worked on.
+                    </p>
+
+                </div>
+
+
+                <!-- PROJECT GRID -->
+
+                <div class="projects-grid">
+
+
+                    <!-- PROJECT 1 -->
+
+                    <article
+                        class="project project-large"
+                        data-project="campusmart"
+                    >
+
+                        <div class="project-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85"
+                                alt="Campus marketplace project"
+                            >
+
+                            <div class="project-overlay">
+
+                                <span>
+                                    VIEW PROJECT
+                                </span>
+
+                                <span class="project-arrow">
+                                    ↗
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-info">
+
+                            <div>
+
+                                <span class="project-category">
+                                    MARKETPLACE
+                                </span>
+
+                                <h3>
+                                    CampusMart
+                                </h3>
+
+                            </div>
+
+                            <p>
+                                A student-focused marketplace designed
+                                to make buying and selling on campus easier.
+                            </p>
+
+                        </div>
+
+
+                        <div class="project-tags">
+
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Supabase</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PROJECT 2 -->
+
+                    <article
+                        class="project"
+                        data-project="paletra"
+                    >
+
+                        <div class="project-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=85"
+                                alt="Paletra cooking application"
+                            >
+
+                            <div class="project-overlay">
+
+                                <span>
+                                    VIEW PROJECT
+                                </span>
+
+                                <span class="project-arrow">
+                                    ↗
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-info">
+
+                            <div>
+
+                                <span class="project-category">
+                                    WEB APP
+                                </span>
+
+                                <h3>
+                                    Paletra
+                                </h3>
+
+                            </div>
+
+                            <p>
+                                A cooking assistant and food marketplace
+                                experience built around simple discovery.
+                            </p>
+
+                        </div>
+
+
+                        <div class="project-tags">
+
+                            <span>JavaScript</span>
+                            <span>AI</span>
+                            <span>APIs</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PROJECT 3 -->
+
+                    <article
+                        class="project"
+                        data-project="octalearn"
+                    >
+
+                        <div class="project-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=85"
+                                alt="Online learning platform"
+                            >
+
+                            <div class="project-overlay">
+
+                                <span>
+                                    VIEW PROJECT
+                                </span>
+
+                                <span class="project-arrow">
+                                    ↗
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-info">
+
+                            <div>
+
+                                <span class="project-category">
+                                    EDTECH
+                                </span>
+
+                                <h3>
+                                    OctaLearn
+                                </h3>
+
+                            </div>
+
+                            <p>
+                                An AI-powered learning platform designed
+                                to help students learn more effectively.
+                            </p>
+
+                        </div>
+
+
+                        <div class="project-tags">
+
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PROJECT 4 -->
+
+                    <article
+                        class="project project-wide"
+                        data-project="safety"
+                    >
+
+                        <div class="project-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1400&q=85"
+                                alt="Industrial safety technology"
+                            >
+
+                            <div class="project-overlay">
+
+                                <span>
+                                    VIEW PROJECT
+                                </span>
+
+                                <span class="project-arrow">
+                                    ↗
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-info">
+
+                            <div>
+
+                                <span class="project-category">
+                                    IOT · HARDWARE
+                                </span>
+
+                                <h3>
+                                    Industrial Safety System
+                                </h3>
+
+                            </div>
+
+                            <p>
+                                A wearable monitoring system designed to
+                                help improve workplace safety through
+                                real-time sensor data.
+                            </p>
+
+                        </div>
+
+
+                        <div class="project-tags">
+
+                            <span>ESP8266</span>
+                            <span>IoT</span>
+                            <span>Google Sheets</span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROJECT DETAIL
+        ========================== -->
+
+        <section
+            class="project-detail"
+            id="projectDetail"
+        >
+
+            <div class="container">
+
+                <button
+                    class="close-project"
+                    id="closeProject"
+                >
+                    ← Back to work
+                </button>
+
+
+                <div class="detail-header">
+
+                    <span
+                        class="project-category"
+                        id="detailCategory"
+                    >
+                        WEB APP
+                    </span>
+
+                    <h2 id="detailTitle">
+                        Project Title
+                    </h2>
+
+                    <p id="detailDescription">
+                        Project description.
+                    </p>
+
+                </div>
+
+
+                <div class="detail-image">
+
+                    <img
+                        id="detailImage"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div class="detail-grid">
+
+                    <div>
+
+                        <span class="detail-label">
+                            THE IDEA
+                        </span>
+
+                        <p>
+                            Every project starts with a problem worth
+                            solving. The goal was to create a simple,
+                            useful and accessible digital experience.
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="detail-label">
+                            TECHNOLOGY
+                        </span>
+
+                        <div
+                            class="detail-tags"
+                            id="detailTags"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section
+            class="contact section"
+            id="contact"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        03
+                    </span>
+
+                    <span class="section-label">
+                        CONTACT
+                    </span>
+
+                </div>
+
+
+                <div class="contact-content">
+
+                    <p class="contact-small">
+                        HAVE A PROJECT IN MIND?
+                    </p>
+
+                    <h2>
+                        Let's build
+                        <em>something great.</em>
+                    </h2>
+
+
+                    <a
+                        href="mailto:ihesiuloakunna@gmail.com"
+                        class="email-link"
+                    >
+                        ihesiuloakunna@gmail.com
+                        <span>↗</span>
+                    </a>
+
+
+                    <div class="social-links">
+
+                        <a href="#">
+                            GitHub
+                        </a>
+
+                        <a href="#">
+                            LinkedIn
+                        </a>
+
+                        <a href="#">
+                            Instagram
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-inner">
+
+            <span>
+                © 2026 Akunna
+            </span>
+
+            <span>
+                Designed & built with intention.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+
+menuButton.addEventListener("click", () => {
+
+    mobileMenu.classList.toggle("open");
+
+});
+
+
+/* Close mobile menu after clicking */
+
+mobileMenu.querySelectorAll("a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        mobileMenu.classList.remove("open");
+
+    });
+
+});
+
+
+/* =====================================================
+   PROJECT DATA
+===================================================== */
+
+const projectData = {
+
+    campusmart: {
+
+        title: "CampusMart",
+
+        category: "MARKETPLACE",
+
+        description:
+            "A student-focused marketplace designed to make buying and selling on campus easier.",
+
+        image:
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=90",
+
+        tags: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Supabase"
+        ]
+
+    },
+
+
+    paletra: {
+
+        title: "Paletra",
+
+        category: "WEB APP",
+
+        description:
+            "A cooking assistant and food marketplace experience built around simple discovery.",
+
+        image:
+            "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=90",
+
+        tags: [
+            "JavaScript",
+            "AI",
+            "APIs"
+        ]
+
+    },
+
+
+    octalearn: {
+
+        title: "OctaLearn",
+
+        category: "EDTECH",
+
+        description:
+            "An AI-powered learning platform designed to help students learn more effectively.",
+
+        image:
+            "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=90",
+
+        tags: [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+
+    },
+
+
+    safety: {
+
+        title: "Industrial Safety System",
+
+        category: "IOT · HARDWARE",
+
+        description:
+            "A wearable monitoring system designed to help improve workplace safety through real-time sensor data.",
+
+        image:
+            "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1600&q=90",
+
+        tags: [
+            "ESP8266",
+            "IoT",
+            "Sensors",
+            "Google Sheets"
+        ]
+
+    }
+
+};
+
+
+/* =====================================================
+   PROJECT ELEMENTS
+===================================================== */
+
+const projectCards =
+    document.querySelectorAll(".project");
+
+const projectDetail =
+    document.getElementById("projectDetail");
+
+const closeProject =
+    document.getElementById("closeProject");
+
+const detailTitle =
+    document.getElementById("detailTitle");
+
+const detailCategory =
+    document.getElementById("detailCategory");
+
+const detailDescription =
+    document.getElementById("detailDescription");
+
+const detailImage =
+    document.getElementById("detailImage");
+
+const detailTags =
+    document.getElementById("detailTags");
+
+
+/* =====================================================
+   OPEN PROJECT
+===================================================== */
+
+function openProject(projectId) {
+
+    const project =
+        projectData[projectId];
+
+    if (!project) return;
+
+
+    detailTitle.textContent =
+        project.title;
+
+    detailCategory.textContent =
+        project.category;
+
+    detailDescription.textContent =
+        project.description;
+
+    detailImage.src =
+        project.image;
+
+    detailImage.alt =
+        project.title;
+
+
+    detailTags.innerHTML = "";
+
+
+    project.tags.forEach(tag => {
+
+        const tagElement =
+            document.createElement("span");
+
+        tagElement.textContent =
+            tag;
+
+        detailTags.appendChild(
+            tagElement
+        );
+
+    });
+
+
+    /* Hide normal portfolio */
+
+    document.querySelector("main")
+        .querySelectorAll(
+            ".hero, .about, .work, .contact"
+        )
+        .forEach(section => {
+
+            section.style.display = "none";
+
+        });
+
+
+    /* Show detail */
+
+    projectDetail.classList.add("active");
+
+    document.body.classList.add("project-open");
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   PROJECT CARD CLICK
+===================================================== */
+
+projectCards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        const projectId =
+            card.dataset.project;
+
+        openProject(projectId);
+
+    });
+
+});
+
+
+/* =====================================================
+   CLOSE PROJECT
+===================================================== */
+
+closeProject.addEventListener("click", () => {
+
+    projectDetail.classList.remove("active");
+
+    document.body.classList.remove("project-open");
+
+
+    document.querySelector("main")
+        .querySelectorAll(
+            ".hero, .about, .work, .contact"
+        )
+        .forEach(section => {
+
+            section.style.display = "";
+
+        });
+
+
+    document.getElementById("work")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+});
+
+
+/* =====================================================
+   ESCAPE KEY
+===================================================== */
+
+document.addEventListener("keydown", event => {
+
+    if (
+        event.key === "Escape" &&
+        projectDetail.classList.contains("active")
+    ) {
+
+        closeProject.click();
+
+    }
+
+});
+
+/* =====================================================
+   TECH SYSTEM PRELOADER
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const loader =
+            document.getElementById(
+                "techLoader"
+            );
+
+        const progressBar =
+            document.getElementById(
+                "techProgressBar"
+            );
+
+        const progressGlow =
+            document.getElementById(
+                "progressGlow"
+            );
+
+        const percentage =
+            document.getElementById(
+                "techPercentage"
+            );
+
+        const loadingText =
+            document.getElementById(
+                "techLoadingText"
+            );
+
+        const terminalCommand =
+            document.getElementById(
+                "terminalCommand"
+            );
+
+        const terminalStatus =
+            document.getElementById(
+                "terminalStatus"
+            );
+
+
+        if (!loader) return;
+
+
+        /* =========================================
+           SYSTEM MODULES
+        ========================================= */
+
+        const modules = [
+            document.getElementById("module1"),
+            document.getElementById("module2"),
+            document.getElementById("module3"),
+            document.getElementById("module4"),
+            document.getElementById("module5")
+        ];
+
+
+        /* =========================================
+           BOOT SEQUENCE
+        ========================================= */
+
+        const bootSteps = [
+
+            {
+                progress: 0,
+
+                text: "INITIALIZING",
+
+                command:
+                    "booting_core_system",
+
+                status:
+                    "Starting digital environment..."
+            },
+
+            {
+                progress: 18,
+
+                text: "CONNECTING",
+
+                command:
+                    "establishing_connection",
+
+                status:
+                    "Connection established."
+            },
+
+            {
+                progress: 38,
+
+                text: "LOADING UI",
+
+                command:
+                    "loading_interface",
+
+                status:
+                    "Interface modules loaded."
+            },
+
+            {
+                progress: 58,
+
+                text: "SYNCING DATA",
+
+                command:
+                    "synchronizing_data",
+
+                status:
+                    "Data synchronization complete."
+            },
+
+            {
+                progress: 78,
+
+                text: "OPTIMIZING",
+
+                command:
+                    "optimizing_experience",
+
+                status:
+                    "Performance optimization complete."
+            },
+
+            {
+                progress: 94,
+
+                text: "FINAL CHECK",
+
+                command:
+                    "running_final_check",
+
+                status:
+                    "All systems operational."
+            },
+
+            {
+                progress: 100,
+
+                text: "SYSTEM ONLINE",
+
+                command:
+                    "system_online",
+
+                status:
+                    "Welcome to the experience."
+            }
+
+        ];
+
+
+        let progress = 0;
+
+
+        /* =========================================
+           UPDATE BOOT STATE
+        ========================================= */
+
+        function updateBootState(value) {
+
+            let current =
+                bootSteps[0];
+
+
+            bootSteps.forEach(step => {
+
+                if (
+                    value >=
+                    step.progress
+                ) {
+
+                    current = step;
+
+                }
+
+            });
+
+
+            loadingText.textContent =
+                current.text;
+
+
+            terminalCommand.textContent =
+                current.command;
+
+
+            terminalStatus.textContent =
+                current.status;
+
+
+            percentage.textContent =
+                value + "%";
+
+
+            progressBar.style.width =
+                value + "%";
+
+
+            progressGlow.style.width =
+                value + "%";
+
+
+            /* Activate modules */
+
+            modules.forEach(
+                (module, index) => {
+
+                    const threshold =
+                        (index + 1) * 20;
+
+                    if (
+                        value >=
+                        threshold
+                    ) {
+
+                        module.classList.add(
+                            "active"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =========================================
+           START BOOT
+        ========================================= */
+
+        const bootInterval =
+            setInterval(() => {
+
+                /*
+                 * Random increments make
+                 * the loading feel like a
+                 * real system boot.
+                 */
+
+                progress +=
+                    Math.floor(
+                        Math.random() * 4
+                    ) + 1;
+
+
+                if (progress >= 100) {
+
+                    progress = 100;
+
+                    clearInterval(
+                        bootInterval
+                    );
+
+                }
+
+
+                updateBootState(
+                    progress
+                );
+
+
+                /* =================================
+                   SYSTEM ONLINE
+                ================================= */
+
+                if (
+                    progress === 100
+                ) {
+
+                    setTimeout(() => {
+
+                        /*
+                         * Final pause gives
+                         * "SYSTEM ONLINE"
+                         * time to be seen.
+                         */
+
+                        loader.classList.add(
+                            "finished"
+                        );
+
+
+                    }, 650);
+
+                }
+
+
+            }, 55);
+
+    }
+);
+</script>
+
+</body>
+</html>
