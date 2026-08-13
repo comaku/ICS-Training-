@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SportSphere — Sports News & Stories</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #f7f7f5;
+    color: #171717;
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================
+   GLOBAL
+========================= */
+
+.container {
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+}
+
+.category {
+    display: inline-block;
+    background: #111;
+    color: white;
+    padding: 6px 11px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+.post-meta {
+    color: #777;
+    font-size: 12px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(247, 247, 245, .96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.header-inner {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    font-weight: 400;
+}
+
+.desktop-nav {
+    display: flex;
+    gap: 28px;
+}
+
+.desktop-nav a {
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    transition: .25s;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active {
+    color: #111;
+}
+
+.search-toggle,
+.menu-toggle {
+    border: 0;
+    background: none;
+    font-size: 18px;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+
+/* =========================
+   MOBILE NAV
+========================= */
+
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    padding: 10px 20px 20px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.mobile-nav.open {
+    display: flex;
+}
+
+.mobile-nav a {
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-section {
+    display: none;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.search-section.active {
+    display: block;
+}
+
+.search-section input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    background: white;
+}
+
+.search-section input:focus {
+    border-color: #111;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero-section {
+    padding: 35px 0 50px;
+}
+
+.featured-post {
+    position: relative;
+    height: 540px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #111;
+}
+
+.featured-post img {
+    height: 100%;
+    object-fit: cover;
+    opacity: .75;
+    transition: transform .7s ease;
+}
+
+.featured-post:hover img {
+    transform: scale(1.04);
+}
+
+.featured-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 55px;
+    color: white;
+    background: linear-gradient(
+        transparent 20%,
+        rgba(0,0,0,.85)
+    );
+}
+
+.featured-overlay h1 {
+    max-width: 750px;
+    margin: 14px 0;
+    font-size: clamp(32px, 5vw, 58px);
+    line-height: 1.03;
+    letter-spacing: -2px;
+}
+
+.featured-overlay p {
+    max-width: 650px;
+    color: #ddd;
+    font-size: 15px;
+}
+
+.featured-overlay .post-meta {
+    margin-top: 15px;
+    color: #ccc;
+}
+
+.read-btn {
+    width: fit-content;
+    margin-top: 22px;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 5px;
+    background: white;
+    color: #111;
+    font-weight: 700;
+    transition: .25s;
+}
+
+.read-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.content-section {
+    padding-bottom: 80px;
+}
+
+.content-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: 55px;
+}
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    color: #888;
+}
+
+.section-heading h2 {
+    margin-top: 5px;
+    font-size: 27px;
+    letter-spacing: -.8px;
+}
+
+
+/* =========================
+   POST GRID
+========================= */
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 24px;
+}
+
+.post-card {
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 9px;
+    overflow: hidden;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.08);
+}
+
+.post-image {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+}
+
+.post-image img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease;
+}
+
+.post-card:hover .post-image img {
+    transform: scale(1.05);
+}
+
+.post-image .category {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+}
+
+.post-content {
+    padding: 20px;
+}
+
+.post-content h3 {
+    margin: 8px 0;
+    font-size: 19px;
+    line-height: 1.25;
+    letter-spacing: -.4px;
+}
+
+.post-content p {
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 13px;
+}
+
+.text-link {
+    border: 0;
+    background: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 0;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sidebar-box {
+    background: white;
+    border: 1px solid #e5e5e5;
+    padding: 23px;
+    border-radius: 8px;
+}
+
+.sidebar-box h3 {
+    font-size: 15px;
+    margin-bottom: 17px;
+}
+
+.sidebar-search {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.sidebar-search input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    padding: 10px;
+}
+
+.sidebar-search button {
+    border: 0;
+    background: #111;
+    color: white;
+    padding: 0 13px;
+}
+
+.categories {
+    list-style: none;
+}
+
+.categories li {
+    border-bottom: 1px solid #eee;
+}
+
+.categories li:last-child {
+    border-bottom: 0;
+}
+
+.categories button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border: 0;
+    background: none;
+    color: #555;
+    font-size: 13px;
+    text-align: left;
+}
+
+.categories button:hover {
+    color: #111;
+}
+
+.categories span {
+    color: #aaa;
+}
+
+.trending-item {
+    display: flex;
+    gap: 13px;
+    padding: 13px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.trending-item:last-child {
+    border-bottom: 0;
+}
+
+.trending-item > span {
+    font-size: 18px;
+    font-weight: 800;
+    color: #ccc;
+}
+
+.trending-item p {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+
+/* =========================
+   SINGLE ARTICLE
+========================= */
+
+.single-post {
+    display: none;
+    padding: 45px 0 80px;
+}
+
+.single-post.active {
+    display: block;
+}
+
+.back-button {
+    border: 0;
+    background: none;
+    margin-bottom: 40px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.article {
+    max-width: 850px;
+    margin: auto;
+}
+
+.article h1 {
+    margin: 15px 0;
+    font-size: clamp(35px, 6vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+
+.article-meta {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 35px;
+}
+
+.article-image {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.article-body {
+    max-width: 720px;
+    margin: auto;
+}
+
+.article-body p {
+    margin-bottom: 25px;
+    font-size: 17px;
+    line-height: 1.85;
+    color: #333;
+}
+
+.article-body h2 {
+    margin: 40px 0 15px;
+    font-size: 28px;
+}
+
+.article-body blockquote {
+    margin: 35px 0;
+    padding: 20px 25px;
+    border-left: 4px solid #111;
+    background: #f0f0ed;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background: #111;
+    color: white;
+    padding-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding-bottom: 45px;
+}
+
+.footer .logo {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.footer p {
+    max-width: 350px;
+    color: #999;
+    font-size: 13px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+    color: #aaa;
+    font-size: 13px;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.copyright {
+    border-top: 1px solid #2a2a2a;
+    padding: 20px;
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 991px) {
+
+    .desktop-nav {
+        gap: 18px;
+    }
+
+    .content-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trending {
+        grid-column: span 2;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 767px) {
+
+    .container {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .header-inner {
+        height: 65px;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .search-toggle {
+        margin-left: auto;
+        margin-right: 15px;
+    }
+
+    .hero-section {
+        padding: 20px 0 35px;
+    }
+
+    .featured-post {
+        height: 480px;
+    }
+
+    .featured-overlay {
+        padding: 25px;
+    }
+
+    .featured-overlay h1 {
+        font-size: 34px;
+        letter-spacing: -1.2px;
+    }
+
+    .featured-overlay p {
+        font-size: 13px;
+    }
+
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: flex;
+    }
+
+    .trending {
+        grid-column: auto;
+    }
+
+    .section-heading h2 {
+        font-size: 23px;
+    }
+
+    .article h1 {
+        font-size: 38px;
+    }
+
+    .article-body p {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 479px) {
+
+    .featured-post {
+        height: 430px;
+        border-radius: 8px;
+    }
+
+    .featured-overlay h1 {
+        font-size: 29px;
+    }
+
+    .post-content h3 {
+        font-size: 18px;
+    }
+
+    .article h1 {
+        font-size: 32px;
+    }
+
+}
+
+/* =====================================================
+   SPORTSPHERE SPORTS PRELOADER
+===================================================== */
+
+.sports-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #202020 0%,
+            #0d0d0d 48%,
+            #050505 100%
+        );
+
+    color: white;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease,
+        transform .8s ease;
+}
+
+
+/* When loading is finished */
+
+.sports-preloader.finished {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.04);
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   STADIUM LIGHT EFFECT
+===================================================== */
+
+.stadium-lights {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 0%,
+            rgba(255,255,255,.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 85% 0%,
+            rgba(255,255,255,.10),
+            transparent 35%
+        );
+
+    animation: stadiumPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes stadiumPulse {
+
+    0%,
+    100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.preloader-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(520px, calc(100% - 40px));
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.preloader-logo {
+    font-size: clamp(34px, 6vw, 58px);
+
+    font-weight: 800;
+
+    letter-spacing: -3px;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    animation:
+        preloaderLogoIn .8s ease forwards;
+}
+
+.preloader-logo span {
+    font-weight: 400;
+}
+
+
+@keyframes preloaderLogoIn {
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   TAGLINE
+===================================================== */
+
+.preloader-tagline {
+
+    margin-top: 5px;
+
+    color: #999;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .35em;
+
+    opacity: 0;
+
+    animation:
+        taglineIn .8s ease .3s forwards;
+}
+
+@keyframes taglineIn {
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =====================================================
+   FOOTBALL TRACK
+===================================================== */
+
+.football-stage {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100px;
+
+    margin-top: 45px;
+
+    overflow: hidden;
+}
+
+
+/* Pitch horizontal line */
+
+.pitch-line {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 30px;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.8),
+            transparent
+        );
+
+    transform-origin: left;
+
+    animation:
+        pitchAppear 1s ease forwards;
+}
+
+
+@keyframes pitchAppear {
+
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+
+}
+
+
+/* =====================================================
+   FOOTBALL
+===================================================== */
+
+.football {
+
+    position: absolute;
+
+    left: -50px;
+
+    bottom: 35px;
+
+    font-size: 34px;
+
+    filter:
+        drop-shadow(0 5px 5px rgba(0,0,0,.5));
+
+    animation:
+        footballKick 1.8s cubic-bezier(.65,.05,.36,1) infinite;
+}
+
+
+@keyframes footballKick {
+
+    0% {
+        left: -50px;
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    45% {
+        transform:
+            translateY(-28px)
+            rotate(180deg);
+    }
+
+    70% {
+        transform:
+            translateY(-5px)
+            rotate(300deg);
+    }
+
+    100% {
+        left: calc(100% + 50px);
+        transform:
+            translateY(0)
+            rotate(450deg);
+    }
+
+}
+
+
+/* =====================================================
+   LOADING INFORMATION
+===================================================== */
+
+.loading-info {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+
+    color: #aaa;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .12em;
+}
+
+#loadingPercent {
+    color: white;
+}
+
+
+/* =====================================================
+   LOADING BAR
+===================================================== */
+
+.loading-bar {
+
+    width: 100%;
+
+    height: 3px;
+
+    overflow: hidden;
+
+    background: rgba(255,255,255,.12);
+
+    border-radius: 20px;
+}
+
+.loading-progress {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: white;
+
+    border-radius: inherit;
+
+    transition:
+        width .15s linear;
+}
+
+
+/* =====================================================
+   BOTTOM TEXT
+===================================================== */
+
+.preloader-bottom {
+
+    margin-top: 25px;
+
+    color: #666;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: .18em;
+
+    opacity: 0;
+
+    animation:
+        bottomTextIn .8s ease .6s forwards;
+}
+
+@keyframes bottomTextIn {
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 767px) {
+
+    .preloader-content {
+        width: calc(100% - 50px);
+    }
+
+    .preloader-logo {
+        font-size: 38px;
+    }
+
+    .preloader-tagline {
+        font-size: 8px;
+        letter-spacing: .25em;
+    }
+
+    .football-stage {
+        margin-top: 35px;
+    }
+
+    .football {
+        font-size: 28px;
+    }
+
+    .preloader-bottom {
+        font-size: 7px;
+        line-height: 1.7;
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .sports-preloader *,
+    .sports-preloader {
+        animation: none !important;
+        transition: none !important;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     SPORTSPHERE SPORTS PRELOADER
+========================= -->
+
+<div class="sports-preloader" id="sportsPreloader">
+
+    <div class="stadium-lights"></div>
+
+    <div class="preloader-content">
+
+        <div class="preloader-logo">
+            Sport<span>Sphere</span>
+        </div>
+
+        <div class="preloader-tagline">
+            THE WORLD OF SPORTS
+        </div>
+
+        <div class="football-stage">
+
+            <div class="pitch-line"></div>
+
+            <div class="football">
+                ⚽
+            </div>
+
+        </div>
+
+        <div class="loading-info">
+
+            <span id="loadingText">
+                GETTING READY
+            </span>
+
+            <span id="loadingPercent">
+                0%
+            </span>
+
+        </div>
+
+        <div class="loading-bar">
+            <div
+                class="loading-progress"
+                id="loadingProgress"
+            ></div>
+        </div>
+
+        <div class="preloader-bottom">
+            KICK OFF • STAY INFORMED • NEVER MISS THE GAME
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-inner">
+
+            <a href="#" class="logo">
+                Sport<span>Sphere</span>
+            </a>
+
+            <nav class="desktop-nav">
+                <a href="#" class="active">Home</a>
+                <a href="#">Football</a>
+                <a href="#">Basketball</a>
+                <a href="#">Tennis</a>
+                <a href="#">Other Sports</a>
+            </nav>
+
+            <button class="search-toggle" id="searchToggle">
+                🔍
+            </button>
+
+            <button class="menu-toggle" id="menuToggle">
+                ☰
+            </button>
+
+        </div>
+
+        <!-- MOBILE NAV -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="#">Home</a>
+            <a href="#">Football</a>
+            <a href="#">Basketball</a>
+            <a href="#">Tennis</a>
+            <a href="#">Other Sports</a>
+        </nav>
+
+    </header>
+
+
+    <!-- SEARCH -->
+    <section class="search-section" id="searchSection">
+        <div class="container">
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search sports stories..."
+            >
+        </div>
+    </section>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero-section">
+            <div class="container">
+
+                <article class="featured-post">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1400&q=80"
+                        alt="Football stadium"
+                    >
+
+                    <div class="featured-overlay">
+                        <span class="category">Football</span>
+
+                        <h1>
+                            Nigeria's Super Eagles Begin New Campaign With High Expectations
+                        </h1>
+
+                        <p>
+                            A new chapter begins as Nigeria's football stars prepare
+                            for another important campaign on the international stage.
+                        </p>
+
+                        <div class="post-meta">
+                            <span>August 13, 2026</span>
+                            <span>•</span>
+                            <span>5 min read</span>
+                        </div>
+
+                        <button class="read-btn" data-post="featured">
+                            Read Story →
+                        </button>
+                    </div>
+
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- CONTENT AREA -->
+        <section class="content-section">
+
+            <div class="container content-layout">
+
+                <!-- POSTS -->
+                <div class="posts-area">
+
+                    <div class="section-heading">
+                        <div>
+                            <span class="eyebrow">LATEST STORIES</span>
+                            <h2>Latest From The World Of Sports</h2>
+                        </div>
+                    </div>
+
+
+                    <div class="posts-grid" id="postsGrid">
+
+                        <!-- POST 1 -->
+                        <article
+                            class="post-card"
+                            data-category="Football"
+                            data-title="The Young Stars Taking European Football by Storm"
+                        >
+
+                            <div class="post-image">
+                                <img
+                                    src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
+                                    alt="Football player"
+                                >
+
+                                <span class="category">Football</span>
+                            </div>
+
+                            <div class="post-content">
+
+                                <div class="post-meta">
+                                    August 12, 2026 · 4 min read
+                                </div>
+
+                                <h3>
+                                    The Young Stars Taking European Football by Storm
+                                </h3>
+
+                                <p>
+                                    A new generation of talented players is changing
+                                    the way football is played across Europe.
+                                </p>
+
+                                <button class="text-link" data-post="young-stars">
+                                    Read more →
+                                </button>
+
+                            </div>
+
+                        </article>
+
+
+                        <!-- POST 2 -->
+                        <article
+                            class="post-card"
+                            data-category="Football"
+                            data-title="Five Players Who Could Dominate The Next Premier League Season"
+                        >
+
+                            <div class="post-image">
+                                <img
+                                    src="https://images.unsplash.com/photo-1486286701208-1d58e9338013?auto=format&fit=crop&w=900&q=80"
+                                    alt="Football match"
+                                >
+
+                                <span class="category">Football</span>
+                            </div>
+
+                            <div class="post-content">
+
+                                <div class="post-meta">
+                                    August 11, 2026 · 6 min read
+                                </div>
+
+                                <h3>
+                                    Five Players Who Could Dominate The Next Premier League Season
+                                </h3>
+
+                                <p>
+                                    These players could become some of the biggest
+                                    names in football during the coming season.
+                                </p>
+
+                                <button class="text-link" data-post="premier-league">
+                                    Read more →
+                                </button>
+
+                            </div>
+
+                        </article>
+
+
+                        <!-- POST 3 -->
+                        <article
+                            class="post-card"
+                            data-category="Football"
+                            data-title="Why African Football Is Producing More World-Class Talent"
+                        >
+
+                            <div class="post-image">
+                                <img
+                                    src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=900&q=80"
+                                    alt="Football stadium"
+                                >
+
+                                <span class="category">Africa</span>
+                            </div>
+
+                            <div class="post-content">
+
+                                <div class="post-meta">
+                                    August 10, 2026 · 7 min read
+                                </div>
+
+                                <h3>
+                                    Why African Football Is Producing More World-Class Talent
+                                </h3>
+
+                                <p>
+                                    From local academies to European clubs, African
+                                    players continue to make their mark.
+                                </p>
+
+                                <button class="text-link" data-post="african-talent">
+                                    Read more →
+                                </button>
+
+                            </div>
+
+                        </article>
+
+
+                        <!-- POST 4 -->
+                        <article
+                            class="post-card"
+                            data-category="Basketball"
+                            data-title="The New Era Of African Basketball"
+                        >
+
+                            <div class="post-image">
+                                <img
+                                    src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=900&q=80"
+                                    alt="Basketball"
+                                >
+
+                                <span class="category">Basketball</span>
+                            </div>
+
+                            <div class="post-content">
+
+                                <div class="post-meta">
+                                    August 9, 2026 · 5 min read
+                                </div>
+
+                                <h3>
+                                    The New Era Of African Basketball
+                                </h3>
+
+                                <p>
+                                    Basketball continues to grow rapidly across
+                                    Africa and a new generation is emerging.
+                                </p>
+
+                                <button class="text-link" data-post="basketball">
+                                    Read more →
+                                </button>
+
+                            </div>
+
+                        </article>
+
+
+                        <!-- POST 5 -->
+                        <article
+                            class="post-card"
+                            data-category="Tennis"
+                            data-title="The Rising Stars Ready To Challenge Tennis Champions"
+                        >
+
+                            <div class="post-image">
+                                <img
+                                    src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=900&q=80"
+                                    alt="Tennis court"
+                                >
+
+                                <span class="category">Tennis</span>
+                            </div>
+
+                            <div class="post-content">
+
+                                <div class="post-meta">
+                                    August 8, 2026 · 4 min read
+                                </div>
+
+                                <h3>
+                                    The Rising Stars Ready To Challenge Tennis Champions
+                                </h3>
+
+                                <p>
+                                    A new wave of young tennis players is preparing
+                                    to challenge the established names.
+                                </p>
+
+                                <button class="text-link" data-post="tennis">
+                                    Read more →
+                                </button>
+
+                            </div>
+
+                        </article>
+
+
+                        <!-- POST 6 -->
+                        <article
+                            class="post-card"
+                            data-category="Sports"
+                            data-title="The Biggest Sports Stories To Watch This Weekend"
+                        >
+
+                            <div class="post-image">
+                                <img
+                                    src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
+                                    alt="Athlete running"
+                                >
+
+                                <span class="category">Sports</span>
+                            </div>
+
+                            <div class="post-content">
+
+                                <div class="post-meta">
+                                    August 7, 2026 · 3 min read
+                                </div>
+
+                                <h3>
+                                    The Biggest Sports Stories To Watch This Weekend
+                                </h3>
+
+                                <p>
+                                    Here are the major sporting events and stories
+                                    worth following this weekend.
+                                </p>
+
+                                <button class="text-link" data-post="weekend">
+                                    Read more →
+                                </button>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SIDEBAR -->
+                <aside class="sidebar">
+
+                    <div class="sidebar-box">
+
+                        <h3>Search</h3>
+
+                        <div class="sidebar-search">
+                            <input
+                                type="search"
+                                id="sidebarSearch"
+                                placeholder="Search..."
+                            >
+                            <button id="sidebarSearchBtn">
+                                🔍
+                            </button>
+                        </div>
+
+                    </div>
+
+
+                    <div class="sidebar-box">
+
+                        <h3>Categories</h3>
+
+                        <ul class="categories">
+
+                            <li>
+                                <button data-filter="all">
+                                    All Sports
+                                    <span>12</span>
+                                </button>
+                            </li>
+
+                            <li>
+                                <button data-filter="Football">
+                                    Football
+                                    <span>6</span>
+                                </button>
+                            </li>
+
+                            <li>
+                                <button data-filter="Basketball">
+                                    Basketball
+                                    <span>3</span>
+                                </button>
+                            </li>
+
+                            <li>
+                                <button data-filter="Tennis">
+                                    Tennis
+                                    <span>2</span>
+                                </button>
+                            </li>
+
+                            <li>
+                                <button data-filter="Africa">
+                                    Africa
+                                    <span>4</span>
+                                </button>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="sidebar-box trending">
+
+                        <h3>Trending Stories</h3>
+
+                        <div class="trending-item">
+                            <span>01</span>
+                            <p>Young stars changing modern football</p>
+                        </div>
+
+                        <div class="trending-item">
+                            <span>02</span>
+                            <p>The future of African sports</p>
+                        </div>
+
+                        <div class="trending-item">
+                            <span>03</span>
+                            <p>Five athletes to watch this year</p>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- SINGLE POST -->
+    <section class="single-post" id="singlePost">
+
+        <div class="container">
+
+            <button class="back-button" id="backButton">
+                ← Back to stories
+            </button>
+
+            <article class="article">
+
+                <span class="category" id="articleCategory">
+                    Football
+                </span>
+
+                <h1 id="articleTitle">
+                    Nigeria's Super Eagles Begin New Campaign With High Expectations
+                </h1>
+
+                <div class="article-meta">
+                    August 13, 2026 · 5 min read
+                </div>
+
+                <img
+                    id="articleImage"
+                    class="article-image"
+                    src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1400&q=80"
+                    alt="Sports article"
+                >
+
+                <div class="article-body">
+
+                    <p>
+                        Sports are more than competition. They bring communities
+                        together, create unforgettable moments and give millions
+                        of people something to believe in.
+                    </p>
+
+                    <p>
+                        As a new sporting campaign begins, attention naturally
+                        turns toward the players, teams and stories that could
+                        define the season. The expectations are high, but so are
+                        the opportunities.
+                    </p>
+
+                    <h2>A New Generation</h2>
+
+                    <p>
+                        Young athletes are increasingly taking centre stage.
+                        Improved academies, better coaching and greater access
+                        to international competition are helping emerging stars
+                        develop their abilities.
+                    </p>
+
+                    <p>
+                        For fans, this creates an exciting environment where
+                        established champions can be challenged by ambitious
+                        newcomers.
+                    </p>
+
+                    <blockquote>
+                        Great sporting moments are created when preparation
+                        meets opportunity.
+                    </blockquote>
+
+                    <p>
+                        The coming months should provide plenty of opportunities
+                        for these athletes to prove themselves and create stories
+                        that fans will remember for years.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <div>
+                <a href="#" class="logo">
+                    Sport<span>Sphere</span>
+                </a>
+
+                <p>
+                    Stories, analysis and conversations from the world of sports.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 SportSphere. All rights reserved.
+        </div>
+
+    </footer>
+
+
+    <script>
+/* =========================
+   ELEMENTS
+========================= */
+
+const menuToggle = document.getElementById("menuToggle");
+const mobileNav = document.getElementById("mobileNav");
+
+const searchToggle = document.getElementById("searchToggle");
+const searchSection = document.getElementById("searchSection");
+const searchInput = document.getElementById("searchInput");
+
+const sidebarSearch = document.getElementById("sidebarSearch");
+const sidebarSearchBtn = document.getElementById("sidebarSearchBtn");
+
+const posts = document.querySelectorAll(".post-card");
+const categoryButtons = document.querySelectorAll(".categories button");
+
+const singlePost = document.getElementById("singlePost");
+const backButton = document.getElementById("backButton");
+
+const articleTitle = document.getElementById("articleTitle");
+const articleCategory = document.getElementById("articleCategory");
+const articleImage = document.getElementById("articleImage");
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+menuToggle.addEventListener("click", () => {
+    mobileNav.classList.toggle("open");
+});
+
+
+/* =========================
+   SEARCH TOGGLE
+========================= */
+
+searchToggle.addEventListener("click", () => {
+
+    searchSection.classList.toggle("active");
+
+    if (searchSection.classList.contains("active")) {
+        searchInput.focus();
+    }
+
+});
+
+
+/* =========================
+   FILTER POSTS
+========================= */
+
+function filterPosts(searchTerm = "", category = "all") {
+
+    const term = searchTerm.toLowerCase().trim();
+
+    posts.forEach(post => {
+
+        const title = post.dataset.title.toLowerCase();
+        const postCategory = post.dataset.category;
+
+        const matchesSearch =
+            title.includes(term);
+
+        const matchesCategory =
+            category === "all" ||
+            postCategory === category;
+
+        if (matchesSearch && matchesCategory) {
+            post.style.display = "";
+        } else {
+            post.style.display = "none";
+        }
+
+    });
+
+}
+
+
+/* =========================
+   SEARCH INPUT
+========================= */
+
+searchInput.addEventListener("input", () => {
+
+    filterPosts(searchInput.value);
+
+});
+
+
+/* =========================
+   SIDEBAR SEARCH
+========================= */
+
+function performSidebarSearch() {
+
+    const value = sidebarSearch.value;
+
+    filterPosts(value);
+
+    window.scrollTo({
+        top: document.querySelector(".posts-area").offsetTop - 100,
+        behavior: "smooth"
+    });
+
+}
+
+sidebarSearch.addEventListener("keydown", event => {
+
+    if (event.key === "Enter") {
+        performSidebarSearch();
+    }
+
+});
+
+sidebarSearchBtn.addEventListener("click", performSidebarSearch);
+
+
+/* =========================
+   CATEGORY FILTER
+========================= */
+
+categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const category = button.dataset.filter;
+
+        filterPosts("", category);
+
+    });
+
+});
+
+
+/* =========================
+   SINGLE POST DATA
+========================= */
+
+const articleData = {
+
+    featured: {
+        title: "Nigeria's Super Eagles Begin New Campaign With High Expectations",
+        category: "Football",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1400&q=80"
+    },
+
+    "young-stars": {
+        title: "The Young Stars Taking European Football by Storm",
+        category: "Football",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1400&q=80"
+    },
+
+    "premier-league": {
+        title: "Five Players Who Could Dominate The Next Premier League Season",
+        category: "Football",
+        image: "https://images.unsplash.com/photo-1486286701208-1d58e9338013?auto=format&fit=crop&w=1400&q=80"
+    },
+
+    "african-talent": {
+        title: "Why African Football Is Producing More World-Class Talent",
+        category: "Africa",
+        image: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=1400&q=80"
+    },
+
+    basketball: {
+        title: "The New Era Of African Basketball",
+        category: "Basketball",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1400&q=80"
+    },
+
+    tennis: {
+        title: "The Rising Stars Ready To Challenge Tennis Champions",
+        category: "Tennis",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=1400&q=80"
+    },
+
+    weekend: {
+        title: "The Biggest Sports Stories To Watch This Weekend",
+        category: "Sports",
+        image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1400&q=80"
+    }
+
+};
+
+
+/* =========================
+   OPEN SINGLE POST
+========================= */
+
+function openPost(postId) {
+
+    const data = articleData[postId];
+
+    if (!data) return;
+
+    articleTitle.textContent = data.title;
+    articleCategory.textContent = data.category;
+    articleImage.src = data.image;
+
+    document.querySelector("main").style.display = "none";
+    singlePost.classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================
+   POST BUTTONS
+========================= */
+
+document.querySelectorAll("[data-post]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const postId = button.dataset.post;
+
+        openPost(postId);
+
+    });
+
+});
+
+
+/* =========================
+   BACK TO HOMEPAGE
+========================= */
+
+backButton.addEventListener("click", () => {
+
+    singlePost.classList.remove("active");
+
+    document.querySelector("main").style.display = "";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+/* =====================================================
+   SPORTSPHERE PRELOADER
+===================================================== */
+
+const sportsPreloader =
+    document.getElementById("sportsPreloader");
+
+const loadingProgress =
+    document.getElementById("loadingProgress");
+
+const loadingPercent =
+    document.getElementById("loadingPercent");
+
+const loadingText =
+    document.getElementById("loadingText");
+
+
+const loadingMessages = [
+    "GETTING READY",
+    "CHECKING THE SCOREBOARD",
+    "WARMING UP",
+    "ENTERING THE STADIUM",
+    "KICKING OFF",
+    "GAME ON"
+];
+
+
+let loadingValue = 0;
+
+
+/* Start loading */
+
+const preloaderInterval = setInterval(() => {
+
+    loadingValue += Math.floor(
+        Math.random() * 5
+    ) + 1;
+
+
+    if (loadingValue >= 100) {
+
+        loadingValue = 100;
+
+        clearInterval(preloaderInterval);
+
+        loadingProgress.style.width =
+            loadingValue + "%";
+
+        loadingPercent.textContent =
+            loadingValue + "%";
+
+        loadingText.textContent =
+            "GAME ON";
+
+        setTimeout(() => {
+
+            sportsPreloader.classList.add(
+                "finished"
+            );
+
+            document.body.classList.add(
+                "page-loaded"
+            );
+
+        }, 500);
+
+        return;
+    }
+
+
+    loadingProgress.style.width =
+        loadingValue + "%";
+
+    loadingPercent.textContent =
+        loadingValue + "%";
+
+
+    const messageIndex =
+        Math.min(
+            Math.floor(
+                loadingValue / 18
+            ),
+            loadingMessages.length - 1
+        );
+
+
+    loadingText.textContent =
+        loadingMessages[messageIndex];
+
+
+}, 70);
+</script>
+
+</body>
+</html>
