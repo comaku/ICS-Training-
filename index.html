@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>SportSphere — Sports News & Stories</title>
+
     <link rel="icon" href="b.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <style>
+
+<style>
+
 /* =========================
    RESET
 ========================= */
@@ -599,6 +607,26 @@ a {
 
 
 /* =========================
+   LOADING
+========================= */
+
+.articles-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #777;
+    font-size: 14px;
+}
+
+.articles-error {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #777;
+}
+
+
+/* =========================
    TABLET
 ========================= */
 
@@ -733,6 +761,7 @@ a {
 
 }
 
+
 /* =====================================================
    SPORTSPHERE SPORTS PRELOADER
 ===================================================== */
@@ -764,20 +793,12 @@ a {
         transform .8s ease;
 }
 
-
-/* When loading is finished */
-
 .sports-preloader.finished {
     opacity: 0;
     visibility: hidden;
     transform: scale(1.04);
     pointer-events: none;
 }
-
-
-/* =====================================================
-   STADIUM LIGHT EFFECT
-===================================================== */
 
 .stadium-lights {
     position: absolute;
@@ -813,11 +834,6 @@ a {
 
 }
 
-
-/* =====================================================
-   CONTENT
-===================================================== */
-
 .preloader-content {
     position: relative;
     z-index: 2;
@@ -826,11 +842,6 @@ a {
 
     text-align: center;
 }
-
-
-/* =====================================================
-   LOGO
-===================================================== */
 
 .preloader-logo {
     font-size: clamp(34px, 6vw, 58px);
@@ -851,7 +862,6 @@ a {
     font-weight: 400;
 }
 
-
 @keyframes preloaderLogoIn {
 
     to {
@@ -860,11 +870,6 @@ a {
     }
 
 }
-
-
-/* =====================================================
-   TAGLINE
-===================================================== */
 
 .preloader-tagline {
 
@@ -892,11 +897,6 @@ a {
 
 }
 
-
-/* =====================================================
-   FOOTBALL TRACK
-===================================================== */
-
 .football-stage {
 
     position: relative;
@@ -909,9 +909,6 @@ a {
 
     overflow: hidden;
 }
-
-
-/* Pitch horizontal line */
 
 .pitch-line {
 
@@ -938,7 +935,6 @@ a {
         pitchAppear 1s ease forwards;
 }
 
-
 @keyframes pitchAppear {
 
     from {
@@ -950,11 +946,6 @@ a {
     }
 
 }
-
-
-/* =====================================================
-   FOOTBALL
-===================================================== */
 
 .football {
 
@@ -972,7 +963,6 @@ a {
     animation:
         footballKick 1.8s cubic-bezier(.65,.05,.36,1) infinite;
 }
-
 
 @keyframes footballKick {
 
@@ -1004,11 +994,6 @@ a {
 
 }
 
-
-/* =====================================================
-   LOADING INFORMATION
-===================================================== */
-
 .loading-info {
 
     display: flex;
@@ -1031,11 +1016,6 @@ a {
 #loadingPercent {
     color: white;
 }
-
-
-/* =====================================================
-   LOADING BAR
-===================================================== */
 
 .loading-bar {
 
@@ -1064,11 +1044,6 @@ a {
         width .15s linear;
 }
 
-
-/* =====================================================
-   BOTTOM TEXT
-===================================================== */
-
 .preloader-bottom {
 
     margin-top: 25px;
@@ -1094,11 +1069,6 @@ a {
     }
 
 }
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media (max-width: 767px) {
 
@@ -1130,11 +1100,6 @@ a {
 
 }
 
-
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
-
 @media (prefers-reduced-motion: reduce) {
 
     .sports-preloader *,
@@ -1144,14 +1109,18 @@ a {
     }
 
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- =========================
-     SPORTSPHERE SPORTS PRELOADER
-========================= -->
+
+<!-- =====================================================
+     SPORTSPHERE PRELOADER
+===================================================== -->
 
 <div class="sports-preloader" id="sportsPreloader">
 
@@ -1190,10 +1159,12 @@ a {
         </div>
 
         <div class="loading-bar">
+
             <div
                 class="loading-progress"
                 id="loadingProgress"
             ></div>
+
         </div>
 
         <div class="preloader-bottom">
@@ -1204,527 +1175,208 @@ a {
 
 </div>
 
-    <!-- HEADER -->
-    <header class="site-header">
-        <div class="container header-inner">
 
-            <a href="#" class="logo">
-                Sport<span>Sphere</span>
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="container header-inner">
+
+        <a href="#" class="logo">
+            Sport<span>Sphere</span>
+        </a>
+
+        <nav class="desktop-nav">
+
+            <a
+                href="#"
+                class="active"
+                data-nav-category="all"
+            >
+                Home
             </a>
 
-            <nav class="desktop-nav">
-                <a href="#" class="active">Home</a>
-                <a href="#">Football</a>
-                <a href="#">Basketball</a>
-                <a href="#">Tennis</a>
-                <a href="#">Other Sports</a>
-            </nav>
+            <a
+                href="#"
+                data-nav-category="Football"
+            >
+                Football
+            </a>
 
-            <button class="search-toggle" id="searchToggle">
-                🔍
-            </button>
+            <a
+                href="#"
+                data-nav-category="Basketball"
+            >
+                Basketball
+            </a>
 
-            <button class="menu-toggle" id="menuToggle">
-                ☰
-            </button>
+            <a
+                href="#"
+                data-nav-category="Tennis"
+            >
+                Tennis
+            </a>
 
-        </div>
+            <a
+                href="#"
+                data-nav-category="Other Sports"
+            >
+                Other Sports
+            </a>
 
-        <!-- MOBILE NAV -->
-        <nav class="mobile-nav" id="mobileNav">
-            <a href="#">Home</a>
-            <a href="#">Football</a>
-            <a href="#">Basketball</a>
-            <a href="#">Tennis</a>
-            <a href="#">Other Sports</a>
         </nav>
 
-    </header>
+        <button
+            class="search-toggle"
+            id="searchToggle"
+        >
+            🔍
+        </button>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+        >
+            ☰
+        </button>
+
+    </div>
 
 
-    <!-- SEARCH -->
-    <section class="search-section" id="searchSection">
+    <!-- MOBILE NAV -->
+
+    <nav
+        class="mobile-nav"
+        id="mobileNav"
+    >
+
+        <a
+            href="#"
+            data-nav-category="all"
+        >
+            Home
+        </a>
+
+        <a
+            href="#"
+            data-nav-category="Football"
+        >
+            Football
+        </a>
+
+        <a
+            href="#"
+            data-nav-category="Basketball"
+        >
+            Basketball
+        </a>
+
+        <a
+            href="#"
+            data-nav-category="Tennis"
+        >
+            Tennis
+        </a>
+
+        <a
+            href="#"
+            data-nav-category="Other Sports"
+        >
+            Other Sports
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<section
+    class="search-section"
+    id="searchSection"
+>
+
+    <div class="container">
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search sports stories..."
+        >
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
+
+<main id="mainContent">
+
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section class="hero-section">
+
         <div class="container">
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="Search sports stories..."
+
+            <article
+                class="featured-post"
+                id="featuredPost"
             >
-        </div>
-    </section>
-
-
-    <main>
-
-        <!-- HERO -->
-        <section class="hero-section">
-            <div class="container">
-
-                <article class="featured-post">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1400&q=80"
-                        alt="Football stadium"
-                    >
-
-                    <div class="featured-overlay">
-                        <span class="category">Football</span>
-
-                        <h1>
-                            Nigeria's Super Eagles Begin New Campaign With High Expectations
-                        </h1>
-
-                        <p>
-                            A new chapter begins as Nigeria's football stars prepare
-                            for another important campaign on the international stage.
-                        </p>
-
-                        <div class="post-meta">
-                            <span>August 13, 2026</span>
-                            <span>•</span>
-                            <span>5 min read</span>
-                        </div>
-
-                        <button class="read-btn" data-post="featured">
-                            Read Story →
-                        </button>
-                    </div>
-
-                </article>
-
-            </div>
-        </section>
-
-
-        <!-- CONTENT AREA -->
-        <section class="content-section">
-
-            <div class="container content-layout">
-
-                <!-- POSTS -->
-                <div class="posts-area">
-
-                    <div class="section-heading">
-                        <div>
-                            <span class="eyebrow">LATEST STORIES</span>
-                            <h2>Latest From The World Of Sports</h2>
-                        </div>
-                    </div>
-
-
-                    <div class="posts-grid" id="postsGrid">
-
-                        <!-- POST 1 -->
-                        <article
-                            class="post-card"
-                            data-category="Football"
-                            data-title="The Young Stars Taking European Football by Storm"
-                        >
-
-                            <div class="post-image">
-                                <img
-                                    src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
-                                    alt="Football player"
-                                >
-
-                                <span class="category">Football</span>
-                            </div>
-
-                            <div class="post-content">
-
-                                <div class="post-meta">
-                                    August 12, 2026 · 4 min read
-                                </div>
-
-                                <h3>
-                                    The Young Stars Taking European Football by Storm
-                                </h3>
-
-                                <p>
-                                    A new generation of talented players is changing
-                                    the way football is played across Europe.
-                                </p>
-
-                                <button class="text-link" data-post="young-stars">
-                                    Read more →
-                                </button>
-
-                            </div>
-
-                        </article>
-
-
-                        <!-- POST 2 -->
-                        <article
-                            class="post-card"
-                            data-category="Football"
-                            data-title="Five Players Who Could Dominate The Next Premier League Season"
-                        >
-
-                            <div class="post-image">
-                                <img
-                                    src="https://images.unsplash.com/photo-1486286701208-1d58e9338013?auto=format&fit=crop&w=900&q=80"
-                                    alt="Football match"
-                                >
-
-                                <span class="category">Football</span>
-                            </div>
-
-                            <div class="post-content">
-
-                                <div class="post-meta">
-                                    August 11, 2026 · 6 min read
-                                </div>
-
-                                <h3>
-                                    Five Players Who Could Dominate The Next Premier League Season
-                                </h3>
-
-                                <p>
-                                    These players could become some of the biggest
-                                    names in football during the coming season.
-                                </p>
-
-                                <button class="text-link" data-post="premier-league">
-                                    Read more →
-                                </button>
-
-                            </div>
-
-                        </article>
-
-
-                        <!-- POST 3 -->
-                        <article
-                            class="post-card"
-                            data-category="Football"
-                            data-title="Why African Football Is Producing More World-Class Talent"
-                        >
-
-                            <div class="post-image">
-                                <img
-                                    src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=900&q=80"
-                                    alt="Football stadium"
-                                >
-
-                                <span class="category">Africa</span>
-                            </div>
-
-                            <div class="post-content">
-
-                                <div class="post-meta">
-                                    August 10, 2026 · 7 min read
-                                </div>
-
-                                <h3>
-                                    Why African Football Is Producing More World-Class Talent
-                                </h3>
-
-                                <p>
-                                    From local academies to European clubs, African
-                                    players continue to make their mark.
-                                </p>
-
-                                <button class="text-link" data-post="african-talent">
-                                    Read more →
-                                </button>
-
-                            </div>
-
-                        </article>
-
-
-                        <!-- POST 4 -->
-                        <article
-                            class="post-card"
-                            data-category="Basketball"
-                            data-title="The New Era Of African Basketball"
-                        >
-
-                            <div class="post-image">
-                                <img
-                                    src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=900&q=80"
-                                    alt="Basketball"
-                                >
-
-                                <span class="category">Basketball</span>
-                            </div>
-
-                            <div class="post-content">
-
-                                <div class="post-meta">
-                                    August 9, 2026 · 5 min read
-                                </div>
-
-                                <h3>
-                                    The New Era Of African Basketball
-                                </h3>
-
-                                <p>
-                                    Basketball continues to grow rapidly across
-                                    Africa and a new generation is emerging.
-                                </p>
-
-                                <button class="text-link" data-post="basketball">
-                                    Read more →
-                                </button>
-
-                            </div>
-
-                        </article>
-
-
-                        <!-- POST 5 -->
-                        <article
-                            class="post-card"
-                            data-category="Tennis"
-                            data-title="The Rising Stars Ready To Challenge Tennis Champions"
-                        >
-
-                            <div class="post-image">
-                                <img
-                                    src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=900&q=80"
-                                    alt="Tennis court"
-                                >
-
-                                <span class="category">Tennis</span>
-                            </div>
-
-                            <div class="post-content">
-
-                                <div class="post-meta">
-                                    August 8, 2026 · 4 min read
-                                </div>
-
-                                <h3>
-                                    The Rising Stars Ready To Challenge Tennis Champions
-                                </h3>
-
-                                <p>
-                                    A new wave of young tennis players is preparing
-                                    to challenge the established names.
-                                </p>
-
-                                <button class="text-link" data-post="tennis">
-                                    Read more →
-                                </button>
-
-                            </div>
-
-                        </article>
-
-
-                        <!-- POST 6 -->
-                        <article
-                            class="post-card"
-                            data-category="Sports"
-                            data-title="The Biggest Sports Stories To Watch This Weekend"
-                        >
-
-                            <div class="post-image">
-                                <img
-                                    src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
-                                    alt="Athlete running"
-                                >
-
-                                <span class="category">Sports</span>
-                            </div>
-
-                            <div class="post-content">
-
-                                <div class="post-meta">
-                                    August 7, 2026 · 3 min read
-                                </div>
-
-                                <h3>
-                                    The Biggest Sports Stories To Watch This Weekend
-                                </h3>
-
-                                <p>
-                                    Here are the major sporting events and stories
-                                    worth following this weekend.
-                                </p>
-
-                                <button class="text-link" data-post="weekend">
-                                    Read more →
-                                </button>
-
-                            </div>
-
-                        </article>
-
-                    </div>
-
-                </div>
-
-
-                <!-- SIDEBAR -->
-                <aside class="sidebar">
-
-                    <div class="sidebar-box">
-
-                        <h3>Search</h3>
-
-                        <div class="sidebar-search">
-                            <input
-                                type="search"
-                                id="sidebarSearch"
-                                placeholder="Search..."
-                            >
-                            <button id="sidebarSearchBtn">
-                                🔍
-                            </button>
-                        </div>
-
-                    </div>
-
-
-                    <div class="sidebar-box">
-
-                        <h3>Categories</h3>
-
-                        <ul class="categories">
-
-                            <li>
-                                <button data-filter="all">
-                                    All Sports
-                                    <span>12</span>
-                                </button>
-                            </li>
-
-                            <li>
-                                <button data-filter="Football">
-                                    Football
-                                    <span>6</span>
-                                </button>
-                            </li>
-
-                            <li>
-                                <button data-filter="Basketball">
-                                    Basketball
-                                    <span>3</span>
-                                </button>
-                            </li>
-
-                            <li>
-                                <button data-filter="Tennis">
-                                    Tennis
-                                    <span>2</span>
-                                </button>
-                            </li>
-
-                            <li>
-                                <button data-filter="Africa">
-                                    Africa
-                                    <span>4</span>
-                                </button>
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-
-                    <div class="sidebar-box trending">
-
-                        <h3>Trending Stories</h3>
-
-                        <div class="trending-item">
-                            <span>01</span>
-                            <p>Young stars changing modern football</p>
-                        </div>
-
-                        <div class="trending-item">
-                            <span>02</span>
-                            <p>The future of African sports</p>
-                        </div>
-
-                        <div class="trending-item">
-                            <span>03</span>
-                            <p>Five athletes to watch this year</p>
-                        </div>
-
-                    </div>
-
-                </aside>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- SINGLE POST -->
-    <section class="single-post" id="singlePost">
-
-        <div class="container">
-
-            <button class="back-button" id="backButton">
-                ← Back to stories
-            </button>
-
-            <article class="article">
-
-                <span class="category" id="articleCategory">
-                    Football
-                </span>
-
-                <h1 id="articleTitle">
-                    Nigeria's Super Eagles Begin New Campaign With High Expectations
-                </h1>
-
-                <div class="article-meta">
-                    August 13, 2026 · 5 min read
-                </div>
 
                 <img
-                    id="articleImage"
-                    class="article-image"
+                    id="featuredImage"
                     src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1400&q=80"
-                    alt="Sports article"
+                    alt="Featured sports story"
                 >
 
-                <div class="article-body">
+                <div class="featured-overlay">
 
-                    <p>
-                        Sports are more than competition. They bring communities
-                        together, create unforgettable moments and give millions
-                        of people something to believe in.
+                    <span
+                        class="category"
+                        id="featuredCategory"
+                    >
+                        Football
+                    </span>
+
+                    <h1 id="featuredTitle">
+                        Loading latest story...
+                    </h1>
+
+                    <p id="featuredExcerpt">
+                        Please wait while we load the latest sports stories.
                     </p>
 
-                    <p>
-                        As a new sporting campaign begins, attention naturally
-                        turns toward the players, teams and stories that could
-                        define the season. The expectations are high, but so are
-                        the opportunities.
-                    </p>
+                    <div class="post-meta">
 
-                    <h2>A New Generation</h2>
+                        <span id="featuredDate">
+                            Loading...
+                        </span>
 
-                    <p>
-                        Young athletes are increasingly taking centre stage.
-                        Improved academies, better coaching and greater access
-                        to international competition are helping emerging stars
-                        develop their abilities.
-                    </p>
+                        <span>•</span>
 
-                    <p>
-                        For fans, this creates an exciting environment where
-                        established champions can be challenged by ambitious
-                        newcomers.
-                    </p>
+                        <span id="featuredReadTime">
+                            5 min read
+                        </span>
 
-                    <blockquote>
-                        Great sporting moments are created when preparation
-                        meets opportunity.
-                    </blockquote>
+                    </div>
 
-                    <p>
-                        The coming months should provide plenty of opportunities
-                        for these athletes to prove themselves and create stories
-                        that fans will remember for years.
-                    </p>
+                    <button
+                        class="read-btn"
+                        id="featuredReadButton"
+                    >
+                        Read Story →
+                    </button>
 
                 </div>
 
@@ -1735,241 +1387,1076 @@ a {
     </section>
 
 
-    <!-- FOOTER -->
-    <footer class="footer">
+    <!-- =================================================
+         CONTENT AREA
+    ================================================== -->
 
-        <div class="container footer-content">
+    <section class="content-section">
 
-            <div>
-                <a href="#" class="logo">
-                    Sport<span>Sphere</span>
-                </a>
+        <div class="container content-layout">
 
-                <p>
-                    Stories, analysis and conversations from the world of sports.
-                </p>
+
+            <!-- =========================================
+                 POSTS
+            ========================================== -->
+
+            <div class="posts-area">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            LATEST STORIES
+                        </span>
+
+                        <h2>
+                            Latest From The World Of Sports
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="posts-grid"
+                    id="postsGrid"
+                >
+
+                    <div class="articles-loading">
+                        Loading latest sports stories...
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="footer-links">
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-            </div>
+
+            <!-- =========================================
+                 SIDEBAR
+            ========================================== -->
+
+            <aside class="sidebar">
+
+
+                <!-- SEARCH -->
+
+                <div class="sidebar-box">
+
+                    <h3>
+                        Search
+                    </h3>
+
+                    <div class="sidebar-search">
+
+                        <input
+                            type="search"
+                            id="sidebarSearch"
+                            placeholder="Search..."
+                        >
+
+                        <button
+                            id="sidebarSearchBtn"
+                        >
+                            🔍
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CATEGORIES -->
+
+                <div class="sidebar-box">
+
+                    <h3>
+                        Categories
+                    </h3>
+
+                    <ul
+                        class="categories"
+                        id="categoriesList"
+                    >
+
+                        <li>
+
+                            <button data-filter="all">
+
+                                All Sports
+
+                                <span id="allCount">
+                                    0
+                                </span>
+
+                            </button>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- TRENDING -->
+
+                <div
+                    class="sidebar-box trending"
+                    id="trendingBox"
+                >
+
+                    <h3>
+                        Trending Stories
+                    </h3>
+
+                    <div id="trendingStories">
+
+                        <div class="trending-item">
+
+                            <span>
+                                01
+                            </span>
+
+                            <p>
+                                Loading trending stories...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
 
         </div>
 
-        <div class="copyright">
-            © 2026 SportSphere. All rights reserved.
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     SINGLE ARTICLE
+===================================================== -->
+
+<section
+    class="single-post"
+    id="singlePost"
+>
+
+    <div class="container">
+
+        <button
+            class="back-button"
+            id="backButton"
+        >
+            ← Back to stories
+        </button>
+
+
+        <article class="article">
+
+            <span
+                class="category"
+                id="articleCategory"
+            >
+                Football
+            </span>
+
+
+            <h1 id="articleTitle">
+                Article title
+            </h1>
+
+
+            <div
+                class="article-meta"
+                id="articleMeta"
+            >
+                Loading...
+            </div>
+
+
+            <img
+                id="articleImage"
+                class="article-image"
+                src=""
+                alt="Sports article"
+            >
+
+
+            <div
+                class="article-body"
+                id="articleBody"
+            >
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <div>
+
+            <a href="#" class="logo">
+                Sport<span>Sphere</span>
+            </a>
+
+            <p>
+                Stories, analysis and conversations from the world of sports.
+            </p>
+
         </div>
 
-    </footer>
+
+        <div class="footer-links">
+
+            <a href="#">
+                About
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+            <a href="#">
+                Privacy
+            </a>
+
+            <a href="#">
+                Terms
+            </a>
+
+        </div>
+
+    </div>
 
 
-    <script>
-/* =========================
+    <div class="copyright">
+
+        © 2026 SportSphere. All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   SPORTSPHERE GOOGLE SHEETS CONNECTION
+===================================================== */
+
+/*
+   IMPORTANT:
+
+   Replace this URL with your deployed
+   Google Apps Script Web App URL.
+*/
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbzor3xgdXjRqRM6j3n71V1CRpbhnilUu_7v5yBmZ9IYYHnKfxvvDSiQDHBEYwGag_yK/exec";
+
+
+/* =====================================================
+   GLOBAL ARTICLE DATA
+===================================================== */
+
+let articles = [];
+
+let currentCategory = "all";
+
+let currentSearch = "";
+
+
+/* =====================================================
    ELEMENTS
-========================= */
+===================================================== */
 
-const menuToggle = document.getElementById("menuToggle");
-const mobileNav = document.getElementById("mobileNav");
+const menuToggle =
+    document.getElementById("menuToggle");
 
-const searchToggle = document.getElementById("searchToggle");
-const searchSection = document.getElementById("searchSection");
-const searchInput = document.getElementById("searchInput");
+const mobileNav =
+    document.getElementById("mobileNav");
 
-const sidebarSearch = document.getElementById("sidebarSearch");
-const sidebarSearchBtn = document.getElementById("sidebarSearchBtn");
+const searchToggle =
+    document.getElementById("searchToggle");
 
-const posts = document.querySelectorAll(".post-card");
-const categoryButtons = document.querySelectorAll(".categories button");
+const searchSection =
+    document.getElementById("searchSection");
 
-const singlePost = document.getElementById("singlePost");
-const backButton = document.getElementById("backButton");
+const searchInput =
+    document.getElementById("searchInput");
 
-const articleTitle = document.getElementById("articleTitle");
-const articleCategory = document.getElementById("articleCategory");
-const articleImage = document.getElementById("articleImage");
+const sidebarSearch =
+    document.getElementById("sidebarSearch");
+
+const sidebarSearchBtn =
+    document.getElementById("sidebarSearchBtn");
+
+const postsGrid =
+    document.getElementById("postsGrid");
+
+const categoriesList =
+    document.getElementById("categoriesList");
+
+const allCount =
+    document.getElementById("allCount");
+
+const trendingStories =
+    document.getElementById("trendingStories");
+
+const mainContent =
+    document.getElementById("mainContent");
+
+const singlePost =
+    document.getElementById("singlePost");
+
+const backButton =
+    document.getElementById("backButton");
+
+const articleTitle =
+    document.getElementById("articleTitle");
+
+const articleCategory =
+    document.getElementById("articleCategory");
+
+const articleImage =
+    document.getElementById("articleImage");
+
+const articleMeta =
+    document.getElementById("articleMeta");
+
+const articleBody =
+    document.getElementById("articleBody");
+
+const featuredImage =
+    document.getElementById("featuredImage");
+
+const featuredCategory =
+    document.getElementById("featuredCategory");
+
+const featuredTitle =
+    document.getElementById("featuredTitle");
+
+const featuredExcerpt =
+    document.getElementById("featuredExcerpt");
+
+const featuredDate =
+    document.getElementById("featuredDate");
+
+const featuredReadTime =
+    document.getElementById("featuredReadTime");
+
+const featuredReadButton =
+    document.getElementById("featuredReadButton");
 
 
-/* =========================
+/* =====================================================
    MOBILE MENU
-========================= */
+===================================================== */
 
 menuToggle.addEventListener("click", () => {
+
     mobileNav.classList.toggle("open");
+
 });
 
 
-/* =========================
+/* =====================================================
    SEARCH TOGGLE
-========================= */
+===================================================== */
 
 searchToggle.addEventListener("click", () => {
 
     searchSection.classList.toggle("active");
 
-    if (searchSection.classList.contains("active")) {
+    if (
+        searchSection.classList.contains("active")
+    ) {
+
         searchInput.focus();
+
     }
 
 });
 
 
-/* =========================
-   FILTER POSTS
-========================= */
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
-function filterPosts(searchTerm = "", category = "all") {
+function escapeHTML(value) {
 
-    const term = searchTerm.toLowerCase().trim();
+    if (value === null || value === undefined) {
+        return "";
+    }
 
-    posts.forEach(post => {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
-        const title = post.dataset.title.toLowerCase();
-        const postCategory = post.dataset.category;
+}
 
-        const matchesSearch =
-            title.includes(term);
 
-        const matchesCategory =
-            category === "all" ||
-            postCategory === category;
+/* =====================================================
+   CREATE ARTICLE BODY
+===================================================== */
 
-        if (matchesSearch && matchesCategory) {
-            post.style.display = "";
-        } else {
-            post.style.display = "none";
+function formatArticleBody(content) {
+
+    if (!content) {
+        return "";
+    }
+
+
+    /*
+       Articles can contain paragraphs separated
+       by blank lines.
+    */
+
+    const blocks =
+        String(content)
+        .split(/\n\s*\n/);
+
+
+    return blocks
+        .map(block => {
+
+            const text =
+                escapeHTML(block.trim());
+
+            if (!text) {
+                return "";
+            }
+
+            return `
+                <p>${text.replace(/\n/g, "<br>")}</p>
+            `;
+
+        })
+        .join("");
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(dateValue) {
+
+    if (!dateValue) {
+        return "";
+    }
+
+    const date =
+        new Date(dateValue);
+
+    if (isNaN(date.getTime())) {
+        return dateValue;
+    }
+
+    return date.toLocaleDateString(
+        "en-US",
+        {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOAD ARTICLES FROM GOOGLE SHEETS
+===================================================== */
+
+async function loadArticles() {
+
+    try {
+
+        postsGrid.innerHTML = `
+            <div class="articles-loading">
+                Loading latest sports stories...
+            </div>
+        `;
+
+
+        const response =
+            await fetch(API_URL);
+
+
+        if (!response.ok) {
+            throw new Error(
+                "Could not connect to Google Sheets."
+            );
         }
 
-    });
+
+        const data =
+            await response.json();
+
+
+        if (!Array.isArray(data)) {
+
+            throw new Error(
+                "Invalid data received."
+            );
+
+        }
+
+
+        articles = data
+            .filter(article => {
+
+                return (
+                    String(article.status || "Published")
+                        .toLowerCase()
+                    === "published"
+                );
+
+            });
+
+
+        /*
+           Sort newest first.
+        */
+
+        articles.sort((a, b) => {
+
+            const dateA =
+                new Date(a.date || 0);
+
+            const dateB =
+                new Date(b.date || 0);
+
+            return dateB - dateA;
+
+        });
+
+
+        renderFeatured();
+
+        renderPosts();
+
+        renderCategories();
+
+        renderTrending();
+
+
+    } catch (error) {
+
+        console.error(
+            "SportSphere loading error:",
+            error
+        );
+
+
+        postsGrid.innerHTML = `
+            <div class="articles-error">
+                <strong>
+                    Unable to load stories.
+                </strong>
+                <br><br>
+                Please try again later.
+            </div>
+        `;
+
+    }
 
 }
 
 
-/* =========================
-   SEARCH INPUT
-========================= */
+/* =====================================================
+   FEATURED ARTICLE
+===================================================== */
 
-searchInput.addEventListener("input", () => {
+function renderFeatured() {
 
-    filterPosts(searchInput.value);
+    if (!articles.length) {
 
-});
+        featuredTitle.textContent =
+            "No stories available yet.";
+
+        featuredExcerpt.textContent =
+            "New sports stories will appear here.";
+
+        return;
+
+    }
 
 
-/* =========================
-   SIDEBAR SEARCH
-========================= */
+    let featured =
+        articles.find(article => {
 
-function performSidebarSearch() {
+            return String(
+                article.featured
+            ).toLowerCase() === "yes";
 
-    const value = sidebarSearch.value;
+        });
 
-    filterPosts(value);
 
-    window.scrollTo({
-        top: document.querySelector(".posts-area").offsetTop - 100,
-        behavior: "smooth"
-    });
+    /*
+       If no article is marked featured,
+       use the newest article.
+    */
+
+    if (!featured) {
+        featured = articles[0];
+    }
+
+
+    featuredImage.src =
+        featured.imageUrl || "";
+
+    featuredImage.alt =
+        featured.title || "Sports story";
+
+
+    featuredCategory.textContent =
+        featured.category || "Sports";
+
+
+    featuredTitle.textContent =
+        featured.title || "";
+
+
+    featuredExcerpt.textContent =
+        featured.excerpt || "";
+
+
+    featuredDate.textContent =
+        formatDate(featured.date);
+
+
+    featuredReadTime.textContent =
+        `${featured.readTime || 5} min read`;
+
+
+    featuredReadButton.onclick =
+        () => openPost(featured.id);
 
 }
 
-sidebarSearch.addEventListener("keydown", event => {
 
-    if (event.key === "Enter") {
-        performSidebarSearch();
+/* =====================================================
+   RENDER POST CARDS
+===================================================== */
+
+function renderPosts() {
+
+    let filtered =
+        articles.filter(article => {
+
+            const title =
+                String(
+                    article.title || ""
+                ).toLowerCase();
+
+            const excerpt =
+                String(
+                    article.excerpt || ""
+                ).toLowerCase();
+
+            const category =
+                String(
+                    article.category || ""
+                ).toLowerCase();
+
+
+            const term =
+                currentSearch
+                    .toLowerCase()
+                    .trim();
+
+
+            const matchesSearch =
+                !term ||
+                title.includes(term) ||
+                excerpt.includes(term) ||
+                category.includes(term);
+
+
+            const matchesCategory =
+                currentCategory === "all" ||
+                category ===
+                    currentCategory.toLowerCase();
+
+
+            return (
+                matchesSearch &&
+                matchesCategory
+            );
+
+        });
+
+
+    if (!filtered.length) {
+
+        postsGrid.innerHTML = `
+            <div class="articles-error">
+                No stories found.
+            </div>
+        `;
+
+        return;
+
     }
 
-});
 
-sidebarSearchBtn.addEventListener("click", performSidebarSearch);
+    postsGrid.innerHTML =
+        filtered.map(article => {
+
+            return `
+
+                <article
+                    class="post-card"
+                    data-category="${escapeHTML(article.category || "Sports")}"
+                    data-title="${escapeHTML(article.title || "")}"
+                >
+
+                    <div class="post-image">
+
+                        <img
+                            src="${escapeHTML(article.imageUrl || "")}"
+                            alt="${escapeHTML(article.title || "Sports article")}"
+                            loading="lazy"
+                        >
+
+                        <span class="category">
+                            ${escapeHTML(article.category || "Sports")}
+                        </span>
+
+                    </div>
 
 
-/* =========================
-   CATEGORY FILTER
-========================= */
+                    <div class="post-content">
 
-categoryButtons.forEach(button => {
+                        <div class="post-meta">
 
-    button.addEventListener("click", () => {
+                            ${escapeHTML(
+                                formatDate(article.date)
+                            )}
 
-        const category = button.dataset.filter;
+                            ·
 
-        filterPosts("", category);
+                            ${escapeHTML(
+                                article.readTime || 5
+                            )}
+
+                            min read
+
+                        </div>
+
+
+                        <h3>
+                            ${escapeHTML(article.title || "")}
+                        </h3>
+
+
+                        <p>
+                            ${escapeHTML(article.excerpt || "")}
+                        </p>
+
+
+                        <button
+                            class="text-link"
+                            data-article-id="${escapeHTML(article.id)}"
+                        >
+                            Read more →
+                        </button>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
+
+
+    /*
+       Attach read buttons.
+    */
+
+    document
+        .querySelectorAll("[data-article-id]")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    openPost(
+                        button.dataset.articleId
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
+
+function renderCategories() {
+
+    const counts = {};
+
+
+    articles.forEach(article => {
+
+        const category =
+            article.category || "Sports";
+
+        counts[category] =
+            (counts[category] || 0) + 1;
 
     });
 
-});
+
+    allCount.textContent =
+        articles.length;
 
 
-/* =========================
-   SINGLE POST DATA
-========================= */
+    categoriesList.innerHTML = `
 
-const articleData = {
+        <li>
 
-    featured: {
-        title: "Nigeria's Super Eagles Begin New Campaign With High Expectations",
-        category: "Football",
-        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1400&q=80"
-    },
+            <button
+                data-filter="all"
+            >
 
-    "young-stars": {
-        title: "The Young Stars Taking European Football by Storm",
-        category: "Football",
-        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1400&q=80"
-    },
+                All Sports
 
-    "premier-league": {
-        title: "Five Players Who Could Dominate The Next Premier League Season",
-        category: "Football",
-        image: "https://images.unsplash.com/photo-1486286701208-1d58e9338013?auto=format&fit=crop&w=1400&q=80"
-    },
+                <span>
+                    ${articles.length}
+                </span>
 
-    "african-talent": {
-        title: "Why African Football Is Producing More World-Class Talent",
-        category: "Africa",
-        image: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=1400&q=80"
-    },
+            </button>
 
-    basketball: {
-        title: "The New Era Of African Basketball",
-        category: "Basketball",
-        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1400&q=80"
-    },
+        </li>
 
-    tennis: {
-        title: "The Rising Stars Ready To Challenge Tennis Champions",
-        category: "Tennis",
-        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=1400&q=80"
-    },
+    `;
 
-    weekend: {
-        title: "The Biggest Sports Stories To Watch This Weekend",
-        category: "Sports",
-        image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1400&q=80"
+
+    Object.keys(counts)
+        .sort()
+        .forEach(category => {
+
+            categoriesList.innerHTML += `
+
+                <li>
+
+                    <button
+                        data-filter="${escapeHTML(category)}"
+                    >
+
+                        ${escapeHTML(category)}
+
+                        <span>
+                            ${counts[category]}
+                        </span>
+
+                    </button>
+
+                </li>
+
+            `;
+
+        });
+
+
+    document
+        .querySelectorAll(
+            "#categoriesList button"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    currentCategory =
+                        button.dataset.filter;
+
+                    renderPosts();
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   TRENDING STORIES
+===================================================== */
+
+function renderTrending() {
+
+    const trending =
+        articles
+        .filter(article => {
+
+            return String(
+                article.trending
+            ).toLowerCase() === "yes";
+
+        })
+        .slice(0, 5);
+
+
+    /*
+       If nothing is specifically marked
+       trending, use the newest articles.
+    */
+
+    const list =
+        trending.length
+            ? trending
+            : articles.slice(0, 5);
+
+
+    if (!list.length) {
+
+        trendingStories.innerHTML =
+            "<p>No trending stories.</p>";
+
+        return;
+
     }
 
-};
+
+    trendingStories.innerHTML =
+        list.map((article, index) => {
+
+            return `
+
+                <div
+                    class="trending-item"
+                    style="cursor:pointer"
+                    data-trending-id="${escapeHTML(article.id)}"
+                >
+
+                    <span>
+                        ${String(index + 1)
+                            .padStart(2, "0")}
+                    </span>
+
+                    <p>
+                        ${escapeHTML(article.title)}
+                    </p>
+
+                </div>
+
+            `;
+
+        }).join("");
 
 
-/* =========================
+    document
+        .querySelectorAll(
+            "[data-trending-id]"
+        )
+        .forEach(item => {
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    openPost(
+                        item.dataset.trendingId
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =====================================================
    OPEN SINGLE POST
-========================= */
+===================================================== */
 
 function openPost(postId) {
 
-    const data = articleData[postId];
+    const article =
+        articles.find(
+            item =>
+                String(item.id) ===
+                String(postId)
+        );
 
-    if (!data) return;
 
-    articleTitle.textContent = data.title;
-    articleCategory.textContent = data.category;
-    articleImage.src = data.image;
+    if (!article) {
+        return;
+    }
 
-    document.querySelector("main").style.display = "none";
-    singlePost.classList.add("active");
+
+    articleCategory.textContent =
+        article.category || "Sports";
+
+
+    articleTitle.textContent =
+        article.title || "";
+
+
+    articleMeta.textContent =
+        `${formatDate(article.date)} · ${article.readTime || 5} min read`;
+
+
+    articleImage.src =
+        article.imageUrl || "";
+
+
+    articleImage.alt =
+        article.title || "Sports article";
+
+
+    /*
+       Build article content.
+    */
+
+    articleBody.innerHTML =
+        formatArticleBody(
+            article.content
+        );
+
+
+    mainContent.style.display =
+        "none";
+
+
+    singlePost.classList.add(
+        "active"
+    );
+
 
     window.scrollTo({
         top: 0,
@@ -1979,132 +2466,311 @@ function openPost(postId) {
 }
 
 
-/* =========================
-   POST BUTTONS
-========================= */
-
-document.querySelectorAll("[data-post]").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        const postId = button.dataset.post;
-
-        openPost(postId);
-
-    });
-
-});
-
-
-/* =========================
+/* =====================================================
    BACK TO HOMEPAGE
-========================= */
+===================================================== */
 
-backButton.addEventListener("click", () => {
+backButton.addEventListener(
+    "click",
+    () => {
 
-    singlePost.classList.remove("active");
+        singlePost.classList.remove(
+            "active"
+        );
 
-    document.querySelector("main").style.display = "";
+        mainContent.style.display =
+            "";
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+);
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function performSearch(value) {
+
+    currentSearch =
+        value || "";
+
+    currentCategory =
+        "all";
+
+    renderPosts();
+
+
+    const postsArea =
+        document.querySelector(
+            ".posts-area"
+        );
+
+
+    if (postsArea) {
+
+        window.scrollTo({
+
+            top:
+                postsArea.offsetTop - 100,
+
+            behavior:
+                "smooth"
+
+        });
+
+    }
+
+}
+
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        currentSearch =
+            searchInput.value;
+
+        currentCategory =
+            "all";
+
+        renderPosts();
+
+    }
+);
+
+
+/* =====================================================
+   SIDEBAR SEARCH
+===================================================== */
+
+sidebarSearch.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "Enter") {
+
+            performSearch(
+                sidebarSearch.value
+            );
+
+        }
+
+    }
+);
+
+
+sidebarSearchBtn.addEventListener(
+    "click",
+    () => {
+
+        performSearch(
+            sidebarSearch.value
+        );
+
+    }
+);
+
+
+/* =====================================================
+   NAVIGATION CATEGORY FILTER
+===================================================== */
+
+document
+    .querySelectorAll(
+        "[data-nav-category]"
+    )
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+
+                const category =
+                    link.dataset.navCategory;
+
+
+                currentCategory =
+                    category;
+
+                currentSearch =
+                    "";
+
+
+                searchInput.value =
+                    "";
+
+                sidebarSearch.value =
+                    "";
+
+
+                renderPosts();
+
+
+                mobileNav.classList.remove(
+                    "open"
+                );
+
+
+                window.scrollTo({
+
+                    top:
+                        document.querySelector(
+                            ".content-section"
+                        ).offsetTop - 80,
+
+                    behavior:
+                        "smooth"
+
+                });
+
+            }
+        );
+
     });
 
-});
 
 /* =====================================================
    SPORTSPHERE PRELOADER
 ===================================================== */
 
 const sportsPreloader =
-    document.getElementById("sportsPreloader");
+    document.getElementById(
+        "sportsPreloader"
+    );
+
 
 const loadingProgress =
-    document.getElementById("loadingProgress");
+    document.getElementById(
+        "loadingProgress"
+    );
+
 
 const loadingPercent =
-    document.getElementById("loadingPercent");
+    document.getElementById(
+        "loadingPercent"
+    );
+
 
 const loadingText =
-    document.getElementById("loadingText");
+    document.getElementById(
+        "loadingText"
+    );
 
 
 const loadingMessages = [
+
     "GETTING READY",
+
     "CHECKING THE SCOREBOARD",
+
     "WARMING UP",
+
     "ENTERING THE STADIUM",
+
     "KICKING OFF",
+
     "GAME ON"
+
 ];
 
 
 let loadingValue = 0;
 
 
-/* Start loading */
+/* =====================================================
+   LOAD DATA FIRST
+===================================================== */
 
-const preloaderInterval = setInterval(() => {
-
-    loadingValue += Math.floor(
-        Math.random() * 5
-    ) + 1;
+loadArticles();
 
 
-    if (loadingValue >= 100) {
+/* =====================================================
+   PRELOADER
+===================================================== */
 
-        loadingValue = 100;
+const preloaderInterval =
+    setInterval(() => {
 
-        clearInterval(preloaderInterval);
+        loadingValue +=
+            Math.floor(
+                Math.random() * 5
+            ) + 1;
+
+
+        if (loadingValue >= 100) {
+
+            loadingValue = 100;
+
+            clearInterval(
+                preloaderInterval
+            );
+
+
+            loadingProgress.style.width =
+                loadingValue + "%";
+
+
+            loadingPercent.textContent =
+                loadingValue + "%";
+
+
+            loadingText.textContent =
+                "GAME ON";
+
+
+            setTimeout(() => {
+
+                sportsPreloader.classList.add(
+                    "finished"
+                );
+
+                document.body.classList.add(
+                    "page-loaded"
+                );
+
+            }, 500);
+
+
+            return;
+
+        }
+
 
         loadingProgress.style.width =
             loadingValue + "%";
 
+
         loadingPercent.textContent =
             loadingValue + "%";
 
+
+        const messageIndex =
+            Math.min(
+                Math.floor(
+                    loadingValue / 18
+                ),
+                loadingMessages.length - 1
+            );
+
+
         loadingText.textContent =
-            "GAME ON";
-
-        setTimeout(() => {
-
-            sportsPreloader.classList.add(
-                "finished"
-            );
-
-            document.body.classList.add(
-                "page-loaded"
-            );
-
-        }, 500);
-
-        return;
-    }
+            loadingMessages[
+                messageIndex
+            ];
 
 
-    loadingProgress.style.width =
-        loadingValue + "%";
+    }, 70);
 
-    loadingPercent.textContent =
-        loadingValue + "%";
-
-
-    const messageIndex =
-        Math.min(
-            Math.floor(
-                loadingValue / 18
-            ),
-            loadingMessages.length - 1
-        );
-
-
-    loadingText.textContent =
-        loadingMessages[messageIndex];
-
-
-}, 70);
 </script>
 
 </body>
+
 </html>
