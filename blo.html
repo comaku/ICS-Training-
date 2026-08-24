@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Muvia Air — Account Access</title>
+
+    <link rel="icon" href="b.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================================
+           MUVIA AIR AUTHENTICATION
+        ========================================= */
+
+        :root {
+            --bg: #05070b;
+            --bg-soft: #090d14;
+            --card: #0b1018;
+
+            --border: rgba(255,255,255,0.09);
+
+            --text: #f5f7fb;
+            --muted: #8993a4;
+
+            --blue: #5c8cff;
+            --cyan: #36e2ff;
+            --green: #45e98a;
+            --red: #ff7d8a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(54,226,255,.08),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 20% 80%,
+                    rgba(92,140,255,.07),
+                    transparent 30%
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            font-family: "DM Sans", sans-serif;
+
+            overflow-x: hidden;
+        }
+
+        /* =========================================
+           BACKGROUND GRID
+        ========================================= */
+
+        .background-grid {
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent
+                );
+
+            pointer-events: none;
+        }
+
+        /* =========================================
+           GLOW ORBS
+        ========================================= */
+
+        .glow {
+            position: fixed;
+
+            width: 400px;
+            height: 400px;
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+
+            pointer-events: none;
+
+            opacity: .25;
+        }
+
+        .glow-one {
+            top: -180px;
+            left: -150px;
+
+            background: #365dff;
+        }
+
+        .glow-two {
+            right: -180px;
+            bottom: -200px;
+
+            background: #36e2ff;
+        }
+
+        /* =========================================
+           MAIN CONTAINER
+        ========================================= */
+
+        .auth-container {
+            position: relative;
+            z-index: 5;
+
+            width: min(100%, 440px);
+
+            padding: 42px;
+
+            border: 1px solid rgba(255,255,255,.10);
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.045),
+                    rgba(255,255,255,.015)
+                ),
+                rgba(7,11,17,.92);
+
+            box-shadow:
+                0 40px 100px rgba(0,0,0,.55),
+                0 0 80px rgba(54,226,255,.06);
+
+            backdrop-filter: blur(20px);
+        }
+
+        /* =========================================
+           LOGO
+        ========================================= */
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            margin-bottom: 32px;
+        }
+
+        .logo-mark {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 4px;
+
+            border: 1px solid rgba(54,226,255,.35);
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(54,226,255,.12),
+                    rgba(92,140,255,.05)
+                );
+
+            box-shadow:
+                0 0 30px rgba(54,226,255,.10);
+
+            transform: rotate(-8deg);
+        }
+
+        .logo-mark span {
+            width: 4px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    var(--blue),
+                    var(--cyan)
+                );
+
+            box-shadow:
+                0 0 8px rgba(54,226,255,.6);
+        }
+
+        .logo-mark span:nth-child(1) {
+            height: 16px;
+        }
+
+        .logo-mark span:nth-child(2) {
+            height: 27px;
+        }
+
+        .logo-mark span:nth-child(3) {
+            height: 11px;
+        }
+
+        .brand-name {
+            margin-top: 17px;
+
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: 22px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+        }
+
+        .brand-name span {
+            color: var(--cyan);
+        }
+
+        /* =========================================
+           FORM HEADER
+        ========================================= */
+
+        .form-header {
+            text-align: center;
+
+            margin-bottom: 28px;
+        }
+
+        .form-header h1 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: 30px;
+
+            letter-spacing: -1px;
+        }
+
+        .form-header p {
+            margin-top: 8px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+
+            animation: formAppear .35s ease;
+        }
+
+        @keyframes formAppear {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .field {
+            margin-bottom: 17px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #b8c0cd;
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+
+            height: 50px;
+
+            padding: 0 15px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background: rgba(255,255,255,.025);
+
+            color: white;
+
+            font-size: 13px;
+
+            transition: .25s;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #505a6a;
+        }
+
+        .input-wrapper input:focus {
+            border-color: rgba(54,226,255,.55);
+
+            background: rgba(54,226,255,.025);
+
+            box-shadow:
+                0 0 0 3px rgba(54,226,255,.06);
+        }
+
+        /* =========================================
+           PASSWORD TOGGLE
+        ========================================= */
+
+        .password-input {
+            padding-right: 48px !important;
+        }
+
+        .password-toggle {
+            position: absolute;
+
+            right: 13px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: 0;
+
+            background: transparent;
+
+            color: #667080;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        .password-toggle:hover {
+            color: var(--cyan);
+        }
+
+        /* =========================================
+           FORGOT PASSWORD
+        ========================================= */
+
+        .forgot-row {
+            display: flex;
+            justify-content: flex-end;
+
+            margin-top: -5px;
+            margin-bottom: 20px;
+        }
+
+        .forgot-link {
+            color: #7187b8;
+
+            font-size: 11px;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .forgot-link:hover {
+            color: var(--cyan);
+        }
+
+        /* =========================================
+           MAIN BUTTON
+        ========================================= */
+
+        .submit-button {
+            width: 100%;
+
+            height: 50px;
+
+            border: 0;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #ffffff,
+                    #dce7ff
+                );
+
+            color: #05070b;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 35px rgba(255,255,255,.12);
+        }
+
+        .submit-button:disabled {
+            opacity: .65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+        /* =========================================
+           FORM MESSAGE
+        ========================================= */
+
+        .form-message {
+            min-height: 18px;
+
+            margin-top: 12px;
+
+            text-align: center;
+
+            font-size: 11px;
+        }
+
+        .form-message.error {
+            color: var(--red);
+        }
+
+        .form-message.success {
+            color: var(--green);
+        }
+
+        /* =========================================
+           SWITCH
+        ========================================= */
+
+        .switch-text {
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: #687384;
+
+            font-size: 11px;
+        }
+
+        .switch-link {
+            margin-left: 5px;
+
+            color: var(--cyan);
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .switch-link:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================================
+           BACK TO WEBSITE
+        ========================================= */
+
+        .back-home {
+            display: block;
+
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: #4f5968;
+
+            font-size: 10px;
+
+            transition: .2s;
+        }
+
+        .back-home:hover {
+            color: white;
+        }
+
+        /* =========================================
+           SECURITY NOTE
+        ========================================= */
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+
+            margin-top: 24px;
+
+            color: #4d5969;
+
+            font-size: 9px;
+        }
+
+        .security-dot {
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+
+            box-shadow: 0 0 8px var(--green);
+        }
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 18px;
+            }
+
+            .auth-container {
+                padding: 30px 22px;
+
+                border-radius: 20px;
+            }
+
+            .form-header h1 {
+                font-size: 27px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="background-grid"></div>
+
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+
+    <!-- AUTH CONTAINER -->
+
+    <main class="auth-container">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="logo-mark">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+            <div class="brand-name">
+                MUVIA<span>AIR</span>
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             SIGN IN
+        ====================================== -->
+
+        <form
+            class="auth-form active"
+            id="signInForm"
+        >
+
+            <div class="form-header">
+
+                <h1>
+                    Welcome back
+                </h1>
+
+                <p>
+                    Sign in to access your Muvia Air account.
+                </p>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="loginEmail">
+                    Email address
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        class="password-input"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="loginPassword"
+                    >
+                        ◉
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="forgot-row">
+
+                <span
+                    class="forgot-link"
+                    id="forgotFromLogin"
+                >
+                    Forgot password?
+                </span>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-button"
+            >
+                SIGN IN
+            </button>
+
+
+            <div
+                class="form-message"
+                id="loginMessage"
+            ></div>
+
+
+            <div class="switch-text">
+
+                Don't have an account?
+
+                <span
+                    class="switch-link"
+                    id="showSignUp"
+                >
+                    Create account
+                </span>
+
+            </div>
+
+        </form>
+
+
+        <!-- =====================================
+             SIGN UP
+        ====================================== -->
+
+        <form
+            class="auth-form"
+            id="signUpForm"
+        >
+
+            <div class="form-header">
+
+                <h1>
+                    Create account
+                </h1>
+
+                <p>
+                    Join Muvia Air and start managing your deliveries.
+                </p>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="signupName">
+                    Full name
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        id="signupName"
+                        placeholder="Your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="signupEmail">
+                    Email address
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="signupPassword">
+                    Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        class="password-input"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="signupPassword"
+                    >
+                        ◉
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="confirmPassword">
+                    Confirm password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        class="password-input"
+                        placeholder="Repeat your password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="confirmPassword"
+                    >
+                        ◉
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-button"
+            >
+                CREATE ACCOUNT
+            </button>
+
+
+            <div
+                class="form-message"
+                id="signupMessage"
+            ></div>
+
+
+            <div class="switch-text">
+
+                Already have an account?
+
+                <span
+                    class="switch-link"
+                    id="showSignIn"
+                >
+                    Sign in
+                </span>
+
+            </div>
+
+        </form>
+
+
+        <!-- =====================================
+             FORGOT PASSWORD
+        ====================================== -->
+
+        <form
+            class="auth-form"
+            id="forgotForm"
+        >
+
+            <div class="form-header">
+
+                <h1>
+                    Reset password
+                </h1>
+
+                <p>
+                    Enter your email and we'll help you recover your account.
+                </p>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="forgotEmail">
+                    Email address
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="email"
+                        id="forgotEmail"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-button"
+            >
+                SEND RESET LINK
+            </button>
+
+
+            <div
+                class="form-message"
+                id="forgotMessage"
+            ></div>
+
+
+            <div class="switch-text">
+
+                Remember your password?
+
+                <span
+                    class="switch-link"
+                    id="backToSignIn"
+                >
+                    Back to sign in
+                </span>
+
+            </div>
+
+        </form>
+
+
+        <!-- BACK HOME -->
+
+        <a
+            href="index.html"
+            class="back-home"
+        >
+            ← Back to Muvia Air
+        </a>
+
+
+        <!-- SECURITY -->
+
+        <div class="security-note">
+
+            <span class="security-dot"></span>
+
+            Secure account access
+
+        </div>
+
+    </main>
+
+
+   <script>
+
+/* =========================================
+   MUVIA AIR AUTHENTICATION
+   GOOGLE SHEETS + GOOGLE APPS SCRIPT
+========================================= */
+
+
+/* =========================================
+   GOOGLE APPS SCRIPT API
+========================================= */
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbwdt284IbZZwMKp6LTlcwUzkxDNmAeWmS0ZtqO3BnwusN1PLiILh5j3DN38VHBJsaUs/exec";
+
+
+/* =========================================
+   FORM ELEMENTS
+========================================= */
+
+const signInForm =
+    document.getElementById("signInForm");
+
+const signUpForm =
+    document.getElementById("signUpForm");
+
+const forgotForm =
+    document.getElementById("forgotForm");
+
+
+/* =========================================
+   NAVIGATION ELEMENTS
+========================================= */
+
+const showSignUp =
+    document.getElementById("showSignUp");
+
+const showSignIn =
+    document.getElementById("showSignIn");
+
+const forgotFromLogin =
+    document.getElementById("forgotFromLogin");
+
+const backToSignIn =
+    document.getElementById("backToSignIn");
+
+
+/* =========================================
+   FORM SWITCHING
+========================================= */
+
+function showForm(formToShow) {
+
+    if (!formToShow) return;
+
+    signInForm.classList.remove("active");
+    signUpForm.classList.remove("active");
+    forgotForm.classList.remove("active");
+
+    formToShow.classList.add("active");
+
+    clearMessages();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================
+   SIGN UP LINK
+========================================= */
+
+if (showSignUp) {
+
+    showSignUp.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        showForm(signUpForm);
+
+    });
+
+}
+
+
+/* =========================================
+   SIGN IN LINK
+========================================= */
+
+if (showSignIn) {
+
+    showSignIn.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        showForm(signInForm);
+
+    });
+
+}
+
+
+/* =========================================
+   FORGOT PASSWORD LINK
+========================================= */
+
+if (forgotFromLogin) {
+
+    forgotFromLogin.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        const loginEmail =
+            document.getElementById("loginEmail").value.trim();
+
+        if (loginEmail) {
+
+            document.getElementById("forgotEmail").value =
+                loginEmail;
+
+        }
+
+        showForm(forgotForm);
+
+    });
+
+}
+
+
+/* =========================================
+   BACK TO SIGN IN
+========================================= */
+
+if (backToSignIn) {
+
+    backToSignIn.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        showForm(signInForm);
+
+    });
+
+}
+
+
+/* =========================================
+   CLEAR MESSAGES
+========================================= */
+
+function clearMessages() {
+
+    document.querySelectorAll(".form-message")
+        .forEach(message => {
+
+            message.textContent = "";
+
+            message.className =
+                "form-message";
+
+        });
+
+}
+
+
+/* =========================================
+   SHOW MESSAGE
+========================================= */
+
+function showMessage(element, message, type) {
+
+    if (!element) return;
+
+    element.textContent = message;
+
+    element.className =
+        `form-message ${type}`;
+
+}
+
+
+/* =========================================
+   PASSWORD VISIBILITY
+========================================= */
+
+document.querySelectorAll(".password-toggle")
+    .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const targetId =
+                button.dataset.target;
+
+            const input =
+                document.getElementById(targetId);
+
+            if (!input) return;
+
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+                button.textContent = "◉";
+
+            } else {
+
+                input.type = "password";
+
+                button.textContent = "◉";
+
+            }
+
+        });
+
+    });
+
+
+/* =========================================
+   EMAIL VALIDATION
+========================================= */
+
+function isValidEmail(email) {
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        .test(email);
+
+}
+
+
+/* =========================================
+   API REQUEST
+========================================= */
+
+async function sendToGoogleSheets(data) {
+
+    try {
+
+        /*
+         * URLSearchParams is intentionally used
+         * instead of application/json.
+         *
+         * This makes the request much easier
+         * for Google Apps Script to receive
+         * without browser CORS preflight issues.
+         */
+
+        const formData =
+            new URLSearchParams();
+
+        Object.keys(data).forEach(key => {
+
+            formData.append(
+                key,
+                data[key]
+            );
+
+        });
+
+
+        const response =
+            await fetch(API_URL, {
+
+                method: "POST",
+
+                body: formData
+
+            });
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to connect to the server."
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        return result;
+
+    } catch (error) {
+
+        console.error(
+            "Authentication error:",
+            error
+        );
+
+        return {
+
+            success: false,
+
+            message:
+                "Unable to connect to Muvia Air. Please check your internet connection and try again."
+
+        };
+
+    }
+
+}
+
+
+/* =========================================
+   DISABLE BUTTON WHILE PROCESSING
+========================================= */
+
+function setButtonLoading(button, loadingText) {
+
+    if (!button) return;
+
+    button.dataset.originalText =
+        button.innerHTML;
+
+    button.innerHTML =
+        loadingText;
+
+    button.disabled = true;
+
+}
+
+
+/* =========================================
+   RESTORE BUTTON
+========================================= */
+
+function restoreButton(button) {
+
+    if (!button) return;
+
+    button.innerHTML =
+        button.dataset.originalText ||
+        "Continue";
+
+    button.disabled = false;
+
+}
+
+
+/* =========================================
+   SAVE LOGGED-IN USER
+========================================= */
+
+function saveUserSession(user) {
+
+    /*
+     * We only store basic user information
+     * in the browser.
+     *
+     * NEVER store the user's password here.
+     */
+
+    const userSession = {
+
+        name: user.name || "",
+
+        email: user.email || ""
+
+    };
+
+
+    localStorage.setItem(
+        "muviaUser",
+        JSON.stringify(userSession)
+    );
+
+}
+
+
+/* =========================================
+   REDIRECT TO MAIN WEBSITE
+========================================= */
+
+function redirectToDashboard() {
+
+    window.location.href =
+        "saas.html";
+
+}
+
+
+/* =========================================
+   SIGN UP
+========================================= */
+
+if (signUpForm) {
+
+    signUpForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            const name =
+                document
+                    .getElementById("signupName")
+                    .value
+                    .trim();
+
+
+            const email =
+                document
+                    .getElementById("signupEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const password =
+                document
+                    .getElementById("signupPassword")
+                    .value;
+
+
+            const confirmPassword =
+                document
+                    .getElementById("confirmPassword")
+                    .value;
+
+
+            const message =
+                document.getElementById(
+                    "signupMessage"
+                );
+
+
+            const button =
+                signUpForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            /* =================================
+               VALIDATE NAME
+            ================================= */
+
+            if (name.length < 2) {
+
+                showMessage(
+                    message,
+                    "Please enter your full name.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================
+               VALIDATE EMAIL
+            ================================= */
+
+            if (!isValidEmail(email)) {
+
+                showMessage(
+                    message,
+                    "Please enter a valid email address.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================
+               VALIDATE PASSWORD
+            ================================= */
+
+            if (password.length < 8) {
+
+                showMessage(
+                    message,
+                    "Password must contain at least 8 characters.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================
+               PASSWORD MATCH
+            ================================= */
+
+            if (password !== confirmPassword) {
+
+                showMessage(
+                    message,
+                    "Passwords do not match.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================
+               START LOADING
+            ================================= */
+
+            setButtonLoading(
+                button,
+                "Creating account..."
+            );
+
+
+            showMessage(
+                message,
+                "Creating your Muvia Air account...",
+                "success"
+            );
+
+
+            /* =================================
+               SEND TO GOOGLE APPS SCRIPT
+            ================================= */
+
+            const result =
+                await sendToGoogleSheets({
+
+                    action: "signup",
+
+                    name: name,
+
+                    email: email,
+
+                    password: password
+
+                });
+
+
+            /* =================================
+               SUCCESS
+            ================================= */
+
+            if (result.success) {
+
+                /*
+                 * Save user session.
+                 */
+
+                saveUserSession({
+
+                    name:
+                        result.user?.name ||
+                        name,
+
+                    email:
+                        result.user?.email ||
+                        email
+
+                });
+
+
+                showMessage(
+                    message,
+                    "Account created successfully. Redirecting...",
+                    "success"
+                );
+
+
+                /*
+                 * Redirect to your main SaaS
+                 * website.
+                 */
+
+                setTimeout(() => {
+
+                    redirectToDashboard();
+
+                }, 800);
+
+
+                return;
+
+            }
+
+
+            /* =================================
+               SIGN UP FAILED
+            ================================= */
+
+            restoreButton(button);
+
+
+            showMessage(
+                message,
+
+                result.message ||
+                "Unable to create your account.",
+
+                "error"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   SIGN IN
+========================================= */
+
+if (signInForm) {
+
+    signInForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById("loginEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const password =
+                document
+                    .getElementById("loginPassword")
+                    .value;
+
+
+            const message =
+                document.getElementById(
+                    "loginMessage"
+                );
+
+
+            const button =
+                signInForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            /* =================================
+               VALIDATE EMAIL
+            ================================= */
+
+            if (!isValidEmail(email)) {
+
+                showMessage(
+                    message,
+                    "Please enter a valid email address.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================
+               VALIDATE PASSWORD
+            ================================= */
+
+            if (!password) {
+
+                showMessage(
+                    message,
+                    "Please enter your password.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================
+               LOADING
+            ================================= */
+
+            setButtonLoading(
+                button,
+                "Signing in..."
+            );
+
+
+            showMessage(
+                message,
+                "Checking your account...",
+                "success"
+            );
+
+
+            /* =================================
+               SEND LOGIN REQUEST
+            ================================= */
+
+            const result =
+                await sendToGoogleSheets({
+
+                    action: "login",
+
+                    email: email,
+
+                    password: password
+
+                });
+
+
+            /* =================================
+               LOGIN SUCCESS
+            ================================= */
+
+            if (result.success) {
+
+                /*
+                 * Save session information.
+                 */
+
+                saveUserSession({
+
+                    name:
+                        result.user?.name ||
+                        result.name ||
+                        "",
+
+                    email:
+                        result.user?.email ||
+                        result.email ||
+                        email
+
+                });
+
+
+                showMessage(
+                    message,
+                    "Login successful. Opening Muvia Air...",
+                    "success"
+                );
+
+
+                /*
+                 * Redirect to SaaS website.
+                 */
+
+                setTimeout(() => {
+
+                    redirectToDashboard();
+
+                }, 700);
+
+
+                return;
+
+            }
+
+
+            /* =================================
+               LOGIN FAILED
+            ================================= */
+
+            restoreButton(button);
+
+
+            showMessage(
+                message,
+
+                result.message ||
+                "Incorrect email or password.",
+
+                "error"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   FORGOT PASSWORD
+========================================= */
+
+if (forgotForm) {
+
+    forgotForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById("forgotEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const message =
+                document.getElementById(
+                    "forgotMessage"
+                );
+
+
+            const button =
+                forgotForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            /* =================================
+               VALIDATE EMAIL
+            ================================= */
+
+            if (!isValidEmail(email)) {
+
+                showMessage(
+                    message,
+                    "Please enter a valid email address.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================
+               LOADING
+            ================================= */
+
+            setButtonLoading(
+                button,
+                "Sending..."
+            );
+
+
+            showMessage(
+                message,
+                "Checking your account...",
+                "success"
+            );
+
+
+            /* =================================
+               SEND RESET REQUEST
+            ================================= */
+
+            const result =
+                await sendToGoogleSheets({
+
+                    action: "forgot",
+
+                    email: email
+
+                });
+
+
+            /* =================================
+               SUCCESS
+            ================================= */
+
+            if (result.success) {
+
+                restoreButton(button);
+
+
+                showMessage(
+                    message,
+
+                    result.message ||
+                    "Password reset instructions have been sent to your email.",
+
+                    "success"
+                );
+
+
+                return;
+
+            }
+
+
+            /* =================================
+               RESET FAILED
+            ================================= */
+
+            restoreButton(button);
+
+
+            showMessage(
+                message,
+
+                result.message ||
+                "Unable to process your password reset request.",
+
+                "error"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   CHECK EXISTING SESSION
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        /*
+         * If a user is already logged in,
+         * you can optionally redirect them
+         * directly to saas.html.
+         *
+         * This prevents an already logged-in
+         * user from seeing the login page again.
+         */
+
+        const existingUser =
+            localStorage.getItem(
+                "muviaUser"
+            );
+
+
+        if (existingUser) {
+
+            /*
+             * Uncomment the next line if you
+             * want automatic redirection.
+             */
+
+            // redirectToDashboard();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   PREVENT DOUBLE SUBMISSION
+========================================= */
+
+window.addEventListener(
+    "pageshow",
+    () => {
+
+        document
+            .querySelectorAll(
+                'button[type="submit"]'
+            )
+            .forEach(button => {
+
+                button.disabled = false;
+
+            });
+
+    }
+);
+
+</script>
+</body>
+</html>
