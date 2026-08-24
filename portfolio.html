@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
     <title>Akunna — Web Developer & Entrepreneur</title>
+
     <link rel="icon" href="b.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet"
     >
 
-    <style>
+
+<style>
+
 /* =====================================================
    RESET
 ===================================================== */
@@ -55,7 +65,8 @@ a {
 }
 
 button,
-input {
+input,
+textarea {
     font: inherit;
 }
 
@@ -81,25 +92,20 @@ button {
     display: flex;
     align-items: center;
     gap: 16px;
-
     margin-bottom: 70px;
 }
 
 .section-number {
     font-family: "Space Grotesk", sans-serif;
-
     font-size: 12px;
     font-weight: 700;
-
     color: #999;
 }
 
 .section-label {
     font-size: 11px;
     font-weight: 700;
-
     letter-spacing: .18em;
-
     color: #777;
 }
 
@@ -115,11 +121,9 @@ em {
 
 .navbar {
     position: fixed;
-
     top: 0;
     left: 0;
     right: 0;
-
     z-index: 1000;
 
     background: rgba(245,244,239,.88);
@@ -139,7 +143,6 @@ em {
 
 .brand {
     font-family: "Space Grotesk", sans-serif;
-
     font-size: 26px;
     font-weight: 700;
 }
@@ -156,9 +159,7 @@ em {
 .nav-links a {
     font-size: 13px;
     font-weight: 600;
-
     color: #666;
-
     transition: color .25s ease;
 }
 
@@ -934,6 +935,175 @@ em {
     letter-spacing: -5px;
 }
 
+
+/* =====================================================
+   CONTACT FORM
+   ADDED — DOES NOT CHANGE YOUR ORIGINAL DESIGN
+===================================================== */
+
+.contact-form {
+
+    max-width: 700px;
+
+    margin: 55px auto 0;
+
+    text-align: left;
+
+}
+
+.form-group {
+
+    margin-bottom: 18px;
+
+}
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #666;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .14em;
+
+}
+
+.form-group input,
+.form-group textarea {
+
+    width: 100%;
+
+    padding: 15px 16px;
+
+    border: 1px solid #c9c7be;
+
+    border-radius: 0;
+
+    outline: none;
+
+    background: rgba(255,255,255,.35);
+
+    color: #111;
+
+    font-size: 14px;
+
+    transition:
+        border-color .25s ease,
+        background .25s ease;
+
+}
+
+.form-group input {
+
+    height: 52px;
+
+}
+
+.form-group textarea {
+
+    min-height: 150px;
+
+    resize: vertical;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+
+    border-color: #111;
+
+    background: white;
+
+}
+
+.form-submit-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-top: 25px;
+
+}
+
+.contact-submit {
+
+    border: 0;
+
+    background: #111;
+
+    color: white;
+
+    padding: 15px 23px;
+
+    border-radius: 100px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition:
+        transform .25s ease,
+        opacity .25s ease;
+
+}
+
+.contact-submit:hover {
+
+    transform: translateY(-3px);
+
+}
+
+.contact-submit:disabled {
+
+    cursor: not-allowed;
+
+    opacity: .55;
+
+    transform: none;
+
+}
+
+.form-status {
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+.form-status.success {
+
+    color: #333;
+
+}
+
+.form-status.error {
+
+    color: #777;
+
+}
+
+.form-status.loading {
+
+    color: #888;
+
+}
+
+
+/* =====================================================
+   EXISTING EMAIL
+===================================================== */
+
 .email-link {
     display: inline-flex;
     align-items: center;
@@ -1201,6 +1371,26 @@ em {
         font-size: 18px;
     }
 
+    .contact-form {
+        margin-top: 45px;
+    }
+
+    .form-submit-row {
+        display: block;
+    }
+
+    .contact-submit {
+        width: 100%;
+    }
+
+    .form-status {
+        display: block;
+
+        margin-top: 15px;
+
+        text-align: center;
+    }
+
 
     /* FOOTER */
 
@@ -1211,6 +1401,7 @@ em {
     }
 
 }
+
 
 /* =====================================================
    TECH SYSTEM PRELOADER
@@ -1246,9 +1437,6 @@ em {
 
 }
 
-
-/* Finished state */
-
 .tech-loader.finished {
 
     opacity: 0;
@@ -1258,11 +1446,6 @@ em {
     pointer-events: none;
 
 }
-
-
-/* =====================================================
-   BACKGROUND GRID
-===================================================== */
 
 .tech-grid {
 
@@ -1299,7 +1482,6 @@ em {
 
 }
 
-
 @keyframes gridMove {
 
     from {
@@ -1319,11 +1501,6 @@ em {
     }
 
 }
-
-
-/* =====================================================
-   SCANNING LINE
-===================================================== */
 
 .scan-line {
 
@@ -1355,7 +1532,6 @@ em {
 
 }
 
-
 @keyframes scanScreen {
 
     0% {
@@ -1367,11 +1543,6 @@ em {
     }
 
 }
-
-
-/* =====================================================
-   AMBIENT GLOW
-===================================================== */
 
 .tech-glow {
 
@@ -1393,7 +1564,6 @@ em {
 
 }
 
-
 .glow-one {
 
     top: -200px;
@@ -1402,7 +1572,6 @@ em {
 
 }
 
-
 .glow-two {
 
     right: -150px;
@@ -1410,11 +1579,6 @@ em {
     bottom: -200px;
 
 }
-
-
-/* =====================================================
-   CONTENT
-===================================================== */
 
 .tech-loader-content {
 
@@ -1428,11 +1592,6 @@ em {
     );
 
 }
-
-
-/* =====================================================
-   SYSTEM INDICATOR
-===================================================== */
 
 .system-indicator {
 
@@ -1458,7 +1617,6 @@ em {
 
 }
 
-
 .indicator-dot {
 
     width: 6px;
@@ -1477,7 +1635,6 @@ em {
 
 }
 
-
 @keyframes indicatorPulse {
 
     0%,
@@ -1490,11 +1647,6 @@ em {
     }
 
 }
-
-
-/* =====================================================
-   LOGO
-===================================================== */
 
 .tech-logo {
 
@@ -1525,7 +1677,6 @@ em {
 
 }
 
-
 .logo-bracket {
 
     color: #666;
@@ -1533,7 +1684,6 @@ em {
     font-weight: 400;
 
 }
-
 
 @keyframes logoBoot {
 
@@ -1547,11 +1697,6 @@ em {
     }
 
 }
-
-
-/* =====================================================
-   SUBTITLE
-===================================================== */
 
 .tech-subtitle {
 
@@ -1570,11 +1715,6 @@ em {
     letter-spacing: .3em;
 
 }
-
-
-/* =====================================================
-   TERMINAL
-===================================================== */
 
 .terminal-window {
 
@@ -1595,7 +1735,6 @@ em {
 
 }
 
-
 .terminal-header {
 
     display: flex;
@@ -1615,7 +1754,6 @@ em {
 
 }
 
-
 .terminal-header > span {
 
     width: 6px;
@@ -1627,7 +1765,6 @@ em {
     background: #444;
 
 }
-
 
 .terminal-header small {
 
@@ -1643,7 +1780,6 @@ em {
 
 }
 
-
 .terminal-body {
 
     padding: 18px;
@@ -1656,20 +1792,17 @@ em {
 
 }
 
-
 .terminal-symbol {
 
     color: #777;
 
 }
 
-
 #terminalCommand {
 
     color: #ddd;
 
 }
-
 
 .cursor {
 
@@ -1679,7 +1812,6 @@ em {
         cursorBlink .8s infinite;
 
 }
-
 
 @keyframes cursorBlink {
 
@@ -1695,7 +1827,6 @@ em {
 
 }
 
-
 .terminal-status {
 
     margin-top: 8px;
@@ -1705,11 +1836,6 @@ em {
     font-size: 9px;
 
 }
-
-
-/* =====================================================
-   LOADING INFO
-===================================================== */
 
 .tech-loading-info {
 
@@ -1733,7 +1859,6 @@ em {
 
 }
 
-
 #techPercentage {
 
     color: #fff;
@@ -1741,11 +1866,6 @@ em {
     font-size: 12px;
 
 }
-
-
-/* =====================================================
-   PROGRESS
-===================================================== */
 
 .tech-progress {
 
@@ -1761,7 +1881,6 @@ em {
     overflow: visible;
 
 }
-
 
 .tech-progress-bar {
 
@@ -1781,7 +1900,6 @@ em {
         width .08s linear;
 
 }
-
 
 .progress-glow {
 
@@ -1806,11 +1924,6 @@ em {
 
 }
 
-
-/* =====================================================
-   MODULES
-===================================================== */
-
 .system-modules {
 
     display: flex;
@@ -1830,7 +1943,6 @@ em {
 
 }
 
-
 .system-modules span {
 
     transition:
@@ -1838,7 +1950,6 @@ em {
         text-shadow .3s ease;
 
 }
-
 
 .system-modules span.active {
 
@@ -1849,11 +1960,6 @@ em {
         rgba(255,255,255,.3);
 
 }
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
 
 .tech-loader-footer {
 
@@ -1876,7 +1982,6 @@ em {
 
 }
 
-
 .online-dot {
 
     display: inline-block;
@@ -1893,11 +1998,6 @@ em {
 
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
 @media (max-width: 600px) {
 
     .tech-loader-content {
@@ -1907,7 +2007,6 @@ em {
 
     }
 
-
     .tech-logo {
 
         font-size: 48px;
@@ -1916,20 +2015,17 @@ em {
 
     }
 
-
     .terminal-window {
 
         margin-top: 30px;
 
     }
 
-
     .system-modules {
 
         font-size: 7px;
 
     }
-
 
     .tech-loader-footer {
 
@@ -1940,11 +2036,6 @@ em {
     }
 
 }
-
-
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -1958,10 +2049,14 @@ em {
     }
 
 }
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <!-- =========================================
      TECH SYSTEM PRELOADER
@@ -1969,20 +2064,15 @@ em {
 
 <div class="tech-loader" id="techLoader">
 
-    <!-- Background grid -->
     <div class="tech-grid"></div>
 
-    <!-- Scanning line -->
     <div class="scan-line"></div>
 
-    <!-- Ambient glow -->
     <div class="tech-glow glow-one"></div>
     <div class="tech-glow glow-two"></div>
 
 
     <div class="tech-loader-content">
-
-        <!-- System indicator -->
 
         <div class="system-indicator">
 
@@ -1992,8 +2082,6 @@ em {
 
         </div>
 
-
-        <!-- Main logo -->
 
         <div class="tech-logo">
 
@@ -2010,8 +2098,6 @@ em {
             DIGITAL EXPERIENCE INITIALIZING
         </div>
 
-
-        <!-- Terminal -->
 
         <div class="terminal-window">
 
@@ -2031,6 +2117,7 @@ em {
             <div class="terminal-body">
 
                 <div>
+
                     <span class="terminal-symbol">
                         $
                     </span>
@@ -2042,6 +2129,7 @@ em {
                     <span class="cursor">
                         _
                     </span>
+
                 </div>
 
 
@@ -2057,8 +2145,6 @@ em {
         </div>
 
 
-        <!-- Loading percentage -->
-
         <div class="tech-loading-info">
 
             <span id="techLoadingText">
@@ -2072,8 +2158,6 @@ em {
         </div>
 
 
-        <!-- Loading bar -->
-
         <div class="tech-progress">
 
             <div
@@ -2081,15 +2165,13 @@ em {
                 id="techProgressBar"
             ></div>
 
-                <div
-                    class="progress-glow"
-                    id="progressGlow"
-                ></div>
+            <div
+                class="progress-glow"
+                id="progressGlow"
+            ></div>
 
         </div>
 
-
-        <!-- Modules -->
 
         <div class="system-modules">
 
@@ -2116,8 +2198,6 @@ em {
         </div>
 
 
-        <!-- Footer -->
-
         <div class="tech-loader-footer">
 
             <span>
@@ -2125,8 +2205,11 @@ em {
             </span>
 
             <span>
+
                 <span class="online-dot"></span>
+
                 SECURE CONNECTION
+
             </span>
 
         </div>
@@ -2135,712 +2218,853 @@ em {
 
 </div>
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
 
-    <header class="navbar">
+<!-- =========================================
+     NAVIGATION
+========================================= -->
 
-        <div class="container nav-inner">
+<header class="navbar">
 
-            <a href="#home" class="brand">
-                A<span>.</span>
-            </a>
+    <div class="container nav-inner">
 
-            <nav class="nav-links">
+        <a href="#home" class="brand">
+            A<span>.</span>
+        </a>
 
-                <a href="#about">About</a>
-                <a href="#work">Work</a>
-                <a href="#contact">Contact</a>
-
-            </nav>
-
-            <a href="#contact" class="nav-button">
-                Let's talk
-            </a>
-
-            <button
-                class="menu-button"
-                id="menuButton"
-                aria-label="Open menu"
-            >
-                ☰
-            </button>
-
-        </div>
-
-        <nav class="mobile-menu" id="mobileMenu">
+        <nav class="nav-links">
 
             <a href="#about">About</a>
+
             <a href="#work">Work</a>
+
             <a href="#contact">Contact</a>
 
         </nav>
 
-    </header>
-
-
-    <main>
-
-        <!-- =========================
-             HERO
-        ========================== -->
-
-        <section class="hero" id="home">
-
-            <div class="container hero-grid">
-
-                <div class="hero-content">
-
-                    <div class="availability">
-
-                        <span class="status-dot"></span>
-
-                        Available for opportunities
-
-                    </div>
-
-
-                    <p class="hero-label">
-                        WEB DEVELOPER · ENTREPRENEUR
-                    </p>
-
-
-                    <h1>
-                        I turn ideas into
-                        <span>digital products.</span>
-                    </h1>
-
-
-                    <p class="hero-description">
-                        I build modern websites and digital experiences
-                        that combine clean design, thoughtful interaction,
-                        and practical technology.
-                    </p>
-
-
-                    <div class="hero-actions">
-
-                        <a
-                            href="#work"
-                            class="primary-button"
-                        >
-                            View my work
-                            <span>↗</span>
-                        </a>
-
-                        <a
-                            href="#contact"
-                            class="secondary-button"
-                        >
-                            Contact me
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <div class="hero-visual">
-
-                    <div class="visual-card">
-
-                        <div class="visual-top">
-
-                            <span>SELECTED</span>
-
-                            <span>01 / 04</span>
-
-                        </div>
-
-
-                        <div class="visual-shape">
-
-                            <div class="shape-circle"></div>
-
-                            <div class="shape-square"></div>
-
-                            <div class="shape-line"></div>
-
-                        </div>
-
-
-                        <div class="visual-bottom">
-
-                            <strong>
-                                Build.
-                                <br>
-                                Launch.
-                                <br>
-                                Grow.
-                            </strong>
-
-                            <span>
-                                2026
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="hero-scroll">
-
-                <span>SCROLL TO EXPLORE</span>
-
-                <span class="scroll-line"></span>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             ABOUT
-        ========================== -->
-
-        <section class="about section" id="about">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <span class="section-number">
-                        01
-                    </span>
-
-                    <span class="section-label">
-                        ABOUT ME
-                    </span>
-
-                </div>
-
-
-                <div class="about-grid">
-
-                    <h2>
-                        Building things that
-                        <em>matter.</em>
-                    </h2>
-
-
-                    <div class="about-copy">
-
-                        <p>
-                            I'm a web developer and entrepreneur who enjoys
-                            turning ideas into products people can actually
-                            use.
-                        </p>
-
-                        <p>
-                            My work sits between design, technology and
-                            business. I care about how something looks,
-                            how it works and whether it solves the problem
-                            it was created for.
-                        </p>
-
-
-                        <div class="skills">
-
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>Python basic</span>
-                            
-                            <span>Google Sheets</span>
-                            <span>APIs</span>
-                            <span>UI/UX</span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             WORK
-        ========================== -->
-
-        <section class="work section" id="work">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <span class="section-number">
-                        02
-                    </span>
-
-                    <span class="section-label">
-                        SELECTED WORK
-                    </span>
-
-                </div>
-
-
-                <div class="work-intro">
-
-                    <h2>
-                        Things I've
-                        <em>built.</em>
-                    </h2>
-
-                    <p>
-                        A selection of products, websites and experiments
-                        I've worked on.
-                    </p>
-
-                </div>
-
-
-                <!-- PROJECT GRID -->
-
-                <div class="projects-grid">
-
-
-                    <!-- PROJECT 1 -->
-
-                    <article
-                        class="project project-large"
-                        data-project="campusmart"
-                    >
-
-                        <div class="project-image">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85"
-                                alt="Campus marketplace project"
-                            >
-
-                            <div class="project-overlay">
-
-                                <span>
-                                    VIEW PROJECT
-                                </span>
-
-                                <span class="project-arrow">
-                                    ↗
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="project-info">
-
-                            <div>
-
-                                <span class="project-category">
-                                    MARKETPLACE
-                                </span>
-
-                                <h3>
-                                    CampusMart
-                                </h3>
-
-                            </div>
-
-                            <p>
-                                A student-focused marketplace designed
-                                to make buying and selling on campus easier.
-                            </p>
-
-                        </div>
-
-
-                        <div class="project-tags">
-
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>Supabase</span>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- PROJECT 2 -->
-
-                    <article
-                        class="project"
-                        data-project="paletra"
-                    >
-
-                        <div class="project-image">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=85"
-                                alt="Paletra cooking application"
-                            >
-
-                            <div class="project-overlay">
-
-                                <span>
-                                    VIEW PROJECT
-                                </span>
-
-                                <span class="project-arrow">
-                                    ↗
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="project-info">
-
-                            <div>
-
-                                <span class="project-category">
-                                    WEB APP
-                                </span>
-
-                                <h3>
-                                    Paletra
-                                </h3>
-
-                            </div>
-
-                            <p>
-                                A cooking assistant and food marketplace
-                                experience built around simple discovery.
-                            </p>
-
-                        </div>
-
-
-                        <div class="project-tags">
-
-                            <span>JavaScript</span>
-                            <span>AI</span>
-                            <span>APIs</span>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- PROJECT 3 -->
-
-                    <article
-                        class="project"
-                        data-project="octalearn"
-                    >
-
-                        <div class="project-image">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=85"
-                                alt="Online learning platform"
-                            >
-
-                            <div class="project-overlay">
-
-                                <span>
-                                    VIEW PROJECT
-                                </span>
-
-                                <span class="project-arrow">
-                                    ↗
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="project-info">
-
-                            <div>
-
-                                <span class="project-category">
-                                    EDTECH
-                                </span>
-
-                                <h3>
-                                    OctaLearn
-                                </h3>
-
-                            </div>
-
-                            <p>
-                                An AI-powered learning platform designed
-                                to help students learn more effectively.
-                            </p>
-
-                        </div>
-
-
-                        <div class="project-tags">
-
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- PROJECT 4 -->
-
-                    <article
-                        class="project project-wide"
-                        data-project="safety"
-                    >
-
-                        <div class="project-image">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1400&q=85"
-                                alt="Industrial safety technology"
-                            >
-
-                            <div class="project-overlay">
-
-                                <span>
-                                    VIEW PROJECT
-                                </span>
-
-                                <span class="project-arrow">
-                                    ↗
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="project-info">
-
-                            <div>
-
-                                <span class="project-category">
-                                    IOT · HARDWARE
-                                </span>
-
-                                <h3>
-                                    Industrial Safety System
-                                </h3>
-
-                            </div>
-
-                            <p>
-                                A wearable monitoring system designed to
-                                help improve workplace safety through
-                                real-time sensor data.
-                            </p>
-
-                        </div>
-
-
-                        <div class="project-tags">
-
-                            <span>ESP8266</span>
-                            <span>IoT</span>
-                            <span>Google Sheets</span>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             PROJECT DETAIL
-        ========================== -->
-
-        <section
-            class="project-detail"
-            id="projectDetail"
+        <a href="#contact" class="nav-button">
+            Let's talk
+        </a>
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Open menu"
         >
+            ☰
+        </button>
 
-            <div class="container">
+    </div>
 
-                <button
-                    class="close-project"
-                    id="closeProject"
+
+    <nav class="mobile-menu" id="mobileMenu">
+
+        <a href="#about">About</a>
+
+        <a href="#work">Work</a>
+
+        <a href="#contact">Contact</a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="hero" id="home">
+
+    <div class="container hero-grid">
+
+        <div class="hero-content">
+
+            <div class="availability">
+
+                <span class="status-dot"></span>
+
+                Available for opportunities
+
+            </div>
+
+
+            <p class="hero-label">
+                WEB DEVELOPER · ENTREPRENEUR
+            </p>
+
+
+            <h1>
+
+                I turn ideas into
+
+                <span>
+                    digital products.
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                I build modern websites and digital experiences
+                that combine clean design, thoughtful interaction,
+                and practical technology.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="#work"
+                    class="primary-button"
                 >
-                    ← Back to work
-                </button>
+                    View my work
+
+                    <span>↗</span>
+
+                </a>
 
 
-                <div class="detail-header">
+                <a
+                    href="#contact"
+                    class="secondary-button"
+                >
+                    Contact me
+                </a>
 
-                    <span
-                        class="project-category"
-                        id="detailCategory"
-                    >
-                        WEB APP
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="visual-card">
+
+                <div class="visual-top">
+
+                    <span>
+                        SELECTED
                     </span>
 
-                    <h2 id="detailTitle">
-                        Project Title
-                    </h2>
-
-                    <p id="detailDescription">
-                        Project description.
-                    </p>
+                    <span>
+                        01 / 04
+                    </span>
 
                 </div>
 
 
-                <div class="detail-image">
+                <div class="visual-shape">
 
-                    <img
-                        id="detailImage"
-                        src=""
-                        alt=""
-                    >
+                    <div class="shape-circle"></div>
+
+                    <div class="shape-square"></div>
+
+                    <div class="shape-line"></div>
 
                 </div>
 
 
-                <div class="detail-grid">
+                <div class="visual-bottom">
 
-                    <div>
+                    <strong>
 
-                        <span class="detail-label">
-                            THE IDEA
-                        </span>
+                        Build.
+                        <br>
+                        Launch.
+                        <br>
+                        Grow.
 
-                        <p>
-                            Every project starts with a problem worth
-                            solving. The goal was to create a simple,
-                            useful and accessible digital experience.
-                        </p>
+                    </strong>
 
-                    </div>
-
-
-                    <div>
-
-                        <span class="detail-label">
-                            TECHNOLOGY
-                        </span>
-
-                        <div
-                            class="detail-tags"
-                            id="detailTags"
-                        ></div>
-
-                    </div>
+                    <span>
+                        2026
+                    </span>
 
                 </div>
 
             </div>
 
-        </section>
+        </div>
+
+    </div>
 
 
-        <!-- =========================
-             CONTACT
-        ========================== -->
+    <div class="hero-scroll">
 
-        <section
-            class="contact section"
-            id="contact"
-        >
+        <span>
+            SCROLL TO EXPLORE
+        </span>
 
-            <div class="container">
+        <span class="scroll-line"></span>
 
-                <div class="section-heading">
+    </div>
 
-                    <span class="section-number">
-                        03
-                    </span>
-
-                    <span class="section-label">
-                        CONTACT
-                    </span>
-
-                </div>
+</section>
 
 
-                <div class="contact-content">
+<!-- =========================================
+     ABOUT
+========================================= -->
 
-                    <p class="contact-small">
-                        HAVE A PROJECT IN MIND?
-                    </p>
+<section class="about section" id="about">
 
-                    <h2>
-                        Let's build
-                        <em>something great.</em>
-                    </h2>
+    <div class="container">
 
+        <div class="section-heading">
 
-                    <a
-                        href="mailto:ihesiuloakunna@gmail.com"
-                        class="email-link"
-                    >
-                        ihesiuloakunna@gmail.com
-                        <span>↗</span>
-                    </a>
-
-
-                    <div class="social-links">
-
-                        <a href="#">
-                            GitHub
-                        </a>
-
-                        <a href="#">
-                            LinkedIn
-                        </a>
-
-                        <a href="#">
-                            Instagram
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer class="footer">
-
-        <div class="container footer-inner">
-
-            <span>
-                © 2026 Akunna
+            <span class="section-number">
+                01
             </span>
 
-            <span>
-                Designed & built with intention.
+            <span class="section-label">
+                ABOUT ME
             </span>
 
         </div>
 
-    </footer>
+
+        <div class="about-grid">
+
+            <h2>
+
+                Building things that
+                <em>matter.</em>
+
+            </h2>
 
 
-    <script>
+            <div class="about-copy">
+
+                <p>
+
+                    I'm a web developer and entrepreneur who enjoys
+                    turning ideas into products people can actually
+                    use.
+
+                </p>
+
+
+                <p>
+
+                    My work sits between design, technology and
+                    business. I care about how something looks,
+                    how it works and whether it solves the problem
+                    it was created for.
+
+                </p>
+
+
+                <div class="skills">
+
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>Python basic</span>
+                    <span>Google Sheets</span>
+                    <span>APIs</span>
+                    <span>UI/UX</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     WORK
+========================================= -->
+
+<section class="work section" id="work">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-number">
+                02
+            </span>
+
+            <span class="section-label">
+                SELECTED WORK
+            </span>
+
+        </div>
+
+
+        <div class="work-intro">
+
+            <h2>
+
+                Things I've
+                <em>built.</em>
+
+            </h2>
+
+
+            <p>
+
+                A selection of products, websites and experiments
+                I've worked on.
+
+            </p>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+
+            <!-- PROJECT 1 -->
+
+            <article
+                class="project project-large"
+                data-project="campusmart"
+            >
+
+                <div class="project-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85"
+                        alt="Campus marketplace project"
+                    >
+
+                    <div class="project-overlay">
+
+                        <span>
+                            VIEW PROJECT
+                        </span>
+
+                        <span class="project-arrow">
+                            ↗
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <div>
+
+                        <span class="project-category">
+                            MARKETPLACE
+                        </span>
+
+                        <h3>
+                            CampusMart
+                        </h3>
+
+                    </div>
+
+
+                    <p>
+
+                        A student-focused marketplace designed
+                        to make buying and selling on campus easier.
+
+                    </p>
+
+                </div>
+
+
+                <div class="project-tags">
+
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>Supabase</span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PROJECT 2 -->
+
+            <article
+                class="project"
+                data-project="paletra"
+            >
+
+                <div class="project-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=85"
+                        alt="Paletra cooking application"
+                    >
+
+                    <div class="project-overlay">
+
+                        <span>
+                            VIEW PROJECT
+                        </span>
+
+                        <span class="project-arrow">
+                            ↗
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <div>
+
+                        <span class="project-category">
+                            WEB APP
+                        </span>
+
+                        <h3>
+                            Paletra
+                        </h3>
+
+                    </div>
+
+
+                    <p>
+
+                        A cooking assistant and food marketplace
+                        experience built around simple discovery.
+
+                    </p>
+
+                </div>
+
+
+                <div class="project-tags">
+
+                    <span>JavaScript</span>
+                    <span>AI</span>
+                    <span>APIs</span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PROJECT 3 -->
+
+            <article
+                class="project"
+                data-project="octalearn"
+            >
+
+                <div class="project-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=85"
+                        alt="Online learning platform"
+                    >
+
+                    <div class="project-overlay">
+
+                        <span>
+                            VIEW PROJECT
+                        </span>
+
+                        <span class="project-arrow">
+                            ↗
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <div>
+
+                        <span class="project-category">
+                            EDTECH
+                        </span>
+
+                        <h3>
+                            OctaLearn
+                        </h3>
+
+                    </div>
+
+
+                    <p>
+
+                        An AI-powered learning platform designed
+                        to help students learn more effectively.
+
+                    </p>
+
+                </div>
+
+
+                <div class="project-tags">
+
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PROJECT 4 -->
+
+            <article
+                class="project project-wide"
+                data-project="safety"
+            >
+
+                <div class="project-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1400&q=85"
+                        alt="Industrial safety technology"
+                    >
+
+                    <div class="project-overlay">
+
+                        <span>
+                            VIEW PROJECT
+                        </span>
+
+                        <span class="project-arrow">
+                            ↗
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <div>
+
+                        <span class="project-category">
+                            IOT · HARDWARE
+                        </span>
+
+                        <h3>
+                            Industrial Safety System
+                        </h3>
+
+                    </div>
+
+
+                    <p>
+
+                        A wearable monitoring system designed to
+                        help improve workplace safety through
+                        real-time sensor data.
+
+                    </p>
+
+                </div>
+
+
+                <div class="project-tags">
+
+                    <span>ESP8266</span>
+                    <span>IoT</span>
+                    <span>Google Sheets</span>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     PROJECT DETAIL
+========================================= -->
+
+<section
+    class="project-detail"
+    id="projectDetail"
+>
+
+    <div class="container">
+
+        <button
+            class="close-project"
+            id="closeProject"
+        >
+            ← Back to work
+        </button>
+
+
+        <div class="detail-header">
+
+            <span
+                class="project-category"
+                id="detailCategory"
+            >
+                WEB APP
+            </span>
+
+            <h2 id="detailTitle">
+                Project Title
+            </h2>
+
+            <p id="detailDescription">
+                Project description.
+            </p>
+
+        </div>
+
+
+        <div class="detail-image">
+
+            <img
+                id="detailImage"
+                src=""
+                alt=""
+            >
+
+        </div>
+
+
+        <div class="detail-grid">
+
+            <div>
+
+                <span class="detail-label">
+                    THE IDEA
+                </span>
+
+                <p>
+
+                    Every project starts with a problem worth
+                    solving. The goal was to create a simple,
+                    useful and accessible digital experience.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <span class="detail-label">
+                    TECHNOLOGY
+                </span>
+
+                <div
+                    class="detail-tags"
+                    id="detailTags"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CONTACT
+========================================= -->
+
+<section
+    class="contact section"
+    id="contact"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-number">
+                03
+            </span>
+
+            <span class="section-label">
+                CONTACT
+            </span>
+
+        </div>
+
+
+        <div class="contact-content">
+
+            <p class="contact-small">
+                HAVE A PROJECT IN MIND?
+            </p>
+
+
+            <h2>
+
+                Let's build
+                <em>something great.</em>
+
+            </h2>
+
+
+            <!-- =====================================
+                 CONTACT FORM
+            ====================================== -->
+
+            <form
+                class="contact-form"
+                id="contactForm"
+            >
+
+                <div class="form-group">
+
+                    <label for="name">
+                        FULL NAME
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        EMAIL ADDRESS
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="message">
+                        MESSAGE
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Tell me about your project..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-submit-row">
+
+                    <button
+                        type="submit"
+                        class="contact-submit"
+                        id="contactSubmit"
+                    >
+
+                        Send message
+                        <span>↗</span>
+
+                    </button>
+
+
+                    <div
+                        class="form-status"
+                        id="formStatus"
+                    ></div>
+
+                </div>
+
+            </form>
+
+
+            <!-- EXISTING EMAIL -->
+
+            <a
+                href="mailto:ihesiuloakunna@gmail.com"
+                class="email-link"
+            >
+
+                ihesiuloakunna@gmail.com
+
+                <span>↗</span>
+
+            </a>
+
+
+            <div class="social-links">
+
+                <a href="#">
+                    GitHub
+                </a>
+
+                <a href="#">
+                    LinkedIn
+                </a>
+
+                <a href="#">
+                    Instagram
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-inner">
+
+        <span>
+            © 2026 Akunna
+        </span>
+
+        <span>
+            Designed & built with intention.
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script>
+
 /* =====================================================
    MOBILE MENU
 ===================================================== */
@@ -2858,8 +3082,6 @@ menuButton.addEventListener("click", () => {
 
 });
 
-
-/* Close mobile menu after clicking */
 
 mobileMenu.querySelectorAll("a").forEach(link => {
 
@@ -3041,8 +3263,6 @@ function openProject(projectId) {
     });
 
 
-    /* Hide normal portfolio */
-
     document.querySelector("main")
         .querySelectorAll(
             ".hero, .about, .work, .contact"
@@ -3053,8 +3273,6 @@ function openProject(projectId) {
 
         });
 
-
-    /* Show detail */
 
     projectDetail.classList.add("active");
 
@@ -3068,10 +3286,6 @@ function openProject(projectId) {
 
 }
 
-
-/* =====================================================
-   PROJECT CARD CLICK
-===================================================== */
 
 projectCards.forEach(card => {
 
@@ -3134,6 +3348,181 @@ document.addEventListener("keydown", event => {
 
 });
 
+
+/* =====================================================
+   CONTACT FORM
+===================================================== */
+
+/*
+   IMPORTANT:
+
+   After creating your Google Apps Script Web App,
+   paste the Web App URL below.
+
+*/
+
+const GOOGLE_SCRIPT_URL =
+    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+
+const contactForm =
+    document.getElementById("contactForm");
+
+const contactSubmit =
+    document.getElementById("contactSubmit");
+
+const formStatus =
+    document.getElementById("formStatus");
+
+
+contactForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        /* Check URL */
+
+        if (
+            GOOGLE_SCRIPT_URL ===
+            "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"
+        ) {
+
+            formStatus.textContent =
+                "Contact system has not been connected yet.";
+
+            formStatus.className =
+                "form-status error";
+
+            return;
+
+        }
+
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const message =
+            document.getElementById("message").value.trim();
+
+
+        /* Basic validation */
+
+        if (!name || !email || !message) {
+
+            formStatus.textContent =
+                "Please complete all fields.";
+
+            formStatus.className =
+                "form-status error";
+
+            return;
+
+        }
+
+
+        /* Loading */
+
+        contactSubmit.disabled = true;
+
+        contactSubmit.innerHTML =
+            "Sending...";
+
+
+        formStatus.textContent =
+            "Sending your message...";
+
+        formStatus.className =
+            "form-status loading";
+
+
+        try {
+
+            /*
+             * URLSearchParams is deliberately used
+             * instead of JSON so the request can be
+             * sent without a CORS preflight.
+             */
+
+            const formData =
+                new URLSearchParams();
+
+            formData.append(
+                "name",
+                name
+            );
+
+            formData.append(
+                "email",
+                email
+            );
+
+            formData.append(
+                "message",
+                message
+            );
+
+
+            await fetch(
+                GOOGLE_SCRIPT_URL,
+                {
+
+                    method: "POST",
+
+                    mode: "no-cors",
+
+                    body: formData
+
+                }
+            );
+
+
+            /*
+             * With no-cors, the browser cannot read
+             * Google's response. A successful fetch
+             * means the request was sent.
+             */
+
+            formStatus.textContent =
+                "Message sent successfully. I'll get back to you soon.";
+
+            formStatus.className =
+                "form-status success";
+
+
+            contactForm.reset();
+
+
+        } catch (error) {
+
+            console.error(
+                "Contact form error:",
+                error
+            );
+
+
+            formStatus.textContent =
+                "Something went wrong. Please try again.";
+
+            formStatus.className =
+                "form-status error";
+
+        }
+
+
+        contactSubmit.disabled = false;
+
+        contactSubmit.innerHTML =
+            'Send message <span>↗</span>';
+
+    }
+);
+
+
 /* =====================================================
    TECH SYSTEM PRELOADER
 ===================================================== */
@@ -3181,26 +3570,25 @@ document.addEventListener(
         if (!loader) return;
 
 
-        /* =========================================
-           SYSTEM MODULES
-        ========================================= */
-
         const modules = [
+
             document.getElementById("module1"),
+
             document.getElementById("module2"),
+
             document.getElementById("module3"),
+
             document.getElementById("module4"),
+
             document.getElementById("module5")
+
         ];
 
-
-        /* =========================================
-           BOOT SEQUENCE
-        ========================================= */
 
         const bootSteps = [
 
             {
+
                 progress: 0,
 
                 text: "INITIALIZING",
@@ -3210,9 +3598,11 @@ document.addEventListener(
 
                 status:
                     "Starting digital environment..."
+
             },
 
             {
+
                 progress: 18,
 
                 text: "CONNECTING",
@@ -3222,9 +3612,11 @@ document.addEventListener(
 
                 status:
                     "Connection established."
+
             },
 
             {
+
                 progress: 38,
 
                 text: "LOADING UI",
@@ -3234,9 +3626,11 @@ document.addEventListener(
 
                 status:
                     "Interface modules loaded."
+
             },
 
             {
+
                 progress: 58,
 
                 text: "SYNCING DATA",
@@ -3246,9 +3640,11 @@ document.addEventListener(
 
                 status:
                     "Data synchronization complete."
+
             },
 
             {
+
                 progress: 78,
 
                 text: "OPTIMIZING",
@@ -3258,9 +3654,11 @@ document.addEventListener(
 
                 status:
                     "Performance optimization complete."
+
             },
 
             {
+
                 progress: 94,
 
                 text: "FINAL CHECK",
@@ -3270,9 +3668,11 @@ document.addEventListener(
 
                 status:
                     "All systems operational."
+
             },
 
             {
+
                 progress: 100,
 
                 text: "SYSTEM ONLINE",
@@ -3282,6 +3682,7 @@ document.addEventListener(
 
                 status:
                     "Welcome to the experience."
+
             }
 
         ];
@@ -3289,10 +3690,6 @@ document.addEventListener(
 
         let progress = 0;
 
-
-        /* =========================================
-           UPDATE BOOT STATE
-        ========================================= */
 
         function updateBootState(value) {
 
@@ -3338,8 +3735,6 @@ document.addEventListener(
                 value + "%";
 
 
-            /* Activate modules */
-
             modules.forEach(
                 (module, index) => {
 
@@ -3363,18 +3758,8 @@ document.addEventListener(
         }
 
 
-        /* =========================================
-           START BOOT
-        ========================================= */
-
         const bootInterval =
             setInterval(() => {
-
-                /*
-                 * Random increments make
-                 * the loading feel like a
-                 * real system boot.
-                 */
 
                 progress +=
                     Math.floor(
@@ -3398,26 +3783,15 @@ document.addEventListener(
                 );
 
 
-                /* =================================
-                   SYSTEM ONLINE
-                ================================= */
-
                 if (
                     progress === 100
                 ) {
 
                     setTimeout(() => {
 
-                        /*
-                         * Final pause gives
-                         * "SYSTEM ONLINE"
-                         * time to be seen.
-                         */
-
                         loader.classList.add(
                             "finished"
                         );
-
 
                     }, 650);
 
@@ -3428,6 +3802,7 @@ document.addEventListener(
 
     }
 );
+
 </script>
 
 </body>
