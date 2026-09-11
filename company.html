@@ -4430,6 +4430,7 @@ h2 span {
 
 
 <script>
+
 /* ==========================================
    MOBILE MENU
 ========================================== */
@@ -4497,10 +4498,12 @@ document
                     "open"
                 );
 
+
                 const icon =
                     menuButton.querySelector(
                         "i"
                     );
+
 
                 icon.classList.remove(
                     "fa-xmark"
@@ -4645,18 +4648,8 @@ window.addEventListener(
 
 /* ==========================================
    CONTACT FORM
+   PHP + SUPABASE
 ========================================== */
-
-/* ==========================================
-   GOOGLE SHEETS CONTACT FORM
-========================================== */
-
-// IMPORTANT:
-// Paste your Google Apps Script Web App URL here.
-
-const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbxPwJezg8mqQ2GKpFr_QcgHgDZwZSl3R_pDwNW_GG-FBsy2bEWrHaQNuQreUdASkgkvRQ/exec";
-
 
 const contactForm =
     document.getElementById("contactForm");
@@ -4670,12 +4663,15 @@ const formStatus =
 
 contactForm.addEventListener(
     "submit",
-    function(event) {
+    async function(event) {
 
         event.preventDefault();
 
 
-        // Prevent multiple submissions
+        /* =========================
+           PREVENT MULTIPLE SUBMISSIONS
+        ========================= */
+
         submitButton.disabled = true;
 
         submitButton.style.pointerEvents =
@@ -4692,9 +4688,9 @@ contactForm.addEventListener(
             "none";
 
 
-        // =========================
-        // GET FORM VALUES
-        // =========================
+        /* =========================
+           GET FORM VALUES
+        ========================= */
 
         const name =
             document
@@ -4724,119 +4720,51 @@ contactForm.addEventListener(
                 .trim();
 
 
-        // =========================
-        // CREATE JSONP CALLBACK
-        // =========================
+        /* =========================
+           BASIC FRONTEND VALIDATION
+        ========================= */
 
-        const callbackName =
-            "energiaFormCallback_" +
-            Date.now();
+        if (
+            name === "" ||
+            email === "" ||
+            message === ""
+        ) {
 
+            showFormError(
+                "Please fill in all required fields."
+            );
 
-        // =========================
-        // CALLBACK FUNCTION
-        // =========================
+            return;
 
-        window[callbackName] =
-            function(response) {
-
-                // Remove script
-                if (script.parentNode) {
-
-                    script.parentNode.removeChild(
-                        script
-                    );
-
-                }
+        }
 
 
-                // Remove callback
-                delete window[callbackName];
+        /* =========================
+           EMAIL VALIDATION
+        ========================= */
+
+        const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
-                // =========================
-                // SUCCESS
-                // =========================
+        if (
+            !emailPattern.test(email)
+        ) {
 
-                if (
-                    response &&
-                    response.success
-                ) {
+            showFormError(
+                "Please enter a valid email address."
+            );
 
-                    submitButton.innerHTML = `
-                        <i class="fa-solid fa-check"></i>
-                        Successfully Sent
-                    `;
+            return;
+
+        }
 
 
-                    submitButton.style.background =
-                        "#238636";
+        /* =========================
+           CREATE REQUEST DATA
+        ========================= */
 
-
-                    formStatus.textContent =
-                        "Your enquiry has been successfully sent. We will get back to you soon.";
-
-
-                    formStatus.style.color =
-                        "#238636";
-
-
-                    formStatus.style.display =
-                        "block";
-
-
-                    // Clear form
-                    contactForm.reset();
-
-
-                    // Restore button after 5 seconds
-
-                    setTimeout(
-                        function() {
-
-                            submitButton.innerHTML = `
-                                Send Enquiry
-                                <i class="fa-solid fa-arrow-right"></i>
-                            `;
-
-                            submitButton.style.background =
-                                "";
-
-                            submitButton.disabled =
-                                false;
-
-                            submitButton.style.pointerEvents =
-                                "";
-
-                        },
-                        5000
-                    );
-
-
-                } else {
-
-                    // =========================
-                    // GOOGLE SHEETS ERROR
-                    // =========================
-
-                    showFormError(
-                        "Unable to send your enquiry. Please try again."
-                    );
-
-                }
-
-            };
-
-
-        // =========================
-        // CREATE SCRIPT REQUEST
-        // =========================
-
-        const script =
-            document.createElement("script");
-
-
-        const params = new URLSearchParams({
+        const formData = {
 
             name: name,
 
@@ -4844,89 +4772,164 @@ contactForm.addEventListener(
 
             company: company,
 
-            message: message,
+            message: message
 
-            callback: callbackName
-
-        });
+        };
 
 
-        script.src =
-            GOOGLE_SCRIPT_URL +
-            "?" +
-            params.toString();
+        try {
 
+            /* =========================
+               SEND TO PHP BACKEND
+            ========================= */
 
-        script.onerror =
-            function() {
+            const response =
+                await fetch(
+                    "contact.php",
+                    {
+                        method: "POST",
 
-                if (script.parentNode) {
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
 
-                    script.parentNode.removeChild(
-                        script
-                    );
-
-                }
-
-
-                delete window[callbackName];
-
-
-                showFormError(
-                    "Connection error. Please check your internet connection and try again."
+                        body:
+                            JSON.stringify(
+                                formData
+                            )
+                    }
                 );
 
-            };
+
+            /* =========================
+               READ JSON RESPONSE
+            ========================= */
+
+            let result;
+
+            try {
+
+                result =
+                    await response.json();
+
+            } catch (jsonError) {
+
+                throw new Error(
+                    "Invalid server response."
+                );
+
+            }
 
 
-        document.body.appendChild(
-            script
-        );
+            /* =========================
+               SUCCESS
+            ========================= */
+
+            if (
+                response.ok &&
+                result.success
+            ) {
+
+                submitButton.innerHTML = `
+                    <i class="fa-solid fa-check"></i>
+                    Successfully Sent
+                `;
 
 
-        // =========================
-        // TIMEOUT
-        // =========================
-
-        setTimeout(
-            function() {
-
-                if (
-                    window[callbackName]
-                ) {
-
-                    delete window[callbackName];
+                submitButton.style.background =
+                    "#238636";
 
 
-                    if (
-                        script.parentNode
-                    ) {
-
-                        script.parentNode.removeChild(
-                            script
-                        );
-
-                    }
+                formStatus.textContent =
+                    result.message ||
+                    "Your enquiry has been successfully sent. We will get back to you soon.";
 
 
-                    showFormError(
-                        "The request took too long. Please try again."
-                    );
+                formStatus.style.color =
+                    "#238636";
 
-                }
 
-            },
-            15000
-        );
+                formStatus.style.display =
+                    "block";
 
+
+                /* =========================
+                   CLEAR FORM
+                ========================= */
+
+                contactForm.reset();
+
+
+                /* =========================
+                   RESTORE BUTTON
+                ========================= */
+
+                setTimeout(
+                    function() {
+
+                        submitButton.innerHTML = `
+                            Send Enquiry
+                            <i class="fa-solid fa-arrow-right"></i>
+                        `;
+
+
+                        submitButton.style.background =
+                            "";
+
+
+                        submitButton.disabled =
+                            false;
+
+
+                        submitButton.style.pointerEvents =
+                            "";
+
+                    },
+                    5000
+                );
+
+
+            } else {
+
+                /* =========================
+                   SERVER ERROR
+                ========================= */
+
+                showFormError(
+                    result.message ||
+                    "Unable to send your enquiry. Please try again."
+                );
+
+            }
+
+
+        } catch (error) {
+
+            /* =========================
+               CONNECTION ERROR
+            ========================= */
+
+            console.error(
+                "Contact form error:",
+                error
+            );
+
+
+            showFormError(
+                "Connection error. Please check your internet connection and try again."
+            );
+
+        }
 
     }
 );
 
 
-// ==========================================
-// ERROR FUNCTION
-// ==========================================
+
+/* ==========================================
+   ERROR FUNCTION
+========================================== */
 
 function showFormError(message) {
 
@@ -4967,6 +4970,7 @@ function showFormError(message) {
                 Send Enquiry
                 <i class="fa-solid fa-arrow-right"></i>
             `;
+
 
             submitButton.style.background =
                 "";
@@ -5015,6 +5019,8 @@ window.addEventListener(
 
     }
 );
+
+
 
 /* ==========================================
    PREMIUM OIL & GAS PRELOADER
@@ -5084,8 +5090,10 @@ function updatePreloader() {
 
     progress++;
 
+
     loadingBar.style.width =
         progress + "%";
+
 
     loadingPercent.textContent =
         progress + "%";
@@ -5114,11 +5122,14 @@ function updatePreloader() {
     loadingText.textContent =
         currentMessage.text;
 
+
     statusText.textContent =
         currentMessage.status;
 
 
-    if (progress < 100) {
+    if (
+        progress < 100
+    ) {
 
         setTimeout(
             updatePreloader,
@@ -5134,6 +5145,7 @@ function updatePreloader() {
                     "loaded"
                 );
 
+
                 document.body.classList.add(
                     "page-loaded"
                 );
@@ -5147,9 +5159,14 @@ function updatePreloader() {
 }
 
 
-/* Start */
 
-if (document.readyState === "loading") {
+/* ==========================================
+   START
+========================================== */
+
+if (
+    document.readyState === "loading"
+) {
 
     document.addEventListener(
         "DOMContentLoaded",
@@ -5161,6 +5178,8 @@ if (document.readyState === "loading") {
     updatePreloader();
 
 }
+
+
 </script>
 
 </body>
