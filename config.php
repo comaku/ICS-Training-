@@ -9,7 +9,7 @@
 |--------------------------------------------------------------------------
 */
 
-define('SUPABASE_URL', 'YOUR_SUPABASE_PROJECT_URL');
-define('SUPABASE_ANON_KEY', 'YOUR_SUPABASE_ANON_KEY');
+define('SUPABASE_URL', 'https://fmscowzyjarjbtkrtlfi.supabase.co');
+define('SUPABASE_ANON_KEY', 'fmscowzyjarjbtkrtlfi');
 
 ?>
