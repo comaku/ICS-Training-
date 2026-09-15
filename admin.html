@@ -1,0 +1,2086 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Bellefull Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* ==========================================
+   BELLEFULL ADMIN
+   ADMIN.CSS
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f7f7f7;
+
+    color: #222;
+
+}
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+.login-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8ef,
+            #ffffff
+        );
+
+    padding: 20px;
+
+}
+
+.login-box {
+
+    width: 100%;
+
+    max-width: 420px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.10);
+
+}
+
+.logo {
+
+    width: 65px;
+
+    height: 65px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ff9800;
+
+    color: white;
+
+    font-size: 28px;
+
+}
+
+.login-box h1 {
+
+    text-align: center;
+
+    margin-top: 18px;
+
+}
+
+.login-box > p {
+
+    text-align: center;
+
+    color: #777;
+
+    margin: 8px 0 30px;
+
+}
+
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+.input-group {
+
+    margin-bottom: 20px;
+
+}
+
+.input-group label,
+.form-group label {
+
+    display: block;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+
+}
+
+.input-wrapper {
+
+    position: relative;
+
+}
+
+.input-wrapper > i {
+
+    position: absolute;
+
+    left: 15px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #999;
+
+}
+
+.input-wrapper input {
+
+    width: 100%;
+
+    padding: 14px 45px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+
+}
+
+.input-wrapper input:focus {
+
+    border-color: #ff9800;
+
+}
+
+#toggle-password {
+
+    position: absolute;
+
+    right: 12px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: none;
+
+    cursor: pointer;
+
+    color: #888;
+
+}
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.login-btn,
+.add-product-btn {
+
+    width: 100%;
+
+    border: none;
+
+    background: #ff9800;
+
+    color: white;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+.login-btn:hover,
+.add-product-btn:hover {
+
+    background: #e68900;
+
+    transform: translateY(-1px);
+
+}
+
+.error-message {
+
+    color: #e53935;
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+.hidden {
+
+    display: none !important;
+
+}
+
+.dashboard {
+
+    min-height: 100vh;
+
+    display: flex;
+
+}
+
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.sidebar {
+
+    width: 240px;
+
+    min-height: 100vh;
+
+    background: #151515;
+
+    color: white;
+
+    padding: 25px 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.sidebar-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    padding: 10px;
+
+    margin-bottom: 35px;
+
+}
+
+.sidebar-logo i {
+
+    color: #ff9800;
+
+}
+
+.nav-item {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    background: #ff9800;
+
+    color: white;
+
+    border-radius: 9px;
+
+    text-align: left;
+
+    font-size: 15px;
+
+}
+
+.nav-item i {
+
+    margin-right: 10px;
+
+}
+
+.logout-btn {
+
+    margin-top: auto;
+
+    padding: 13px;
+
+    border: none;
+
+    background: #292929;
+
+    color: white;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+}
+
+.logout-btn:hover {
+
+    background: #333;
+
+}
+
+
+/* ==========================================
+   MAIN
+========================================== */
+
+.main-content {
+
+    flex: 1;
+
+    padding: 35px;
+
+    max-width: 1400px;
+
+}
+
+.topbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+
+}
+
+.topbar h1 {
+
+    font-size: 30px;
+
+}
+
+.topbar p {
+
+    color: #777;
+
+    margin-top: 5px;
+
+}
+
+.admin-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-weight: 600;
+
+}
+
+.profile-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ff9800;
+
+    color: white;
+
+}
+
+
+/* ==========================================
+   SECTIONS
+========================================== */
+
+.add-product-section,
+.products-section {
+
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.05);
+
+}
+
+.section-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+}
+
+.section-header h2 {
+
+    font-size: 21px;
+
+}
+
+.section-header p {
+
+    color: #777;
+
+    margin-top: 5px;
+
+}
+
+
+/* ==========================================
+   FORM
+========================================== */
+
+#product-form {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+
+}
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 15px;
+
+}
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: #ff9800;
+
+}
+
+.form-group small {
+
+    color: #888;
+
+    margin-top: 7px;
+
+}
+
+.image-preview-container {
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    height: 230px;
+
+    border: 2px dashed #ddd;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: #fafafa;
+
+}
+
+.preview-placeholder {
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #aaa;
+
+    gap: 10px;
+
+}
+
+.preview-placeholder i {
+
+    font-size: 45px;
+
+}
+
+#image-preview {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+}
+
+.add-product-btn {
+
+    grid-column: 1 / -1;
+
+}
+
+
+/* ==========================================
+   PRODUCTS GRID
+========================================== */
+
+.products-container {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(220px, 1fr));
+
+    gap: 20px;
+
+}
+
+.empty-products {
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 50px;
+
+    color: #999;
+
+}
+
+.product-card {
+
+    border: 1px solid #eee;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: white;
+
+}
+
+.product-image {
+
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    background: #f5f5f5;
+
+}
+
+.product-info {
+
+    padding: 15px;
+
+}
+
+.product-info h3 {
+
+    margin-bottom: 8px;
+
+}
+
+.product-category {
+
+    display: inline-block;
+
+    background: #fff2df;
+
+    color: #d97900;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    margin-bottom: 10px;
+
+}
+
+.product-price {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+
+}
+
+.remove-btn {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 11px;
+
+    border-radius: 8px;
+
+    background: #ffe8e8;
+
+    color: #d32f2f;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+.remove-btn:hover {
+
+    background: #ffd3d3;
+
+}
+
+
+/* ==========================================
+   COUNT
+========================================== */
+
+.product-count {
+
+    background: #fff2df;
+
+    color: #d97900;
+
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+/* ==========================================
+   TOAST
+========================================== */
+
+.toast {
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    background: #222;
+
+    color: white;
+
+    padding: 15px 20px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    transform: translateY(120px);
+
+    opacity: 0;
+
+    transition: .3s;
+
+    z-index: 9999;
+
+}
+
+.toast.show {
+
+    transform: translateY(0);
+
+    opacity: 1;
+
+}
+
+.toast i {
+
+    color: #4caf50;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width: 800px) {
+
+    .sidebar {
+
+        width: 70px;
+
+        padding: 20px 10px;
+
+    }
+
+    .sidebar-logo span,
+    .nav-item,
+    .logout-btn {
+
+        font-size: 0;
+
+    }
+
+    .sidebar-logo i,
+    .nav-item i,
+    .logout-btn i {
+
+        font-size: 18px;
+
+    }
+
+    .main-content {
+
+        padding: 20px;
+
+    }
+
+    #product-form {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+@media(max-width: 500px) {
+
+    .topbar {
+
+        align-items: flex-start;
+
+    }
+
+    .admin-profile span {
+
+        display: none;
+
+    }
+
+    .main-content {
+
+        padding: 15px;
+
+    }
+
+    .add-product-section,
+    .products-section {
+
+        padding: 18px;
+
+    }
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================================
+     LOGIN PAGE
+========================================= -->
+
+<section id="login-page" class="login-page">
+
+    <div class="login-box">
+
+        <div class="logo">
+            <i class="fa-solid fa-store"></i>
+        </div>
+
+        <h1>Bellefull</h1>
+
+        <p>Admin Dashboard</p>
+
+        <form id="login-form">
+
+            <div class="input-group">
+
+                <label>Username</label>
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        id="toggle-password">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <p id="login-error" class="error-message"></p>
+
+
+            <button
+                type="submit"
+                class="login-btn">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Login
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     ADMIN DASHBOARD
+========================================= -->
+
+<section id="dashboard" class="dashboard hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <i class="fa-solid fa-store"></i>
+
+            <span>Bellefull</span>
+
+        </div>
+
+
+        <nav>
+
+            <button class="nav-item active">
+
+                <i class="fa-solid fa-box"></i>
+
+                Products
+
+            </button>
+
+        </nav>
+
+
+        <button
+            id="logout-btn"
+            class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Products</h1>
+
+                <p>
+                    Manage products in your store
+                </p>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-icon">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <span>Admin</span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================
+             ADD PRODUCT
+        ================================= -->
+
+        <section class="add-product-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Add New Product</h2>
+
+                    <p>
+                        Add a product to your Bellefull store
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="product-form">
+
+
+                <!-- PRODUCT NAME -->
+
+                <div class="form-group">
+
+                    <label for="product-name">
+                        Product Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="product-name"
+                        placeholder="e.g. Ribena"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- IMAGE URL -->
+
+                <div class="form-group">
+
+                    <label for="product-image">
+
+                        Product Image URL
+
+                    </label>
+
+                    <input
+                        type="url"
+                        id="product-image"
+                        placeholder="https://example.com/image.jpg"
+                        required
+                    >
+
+                    <small>
+                        Paste an image URL from the internet.
+                    </small>
+
+                </div>
+
+
+                <!-- IMAGE PREVIEW -->
+
+                <div
+                    id="image-preview-container"
+                    class="image-preview-container">
+
+                    <div class="preview-placeholder">
+
+                        <i class="fa-regular fa-image"></i>
+
+                        <span>
+                            Image preview will appear here
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="product-category">
+                        Category
+                    </label>
+
+                    <select
+                        id="product-category"
+                        required>
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option value="Drinks">
+                            Drinks
+                        </option>
+
+                        <option value="Snacks">
+                            Snacks
+                        </option>
+
+                        <option value="Biscuits">
+                            Biscuits
+                        </option>
+
+                        <option value="Sweets">
+                            Sweets
+                        </option>
+
+                        <option value="Chocolates">
+                            Chocolates
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="form-group">
+
+                    <label for="product-price">
+                        Price (₦)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="product-price"
+                        placeholder="e.g. 1400"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- ADD BUTTON -->
+
+                <button
+                    type="submit"
+                    class="add-product-btn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Product
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- =================================
+             PRODUCTS
+        ================================= -->
+
+        <section class="products-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Store Products</h2>
+
+                    <p>
+                        Products currently in your store
+                    </p>
+
+                </div>
+
+                <div class="product-count">
+
+                    <span id="product-count">
+                        0
+                    </span>
+
+                    Products
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="products-container"
+                class="products-container">
+
+                <!-- Products will be added here -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+</section>
+
+
+<!-- =========================================
+     TOAST
+========================================= -->
+
+<div id="toast" class="toast">
+
+    <i class="fa-solid fa-check-circle"></i>
+
+    <span id="toast-message">
+        Product added successfully
+    </span>
+
+</div>
+
+
+<script>
+
+
+// ==========================================
+// BELLEFULL ADMIN
+// ADMIN.JS
+// ==========================================
+
+
+// ==========================================
+// ADMIN LOGIN
+// ==========================================
+
+// TEMPORARY LOGIN
+// We will replace this with a secure system later.
+
+const ADMIN_USERNAME = "admin";
+const ADMIN_PASSWORD = "Bellefull123";
+
+
+const loginPage = document.getElementById("login-page");
+
+const dashboard = document.getElementById("dashboard");
+
+const loginForm = document.getElementById("login-form");
+
+const loginError = document.getElementById("login-error");
+
+const logoutBtn = document.getElementById("logout-btn");
+
+
+// ==========================================
+// CHECK LOGIN
+// ==========================================
+
+if (sessionStorage.getItem("bellefullAdmin") === "true") {
+
+    showDashboard();
+
+}
+
+
+// ==========================================
+// LOGIN
+// ==========================================
+
+loginForm.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+
+    if (
+        username === ADMIN_USERNAME &&
+        password === ADMIN_PASSWORD
+    ) {
+
+        sessionStorage.setItem(
+            "bellefullAdmin",
+            "true"
+        );
+
+        loginError.innerText = "";
+
+        showDashboard();
+
+    } else {
+
+        loginError.innerText =
+            "Incorrect username or password.";
+
+    }
+
+});
+
+
+// ==========================================
+// SHOW DASHBOARD
+// ==========================================
+
+function showDashboard() {
+
+    loginPage.classList.add("hidden");
+
+    dashboard.classList.remove("hidden");
+
+    loadProductsFromGoogle();
+
+}
+
+
+// ==========================================
+// LOGOUT
+// ==========================================
+
+logoutBtn.addEventListener("click", function() {
+
+    sessionStorage.removeItem(
+        "bellefullAdmin"
+    );
+
+    dashboard.classList.add("hidden");
+
+    loginPage.classList.remove("hidden");
+
+});
+
+
+// ==========================================
+// SHOW / HIDE PASSWORD
+// ==========================================
+
+const togglePassword =
+    document.getElementById("toggle-password");
+
+togglePassword.addEventListener("click", function() {
+
+    const password =
+        document.getElementById("password");
+
+    const icon =
+        togglePassword.querySelector("i");
+
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        icon.classList.remove("fa-eye");
+
+        icon.classList.add("fa-eye-slash");
+
+    } else {
+
+        password.type = "password";
+
+        icon.classList.remove("fa-eye-slash");
+
+        icon.classList.add("fa-eye");
+
+    }
+
+});
+
+
+// ==========================================
+// PRODUCT STORAGE
+// ==========================================
+
+let products =
+    JSON.parse(
+        localStorage.getItem(
+            "bellefullProducts"
+        )
+    ) || [];
+
+
+// ==========================================
+// IMAGE PREVIEW
+// ==========================================
+
+const imageInput =
+    document.getElementById("product-image");
+
+const previewContainer =
+    document.getElementById(
+        "image-preview-container"
+    );
+
+
+imageInput.addEventListener("input", function() {
+
+    const url =
+        imageInput.value.trim();
+
+
+    if (!url) {
+
+        showPreviewPlaceholder();
+
+        return;
+
+    }
+
+
+    const image =
+        new Image();
+
+
+    image.onload = function() {
+
+        previewContainer.innerHTML = `
+            
+            <img
+                id="image-preview"
+                src="${url}"
+                alt="Product Preview"
+            >
+
+        `;
+
+    };
+
+
+    image.onerror = function() {
+
+        previewContainer.innerHTML = `
+
+            <div class="preview-placeholder">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                <span>
+                    Image could not be loaded
+                </span>
+
+            </div>
+
+        `;
+
+    };
+
+
+    image.src = url;
+
+});
+
+
+// ==========================================
+// IMAGE PLACEHOLDER
+// ==========================================
+
+function showPreviewPlaceholder() {
+
+    previewContainer.innerHTML = `
+
+        <div class="preview-placeholder">
+
+            <i class="fa-regular fa-image"></i>
+
+            <span>
+                Image preview will appear here
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+
+
+// ==========================================
+// ADD PRODUCT TO GOOGLE SHEETS
+// ==========================================
+
+productForm.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+
+    const name =
+        document
+            .getElementById("product-name")
+            .value
+            .trim();
+
+
+    const image =
+        document
+            .getElementById("product-image")
+            .value
+            .trim();
+
+
+    const category =
+        document
+            .getElementById("product-category")
+            .value;
+
+
+    const price =
+        Number(
+            document
+                .getElementById("product-price")
+                .value
+        );
+
+
+    // ======================================
+    // VALIDATION
+    // ======================================
+
+    if (!name) {
+
+        alert("Please enter a product name.");
+
+        return;
+
+    }
+
+
+    if (!image) {
+
+        alert("Please enter an image URL.");
+
+        return;
+
+    }
+
+
+    if (!category) {
+
+        alert("Please select a category.");
+
+        return;
+
+    }
+
+
+    if (!price || price <= 0) {
+
+        alert("Please enter a valid price.");
+
+        return;
+
+    }
+
+
+    // ======================================
+    // BUTTON LOADING
+    // ======================================
+
+    const button =
+        productForm.querySelector(
+            ".add-product-btn"
+        );
+
+
+    const originalText =
+        button.innerHTML;
+
+
+    button.disabled = true;
+
+    button.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> Adding...';
+
+
+    try {
+
+        // ==================================
+        // SEND TO GOOGLE APPS SCRIPT
+        // ==================================
+
+        const response =
+            await fetch(
+                GOOGLE_SCRIPT_URL,
+                {
+
+                    method: "POST",
+
+                    body: JSON.stringify({
+
+                        action: "addProduct",
+
+                        name: name,
+
+                        image: image,
+
+                        category: category,
+
+                        price: price
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        // ==================================
+        // CHECK RESPONSE
+        // ==================================
+
+        if (!result.success) {
+
+            throw new Error(
+                result.error ||
+                "Product could not be added."
+            );
+
+        }
+
+
+        // ==================================
+        // SUCCESS
+        // ==================================
+
+        showToast(
+            "Product added successfully!"
+        );
+
+
+        productForm.reset();
+
+
+        showPreviewPlaceholder();
+
+
+        // Reload products from Google Sheet
+
+        await loadProductsFromGoogle();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Could not add product.\n\n" +
+            error.message
+        );
+
+
+    } finally {
+
+        button.disabled = false;
+
+        button.innerHTML =
+            originalText;
+
+    }
+
+});
+
+
+
+
+    // ======================================
+    // PRODUCT OBJECT
+    // ======================================
+
+    const product = {
+
+        id: Date.now(),
+
+        name: name,
+
+        image: image,
+
+        category: category,
+
+        price: price
+
+    };
+
+
+    // ======================================
+    // ADD PRODUCT
+    // ======================================
+
+    products.push(product);
+
+
+    saveProducts();
+
+
+    // Reset form
+
+    productForm.reset();
+
+    showPreviewPlaceholder();
+
+
+    // Update screen
+
+    displayProducts();
+
+
+    showToast(
+        "Product added successfully!"
+    );
+
+});
+
+
+// ==========================================
+// SAVE PRODUCTS
+// ==========================================
+
+function saveProducts() {
+
+    localStorage.setItem(
+        "bellefullProducts",
+        JSON.stringify(products)
+    );
+
+}
+
+
+
+// ==========================================
+// LOAD PRODUCTS FROM GOOGLE SHEETS
+// ==========================================
+
+async function loadProductsFromGoogle() {
+
+    try {
+
+        const response =
+            await fetch(
+                GOOGLE_SCRIPT_URL +
+                "?action=getProducts"
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!result.success) {
+
+            throw new Error(
+                result.error ||
+                "Could not load products."
+            );
+
+        }
+
+
+        products =
+            result.products || [];
+
+
+        displayProducts();
+
+
+    } catch (error) {
+
+        console.error(
+            "Product loading error:",
+            error
+        );
+
+
+        document.getElementById(
+            "products-container"
+        ).innerHTML = `
+
+            <div class="empty-products">
+
+                <i
+                    class="fa-solid fa-triangle-exclamation"
+                    style="font-size:40px;margin-bottom:15px;">
+                </i>
+
+                <p>
+                    Could not load products.
+                </p>
+
+                <small>
+                    Please check your Google Apps Script connection.
+                </small>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+
+// ==========================================
+// DISPLAY PRODUCTS
+// ==========================================
+
+function displayProducts() {
+
+    const container =
+        document.getElementById(
+            "products-container"
+        );
+
+    const count =
+        document.getElementById(
+            "product-count"
+        );
+
+
+    count.innerText =
+        products.length;
+
+
+    container.innerHTML = "";
+
+
+    // ======================================
+    // EMPTY
+    // ======================================
+
+    if (products.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-products">
+
+                <i
+                    class="fa-solid fa-box-open"
+                    style="font-size:40px;margin-bottom:15px;">
+                </i>
+
+                <p>
+                    No products have been added yet.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    // ======================================
+    // PRODUCTS
+    // ======================================
+
+    products.forEach(function(product) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "product-card";
+
+
+        card.innerHTML = `
+
+            <img
+                class="product-image"
+                src="${product.image}"
+                alt="${product.name}"
+                onerror="this.src='https://via.placeholder.com/400x300?text=Image+Error'"
+            >
+
+            <div class="product-info">
+
+                <span class="product-category">
+
+                    ${product.category}
+
+                </span>
+
+                <h3>
+                    ${product.name}
+                </h3>
+
+                <div class="product-price">
+
+                    ₦${Number(product.price)
+                        .toLocaleString()}
+
+                </div>
+
+                <button
+                    class="remove-btn"
+                    onclick="removeProduct(${product.id})">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Remove Product
+
+                </button>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+// ==========================================
+// REMOVE PRODUCT FROM GOOGLE SHEETS
+// ==========================================
+
+async function removeProduct(id) {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to remove this product?"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                GOOGLE_SCRIPT_URL,
+                {
+
+                    method: "POST",
+
+                    body: JSON.stringify({
+
+                        action: "removeProduct",
+
+                        id: id
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!result.success) {
+
+            throw new Error(
+                result.error ||
+                "Could not remove product."
+            );
+
+        }
+
+
+        showToast(
+            "Product removed successfully!"
+        );
+
+
+        await loadProductsFromGoogle();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Could not remove product.\n\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+
+// ==========================================
+// TOAST
+// ==========================================
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    const toastMessage =
+        document.getElementById(
+            "toast-message"
+        );
+
+
+    toastMessage.innerText =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(function() {
+
+        toast.classList.remove("show");
+
+    }, 2500);
+
+}
+
+
+
+</script>
+
+</body>
+
+</html>
+
