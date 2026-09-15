@@ -1,1987 +1,2985 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>Meme Battle</title>
 
-    <title>Bellefull Admin</title>
-
-    <link rel="stylesheet" href="admin.css">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-
-/* ==========================================
-   BELLEFULL ADMIN
-   ADMIN.CSS
-========================================== */
-
+    <style>
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    background: #f7f7f7;
-
-    color: #222;
-
-}
-
-
-/* ==========================================
-   LOGIN
-========================================== */
-
-.login-page {
-
+    margin: 0;
     min-height: 100vh;
 
-    display: flex;
+    font-family: Arial, sans-serif;
 
-    justify-content: center;
-
-    align-items: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff8ef,
-            #ffffff
-        );
-
-    padding: 20px;
-
-}
-
-.login-box {
-
-    width: 100%;
-
-    max-width: 420px;
-
-    background: white;
-
-    padding: 40px;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 15px 50px rgba(0,0,0,.10);
-
-}
-
-.logo {
-
-    width: 65px;
-
-    height: 65px;
-
-    margin: auto;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #ff9800;
-
+    background: #111;
     color: white;
 
-    font-size: 28px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.login-box h1 {
+.container {
+
+    width: min(90%, 600px);
 
     text-align: center;
 
-    margin-top: 18px;
-
+    padding: 30px;
 }
 
-.login-box > p {
-
-    text-align: center;
-
-    color: #777;
-
-    margin: 8px 0 30px;
-
+h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
 }
 
-
-/* ==========================================
-   INPUTS
-========================================== */
-
-.input-group {
-
-    margin-bottom: 20px;
-
+p {
+    color: #aaa;
 }
 
-.input-group label,
-.form-group label {
-
-    display: block;
-
-    font-weight: 600;
-
-    margin-bottom: 8px;
-
-}
-
-.input-wrapper {
-
-    position: relative;
-
-}
-
-.input-wrapper > i {
-
-    position: absolute;
-
-    left: 15px;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    color: #999;
-
-}
-
-.input-wrapper input {
+input {
 
     width: 100%;
 
-    padding: 14px 45px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 10px;
-
-    outline: none;
-
-    font-size: 15px;
-
-}
-
-.input-wrapper input:focus {
-
-    border-color: #ff9800;
-
-}
-
-#toggle-password {
-
-    position: absolute;
-
-    right: 12px;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    border: none;
-
-    background: none;
-
-    cursor: pointer;
-
-    color: #888;
-
-}
-
-
-/* ==========================================
-   BUTTONS
-========================================== */
-
-.login-btn,
-.add-product-btn {
-
-    width: 100%;
-
-    border: none;
-
-    background: #ff9800;
-
-    color: white;
+    max-width: 350px;
 
     padding: 15px;
+
+    margin: 10px 0;
+
+    border: none;
 
     border-radius: 10px;
 
     font-size: 16px;
 
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: .2s;
-
-}
-
-.login-btn:hover,
-.add-product-btn:hover {
-
-    background: #e68900;
-
-    transform: translateY(-1px);
-
-}
-
-.error-message {
-
-    color: #e53935;
-
-    font-size: 14px;
-
-    margin-bottom: 15px;
-
-}
-
-
-/* ==========================================
-   DASHBOARD
-========================================== */
-
-.hidden {
-
-    display: none !important;
-
-}
-
-.dashboard {
-
-    min-height: 100vh;
-
-    display: flex;
-
-}
-
-
-/* ==========================================
-   SIDEBAR
-========================================== */
-
-.sidebar {
-
-    width: 240px;
-
-    min-height: 100vh;
-
-    background: #151515;
-
-    color: white;
-
-    padding: 25px 15px;
-
-    display: flex;
-
-    flex-direction: column;
-
-}
-
-.sidebar-logo {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 21px;
-
-    font-weight: bold;
-
-    padding: 10px;
-
-    margin-bottom: 35px;
-
-}
-
-.sidebar-logo i {
-
-    color: #ff9800;
-
-}
-
-.nav-item {
-
-    width: 100%;
-
-    padding: 14px;
-
-    border: none;
-
-    background: #ff9800;
-
-    color: white;
-
-    border-radius: 9px;
-
-    text-align: left;
-
-    font-size: 15px;
-
-}
-
-.nav-item i {
-
-    margin-right: 10px;
-
-}
-
-.logout-btn {
-
-    margin-top: auto;
-
-    padding: 13px;
-
-    border: none;
-
-    background: #292929;
-
-    color: white;
-
-    border-radius: 9px;
-
-    cursor: pointer;
-
-}
-
-.logout-btn:hover {
-
-    background: #333;
-
-}
-
-
-/* ==========================================
-   MAIN
-========================================== */
-
-.main-content {
-
-    flex: 1;
-
-    padding: 35px;
-
-    max-width: 1400px;
-
-}
-
-.topbar {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 30px;
-
-}
-
-.topbar h1 {
-
-    font-size: 30px;
-
-}
-
-.topbar p {
-
-    color: #777;
-
-    margin-top: 5px;
-
-}
-
-.admin-profile {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-weight: 600;
-
-}
-
-.profile-icon {
-
-    width: 40px;
-
-    height: 40px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #ff9800;
-
-    color: white;
-
-}
-
-
-/* ==========================================
-   SECTIONS
-========================================== */
-
-.add-product-section,
-.products-section {
-
-    background: white;
-
-    border-radius: 15px;
-
-    padding: 25px;
-
-    margin-bottom: 30px;
-
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.05);
-
-}
-
-.section-header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 25px;
-
-}
-
-.section-header h2 {
-
-    font-size: 21px;
-
-}
-
-.section-header p {
-
-    color: #777;
-
-    margin-top: 5px;
-
-}
-
-
-/* ==========================================
-   FORM
-========================================== */
-
-#product-form {
-
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 20px;
-
-}
-
-.form-group {
-
-    display: flex;
-
-    flex-direction: column;
-
-}
-
-.form-group input,
-.form-group select {
-
-    width: 100%;
-
-    padding: 14px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 9px;
-
     outline: none;
-
-    font-size: 15px;
-
 }
 
-.form-group input:focus,
-.form-group select:focus {
-
-    border-color: #ff9800;
-
-}
-
-.form-group small {
-
-    color: #888;
-
-    margin-top: 7px;
-
-}
-
-.image-preview-container {
-
-    grid-column: 1 / -1;
-
-    width: 100%;
-
-    height: 230px;
-
-    border: 2px dashed #ddd;
-
-    border-radius: 12px;
-
-    overflow: hidden;
-
-    background: #fafafa;
-
-}
-
-.preview-placeholder {
-
-    height: 100%;
+.buttons {
 
     display: flex;
 
-    flex-direction: column;
-
-    align-items: center;
-
     justify-content: center;
 
-    color: #aaa;
+    gap: 15px;
 
-    gap: 10px;
+    margin-top: 20px;
 
+    flex-wrap: wrap;
 }
 
-.preview-placeholder i {
+button {
 
-    font-size: 45px;
-
-}
-
-#image-preview {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: contain;
-
-}
-
-.add-product-btn {
-
-    grid-column: 1 / -1;
-
-}
-
-
-/* ==========================================
-   PRODUCTS GRID
-========================================== */
-
-.products-container {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fill, minmax(220px, 1fr));
-
-    gap: 20px;
-
-}
-
-.empty-products {
-
-    grid-column: 1 / -1;
-
-    text-align: center;
-
-    padding: 50px;
-
-    color: #999;
-
-}
-
-.product-card {
-
-    border: 1px solid #eee;
-
-    border-radius: 12px;
-
-    overflow: hidden;
-
-    background: white;
-
-}
-
-.product-image {
-
-    width: 100%;
-
-    height: 180px;
-
-    object-fit: cover;
-
-    background: #f5f5f5;
-
-}
-
-.product-info {
-
-    padding: 15px;
-
-}
-
-.product-info h3 {
-
-    margin-bottom: 8px;
-
-}
-
-.product-category {
-
-    display: inline-block;
-
-    background: #fff2df;
-
-    color: #d97900;
-
-    padding: 5px 9px;
-
-    border-radius: 20px;
-
-    font-size: 12px;
-
-    margin-bottom: 10px;
-
-}
-
-.product-price {
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    margin-bottom: 15px;
-
-}
-
-.remove-btn {
-
-    width: 100%;
+    padding: 14px 25px;
 
     border: none;
-
-    padding: 11px;
-
-    border-radius: 8px;
-
-    background: #ffe8e8;
-
-    color: #d32f2f;
-
-    cursor: pointer;
-
-    font-weight: 600;
-
-}
-
-.remove-btn:hover {
-
-    background: #ffd3d3;
-
-}
-
-
-/* ==========================================
-   COUNT
-========================================== */
-
-.product-count {
-
-    background: #fff2df;
-
-    color: #d97900;
-
-    padding: 8px 13px;
-
-    border-radius: 20px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-}
-
-
-/* ==========================================
-   TOAST
-========================================== */
-
-.toast {
-
-    position: fixed;
-
-    right: 25px;
-
-    bottom: 25px;
-
-    background: #222;
-
-    color: white;
-
-    padding: 15px 20px;
 
     border-radius: 10px;
 
-    display: flex;
+    cursor: pointer;
 
-    align-items: center;
-
-    gap: 10px;
-
-    transform: translateY(120px);
-
-    opacity: 0;
-
-    transition: .3s;
-
-    z-index: 9999;
-
+    font-size: 16px;
 }
 
-.toast.show {
+button:hover {
 
-    transform: translateY(0);
-
-    opacity: 1;
-
+    transform: translateY(-2px);
 }
 
-.toast i {
-
-    color: #4caf50;
-
+.hidden {
+    display: none;
 }
 
+.room-code {
 
-/* ==========================================
-   MOBILE
-========================================== */
+    margin: 30px auto;
 
-@media(max-width: 800px) {
+    padding: 25px;
 
-    .sidebar {
+    background: #222;
 
-        width: 70px;
+    border-radius: 15px;
 
-        padding: 20px 10px;
+    max-width: 300px;
+}
 
-    }
+.room-code span {
 
-    .sidebar-logo span,
-    .nav-item,
-    .logout-btn {
+    display: block;
 
-        font-size: 0;
+    font-size: 13px;
 
-    }
+    color: #999;
 
-    .sidebar-logo i,
-    .nav-item i,
-    .logout-btn i {
+    margin-bottom: 10px;
+}
 
-        font-size: 18px;
+.room-code strong {
 
-    }
+    font-size: 30px;
 
-    .main-content {
+    letter-spacing: 3px;
+}
 
-        padding: 20px;
+#playersList {
 
-    }
+    margin: 20px auto;
 
-    #product-form {
+    padding: 20px;
 
+    background: #1d1d1d;
+
+    border-radius: 12px;
+
+    max-width: 400px;
+
+    line-height: 2;
+}
+
+#message {
+
+    margin-top: 20px;
+
+    font-size: 16px;
+}
+
+.round-info {
+    margin-bottom: 20px;
+}
+
+.round-info span {
+    display: block;
+    color: #888;
+    font-size: 13px;
+}
+
+.round-info strong {
+    font-size: 30px;
+}
+
+.scenario-box {
+    background: #222;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.scenario-box p {
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.scenario-box h2 {
+    margin: 10px 0 0;
+}
+
+#memeGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.meme-card {
+    border: 3px solid transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #222;
+}
+
+.meme-card:hover {
+    transform: scale(1.02);
+}
+
+.meme-card.selected {
+    border-color: white;
+}
+
+.meme-card img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.players-memes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.player-meme {
+    background: #222;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.player-meme img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+#submitMemeBtn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#submitMemeBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+
+    #memeGrid {
         grid-template-columns: 1fr;
-
     }
 
+    .players-memes {
+        grid-template-columns: 1fr;
+    }
 }
-
-@media(max-width: 500px) {
-
-    .topbar {
-
-        align-items: flex-start;
-
-    }
-
-    .admin-profile span {
-
-        display: none;
-
-    }
-
-    .main-content {
-
-        padding: 15px;
-
-    }
-
-    .add-product-section,
-    .products-section {
-
-        padding: 18px;
-
-    }
-
-}
-
 
 </style>
-
 </head>
 
 <body>
 
-<!-- =========================================
-     LOGIN PAGE
-========================================= -->
+  
+<main class="container">
 
-<section id="login-page" class="login-page">
+    <h1>😂 MEME BATTLE</h1>
 
-    <div class="login-box">
-
-        <div class="logo">
-            <i class="fa-solid fa-store"></i>
-        </div>
-
-        <h1>Bellefull</h1>
-
-        <p>Admin Dashboard</p>
-
-        <form id="login-form">
-
-            <div class="input-group">
-
-                <label>Username</label>
-
-                <div class="input-wrapper">
-
-                    <i class="fa-solid fa-user"></i>
-
-                    <input
-                        type="text"
-                        id="username"
-                        placeholder="Enter username"
-                        required
-                    >
-
-                </div>
-
-            </div>
+    <p>Online Multiplayer Meme Game</p>
 
 
-            <div class="input-group">
+    <!-- =====================================================
+         HOME SCREEN
+    ====================================================== -->
 
-                <label>Password</label>
+    <section id="homeScreen">
 
-                <div class="input-wrapper">
+        <input
+            type="text"
+            id="playerName"
+            placeholder="Enter your name"
+            maxlength="20"
+        >
 
-                    <i class="fa-solid fa-lock"></i>
+        <div class="buttons">
 
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter password"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        id="toggle-password">
-
-                        <i class="fa-solid fa-eye"></i>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <p id="login-error" class="error-message"></p>
-
-
-            <button
-                type="submit"
-                class="login-btn">
-
-                <i class="fa-solid fa-right-to-bracket"></i>
-
-                Login
-
+            <button id="createRoomBtn">
+                Create Game
             </button>
 
-        </form>
+            <button id="showJoinBtn">
+                Join Game
+            </button>
 
-    </div>
-
-</section>
-
-
-<!-- =========================================
-     ADMIN DASHBOARD
-========================================= -->
-
-<section id="dashboard" class="dashboard hidden">
-
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-        <div class="sidebar-logo">
-
-            <i class="fa-solid fa-store"></i>
-
-            <span>Bellefull</span>
+            <button id="showAudienceBtn">
+                👀 Watch Game
+            </button>
 
         </div>
 
+    </section>
 
-        <nav>
 
-            <button class="nav-item active">
 
-                <i class="fa-solid fa-box"></i>
+    <!-- =====================================================
+         JOIN PLAYER SCREEN
+    ====================================================== -->
 
-                Products
+    <section id="joinScreen" class="hidden">
 
+        <h2>Join Game</h2>
+
+        <input
+            type="text"
+            id="roomCodeInput"
+            placeholder="Enter room code"
+            maxlength="10"
+        >
+
+        <div class="buttons">
+
+            <button id="joinRoomBtn">
+                Join
             </button>
 
-        </nav>
+            <button id="backBtn">
+                Back
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         AUDIENCE JOIN SCREEN
+    ====================================================== -->
+
+    <section id="audienceJoinScreen" class="hidden">
+
+        <h2>👀 Watch Game</h2>
+
+        <p>
+            Enter the room code to join the audience.
+        </p>
+
+        <input
+            type="text"
+            id="audienceRoomCodeInput"
+            placeholder="Enter room code"
+            maxlength="10"
+        >
+
+        <div class="buttons">
+
+            <button id="joinAudienceBtn">
+                Join Audience
+            </button>
+
+            <button id="audienceBackBtn">
+                Back
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PLAYER ROOM SCREEN
+    ====================================================== -->
+
+    <section id="roomScreen" class="hidden">
+
+        <h2>Game Room</h2>
+
+        <div class="room-code">
+
+            <span>ROOM CODE</span>
+
+            <strong id="roomCodeDisplay">
+                ----
+            </strong>
+
+        </div>
+
+
+        <h3>Players</h3>
+
+        <div id="playersList">
+            Waiting for players...
+        </div>
+
+
+        <p id="roomStatus">
+            Waiting for Player 2...
+        </p>
 
 
         <button
-            id="logout-btn"
-            class="logout-btn">
-
-            <i class="fa-solid fa-right-from-bracket"></i>
-
-            Logout
-
+            id="startGameBtn"
+            class="hidden"
+        >
+            START GAME
         </button>
 
-    </aside>
+    </section>
 
 
-    <!-- MAIN CONTENT -->
 
-    <main class="main-content">
+    <!-- =====================================================
+         AUDIENCE SCREEN
+    ====================================================== -->
+
+    <section
+        id="audienceScreen"
+        class="hidden"
+    >
+
+        <div class="audience-header">
+
+            <h2>👀 Audience</h2>
+
+            <div class="room-code">
+
+                <span>ROOM</span>
+
+                <strong id="audienceRoomCodeDisplay">
+                    ----
+                </strong>
+
+            </div>
+
+        </div>
 
 
-        <!-- TOP BAR -->
+        <!-- AUDIENCE COUNT -->
 
-        <header class="topbar">
+        <div class="audience-count">
 
-            <div>
+            <span>👥 Watching</span>
 
-                <h1>Products</h1>
+            <strong id="audienceCount">
+                0
+            </strong>
 
-                <p>
-                    Manage products in your store
+        </div>
+
+
+        <!-- AUDIENCE WAITING -->
+
+        <div id="audienceWaitingArea">
+
+            <h2>
+                ⏳ Waiting for the game...
+            </h2>
+
+            <p id="audienceWaitingText">
+                The players have not started yet.
+            </p>
+
+        </div>
+
+
+
+        <!-- AUDIENCE SCENARIO -->
+
+        <div
+            id="audienceGameArea"
+            class="hidden"
+        >
+
+            <div class="round-info">
+
+                <span>ROUND</span>
+
+                <strong id="audienceRoundNumber">
+                    1
+                </strong>
+
+            </div>
+
+
+            <div class="scenario-box">
+
+                <p>SCENARIO</p>
+
+                <h2 id="audienceScenarioText">
+                    Waiting for scenario...
+                </h2>
+
+            </div>
+
+
+
+            <!-- AUDIENCE WAITING FOR PLAYERS -->
+
+            <div
+                id="audienceWaitingForPlayers"
+            >
+
+                <h3>
+                    👀 Watch the players choose...
+                </h3>
+
+                <p id="audiencePlayerStatus">
+                    Waiting for both players to submit their memes.
                 </p>
 
             </div>
 
 
-            <div class="admin-profile">
 
-                <div class="profile-icon">
+            <!-- =================================================
+                 AUDIENCE VOTING AREA
+            ================================================== -->
 
-                    <i class="fa-solid fa-user"></i>
+            <div
+                id="audienceVotingArea"
+                class="hidden"
+            >
 
-                </div>
+                <h2>
+                    😂 MEME BATTLE
+                </h2>
 
-                <span>Admin</span>
-
-            </div>
-
-        </header>
-
-
-        <!-- =================================
-             ADD PRODUCT
-        ================================= -->
-
-        <section class="add-product-section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <h2>Add New Product</h2>
-
-                    <p>
-                        Add a product to your Bellefull store
-                    </p>
-
-                </div>
-
-            </div>
+                <p>
+                    Which meme matches the scenario better?
+                </p>
 
 
-            <form id="product-form">
+                <div class="audience-memes">
 
 
-                <!-- PRODUCT NAME -->
+                    <!-- PLAYER 1 -->
 
-                <div class="form-group">
+                    <div class="audience-meme">
 
-                    <label for="product-name">
-                        Product Name
-                    </label>
+                        <h3>
+                            PLAYER 1
+                        </h3>
 
-                    <input
-                        type="text"
-                        id="product-name"
-                        placeholder="e.g. Ribena"
-                        required
-                    >
+                        <img
+                            id="audiencePlayer1Meme"
+                            src=""
+                            alt="Player 1 meme"
+                        >
 
-                </div>
+                        <button
+                            id="votePlayer1Btn"
+                        >
+                            😂 Vote Player 1
+                        </button>
 
+                        <p>
+                            Votes:
+                            <strong id="player1VoteCount">
+                                0
+                            </strong>
+                        </p>
 
-                <!-- IMAGE URL -->
-
-                <div class="form-group">
-
-                    <label for="product-image">
-
-                        Product Image URL
-
-                    </label>
-
-                    <input
-                        type="url"
-                        id="product-image"
-                        placeholder="https://example.com/image.jpg"
-                        required
-                    >
-
-                    <small>
-                        Paste an image URL from the internet.
-                    </small>
-
-                </div>
+                    </div>
 
 
-                <!-- IMAGE PREVIEW -->
 
-                <div
-                    id="image-preview-container"
-                    class="image-preview-container">
+                    <!-- PLAYER 2 -->
 
-                    <div class="preview-placeholder">
+                    <div class="audience-meme">
 
-                        <i class="fa-regular fa-image"></i>
+                        <h3>
+                            PLAYER 2
+                        </h3>
 
-                        <span>
-                            Image preview will appear here
-                        </span>
+                        <img
+                            id="audiencePlayer2Meme"
+                            src=""
+                            alt="Player 2 meme"
+                        >
+
+                        <button
+                            id="votePlayer2Btn"
+                        >
+                            😂 Vote Player 2
+                        </button>
+
+                        <p>
+                            Votes:
+                            <strong id="player2VoteCount">
+                                0
+                            </strong>
+                        </p>
 
                     </div>
 
                 </div>
 
 
-                <!-- CATEGORY -->
+                <p id="audienceVoteStatus">
+                    You have not voted yet.
+                </p>
 
-                <div class="form-group">
-
-                    <label for="product-category">
-                        Category
-                    </label>
-
-                    <select
-                        id="product-category"
-                        required>
-
-                        <option value="">
-                            Select category
-                        </option>
-
-                        <option value="Drinks">
-                            Drinks
-                        </option>
-
-                        <option value="Snacks">
-                            Snacks
-                        </option>
-
-                        <option value="Biscuits">
-                            Biscuits
-                        </option>
-
-                        <option value="Sweets">
-                            Sweets
-                        </option>
-
-                        <option value="Chocolates">
-                            Chocolates
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
-
-                </div>
+            </div>
 
 
-                <!-- PRICE -->
 
-                <div class="form-group">
+            <!-- =================================================
+                 AUDIENCE WINNER
+            ================================================== -->
 
-                    <label for="product-price">
-                        Price (₦)
-                    </label>
+            <div
+                id="audienceWinnerArea"
+                class="hidden"
+            >
 
-                    <input
-                        type="number"
-                        id="product-price"
-                        placeholder="e.g. 1400"
-                        min="0"
-                        required
+                <h2>
+                    🏆 ROUND WINNER
+                </h2>
+
+                <h1 id="audienceWinnerText">
+                    Player 1
+                </h1>
+
+                <p id="audienceFinalVoteText">
+                    Player 1 wins this round!
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         MESSAGE
+    ====================================================== -->
+
+    <div id="message"></div>
+
+
+
+    <!-- =====================================================
+         PLAYER GAME SCREEN
+    ====================================================== -->
+
+    <section
+        id="gameScreen"
+        class="hidden"
+    >
+
+        <div class="round-info">
+
+            <span>ROUND</span>
+
+            <strong id="roundNumber">
+                1
+            </strong>
+
+        </div>
+
+
+        <div class="scenario-box">
+
+            <p>SCENARIO</p>
+
+            <h2 id="scenarioText">
+                Waiting for scenario...
+            </h2>
+
+        </div>
+
+
+
+        <!-- PLAYER SELECTION -->
+
+        <div id="selectionArea">
+
+            <h3>
+                Choose the meme that matches best
+            </h3>
+
+            <div id="memeGrid"></div>
+
+            <button
+                id="submitMemeBtn"
+                disabled
+            >
+                Submit Meme
+            </button>
+
+        </div>
+
+
+
+        <!-- PLAYER WAITING -->
+
+        <div
+            id="waitingArea"
+            class="hidden"
+        >
+
+            <h2>
+                ⏳ Waiting...
+            </h2>
+
+            <p id="waitingText">
+                Waiting for the other player.
+            </p>
+
+        </div>
+
+
+
+        <!-- PLAYER REVEAL -->
+
+        <div
+            id="revealArea"
+            class="hidden"
+        >
+
+            <h2>
+                😂 MEME REVEAL
+            </h2>
+
+
+            <div class="players-memes">
+
+
+                <div class="player-meme">
+
+                    <h3>
+                        PLAYER 1
+                    </h3>
+
+                    <img
+                        id="player1Meme"
+                        src=""
+                        alt="Player 1 meme"
                     >
 
                 </div>
 
 
-                <!-- ADD BUTTON -->
 
-                <button
-                    type="submit"
-                    class="add-product-btn">
+                <div class="player-meme">
 
-                    <i class="fa-solid fa-plus"></i>
+                    <h3>
+                        PLAYER 2
+                    </h3>
 
-                    Add Product
-
-                </button>
-
-            </form>
-
-        </section>
-
-
-        <!-- =================================
-             PRODUCTS
-        ================================= -->
-
-        <section class="products-section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <h2>Store Products</h2>
-
-                    <p>
-                        Products currently in your store
-                    </p>
-
-                </div>
-
-                <div class="product-count">
-
-                    <span id="product-count">
-                        0
-                    </span>
-
-                    Products
+                    <img
+                        id="player2Meme"
+                        src=""
+                        alt="Player 2 meme"
+                    >
 
                 </div>
 
             </div>
-
-
-            <div
-                id="products-container"
-                class="products-container">
-
-                <!-- Products will be added here -->
-
-            </div>
-
-        </section>
-
-    </main>
-
-</section>
-
-
-<!-- =========================================
-     TOAST
-========================================= -->
-
-<div id="toast" class="toast">
-
-    <i class="fa-solid fa-check-circle"></i>
-
-    <span id="toast-message">
-        Product added successfully
-    </span>
-
-</div>
-
-
-<script>
-
-
-// ==========================================
-// BELLEFULL ADMIN
-// ADMIN.JS
-// ==========================================
-
-
-// ==========================================
-// ADMIN LOGIN
-// ==========================================
-
-// TEMPORARY LOGIN
-// We will replace this with a secure system later.
-
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "Bellefull123";
-
-
-const loginPage = document.getElementById("login-page");
-
-const dashboard = document.getElementById("dashboard");
-
-const loginForm = document.getElementById("login-form");
-
-const loginError = document.getElementById("login-error");
-
-const logoutBtn = document.getElementById("logout-btn");
-
-
-// ==========================================
-// CHECK LOGIN
-// ==========================================
-
-if (sessionStorage.getItem("bellefullAdmin") === "true") {
-
-    showDashboard();
-
-}
-
-
-// ==========================================
-// LOGIN
-// ==========================================
-
-loginForm.addEventListener("submit", function(e) {
-
-    e.preventDefault();
-
-    const username =
-        document.getElementById("username").value.trim();
-
-    const password =
-        document.getElementById("password").value;
-
-
-    if (
-        username === ADMIN_USERNAME &&
-        password === ADMIN_PASSWORD
-    ) {
-
-        sessionStorage.setItem(
-            "bellefullAdmin",
-            "true"
-        );
-
-        loginError.innerText = "";
-
-        showDashboard();
-
-    } else {
-
-        loginError.innerText =
-            "Incorrect username or password.";
-
-    }
-
-});
-
-
-// ==========================================
-// SHOW DASHBOARD
-// ==========================================
-
-function showDashboard() {
-
-    loginPage.classList.add("hidden");
-
-    dashboard.classList.remove("hidden");
-
-    loadProductsFromGoogle();
-
-}
-
-
-// ==========================================
-// LOGOUT
-// ==========================================
-
-logoutBtn.addEventListener("click", function() {
-
-    sessionStorage.removeItem(
-        "bellefullAdmin"
-    );
-
-    dashboard.classList.add("hidden");
-
-    loginPage.classList.remove("hidden");
-
-});
-
-
-// ==========================================
-// SHOW / HIDE PASSWORD
-// ==========================================
-
-const togglePassword =
-    document.getElementById("toggle-password");
-
-togglePassword.addEventListener("click", function() {
-
-    const password =
-        document.getElementById("password");
-
-    const icon =
-        togglePassword.querySelector("i");
-
-
-    if (password.type === "password") {
-
-        password.type = "text";
-
-        icon.classList.remove("fa-eye");
-
-        icon.classList.add("fa-eye-slash");
-
-    } else {
-
-        password.type = "password";
-
-        icon.classList.remove("fa-eye-slash");
-
-        icon.classList.add("fa-eye");
-
-    }
-
-});
-
-
-// ==========================================
-// PRODUCT STORAGE
-// ==========================================
-
-let products =
-    JSON.parse(
-        localStorage.getItem(
-            "bellefullProducts"
-        )
-    ) || [];
-
-
-// ==========================================
-// IMAGE PREVIEW
-// ==========================================
-
-const imageInput =
-    document.getElementById("product-image");
-
-const previewContainer =
-    document.getElementById(
-        "image-preview-container"
-    );
-
-
-imageInput.addEventListener("input", function() {
-
-    const url =
-        imageInput.value.trim();
-
-
-    if (!url) {
-
-        showPreviewPlaceholder();
-
-        return;
-
-    }
-
-
-    const image =
-        new Image();
-
-
-    image.onload = function() {
-
-        previewContainer.innerHTML = `
-            
-            <img
-                id="image-preview"
-                src="${url}"
-                alt="Product Preview"
-            >
-
-        `;
-
-    };
-
-
-    image.onerror = function() {
-
-        previewContainer.innerHTML = `
-
-            <div class="preview-placeholder">
-
-                <i class="fa-solid fa-triangle-exclamation"></i>
-
-                <span>
-                    Image could not be loaded
-                </span>
-
-            </div>
-
-        `;
-
-    };
-
-
-    image.src = url;
-
-});
-
-
-// ==========================================
-// IMAGE PLACEHOLDER
-// ==========================================
-
-function showPreviewPlaceholder() {
-
-    previewContainer.innerHTML = `
-
-        <div class="preview-placeholder">
-
-            <i class="fa-regular fa-image"></i>
-
-            <span>
-                Image preview will appear here
-            </span>
 
         </div>
 
-    `;
+    </section>
+
+</main>
+
+
+
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- YOUR JS -->
+    <script>
+ <script>
+
+// ============================================================
+// 😂 MEME BATTLE
+// COMPLETE MULTIPLAYER + AUDIENCE + VOTING SYSTEM
+//
+// FLOW:
+//
+// PLAYER 1 + PLAYER 2
+//        ↓
+//      ROOM
+//        ↓
+//   START GAME
+//        ↓
+//    SCENARIO
+//        ↓
+// BOTH PLAYERS SELECT MEME
+//        ↓
+// BOTH SUBMIT
+//        ↓
+// AUDIENCE VOTING OPENS
+//        ↓
+// 10 SECOND COUNTDOWN
+//        ↓
+// WINNER CALCULATED
+//        ↓
+// SCORE UPDATED
+//        ↓
+// WINNER DISPLAYED
+//        ↓
+// 5 SECOND COUNTDOWN
+//        ↓
+// NEXT ROUND
+//
+// Replace your ENTIRE old app.js with this.
+// ============================================================
+
+
+// ============================================================
+// SUPABASE
+// ============================================================
+
+const SUPABASE_URL =
+    "https://fmscowzyjarjbtkrtlfi.supabase.co";
+
+const SUPABASE_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZtc2Nvd3p5amFyamJ0a3J0bGZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkwODE1MTUsImV4cCI6MjEwNDY1NzUxNX0.SI-F7FZ0sgbdjIT0YuNMciW5O4RHTa7NiO-iSQzZq0A";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+// ============================================================
+// SETTINGS
+// ============================================================
+
+const VOTING_SECONDS = 10;
+const NEXT_ROUND_SECONDS = 5;
+
+
+// ============================================================
+// SCENARIOS
+// ============================================================
+
+const scenarios = [
+
+    "When your lecturer says the test is going to be very easy.",
+
+    "When you check your bank account after a weekend outside.",
+
+    "When your mother calls your full name.",
+
+    "When you say you are going to study for 5 hours but start watching TikTok.",
+
+    "When someone says 'I have something to tell you' and disappears.",
+
+    "When you wake up and realize you have an exam in 10 minutes.",
+
+    "When your friend says 'don't worry, I know a shortcut.'",
+
+    "When you open your results and see something you were NOT expecting.",
+
+    "When you submit an assignment one minute before the deadline.",
+
+    "When your lecturer enters the class and everyone suddenly becomes quiet.",
+
+    "When your friend asks you to borrow money immediately after you receive your allowance.",
+
+    "When you realize you have been muted during an online meeting.",
+
+    "When you send a message and see 'typing...' for 10 minutes.",
+
+    "When you promise yourself you will sleep early but it is already 3 AM.",
+
+    "When someone says 'this will only take five minutes.'",
+
+    "When you walk into a room and completely forget why you came there.",
+
+    "When your friend says they studied everything for the exam.",
+
+    "When you hear your name mentioned in a conversation across the room.",
+
+    "When you check your phone after saying you were going to focus.",
+
+    "When the lecturer says 'bring out a sheet of paper.'",
+
+    "When you finally understand what the lecturer was explaining.",
+
+    "When the lecturer says there will be no assignment and then changes their mind.",
+
+    "When your friend says 'I know someone who can help us.'",
+
+    "When your alarm rings and you realize you only slept for two hours.",
+
+    "When the internet stops working during something important.",
+
+    "When someone asks you how your exam went.",
+
+    "When you open your laptop and see 17 updates waiting.",
+
+    "When you study one chapter and the lecturer sets questions from another.",
+
+    "When your friend says 'let's just go out for one hour.'",
+
+    "When you accidentally send a private message to the wrong person."
+
+];
+
+
+// ============================================================
+// MEMES
+// ============================================================
+
+const memes = [
+
+    {
+        id: "meme1",
+        url: "https://i.imgflip.com/1bij.jpg",
+        name: "Distracted"
+    },
+
+    {
+        id: "meme2",
+        url: "https://i.imgflip.com/1bhk.jpg",
+        name: "Drake"
+    },
+
+    {
+        id: "meme3",
+        url: "https://i.imgflip.com/22bdq6.jpg",
+        name: "Confused"
+    },
+
+    {
+        id: "meme4",
+        url: "https://i.imgflip.com/9ehk.jpg",
+        name: "Success"
+    },
+
+    {
+        id: "meme5",
+        url: "https://i.imgflip.com/1o00in.jpg",
+        name: "Disaster"
+    },
+
+    {
+        id: "meme6",
+        url: "https://i.imgflip.com/1wz1x.jpg",
+        name: "Reaction"
+    }
+
+];
+
+
+// ============================================================
+// GAME STATE
+// ============================================================
+
+let currentRoom = null;
+let currentPlayer = null;
+let currentAudience = null;
+let currentRound = null;
+
+let selectedMeme = null;
+
+let scenarioHistory = [];
+
+let votingTimer = null;
+let nextRoundTimer = null;
+
+let votingSeconds = VOTING_SECONDS;
+
+let finishingRound = false;
+let creatingNextRound = false;
+let startingGame = false;
+
+let audienceHasVoted = false;
+
+
+// ============================================================
+// REALTIME CHANNELS
+// ============================================================
+
+let playersChannel = null;
+let roomsChannel = null;
+let roundsChannel = null;
+let audienceChannel = null;
+let votesChannel = null;
+
+
+// ============================================================
+// DOM HELPER
+// ============================================================
+
+function $(id) {
+    return document.getElementById(id);
+}
+
+
+// ============================================================
+// PLAYER DOM
+// ============================================================
+
+const homeScreen = $("homeScreen");
+const joinScreen = $("joinScreen");
+const roomScreen = $("roomScreen");
+const gameScreen = $("gameScreen");
+
+const messageBox = $("message");
+
+const playerNameInput = $("playerName");
+
+const createRoomBtn = $("createRoomBtn");
+const showJoinBtn = $("showJoinBtn");
+
+const roomCodeInput = $("roomCodeInput");
+const joinRoomBtn = $("joinRoomBtn");
+const backBtn = $("backBtn");
+
+const roomCodeDisplay = $("roomCodeDisplay");
+const playersList = $("playersList");
+const roomStatus = $("roomStatus");
+
+const startGameBtn = $("startGameBtn");
+
+const roundNumberDisplay = $("roundNumber");
+const scenarioDisplay = $("scenarioText");
+
+const selectionArea = $("selectionArea");
+const memeGrid = $("memeGrid");
+const submitMemeBtn = $("submitMemeBtn");
+
+const waitingArea = $("waitingArea");
+const waitingText = $("waitingText");
+
+const revealArea = $("revealArea");
+
+const player1Meme = $("player1Meme");
+const player2Meme = $("player2Meme");
+
+
+// ============================================================
+// AUDIENCE DOM
+// ============================================================
+
+const audienceJoinScreen =
+    $("audienceJoinScreen");
+
+const audienceScreen =
+    $("audienceScreen");
+
+const showAudienceBtn =
+    $("showAudienceBtn");
+
+const audienceRoomCodeInput =
+    $("audienceRoomCodeInput");
+
+const joinAudienceBtn =
+    $("joinAudienceBtn");
+
+const audienceBackBtn =
+    $("audienceBackBtn");
+
+const audienceRoomCodeDisplay =
+    $("audienceRoomCodeDisplay");
+
+const audienceCount =
+    $("audienceCount");
+
+const audienceWaitingArea =
+    $("audienceWaitingArea");
+
+const audienceWaitingText =
+    $("audienceWaitingText");
+
+const audienceGameArea =
+    $("audienceGameArea");
+
+const audienceRoundNumber =
+    $("audienceRoundNumber");
+
+const audienceScenarioText =
+    $("audienceScenarioText");
+
+const audienceWaitingForPlayers =
+    $("audienceWaitingForPlayers");
+
+const audiencePlayerStatus =
+    $("audiencePlayerStatus");
+
+const audienceVotingArea =
+    $("audienceVotingArea");
+
+const audiencePlayer1Meme =
+    $("audiencePlayer1Meme");
+
+const votePlayer1Btn =
+    $("votePlayer1Btn");
+
+const player1VoteCount =
+    $("player1VoteCount");
+
+const audiencePlayer2Meme =
+    $("audiencePlayer2Meme");
+
+const votePlayer2Btn =
+    $("votePlayer2Btn");
+
+const player2VoteCount =
+    $("player2VoteCount");
+
+const audienceVoteStatus =
+    $("audienceVoteStatus");
+
+const audienceWinnerArea =
+    $("audienceWinnerArea");
+
+const audienceWinnerText =
+    $("audienceWinnerText");
+
+const audienceFinalVoteText =
+    $("audienceFinalVoteText");
+
+
+// ============================================================
+// SCREEN MANAGEMENT
+// ============================================================
+
+function showScreen(screen) {
+
+    const screens = [
+
+        homeScreen,
+        joinScreen,
+        roomScreen,
+        gameScreen,
+
+        audienceJoinScreen,
+        audienceScreen
+
+    ];
+
+    screens.forEach(item => {
+
+        if (!item) return;
+
+        item.classList.add("hidden");
+        item.style.display = "none";
+
+    });
+
+
+    if (screen) {
+
+        screen.classList.remove("hidden");
+        screen.style.display = "block";
+
+    }
 
 }
 
 
+// ============================================================
+// MESSAGE
+// ============================================================
 
-// ==========================================
-// ADD PRODUCT TO GOOGLE SHEETS
-// ==========================================
+function showMessage(text) {
 
-productForm.addEventListener("submit", async function(e) {
+    if (!messageBox) return;
 
-    e.preventDefault();
+    messageBox.textContent = text;
 
-
-    const name =
-        document
-            .getElementById("product-name")
-            .value
-            .trim();
+}
 
 
-    const image =
-        document
-            .getElementById("product-image")
-            .value
-            .trim();
+// ============================================================
+// ESCAPE HTML
+// ============================================================
+
+function escapeHTML(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value || "";
+
+    return div.innerHTML;
+
+}
 
 
-    const category =
-        document
-            .getElementById("product-category")
-            .value;
+// ============================================================
+// SHUFFLE
+// ============================================================
+
+function shuffleArray(array) {
+
+    const result =
+        [...array];
+
+    for (
+        let i = result.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            result[i],
+            result[j]
+        ] = [
+            result[j],
+            result[i]
+        ];
+
+    }
+
+    return result;
+
+}
 
 
-    const price =
-        Number(
-            document
-                .getElementById("product-price")
-                .value
+// ============================================================
+// SCENARIO
+// ============================================================
+
+function getRandomScenario() {
+
+    let available =
+        scenarios.filter(
+            scenario =>
+                !scenarioHistory.includes(
+                    scenario
+                )
         );
 
 
-    // ======================================
-    // VALIDATION
-    // ======================================
+    if (available.length === 0) {
+
+        scenarioHistory = [];
+
+        available =
+            [...scenarios];
+
+    }
+
+
+    const scenario =
+        available[
+            Math.floor(
+                Math.random() *
+                available.length
+            )
+        ];
+
+
+    scenarioHistory.push(
+        scenario
+    );
+
+
+    return scenario;
+
+}
+
+
+// ============================================================
+// ROOM CODE
+// ============================================================
+
+function generateRoomCode() {
+
+    const characters =
+        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    let code = "";
+
+    for (
+        let i = 0;
+        i < 6;
+        i++
+    ) {
+
+        code +=
+            characters[
+                Math.floor(
+                    Math.random() *
+                    characters.length
+                )
+            ];
+
+    }
+
+    return code;
+
+}
+
+
+// ============================================================
+// LOCAL SESSION
+// ============================================================
+
+function clearLocalSession() {
+
+    localStorage.removeItem(
+        "memeGameRoomId"
+    );
+
+    localStorage.removeItem(
+        "memeGamePlayerId"
+    );
+
+    localStorage.removeItem(
+        "memeGameAudienceId"
+    );
+
+}
+
+
+// ============================================================
+// STOP TIMERS
+// ============================================================
+
+function stopVotingTimer() {
+
+    if (votingTimer) {
+
+        clearInterval(
+            votingTimer
+        );
+
+        votingTimer = null;
+
+    }
+
+}
+
+
+function stopNextRoundTimer() {
+
+    if (nextRoundTimer) {
+
+        clearTimeout(
+            nextRoundTimer
+        );
+
+        clearInterval(
+            nextRoundTimer
+        );
+
+        nextRoundTimer = null;
+
+    }
+
+}
+
+
+// ============================================================
+// REMOVE REALTIME
+// ============================================================
+
+async function removeRealtimeChannels() {
+
+    const channels = [
+
+        playersChannel,
+        roomsChannel,
+        roundsChannel,
+        audienceChannel,
+        votesChannel
+
+    ];
+
+
+    for (
+        const channel of channels
+    ) {
+
+        if (!channel) continue;
+
+        try {
+
+            await supabaseClient
+                .removeChannel(
+                    channel
+                );
+
+        } catch (error) {
+
+            console.error(
+                "Realtime removal error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    playersChannel = null;
+    roomsChannel = null;
+    roundsChannel = null;
+    audienceChannel = null;
+    votesChannel = null;
+
+}
+
+
+// ============================================================
+// RESET STATE
+// ============================================================
+
+async function resetGameState() {
+
+    stopVotingTimer();
+    stopNextRoundTimer();
+
+    await removeRealtimeChannels();
+
+    currentRoom = null;
+    currentPlayer = null;
+    currentAudience = null;
+    currentRound = null;
+
+    selectedMeme = null;
+
+    scenarioHistory = [];
+
+    votingSeconds =
+        VOTING_SECONDS;
+
+    finishingRound = false;
+    creatingNextRound = false;
+    startingGame = false;
+
+    audienceHasVoted = false;
+
+}
+
+
+// ============================================================
+// FRESH HOME
+// ============================================================
+
+async function goFreshHome() {
+
+    clearLocalSession();
+
+    await resetGameState();
+
+    if (playerNameInput) {
+
+        playerNameInput.value = "";
+
+    }
+
+    if (roomCodeInput) {
+
+        roomCodeInput.value = "";
+
+    }
+
+    if (audienceRoomCodeInput) {
+
+        audienceRoomCodeInput.value = "";
+
+    }
+
+    showScreen(
+        homeScreen
+    );
+
+}
+
+
+// ============================================================
+// CREATE ROOM
+// ============================================================
+
+async function createRoom() {
+
+    const name =
+        playerNameInput
+            ? playerNameInput.value.trim()
+            : "";
+
 
     if (!name) {
 
-        alert("Please enter a product name.");
-
-        return;
-
-    }
-
-
-    if (!image) {
-
-        alert("Please enter an image URL.");
-
-        return;
-
-    }
-
-
-    if (!category) {
-
-        alert("Please select a category.");
-
-        return;
-
-    }
-
-
-    if (!price || price <= 0) {
-
-        alert("Please enter a valid price.");
-
-        return;
-
-    }
-
-
-    // ======================================
-    // BUTTON LOADING
-    // ======================================
-
-    const button =
-        productForm.querySelector(
-            ".add-product-btn"
+        alert(
+            "Please enter your name."
         );
 
+        return;
 
-    const originalText =
-        button.innerHTML;
+    }
 
 
-    button.disabled = true;
+    if (createRoomBtn) {
 
-    button.innerHTML =
-        '<i class="fa-solid fa-spinner fa-spin"></i> Adding...';
+        createRoomBtn.disabled =
+            true;
+
+    }
 
 
     try {
 
-        // ==================================
-        // SEND TO GOOGLE APPS SCRIPT
-        // ==================================
+        clearLocalSession();
 
-        const response =
-            await fetch(
-                GOOGLE_SCRIPT_URL,
-                {
+        await removeRealtimeChannels();
 
-                    method: "POST",
 
-                    body: JSON.stringify({
+        let room = null;
+        let lastError = null;
 
-                        action: "addProduct",
 
-                        name: name,
+        for (
+            let attempt = 0;
+            attempt < 10;
+            attempt++
+        ) {
 
-                        image: image,
+            const roomCode =
+                generateRoomCode();
 
-                        category: category,
 
-                        price: price
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .from("rooms")
+                    .insert({
+
+                        room_code:
+                            roomCode,
+
+                        status:
+                            "waiting",
+
+                        current_round:
+                            1
 
                     })
-
-                }
-            );
-
-
-        const result =
-            await response.json();
+                    .select("*")
+                    .maybeSingle();
 
 
-        // ==================================
-        // CHECK RESPONSE
-        // ==================================
+            if (!error && data) {
 
-        if (!result.success) {
+                room = data;
 
-            throw new Error(
-                result.error ||
-                "Product could not be added."
+                break;
+
+            }
+
+
+            lastError =
+                error;
+
+        }
+
+
+        if (!room) {
+
+            throw (
+                lastError ||
+                new Error(
+                    "Could not create room."
+                )
             );
 
         }
 
 
-        // ==================================
-        // SUCCESS
-        // ==================================
+        const {
+            data: player,
+            error: playerError
+        } =
+            await supabaseClient
+                .from("players")
+                .insert({
 
-        showToast(
-            "Product added successfully!"
-        );
+                    room_id:
+                        room.id,
 
+                    name:
+                        name,
 
-        productForm.reset();
+                    player_number:
+                        1,
 
+                    score:
+                        0,
 
-        showPreviewPlaceholder();
+                    connected:
+                        true
 
-
-        // Reload products from Google Sheet
-
-        await loadProductsFromGoogle();
-
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert(
-            "Could not add product.\n\n" +
-            error.message
-        );
+                })
+                .select("*")
+                .maybeSingle();
 
 
-    } finally {
+        if (playerError) {
 
-        button.disabled = false;
+            throw playerError;
 
-        button.innerHTML =
-            originalText;
-
-    }
-
-});
+        }
 
 
-
-
-    // ======================================
-    // PRODUCT OBJECT
-    // ======================================
-
-    const product = {
-
-        id: Date.now(),
-
-        name: name,
-
-        image: image,
-
-        category: category,
-
-        price: price
-
-    };
-
-
-    // ======================================
-    // ADD PRODUCT
-    // ======================================
-
-    products.push(product);
-
-
-    saveProducts();
-
-
-    // Reset form
-
-    productForm.reset();
-
-    showPreviewPlaceholder();
-
-
-    // Update screen
-
-    displayProducts();
-
-
-    showToast(
-        "Product added successfully!"
-    );
-
-});
-
-
-// ==========================================
-// SAVE PRODUCTS
-// ==========================================
-
-function saveProducts() {
-
-    localStorage.setItem(
-        "bellefullProducts",
-        JSON.stringify(products)
-    );
-
-}
-
-
-
-// ==========================================
-// LOAD PRODUCTS FROM GOOGLE SHEETS
-// ==========================================
-
-async function loadProductsFromGoogle() {
-
-    try {
-
-        const response =
-            await fetch(
-                GOOGLE_SCRIPT_URL +
-                "?action=getProducts"
-            );
-
-
-        const result =
-            await response.json();
-
-
-        if (!result.success) {
+        if (!player) {
 
             throw new Error(
-                result.error ||
-                "Could not load products."
+                "Player 1 could not be created."
             );
 
         }
 
 
-        products =
-            result.products || [];
+        currentRoom =
+            room;
+
+        currentPlayer =
+            player;
+
+        currentRound =
+            null;
 
 
-        displayProducts();
+        localStorage.setItem(
+            "memeGameRoomId",
+            room.id
+        );
+
+        localStorage.setItem(
+            "memeGamePlayerId",
+            player.id
+        );
+
+
+        if (roomCodeDisplay) {
+
+            roomCodeDisplay.textContent =
+                room.room_code;
+
+        }
+
+
+        showScreen(
+            roomScreen
+        );
+
+
+        await loadPlayers();
+
+        await setupPlayerRealtime();
 
 
     } catch (error) {
 
         console.error(
-            "Product loading error:",
+            "Create room error:",
             error
         );
 
+        alert(
+            "Could not create game: " +
+            error.message
+        );
 
-        document.getElementById(
-            "products-container"
-        ).innerHTML = `
+    } finally {
 
-            <div class="empty-products">
+        if (createRoomBtn) {
 
-                <i
-                    class="fa-solid fa-triangle-exclamation"
-                    style="font-size:40px;margin-bottom:15px;">
-                </i>
+            createRoomBtn.disabled =
+                false;
 
-                <p>
-                    Could not load products.
-                </p>
-
-                <small>
-                    Please check your Google Apps Script connection.
-                </small>
-
-            </div>
-
-        `;
+        }
 
     }
 
 }
 
 
+// ============================================================
+// SHOW JOIN
+// ============================================================
+
+function showJoin() {
+
+    showScreen(
+        joinScreen
+    );
 
 
-// ==========================================
-// DISPLAY PRODUCTS
-// ==========================================
+    if (roomCodeInput) {
 
-function displayProducts() {
+        roomCodeInput.value = "";
 
-    const container =
-        document.getElementById(
-            "products-container"
+        setTimeout(
+            () =>
+                roomCodeInput.focus(),
+            100
         );
 
-    const count =
-        document.getElementById(
-            "product-count"
+    }
+
+}
+
+
+// ============================================================
+// JOIN ROOM
+// ============================================================
+
+async function joinRoom() {
+
+    const name =
+        playerNameInput
+            ? playerNameInput.value.trim()
+            : "";
+
+
+    const code =
+        roomCodeInput
+            ? roomCodeInput.value
+                .trim()
+                .toUpperCase()
+            : "";
+
+
+    if (!name) {
+
+        alert(
+            "Please enter your name."
         );
-
-
-    count.innerText =
-        products.length;
-
-
-    container.innerHTML = "";
-
-
-    // ======================================
-    // EMPTY
-    // ======================================
-
-    if (products.length === 0) {
-
-        container.innerHTML = `
-
-            <div class="empty-products">
-
-                <i
-                    class="fa-solid fa-box-open"
-                    style="font-size:40px;margin-bottom:15px;">
-                </i>
-
-                <p>
-                    No products have been added yet.
-                </p>
-
-            </div>
-
-        `;
 
         return;
 
     }
 
 
-    // ======================================
-    // PRODUCTS
-    // ======================================
+    if (!code) {
 
-    products.forEach(function(product) {
+        alert(
+            "Please enter the room code."
+        );
 
-        const card =
-            document.createElement("div");
+        return;
 
-        card.className =
-            "product-card";
+    }
 
 
-        card.innerHTML = `
+    if (joinRoomBtn) {
 
-            <img
-                class="product-image"
-                src="${product.image}"
-                alt="${product.name}"
-                onerror="this.src='https://via.placeholder.com/400x300?text=Image+Error'"
-            >
+        joinRoomBtn.disabled =
+            true;
 
-            <div class="product-info">
-
-                <span class="product-category">
-
-                    ${product.category}
-
-                </span>
-
-                <h3>
-                    ${product.name}
-                </h3>
-
-                <div class="product-price">
-
-                    ₦${Number(product.price)
-                        .toLocaleString()}
-
-                </div>
-
-                <button
-                    class="remove-btn"
-                    onclick="removeProduct(${product.id})">
-
-                    <i class="fa-solid fa-trash"></i>
-
-                    Remove Product
-
-                </button>
-
-            </div>
-
-        `;
+    }
 
 
-        container.appendChild(card);
+    try {
 
-    });
+        const {
+            data: room,
+            error: roomError
+        } =
+            await supabaseClient
+                .from("rooms")
+                .select("*")
+                .eq(
+                    "room_code",
+                    code
+                )
+                .maybeSingle();
+
+
+        if (roomError) {
+
+            throw roomError;
+
+        }
+
+
+        if (!room) {
+
+            throw new Error(
+                "Game room not found."
+            );
+
+        }
+
+
+        const {
+            data: players,
+            error: playersError
+        } =
+            await supabaseClient
+                .from("players")
+                .select("*")
+                .eq(
+                    "room_id",
+                    room.id
+                )
+                .order(
+                    "player_number",
+                    {
+                        ascending: true
+                    }
+                );
+
+
+        if (playersError) {
+
+            throw playersError;
+
+        }
+
+
+        const existingPlayers =
+            players || [];
+
+
+        const savedPlayerId =
+            localStorage.getItem(
+                "memeGamePlayerId"
+            );
+
+
+        let player =
+            existingPlayers.find(
+                p =>
+                    p.id ===
+                    savedPlayerId
+            );
+
+
+        if (!player) {
+
+            if (
+                existingPlayers.length >= 2
+            ) {
+
+                throw new Error(
+                    "This game already has two players."
+                );
+
+            }
+
+
+            const playerNumber =
+                existingPlayers.length + 1;
+
+
+            const {
+                data: newPlayer,
+                error: newPlayerError
+            } =
+                await supabaseClient
+                    .from("players")
+                    .insert({
+
+                        room_id:
+                            room.id,
+
+                        name:
+                            name,
+
+                        player_number:
+                            playerNumber,
+
+                        score:
+                            0,
+
+                        connected:
+                            true
+
+                    })
+                    .select("*")
+                    .maybeSingle();
+
+
+            if (newPlayerError) {
+
+                throw newPlayerError;
+
+            }
+
+
+            player =
+                newPlayer;
+
+        }
+
+
+        currentRoom =
+            room;
+
+        currentPlayer =
+            player;
+
+        currentRound =
+            null;
+
+
+        localStorage.setItem(
+            "memeGameRoomId",
+            room.id
+        );
+
+        localStorage.setItem(
+            "memeGamePlayerId",
+            player.id
+        );
+
+
+        if (roomCodeDisplay) {
+
+            roomCodeDisplay.textContent =
+                room.room_code;
+
+        }
+
+
+        await setupPlayerRealtime();
+
+
+        if (
+            room.status ===
+            "playing"
+        ) {
+
+            await loadCurrentRound();
+
+        } else {
+
+            showScreen(
+                roomScreen
+            );
+
+            await loadPlayers();
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Join room error:",
+            error
+        );
+
+        alert(
+            "Could not join game: " +
+            error.message
+        );
+
+    } finally {
+
+        if (joinRoomBtn) {
+
+            joinRoomBtn.disabled =
+                false;
+
+        }
+
+    }
 
 }
 
 
-// ==========================================
-// REMOVE PRODUCT FROM GOOGLE SHEETS
-// ==========================================
+// ============================================================
+// LOAD PLAYERS
+// ============================================================
 
-async function removeProduct(id) {
+async function loadPlayers() {
 
-    const confirmed =
-        confirm(
-            "Are you sure you want to remove this product?"
+    if (!currentRoom) return;
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("players")
+            .select("*")
+            .eq(
+                "room_id",
+                currentRoom.id
+            )
+            .order(
+                "player_number",
+                {
+                    ascending: true
+                }
+            );
+
+
+    if (error) {
+
+        console.error(
+            "Load players error:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    if (!playersList) return;
+
+
+    playersList.innerHTML = "";
+
+
+    (data || []).forEach(
+        player => {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "player";
+
+
+            div.innerHTML = `
+
+                <strong>
+                    Player ${player.player_number}
+                </strong>
+
+                <span>
+                    ${escapeHTML(
+                        player.name
+                    )}
+                </span>
+
+                <small>
+                    Score:
+                    ${Number(
+                        player.score || 0
+                    )}
+                </small>
+
+            `;
+
+
+            playersList.appendChild(
+                div
+            );
+
+        }
+    );
+
+
+    if (roomStatus) {
+
+        roomStatus.textContent =
+            data &&
+            data.length >= 2
+
+                ? "🎉 Both players are connected!"
+
+                : "Waiting for Player 2...";
+
+    }
+
+
+    if (startGameBtn) {
+
+        if (
+
+            currentPlayer &&
+
+            currentPlayer.player_number === 1 &&
+
+            data &&
+
+            data.length >= 2 &&
+
+            currentRoom.status ===
+            "waiting"
+
+        ) {
+
+            startGameBtn.classList.remove(
+                "hidden"
+            );
+
+            startGameBtn.style.display =
+                "block";
+
+        } else {
+
+            startGameBtn.classList.add(
+                "hidden"
+            );
+
+            startGameBtn.style.display =
+                "none";
+
+        }
+
+    }
+
+}
+
+
+// ============================================================
+// START GAME
+// ============================================================
+
+async function startGame() {
+
+    if (
+
+        startingGame ||
+
+        !currentRoom ||
+
+        !currentPlayer
+
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        currentPlayer.player_number !== 1
+    ) {
+
+        return;
+
+    }
+
+
+    startingGame = true;
+
+
+    if (startGameBtn) {
+
+        startGameBtn.disabled =
+            true;
+
+    }
+
+
+    try {
+
+        const {
+            data: players,
+            error: playersError
+        } =
+            await supabaseClient
+                .from("players")
+                .select("*")
+                .eq(
+                    "room_id",
+                    currentRoom.id
+                );
+
+
+        if (playersError) {
+
+            throw playersError;
+
+        }
+
+
+        if (
+            !players ||
+            players.length < 2
+        ) {
+
+            alert(
+                "You need two players before starting."
+            );
+
+            return;
+
+        }
+
+
+        scenarioHistory = [];
+
+
+        const scenario =
+            getRandomScenario();
+
+
+        const {
+            data: existingRounds,
+            error: existingError
+        } =
+            await supabaseClient
+                .from("rounds")
+                .select("*")
+                .eq(
+                    "room_id",
+                    currentRoom.id
+                )
+                .eq(
+                    "round_number",
+                    1
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: true
+                    }
+                );
+
+
+        if (existingError) {
+
+            throw existingError;
+
+        }
+
+
+        let round = null;
+
+
+        if (
+            existingRounds &&
+            existingRounds.length > 0
+        ) {
+
+            round =
+                existingRounds[0];
+
+        } else {
+
+            const {
+                data: newRound,
+                error: createRoundError
+            } =
+                await supabaseClient
+                    .from("rounds")
+                    .insert({
+
+                        room_id:
+                            currentRoom.id,
+
+                        round_number:
+                            1,
+
+                        scenario:
+                            scenario,
+
+                        status:
+                            "selecting",
+
+                        player1_meme:
+                            null,
+
+                        player2_meme:
+                            null,
+
+                        winner:
+                            null
+
+                    })
+                    .select("*")
+                    .maybeSingle();
+
+
+            if (createRoundError) {
+
+                throw createRoundError;
+
+            }
+
+
+            round =
+                newRound;
+
+        }
+
+
+        if (!round) {
+
+            throw new Error(
+                "Could not create round."
+            );
+
+        }
+
+
+        const {
+            data: updatedRoom,
+            error: roomError
+        } =
+            await supabaseClient
+                .from("rooms")
+                .update({
+
+                    status:
+                        "playing",
+
+                    current_round:
+                        round.round_number
+
+                })
+                .eq(
+                    "id",
+                    currentRoom.id
+                )
+                .select("*")
+                .maybeSingle();
+
+
+        if (roomError) {
+
+            throw roomError;
+
+        }
+
+
+        if (updatedRoom) {
+
+            currentRoom =
+                updatedRoom;
+
+        }
+
+
+        currentRound =
+            round;
+
+
+        await showGame();
+
+
+    } catch (error) {
+
+        console.error(
+            "Start game error:",
+            error
+        );
+
+        alert(
+            "Could not start game: " +
+            error.message
+        );
+
+    } finally {
+
+        startingGame =
+            false;
+
+        if (startGameBtn) {
+
+            startGameBtn.disabled =
+                false;
+
+        }
+
+    }
+
+}
+
+
+// ============================================================
+// SHOW GAME
+// ============================================================
+
+async function showGame() {
+
+    if (!currentRound) return;
+
+
+    showScreen(
+        gameScreen
+    );
+
+
+    stopVotingTimer();
+
+
+    selectedMeme =
+        null;
+
+
+    if (roundNumberDisplay) {
+
+        roundNumberDisplay.textContent =
+            currentRound.round_number;
+
+    }
+
+
+    if (scenarioDisplay) {
+
+        scenarioDisplay.textContent =
+            currentRound.scenario;
+
+    }
+
+
+    hideWinnerBox();
+
+
+    if (currentRound.status === "selecting") {
+
+        showSelectingState();
+
+    }
+
+
+    else if (
+        currentRound.status === "voting"
+    ) {
+
+        await showPlayerVoting();
+
+    }
+
+
+    else if (
+        currentRound.status === "finished"
+    ) {
+
+        await showWinner();
+
+    }
+
+}
+
+
+// ============================================================
+// SHOW SELECTING STATE
+// ============================================================
+
+function showSelectingState() {
+
+    if (selectionArea) {
+
+        selectionArea.style.display =
+            "block";
+
+    }
+
+
+    if (memeGrid) {
+
+        memeGrid.style.display =
+            "grid";
+
+        memeGrid.style.pointerEvents =
+            "auto";
+
+    }
+
+
+    if (submitMemeBtn) {
+
+        submitMemeBtn.style.display =
+            "block";
+
+        submitMemeBtn.disabled =
+            true;
+
+    }
+
+
+    if (waitingArea) {
+
+        waitingArea.classList.add(
+            "hidden"
+        );
+
+        waitingArea.style.display =
+            "none";
+
+    }
+
+
+    if (revealArea) {
+
+        revealArea.classList.add(
+            "hidden"
+        );
+
+        revealArea.style.display =
+            "none";
+
+    }
+
+
+    renderMemes();
+
+
+    if (!currentPlayer) return;
+
+
+    const myMeme =
+        currentPlayer.player_number === 1
+
+            ? currentRound.player1_meme
+
+            : currentRound.player2_meme;
+
+
+    if (myMeme) {
+
+        disableSelection();
+
+        showWaiting(
+            "✅ Your meme has been submitted. Waiting for the other player..."
+        );
+
+    }
+
+}
+
+
+// ============================================================
+// RENDER MEMES
+// ============================================================
+
+function renderMemes() {
+
+    if (!memeGrid) return;
+
+
+    memeGrid.innerHTML = "";
+
+
+    const shuffled =
+        shuffleArray(
+            memes
         );
 
 
-    if (!confirmed) {
+    shuffled.forEach(
+        meme => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "meme-card";
+
+
+            card.dataset.memeId =
+                meme.id;
+
+
+            card.innerHTML = `
+
+                <img
+                    src="${meme.url}"
+                    alt="${escapeHTML(
+                        meme.name
+                    )}"
+                >
+
+            `;
+
+
+            card.addEventListener(
+                "click",
+                () =>
+                    selectMeme(
+                        meme.id
+                    )
+            );
+
+
+            memeGrid.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// SELECT MEME
+// ============================================================
+
+function selectMeme(memeId) {
+
+    if (
+
+        !currentRound ||
+
+        currentRound.status !==
+        "selecting" ||
+
+        !currentPlayer
+
+    ) {
+
+        return;
+
+    }
+
+
+    const alreadySubmitted =
+
+        currentPlayer.player_number === 1
+
+            ? currentRound.player1_meme
+
+            : currentRound.player2_meme;
+
+
+    if (alreadySubmitted) {
+
+        return;
+
+    }
+
+
+    const meme =
+        memes.find(
+            item =>
+                item.id ===
+                memeId
+        );
+
+
+    if (!meme) return;
+
+
+    selectedMeme =
+        meme;
+
+
+    document
+        .querySelectorAll(
+            ".meme-card"
+        )
+        .forEach(
+            card => {
+
+                card.classList.remove(
+                    "selected"
+                );
+
+
+                if (
+                    card.dataset.memeId ===
+                    memeId
+                ) {
+
+                    card.classList.add(
+                        "selected"
+                    );
+
+                }
+
+            }
+        );
+
+
+    if (submitMemeBtn) {
+
+        submitMemeBtn.disabled =
+            false;
+
+    }
+
+}
+
+
+// ============================================================
+// SUBMIT MEME
+// ============================================================
+
+async function submitMeme() {
+
+    if (
+
+        !currentRound ||
+
+        !currentPlayer ||
+
+        !selectedMeme
+
+    ) {
+
+        alert(
+            "Please select a meme first."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        currentRound.status !==
+        "selecting"
+    ) {
+
+        return;
+
+    }
+
+
+    if (submitMemeBtn) {
+
+        submitMemeBtn.disabled =
+            true;
+
+    }
+
+
+    try {
+
+        const updateData = {};
+
+
+        if (
+            currentPlayer.player_number === 1
+        ) {
+
+            updateData.player1_meme =
+                selectedMeme.url;
+
+        } else {
+
+            updateData.player2_meme =
+                selectedMeme.url;
+
+        }
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("rounds")
+                .update(
+                    updateData
+                )
+                .eq(
+                    "id",
+                    currentRound.id
+                )
+                .eq(
+                    "status",
+                    "selecting"
+                )
+                .select("*")
+                .maybeSingle();
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        if (!data) {
+
+            throw new Error(
+                "This round is no longer accepting submissions."
+            );
+
+        }
+
+
+        currentRound =
+            data;
+
+
+        selectedMeme =
+            null;
+
+
+        disableSelection();
+
+
+        showWaiting(
+            "✅ Your meme has been submitted. Waiting for the other player..."
+        );
+
+
+        // IMPORTANT:
+        // Immediately check the database.
+        // This prevents the game from depending
+        // entirely on realtime.
+        await checkBothSubmitted();
+
+
+    } catch (error) {
+
+        console.error(
+            "Submit meme error:",
+            error
+        );
+
+        alert(
+            "Could not submit meme: " +
+            error.message
+        );
+
+
+        if (submitMemeBtn) {
+
+            submitMemeBtn.disabled =
+                false;
+
+        }
+
+    }
+
+}
+
+
+// ============================================================
+// DISABLE SELECTION
+// ============================================================
+
+function disableSelection() {
+
+    if (memeGrid) {
+
+        memeGrid.style.pointerEvents =
+            "none";
+
+    }
+
+
+    if (submitMemeBtn) {
+
+        submitMemeBtn.disabled =
+            true;
+
+    }
+
+}
+
+
+// ============================================================
+// WAITING
+// ============================================================
+
+function showWaiting(text) {
+
+    if (!waitingArea) return;
+
+
+    waitingArea.classList.remove(
+        "hidden"
+    );
+
+
+    waitingArea.style.display =
+        "block";
+
+
+    if (waitingText) {
+
+        waitingText.textContent =
+            text;
+
+    }
+
+}
+
+
+// ============================================================
+// CHECK BOTH SUBMITTED
+// ============================================================
+
+async function checkBothSubmitted() {
+
+    if (!currentRound) return;
+
+
+    const {
+        data: round,
+        error
+    } =
+        await supabaseClient
+            .from("rounds")
+            .select("*")
+            .eq(
+                "id",
+                currentRound.id
+            )
+            .maybeSingle();
+
+
+    if (error) {
+
+        console.error(
+            "Check both submitted error:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    if (!round) return;
+
+
+    currentRound =
+        round;
+
+
+    const bothSubmitted =
+
+        Boolean(
+            round.player1_meme
+        ) &&
+
+        Boolean(
+            round.player2_meme
+        );
+
+
+    if (
+        bothSubmitted &&
+        round.status ===
+        "selecting"
+    ) {
+
+        // ONLY PLAYER 1 changes the status.
+        // This prevents duplicate updates.
+
+        if (
+
+            currentPlayer &&
+
+            currentPlayer.player_number === 1
+
+        ) {
+
+            await openAudienceVoting();
+
+        }
+
+    }
+
+}
+
+
+// ============================================================
+// OPEN AUDIENCE VOTING
+// ============================================================
+
+async function openAudienceVoting() {
+
+    if (
+
+        !currentRoom ||
+
+        !currentRound ||
+
+        !currentPlayer
+
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        currentPlayer.player_number !== 1
+    ) {
 
         return;
 
@@ -1990,54 +2988,136 @@ async function removeProduct(id) {
 
     try {
 
-        const response =
-            await fetch(
-                GOOGLE_SCRIPT_URL,
-                {
-
-                    method: "POST",
-
-                    body: JSON.stringify({
-
-                        action: "removeProduct",
-
-                        id: id
-
-                    })
-
-                }
-            );
+        const {
+            data: latestRound,
+            error: fetchError
+        } =
+            await supabaseClient
+                .from("rounds")
+                .select("*")
+                .eq(
+                    "id",
+                    currentRound.id
+                )
+                .maybeSingle();
 
 
-        const result =
-            await response.json();
+        if (fetchError) {
 
-
-        if (!result.success) {
-
-            throw new Error(
-                result.error ||
-                "Could not remove product."
-            );
+            throw fetchError;
 
         }
 
 
-        showToast(
-            "Product removed successfully!"
-        );
+        if (!latestRound) return;
 
 
-        await loadProductsFromGoogle();
+        currentRound =
+            latestRound;
+
+
+        if (
+            latestRound.status !==
+            "selecting"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+
+            !latestRound.player1_meme ||
+
+            !latestRound.player2_meme
+
+        ) {
+
+            return;
+
+        }
+
+
+        const {
+            data: votingRound,
+            error: updateError
+        } =
+            await supabaseClient
+                .from("rounds")
+                .update({
+
+                    status:
+                        "voting"
+
+                })
+                .eq(
+                    "id",
+                    latestRound.id
+                )
+                .eq(
+                    "status",
+                    "selecting"
+                )
+                .select("*")
+                .maybeSingle();
+
+
+        if (updateError) {
+
+            throw updateError;
+
+        }
+
+
+        if (votingRound) {
+
+            currentRound =
+                votingRound;
+
+        } else {
+
+            const {
+                data: alreadyVoting,
+                error: reloadError
+            } =
+                await supabaseClient
+                    .from("rounds")
+                    .select("*")
+                    .eq(
+                        "id",
+                        latestRound.id
+                    )
+                    .maybeSingle();
+
+
+            if (reloadError) {
+
+                throw reloadError;
+
+            }
+
+
+            if (alreadyVoting) {
+
+                currentRound =
+                    alreadyVoting;
+
+            }
+
+        }
+
+
+        // Make sure Player 1 immediately
+        // changes its own screen.
+        await showPlayerVoting();
 
 
     } catch (error) {
 
-        console.error(error);
-
-        alert(
-            "Could not remove product.\n\n" +
-            error.message
+        console.error(
+            "Open voting error:",
+            error
         );
 
     }
@@ -2045,37 +3125,3240 @@ async function removeProduct(id) {
 }
 
 
+// ============================================================
+// SHOW PLAYER VOTING
+// ============================================================
 
-// ==========================================
-// TOAST
-// ==========================================
+async function showPlayerVoting() {
 
-function showToast(message) {
+    if (!currentRound) return;
 
-    const toast =
-        document.getElementById("toast");
 
-    const toastMessage =
-        document.getElementById(
-            "toast-message"
+    disableSelection();
+
+
+    if (selectionArea) {
+
+        selectionArea.style.display =
+            "none";
+
+    }
+
+
+    if (memeGrid) {
+
+        memeGrid.style.display =
+            "none";
+
+    }
+
+
+    if (submitMemeBtn) {
+
+        submitMemeBtn.style.display =
+            "none";
+
+    }
+
+
+    if (waitingArea) {
+
+        waitingArea.classList.remove(
+            "hidden"
         );
 
+        waitingArea.style.display =
+            "block";
 
-    toastMessage.innerText =
-        message;
-
-
-    toast.classList.add("show");
+    }
 
 
-    setTimeout(function() {
+    if (waitingText) {
 
-        toast.classList.remove("show");
+        waitingText.textContent =
+            "🗳️ Audience is voting...";
 
-    }, 2500);
+    }
+
+
+    if (revealArea) {
+
+        revealArea.classList.remove(
+            "hidden"
+        );
+
+        revealArea.style.display =
+            "block";
+
+    }
+
+
+    if (player1Meme) {
+
+        player1Meme.src =
+            currentRound.player1_meme ||
+            "";
+
+    }
+
+
+    if (player2Meme) {
+
+        player2Meme.src =
+            currentRound.player2_meme ||
+            "";
+
+    }
+
+
+    createPlayerVotingUI();
+
+
+    startVotingCountdown();
 
 }
 
+
+// ============================================================
+// PLAYER VOTING UI
+// ============================================================
+
+function createPlayerVotingUI() {
+
+    let box =
+        $("playerVotingStatus");
+
+
+    if (!box) {
+
+        box =
+            document.createElement(
+                "div"
+            );
+
+
+        box.id =
+            "playerVotingStatus";
+
+
+        box.innerHTML = `
+
+            <h2>
+                🗳️ Audience is voting...
+            </h2>
+
+            <p>
+                The audience is choosing
+                the funniest meme.
+            </p>
+
+            <div
+                id="playerVotingCountdown"
+                style="
+                    font-size:40px;
+                    font-weight:bold;
+                    margin:15px 0;
+                "
+            >
+                ${VOTING_SECONDS}
+            </div>
+
+        `;
+
+
+        if (gameScreen) {
+
+            gameScreen.appendChild(
+                box
+            );
+
+        }
+
+    }
+
+
+    box.style.display =
+        "block";
+
+}
+
+
+// ============================================================
+// VOTING COUNTDOWN
+// ============================================================
+
+function startVotingCountdown() {
+
+    stopVotingTimer();
+
+
+    votingSeconds =
+        VOTING_SECONDS;
+
+
+    const countdown =
+        $("playerVotingCountdown");
+
+
+    if (countdown) {
+
+        countdown.textContent =
+            votingSeconds;
+
+    }
+
+
+    votingTimer =
+        setInterval(
+            async () => {
+
+                votingSeconds--;
+
+
+                if (countdown) {
+
+                    countdown.textContent =
+                        Math.max(
+                            0,
+                            votingSeconds
+                        );
+
+                }
+
+
+                if (
+                    votingSeconds <= 0
+                ) {
+
+                    stopVotingTimer();
+
+
+                    // ONLY PLAYER 1
+                    // finishes the round.
+
+                    if (
+
+                        currentPlayer &&
+
+                        currentPlayer.player_number === 1
+
+                    ) {
+
+                        await finishVoting();
+
+                    }
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+// ============================================================
+// FINISH VOTING
+// ============================================================
+
+async function finishVoting() {
+
+    if (
+
+        finishingRound ||
+
+        !currentRound ||
+
+        !currentPlayer
+
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        currentPlayer.player_number !== 1
+    ) {
+
+        return;
+
+    }
+
+
+    finishingRound =
+        true;
+
+
+    try {
+
+        const {
+            data: round,
+            error: roundError
+        } =
+            await supabaseClient
+                .from("rounds")
+                .select("*")
+                .eq(
+                    "id",
+                    currentRound.id
+                )
+                .maybeSingle();
+
+
+        if (roundError) {
+
+            throw roundError;
+
+        }
+
+
+        if (!round) return;
+
+
+        currentRound =
+            round;
+
+
+        if (
+            round.status ===
+            "finished"
+        ) {
+
+            await showWinner();
+
+            return;
+
+        }
+
+
+        if (
+            round.status !==
+            "voting"
+        ) {
+
+            return;
+
+        }
+
+
+        const {
+            data: votes,
+            error: votesError
+        } =
+            await supabaseClient
+                .from("votes")
+                .select(
+                    "voted_for"
+                )
+                .eq(
+                    "round_id",
+                    round.id
+                );
+
+
+        if (votesError) {
+
+            throw votesError;
+
+        }
+
+
+        let player1Votes = 0;
+        let player2Votes = 0;
+
+
+        (votes || []).forEach(
+            vote => {
+
+                const selected =
+                    Number(
+                        vote.voted_for
+                    );
+
+
+                if (
+                    selected === 1
+                ) {
+
+                    player1Votes++;
+
+                }
+
+
+                if (
+                    selected === 2
+                ) {
+
+                    player2Votes++;
+
+                }
+
+            }
+        );
+
+
+        let winner = 0;
+
+
+        if (
+            player1Votes >
+            player2Votes
+        ) {
+
+            winner = 1;
+
+        }
+
+        else if (
+            player2Votes >
+            player1Votes
+        ) {
+
+            winner = 2;
+
+        }
+
+        else {
+
+            winner = 0;
+
+        }
+
+
+        // --------------------------------------------------------
+        // Mark finished.
+        // --------------------------------------------------------
+
+        const {
+            data: finishedRound,
+            error: finishError
+        } =
+            await supabaseClient
+                .from("rounds")
+                .update({
+
+                    status:
+                        "finished",
+
+                    winner:
+                        winner
+
+                })
+                .eq(
+                    "id",
+                    round.id
+                )
+                .eq(
+                    "status",
+                    "voting"
+                )
+                .select("*")
+                .maybeSingle();
+
+
+        if (finishError) {
+
+            throw finishError;
+
+        }
+
+
+        if (finishedRound) {
+
+            currentRound =
+                finishedRound;
+
+        } else {
+
+            const {
+                data: alreadyFinished,
+                error: reloadError
+            } =
+                await supabaseClient
+                    .from("rounds")
+                    .select("*")
+                    .eq(
+                        "id",
+                        round.id
+                    )
+                    .maybeSingle();
+
+
+            if (reloadError) {
+
+                throw reloadError;
+
+            }
+
+
+            if (alreadyFinished) {
+
+                currentRound =
+                    alreadyFinished;
+
+            }
+
+        }
+
+
+        // --------------------------------------------------------
+        // Update winner score ONCE.
+        // --------------------------------------------------------
+
+        if (
+            winner === 1 ||
+            winner === 2
+        ) {
+
+            await updateWinnerScore(
+                winner
+            );
+
+        }
+
+
+        await showWinner(
+            player1Votes,
+            player2Votes
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Finish voting error:",
+            error
+        );
+
+        alert(
+            "Could not finish voting: " +
+            error.message
+        );
+
+    } finally {
+
+        finishingRound =
+            false;
+
+    }
+
+}
+
+
+// ============================================================
+// UPDATE WINNER SCORE
+// ============================================================
+
+async function updateWinnerScore(
+    winnerNumber
+) {
+
+    if (!currentRoom) return;
+
+
+    const {
+        data: players,
+        error
+    } =
+        await supabaseClient
+            .from("players")
+            .select("*")
+            .eq(
+                "room_id",
+                currentRoom.id
+            )
+            .eq(
+                "player_number",
+                winnerNumber
+            );
+
+
+    if (error) {
+
+        throw error;
+
+    }
+
+
+    if (
+        !players ||
+        players.length === 0
+    ) {
+
+        throw new Error(
+            "Winner player could not be found."
+        );
+
+    }
+
+
+    const winnerPlayer =
+        players[0];
+
+
+    const newScore =
+        Number(
+            winnerPlayer.score || 0
+        ) + 1;
+
+
+    const {
+        error: updateError
+    } =
+        await supabaseClient
+            .from("players")
+            .update({
+
+                score:
+                    newScore
+
+            })
+            .eq(
+                "id",
+                winnerPlayer.id
+            );
+
+
+    if (updateError) {
+
+        throw updateError;
+
+    }
+
+
+    console.log(
+        `Player ${winnerNumber} score updated to ${newScore}`
+    );
+
+}
+
+
+// ============================================================
+// SHOW WINNER
+// ============================================================
+
+async function showWinner(
+    player1Votes = null,
+    player2Votes = null
+) {
+
+    if (!currentRound) return;
+
+
+    stopVotingTimer();
+
+
+    if (selectionArea) {
+
+        selectionArea.style.display =
+            "none";
+
+    }
+
+
+    if (memeGrid) {
+
+        memeGrid.style.display =
+            "none";
+
+    }
+
+
+    if (submitMemeBtn) {
+
+        submitMemeBtn.style.display =
+            "none";
+
+    }
+
+
+    if (waitingArea) {
+
+        waitingArea.classList.add(
+            "hidden"
+        );
+
+        waitingArea.style.display =
+            "none";
+
+    }
+
+
+    if (revealArea) {
+
+        revealArea.classList.remove(
+            "hidden"
+        );
+
+        revealArea.style.display =
+            "block";
+
+    }
+
+
+    if (player1Meme) {
+
+        player1Meme.src =
+            currentRound.player1_meme ||
+            "";
+
+    }
+
+
+    if (player2Meme) {
+
+        player2Meme.src =
+            currentRound.player2_meme ||
+            "";
+
+    }
+
+
+    if (
+        player1Votes === null ||
+        player2Votes === null
+    ) {
+
+        const {
+            data: votes
+        } =
+            await supabaseClient
+                .from("votes")
+                .select(
+                    "voted_for"
+                )
+                .eq(
+                    "round_id",
+                    currentRound.id
+                );
+
+
+        player1Votes = 0;
+        player2Votes = 0;
+
+
+        (votes || []).forEach(
+            vote => {
+
+                const value =
+                    Number(
+                        vote.voted_for
+                    );
+
+
+                if (
+                    value === 1
+                ) {
+
+                    player1Votes++;
+
+                }
+
+
+                if (
+                    value === 2
+                ) {
+
+                    player2Votes++;
+
+                }
+
+            }
+        );
+
+    }
+
+
+    hideWinnerBox();
+
+
+    const winner =
+        Number(
+            currentRound.winner || 0
+        );
+
+
+    const winnerBox =
+        document.createElement(
+            "div"
+        );
+
+
+    winnerBox.id =
+        "winnerMessage";
+
+
+    winnerBox.style.textAlign =
+        "center";
+
+    winnerBox.style.marginTop =
+        "20px";
+
+
+    if (winner === 1) {
+
+        winnerBox.innerHTML = `
+
+            <h2>
+                🏆 PLAYER 1 WINS!
+            </h2>
+
+            <p>
+                Player 1:
+                <strong>
+                    ${player1Votes}
+                </strong>
+                votes
+            </p>
+
+            <p>
+                Player 2:
+                <strong>
+                    ${player2Votes}
+                </strong>
+                votes
+            </p>
+
+        `;
+
+    }
+
+    else if (winner === 2) {
+
+        winnerBox.innerHTML = `
+
+            <h2>
+                🏆 PLAYER 2 WINS!
+            </h2>
+
+            <p>
+                Player 1:
+                <strong>
+                    ${player1Votes}
+                </strong>
+                votes
+            </p>
+
+            <p>
+                Player 2:
+                <strong>
+                    ${player2Votes}
+                </strong>
+                votes
+            </p>
+
+        `;
+
+    }
+
+    else {
+
+        winnerBox.innerHTML = `
+
+            <h2>
+                🤝 IT'S A DRAW!
+            </h2>
+
+            <p>
+                Player 1:
+                <strong>
+                    ${player1Votes}
+                </strong>
+                votes
+            </p>
+
+            <p>
+                Player 2:
+                <strong>
+                    ${player2Votes}
+                </strong>
+                votes
+            </p>
+
+        `;
+
+    }
+
+
+    if (revealArea) {
+
+        revealArea.appendChild(
+            winnerBox
+        );
+
+    }
+
+
+    await displayScoreboard();
+
+
+    scheduleNextRound();
+
+}
+
+
+// ============================================================
+// HIDE WINNER
+// ============================================================
+
+function hideWinnerBox() {
+
+    const winnerBox =
+        $("winnerMessage");
+
+    if (winnerBox) {
+
+        winnerBox.remove();
+
+    }
+
+
+    const scoreboard =
+        $("scoreBoard");
+
+    if (scoreboard) {
+
+        scoreboard.remove();
+
+    }
+
+
+    const nextMessage =
+        $("nextRoundMessage");
+
+    if (nextMessage) {
+
+        nextMessage.remove();
+
+    }
+
+}
+
+
+// ============================================================
+// SCOREBOARD
+// ============================================================
+
+async function displayScoreboard() {
+
+    if (
+        !currentRoom ||
+        !revealArea
+    ) {
+
+        return;
+
+    }
+
+
+    const {
+        data: players,
+        error
+    } =
+        await supabaseClient
+            .from("players")
+            .select(
+                "name, player_number, score"
+            )
+            .eq(
+                "room_id",
+                currentRoom.id
+            )
+            .order(
+                "player_number",
+                {
+                    ascending: true
+                }
+            );
+
+
+    if (error) {
+
+        console.error(
+            "Scoreboard error:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    const scoreboard =
+        document.createElement(
+            "div"
+        );
+
+
+    scoreboard.id =
+        "scoreBoard";
+
+
+    scoreboard.style.textAlign =
+        "center";
+
+    scoreboard.style.marginTop =
+        "20px";
+
+
+    scoreboard.innerHTML = `
+
+        <h3>
+            📊 SCOREBOARD
+        </h3>
+
+        ${(players || [])
+            .map(
+                player => `
+
+                    <p>
+
+                        Player
+                        ${player.player_number}
+
+                        —
+                        ${escapeHTML(
+                            player.name
+                        )}
+
+                        :
+
+                        <strong>
+                            ${Number(
+                                player.score || 0
+                            )}
+                        </strong>
+
+                    </p>
+
+                `
+            )
+            .join("")}
+
+    `;
+
+
+    revealArea.appendChild(
+        scoreboard
+    );
+
+}
+
+
+// ============================================================
+// NEXT ROUND
+// ============================================================
+
+function scheduleNextRound() {
+
+    if (
+        !currentPlayer ||
+        currentPlayer.player_number !== 1
+    ) {
+
+        return;
+
+    }
+
+
+    stopNextRoundTimer();
+
+
+    let seconds =
+        NEXT_ROUND_SECONDS;
+
+
+    const message =
+        document.createElement(
+            "p"
+        );
+
+
+    message.id =
+        "nextRoundMessage";
+
+
+    message.style.textAlign =
+        "center";
+
+
+    message.textContent =
+        `🎮 Next round starting in ${seconds} seconds...`;
+
+
+    if (revealArea) {
+
+        revealArea.appendChild(
+            message
+        );
+
+    }
+
+
+    nextRoundTimer =
+        setInterval(
+            async () => {
+
+                seconds--;
+
+
+                message.textContent =
+                    `🎮 Next round starting in ${Math.max(
+                        0,
+                        seconds
+                    )} seconds...`;
+
+
+                if (
+                    seconds <= 0
+                ) {
+
+                    stopNextRoundTimer();
+
+
+                    await createNextRound();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+// ============================================================
+// CREATE NEXT ROUND
+// ============================================================
+
+async function createNextRound() {
+
+    if (
+
+        creatingNextRound ||
+
+        !currentRoom ||
+
+        !currentRound ||
+
+        !currentPlayer
+
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        currentPlayer.player_number !== 1
+    ) {
+
+        return;
+
+    }
+
+
+    creatingNextRound =
+        true;
+
+
+    try {
+
+        const nextNumber =
+            Number(
+                currentRound.round_number
+            ) + 1;
+
+
+        // --------------------------------------------------------
+        // CHECK EXISTING ROUND
+        // --------------------------------------------------------
+
+        const {
+            data: existingRounds,
+            error: checkError
+        } =
+            await supabaseClient
+                .from("rounds")
+                .select("*")
+                .eq(
+                    "room_id",
+                    currentRoom.id
+                )
+                .eq(
+                    "round_number",
+                    nextNumber
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: true
+                    }
+                );
+
+
+        if (checkError) {
+
+            throw checkError;
+
+        }
+
+
+        let nextRound = null;
+
+
+        if (
+            existingRounds &&
+            existingRounds.length > 0
+        ) {
+
+            nextRound =
+                existingRounds[0];
+
+        }
+
+
+        // --------------------------------------------------------
+        // CREATE IF NEEDED
+        // --------------------------------------------------------
+
+        if (!nextRound) {
+
+            const scenario =
+                getRandomScenario();
+
+
+            const {
+                data: createdRound,
+                error: insertError
+            } =
+                await supabaseClient
+                    .from("rounds")
+                    .insert({
+
+                        room_id:
+                            currentRoom.id,
+
+                        round_number:
+                            nextNumber,
+
+                        scenario:
+                            scenario,
+
+                        status:
+                            "selecting",
+
+                        player1_meme:
+                            null,
+
+                        player2_meme:
+                            null,
+
+                        winner:
+                            null
+
+                    })
+                    .select("*")
+                    .maybeSingle();
+
+
+            if (insertError) {
+
+                // If another request created it,
+                // load it instead.
+
+                if (
+                    insertError.code ===
+                    "23505"
+                ) {
+
+                    const {
+                        data: retryRounds,
+                        error: retryError
+                    } =
+                        await supabaseClient
+                            .from("rounds")
+                            .select("*")
+                            .eq(
+                                "room_id",
+                                currentRoom.id
+                            )
+                            .eq(
+                                "round_number",
+                                nextNumber
+                            )
+                            .order(
+                                "created_at",
+                                {
+                                    ascending: true
+                                }
+                            );
+
+
+                    if (retryError) {
+
+                        throw retryError;
+
+                    }
+
+
+                    if (
+                        retryRounds &&
+                        retryRounds.length > 0
+                    ) {
+
+                        nextRound =
+                            retryRounds[0];
+
+                    } else {
+
+                        throw insertError;
+
+                    }
+
+                } else {
+
+                    throw insertError;
+
+                }
+
+            } else {
+
+                nextRound =
+                    createdRound;
+
+            }
+
+        }
+
+
+        if (!nextRound) {
+
+            throw new Error(
+                "Next round could not be created."
+            );
+
+        }
+
+
+        // --------------------------------------------------------
+        // UPDATE ROOM
+        // --------------------------------------------------------
+
+        const {
+            data: updatedRoom,
+            error: roomError
+        } =
+            await supabaseClient
+                .from("rooms")
+                .update({
+
+                    status:
+                        "playing",
+
+                    current_round:
+                        nextNumber
+
+                })
+                .eq(
+                    "id",
+                    currentRoom.id
+                )
+                .select("*")
+                .maybeSingle();
+
+
+        if (roomError) {
+
+            throw roomError;
+
+        }
+
+
+        if (updatedRoom) {
+
+            currentRoom =
+                updatedRoom;
+
+        }
+
+
+        currentRound =
+            nextRound;
+
+
+        selectedMeme =
+            null;
+
+
+        finishingRound =
+            false;
+
+
+        await showGame();
+
+
+    } catch (error) {
+
+        console.error(
+            "Create next round error:",
+            error
+        );
+
+        alert(
+            "Could not create next round: " +
+            error.message
+        );
+
+    } finally {
+
+        creatingNextRound =
+            false;
+
+    }
+
+}
+
+
+// ============================================================
+// LOAD CURRENT ROUND
+// ============================================================
+
+async function loadCurrentRound() {
+
+    if (!currentRoom) return;
+
+
+    try {
+
+        const {
+            data: rounds,
+            error
+        } =
+            await supabaseClient
+                .from("rounds")
+                .select("*")
+                .eq(
+                    "room_id",
+                    currentRoom.id
+                )
+                .eq(
+                    "round_number",
+                    currentRoom.current_round
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: true
+                    }
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        if (
+            !rounds ||
+            rounds.length === 0
+        ) {
+
+            return;
+
+        }
+
+
+        currentRound =
+            rounds[0];
+
+
+        await showGame();
+
+
+    } catch (error) {
+
+        console.error(
+            "Load current round error:",
+            error
+        );
+
+    }
+
+}
+
+
+// ============================================================
+// PLAYER REALTIME
+// ============================================================
+
+async function setupPlayerRealtime() {
+
+    if (!currentRoom) return;
+
+
+    await removeRealtimeChannels();
+
+
+    // --------------------------------------------------------
+    // PLAYERS
+    // --------------------------------------------------------
+
+    playersChannel =
+        supabaseClient
+            .channel(
+                `players-${currentRoom.id}-${Date.now()}`
+            )
+            .on(
+                "postgres_changes",
+                {
+
+                    event: "*",
+
+                    schema: "public",
+
+                    table: "players",
+
+                    filter:
+                        `room_id=eq.${currentRoom.id}`
+
+                },
+                async () => {
+
+                    await loadPlayers();
+
+                }
+            )
+            .subscribe();
+
+
+    // --------------------------------------------------------
+    // ROOMS
+    // --------------------------------------------------------
+
+    roomsChannel =
+        supabaseClient
+            .channel(
+                `rooms-${currentRoom.id}-${Date.now()}`
+            )
+            .on(
+                "postgres_changes",
+                {
+
+                    event: "UPDATE",
+
+                    schema: "public",
+
+                    table: "rooms",
+
+                    filter:
+                        `id=eq.${currentRoom.id}`
+
+                },
+                async payload => {
+
+                    if (!payload.new) return;
+
+
+                    currentRoom =
+                        payload.new;
+
+
+                    if (
+                        currentRoom.status ===
+                        "playing"
+                    ) {
+
+                        await loadCurrentRound();
+
+                    }
+
+                }
+            )
+            .subscribe();
+
+
+    // --------------------------------------------------------
+    // ROUNDS
+    // --------------------------------------------------------
+
+    roundsChannel =
+        supabaseClient
+            .channel(
+                `rounds-${currentRoom.id}-${Date.now()}`
+            )
+            .on(
+                "postgres_changes",
+                {
+
+                    event: "*",
+
+                    schema: "public",
+
+                    table: "rounds",
+
+                    filter:
+                        `room_id=eq.${currentRoom.id}`
+
+                },
+                async payload => {
+
+                    if (!payload.new) return;
+
+
+                    const incoming =
+                        payload.new;
+
+
+                    if (
+
+                        currentRound &&
+
+                        Number(
+                            incoming.round_number
+                        ) <
+
+                        Number(
+                            currentRound.round_number
+                        )
+
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    currentRound =
+                        incoming;
+
+
+                    console.log(
+                        "Round realtime:",
+                        currentRound
+                    );
+
+
+                    if (
+                        incoming.status ===
+                        "selecting"
+                    ) {
+
+                        await showGame();
+
+
+                        // Player 1 checks in case
+                        // both submissions already exist.
+
+                        if (
+
+                            currentPlayer &&
+
+                            currentPlayer.player_number === 1 &&
+
+                            incoming.player1_meme &&
+
+                            incoming.player2_meme
+
+                        ) {
+
+                            await openAudienceVoting();
+
+                        }
+
+                    }
+
+
+                    else if (
+                        incoming.status ===
+                        "voting"
+                    ) {
+
+                        // THIS IS THE IMPORTANT FIX.
+                        //
+                        // Both Player 1 and Player 2
+                        // receive the voting state.
+
+                        await showPlayerVoting();
+
+                    }
+
+
+                    else if (
+                        incoming.status ===
+                        "finished"
+                    ) {
+
+                        await showWinner();
+
+                    }
+
+                }
+            )
+            .subscribe();
+
+}
+
+
+// ============================================================
+// AUDIENCE JOIN SCREEN
+// ============================================================
+
+function showAudienceJoin() {
+
+    if (!audienceJoinScreen) {
+
+        alert(
+            "Audience screen is not available in the HTML yet."
+        );
+
+        return;
+
+    }
+
+
+    showScreen(
+        audienceJoinScreen
+    );
+
+
+    if (audienceRoomCodeInput) {
+
+        audienceRoomCodeInput.value = "";
+
+        setTimeout(
+            () =>
+                audienceRoomCodeInput.focus(),
+            100
+        );
+
+    }
+
+}
+
+
+// ============================================================
+// JOIN AUDIENCE
+// ============================================================
+
+async function joinAudience() {
+
+    if (
+        !audienceRoomCodeInput
+    ) {
+
+        return;
+
+    }
+
+
+    const code =
+        audienceRoomCodeInput.value
+            .trim()
+            .toUpperCase();
+
+
+    if (!code) {
+
+        showMessage(
+            "Please enter a room code."
+        );
+
+        return;
+
+    }
+
+
+    let name =
+        prompt(
+            "Enter your audience name:"
+        );
+
+
+    if (
+        !name ||
+        !name.trim()
+    ) {
+
+        return;
+
+    }
+
+
+    name =
+        name.trim();
+
+
+    if (joinAudienceBtn) {
+
+        joinAudienceBtn.disabled =
+            true;
+
+    }
+
+
+    try {
+
+        clearLocalSession();
+
+
+        const {
+            data: room,
+            error: roomError
+        } =
+            await supabaseClient
+                .from("rooms")
+                .select("*")
+                .eq(
+                    "room_code",
+                    code
+                )
+                .maybeSingle();
+
+
+        if (roomError) {
+
+            throw roomError;
+
+        }
+
+
+        if (!room) {
+
+            throw new Error(
+                "Game room not found."
+            );
+
+        }
+
+
+        const {
+            data: audienceMember,
+            error: audienceError
+        } =
+            await supabaseClient
+                .from("audience")
+                .insert({
+
+                    room_id:
+                        room.id,
+
+                    name:
+                        name,
+
+                    connected:
+                        true
+
+                })
+                .select("*")
+                .maybeSingle();
+
+
+        if (audienceError) {
+
+            throw audienceError;
+
+        }
+
+
+        if (!audienceMember) {
+
+            throw new Error(
+                "Could not create audience member."
+            );
+
+        }
+
+
+        currentRoom =
+            room;
+
+        currentAudience =
+            audienceMember;
+
+        currentPlayer =
+            null;
+
+
+        localStorage.setItem(
+            "memeGameRoomId",
+            room.id
+        );
+
+        localStorage.setItem(
+            "memeGameAudienceId",
+            audienceMember.id
+        );
+
+
+        if (
+            audienceRoomCodeDisplay
+        ) {
+
+            audienceRoomCodeDisplay.textContent =
+                room.room_code;
+
+        }
+
+
+        showScreen(
+            audienceScreen
+        );
+
+
+        await loadAudience();
+
+
+        await setupAudienceRealtime();
+
+
+        await loadCurrentRoundForAudience();
+
+
+    } catch (error) {
+
+        console.error(
+            "Join audience error:",
+            error
+        );
+
+        showMessage(
+            "Could not join audience: " +
+            error.message
+        );
+
+    } finally {
+
+        if (joinAudienceBtn) {
+
+            joinAudienceBtn.disabled =
+                false;
+
+        }
+
+    }
+
+}
+
+
+// ============================================================
+// LOAD AUDIENCE COUNT
+// ============================================================
+
+async function loadAudience() {
+
+    if (!currentRoom) return;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("audience")
+            .select("id")
+            .eq(
+                "room_id",
+                currentRoom.id
+            )
+            .eq(
+                "connected",
+                true
+            );
+
+
+    if (error) {
+
+        console.error(
+            "Load audience error:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    if (audienceCount) {
+
+        audienceCount.textContent =
+            data
+                ? data.length
+                : 0;
+
+    }
+
+}
+
+
+// ============================================================
+// LOAD CURRENT ROUND FOR AUDIENCE
+// ============================================================
+
+async function loadCurrentRoundForAudience() {
+
+    if (!currentRoom) return;
+
+
+    const {
+        data: room,
+        error: roomError
+    } =
+        await supabaseClient
+            .from("rooms")
+            .select("*")
+            .eq(
+                "id",
+                currentRoom.id
+            )
+            .maybeSingle();
+
+
+    if (roomError) {
+
+        console.error(
+            roomError
+        );
+
+        return;
+
+    }
+
+
+    if (room) {
+
+        currentRoom =
+            room;
+
+    }
+
+
+    const {
+        data: rounds,
+        error: roundError
+    } =
+        await supabaseClient
+            .from("rounds")
+            .select("*")
+            .eq(
+                "room_id",
+                currentRoom.id
+            )
+            .eq(
+                "round_number",
+                currentRoom.current_round
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: true
+                }
+            );
+
+
+    if (roundError) {
+
+        console.error(
+            roundError
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !rounds ||
+        rounds.length === 0
+    ) {
+
+        showAudienceWaiting(
+            "Waiting for the game to start..."
+        );
+
+        return;
+
+    }
+
+
+    currentRound =
+        rounds[0];
+
+
+    await renderAudienceRound(
+        currentRound
+    );
+
+}
+
+
+// ============================================================
+// AUDIENCE WAITING
+// ============================================================
+
+function showAudienceWaiting(
+    text
+) {
+
+    if (audienceWaitingArea) {
+
+        audienceWaitingArea.style.display =
+            "block";
+
+    }
+
+
+    if (audienceGameArea) {
+
+        audienceGameArea.style.display =
+            "none";
+
+    }
+
+
+    if (audienceWaitingText) {
+
+        audienceWaitingText.textContent =
+            text;
+
+    }
+
+}
+
+
+// ============================================================
+// RENDER AUDIENCE ROUND
+// ============================================================
+
+async function renderAudienceRound(
+    round
+) {
+
+    if (!round) return;
+
+
+    currentRound =
+        round;
+
+
+    if (audienceWaitingArea) {
+
+        audienceWaitingArea.style.display =
+            "none";
+
+    }
+
+
+    if (audienceGameArea) {
+
+        audienceGameArea.style.display =
+            "block";
+
+    }
+
+
+    if (audienceRoundNumber) {
+
+        audienceRoundNumber.textContent =
+            `Round ${round.round_number}`;
+
+    }
+
+
+    if (audienceScenarioText) {
+
+        audienceScenarioText.textContent =
+            round.scenario;
+
+    }
+
+
+    if (round.player1_meme) {
+
+        if (audiencePlayer1Meme) {
+
+            audiencePlayer1Meme.src =
+                round.player1_meme;
+
+        }
+
+    }
+
+
+    if (round.player2_meme) {
+
+        if (audiencePlayer2Meme) {
+
+            audiencePlayer2Meme.src =
+                round.player2_meme;
+
+        }
+
+    }
+
+
+    // --------------------------------------------------------
+    // SELECTING
+    // --------------------------------------------------------
+
+    if (
+        round.status ===
+        "selecting"
+    ) {
+
+        if (audienceVotingArea) {
+
+            audienceVotingArea.style.display =
+                "none";
+
+        }
+
+
+        if (audienceWaitingForPlayers) {
+
+            audienceWaitingForPlayers.style.display =
+                "block";
+
+        }
+
+
+        if (audiencePlayerStatus) {
+
+            audiencePlayerStatus.style.display =
+                "block";
+
+            audiencePlayerStatus.textContent =
+                "Waiting for both players to submit their memes...";
+
+        }
+
+
+        return;
+
+    }
+
+
+    // --------------------------------------------------------
+    // VOTING
+    // --------------------------------------------------------
+
+    if (
+        round.status ===
+        "voting"
+    ) {
+
+        if (audienceWaitingForPlayers) {
+
+            audienceWaitingForPlayers.style.display =
+                "none";
+
+        }
+
+
+        if (audiencePlayerStatus) {
+
+            audiencePlayerStatus.style.display =
+                "none";
+
+        }
+
+
+        if (audienceVotingArea) {
+
+            audienceVotingArea.style.display =
+                "block";
+
+        }
+
+
+        enableAudienceVoting();
+
+
+        await loadVoteCounts();
+
+
+        startAudienceCountdown();
+
+
+        return;
+
+    }
+
+
+    // --------------------------------------------------------
+    // FINISHED
+    // --------------------------------------------------------
+
+    if (
+        round.status ===
+        "finished"
+    ) {
+
+        await showAudienceWinner(
+            round
+        );
+
+    }
+
+}
+
+
+// ============================================================
+// ENABLE AUDIENCE VOTING
+// ============================================================
+
+function enableAudienceVoting() {
+
+    audienceHasVoted =
+        false;
+
+
+    if (votePlayer1Btn) {
+
+        votePlayer1Btn.disabled =
+            false;
+
+    }
+
+
+    if (votePlayer2Btn) {
+
+        votePlayer2Btn.disabled =
+            false;
+
+    }
+
+
+    if (audienceVoteStatus) {
+
+        audienceVoteStatus.textContent =
+            "Choose the meme you think is better.";
+
+    }
+
+}
+
+
+// ============================================================
+// SUBMIT AUDIENCE VOTE
+// ============================================================
+
+async function submitAudienceVote(
+    playerNumber
+) {
+
+    if (
+        !currentAudience
+    ) {
+
+        showMessage(
+            "Audience identity not found."
+        );
+
+        return;
+
+    }
+
+
+    if (!currentRoom) return;
+
+
+    if (!currentRound) return;
+
+
+    if (
+        currentRound.status !==
+        "voting"
+    ) {
+
+        return;
+
+    }
+
+
+    if (audienceHasVoted) {
+
+        return;
+
+    }
+
+
+    audienceHasVoted =
+        true;
+
+
+    if (votePlayer1Btn) {
+
+        votePlayer1Btn.disabled =
+            true;
+
+    }
+
+
+    if (votePlayer2Btn) {
+
+        votePlayer2Btn.disabled =
+            true;
+
+    }
+
+
+    try {
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("votes")
+                .insert({
+
+                    room_id:
+                        currentRoom.id,
+
+                    round_id:
+                        currentRound.id,
+
+                    // IMPORTANT:
+                    // Database column is audience_id.
+                    // NOT voter_id.
+
+                    audience_id:
+                        currentAudience.id,
+
+                    voted_for:
+                        playerNumber
+
+                });
+
+
+        if (error) {
+
+            if (
+                error.code ===
+                "23505"
+            ) {
+
+                if (
+                    audienceVoteStatus
+                ) {
+
+                    audienceVoteStatus.textContent =
+                        "✅ You have already voted.";
+
+                }
+
+                return;
+
+            }
+
+
+            throw error;
+
+        }
+
+
+        if (
+            audienceVoteStatus
+        ) {
+
+            audienceVoteStatus.textContent =
+                "✅ Your vote has been submitted!";
+
+        }
+
+
+        await loadVoteCounts();
+
+
+    } catch (error) {
+
+        console.error(
+            "Submit audience vote error:",
+            error
+        );
+
+
+        audienceHasVoted =
+            false;
+
+
+        if (
+            audienceVoteStatus
+        ) {
+
+            audienceVoteStatus.textContent =
+                "Could not submit vote: " +
+                error.message;
+
+        }
+
+
+        if (votePlayer1Btn) {
+
+            votePlayer1Btn.disabled =
+                false;
+
+        }
+
+
+        if (votePlayer2Btn) {
+
+            votePlayer2Btn.disabled =
+                false;
+
+        }
+
+    }
+
+}
+
+
+// ============================================================
+// LOAD VOTE COUNTS
+// ============================================================
+
+async function loadVoteCounts() {
+
+    if (!currentRound) return;
+
+
+    const {
+        data: votes,
+        error
+    } =
+        await supabaseClient
+            .from("votes")
+            .select(
+                "voted_for"
+            )
+            .eq(
+                "round_id",
+                currentRound.id
+            );
+
+
+    if (error) {
+
+        console.error(
+            "Load vote count error:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    let p1 = 0;
+    let p2 = 0;
+
+
+    (votes || []).forEach(
+        vote => {
+
+            const value =
+                Number(
+                    vote.voted_for
+                );
+
+
+            if (
+                value === 1
+            ) {
+
+                p1++;
+
+            }
+
+
+            if (
+                value === 2
+            ) {
+
+                p2++;
+
+            }
+
+        }
+    );
+
+
+    if (player1VoteCount) {
+
+        player1VoteCount.textContent =
+            p1;
+
+    }
+
+
+    if (player2VoteCount) {
+
+        player2VoteCount.textContent =
+            p2;
+
+    }
+
+}
+
+
+// ============================================================
+// AUDIENCE COUNTDOWN
+// ============================================================
+
+function startAudienceCountdown() {
+
+    stopVotingTimer();
+
+
+    let seconds =
+        VOTING_SECONDS;
+
+
+    let countdown =
+        $("audienceVotingCountdown");
+
+
+    // If HTML doesn't contain a countdown,
+    // create one automatically.
+
+    if (
+        !countdown &&
+        audienceVotingArea
+    ) {
+
+        countdown =
+            document.createElement(
+                "div"
+            );
+
+
+        countdown.id =
+            "audienceVotingCountdown";
+
+
+        countdown.style.fontSize =
+            "40px";
+
+
+        countdown.style.fontWeight =
+            "bold";
+
+
+        countdown.style.textAlign =
+            "center";
+
+
+        countdown.style.margin =
+            "15px 0";
+
+
+        audienceVotingArea.appendChild(
+            countdown
+        );
+
+    }
+
+
+    if (countdown) {
+
+        countdown.textContent =
+            `Voting: ${seconds}s`;
+
+    }
+
+
+    votingTimer =
+        setInterval(
+            () => {
+
+                seconds--;
+
+
+                if (countdown) {
+
+                    countdown.textContent =
+                        `Voting: ${Math.max(
+                            0,
+                            seconds
+                        )}s`;
+
+                }
+
+
+                if (
+                    seconds <= 0
+                ) {
+
+                    stopVotingTimer();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+// ============================================================
+// SHOW AUDIENCE WINNER
+// ============================================================
+
+async function showAudienceWinner(
+    round
+) {
+
+    if (!round) return;
+
+
+    stopVotingTimer();
+
+
+    if (audienceVotingArea) {
+
+        audienceVotingArea.style.display =
+            "none";
+
+    }
+
+
+    if (audienceWaitingForPlayers) {
+
+        audienceWaitingForPlayers.style.display =
+            "none";
+
+    }
+
+
+    if (audienceWinnerArea) {
+
+        audienceWinnerArea.style.display =
+            "block";
+
+        audienceWinnerArea.classList.remove(
+            "hidden"
+        );
+
+    }
+
+
+    if (audienceWinnerText) {
+
+        const winner =
+            Number(
+                round.winner || 0
+            );
+
+
+        if (winner === 1) {
+
+            audienceWinnerText.textContent =
+                "🏆 PLAYER 1 WINS!";
+
+        }
+
+        else if (winner === 2) {
+
+            audienceWinnerText.textContent =
+                "🏆 PLAYER 2 WINS!";
+
+        }
+
+        else {
+
+            audienceWinnerText.textContent =
+                "🤝 IT'S A DRAW!";
+
+        }
+
+    }
+
+
+    const {
+        data: votes
+    } =
+        await supabaseClient
+            .from("votes")
+            .select(
+                "voted_for"
+            )
+            .eq(
+                "round_id",
+                round.id
+            );
+
+
+    let p1 = 0;
+    let p2 = 0;
+
+
+    (votes || []).forEach(
+        vote => {
+
+            const value =
+                Number(
+                    vote.voted_for
+                );
+
+
+            if (
+                value === 1
+            ) {
+
+                p1++;
+
+            }
+
+
+            if (
+                value === 2
+            ) {
+
+                p2++;
+
+            }
+
+        }
+    );
+
+
+    if (audienceFinalVoteText) {
+
+        audienceFinalVoteText.textContent =
+            `Player 1: ${p1} votes | Player 2: ${p2} votes`;
+
+    }
+
+}
+
+
+// ============================================================
+// AUDIENCE REALTIME
+// ============================================================
+
+async function setupAudienceRealtime() {
+
+    if (!currentRoom) return;
+
+
+    // Remove only existing channels.
+
+    await removeRealtimeChannels();
+
+
+    // --------------------------------------------------------
+    // ROOM
+    // --------------------------------------------------------
+
+    roomsChannel =
+        supabaseClient
+            .channel(
+                `audience-room-${currentRoom.id}-${Date.now()}`
+            )
+            .on(
+                "postgres_changes",
+                {
+
+                    event:
+                        "UPDATE",
+
+                    schema:
+                        "public",
+
+                    table:
+                        "rooms",
+
+                    filter:
+                        `id=eq.${currentRoom.id}`
+
+                },
+                async payload => {
+
+                    if (!payload.new) return;
+
+
+                    currentRoom =
+                        payload.new;
+
+
+                    await loadCurrentRoundForAudience();
+
+                }
+            )
+            .subscribe();
+
+
+    // --------------------------------------------------------
+    // ROUNDS
+    // --------------------------------------------------------
+
+    roundsChannel =
+        supabaseClient
+            .channel(
+                `audience-rounds-${currentRoom.id}-${Date.now()}`
+            )
+            .on(
+                "postgres_changes",
+                {
+
+                    event:
+                        "*",
+
+                    schema:
+                        "public",
+
+                    table:
+                        "rounds",
+
+                    filter:
+                        `room_id=eq.${currentRoom.id}`
+
+                },
+                async payload => {
+
+                    if (!payload.new) return;
+
+
+                    const incoming =
+                        payload.new;
+
+
+                    if (
+                        currentRound &&
+                        Number(
+                            incoming.round_number
+                        ) <
+                        Number(
+                            currentRound.round_number
+                        )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    currentRound =
+                        incoming;
+
+
+                    await renderAudienceRound(
+                        incoming
+                    );
+
+                }
+            )
+            .subscribe();
+
+
+    // --------------------------------------------------------
+    // AUDIENCE
+    // --------------------------------------------------------
+
+    audienceChannel =
+        supabaseClient
+            .channel(
+                `audience-${currentRoom.id}-${Date.now()}`
+            )
+            .on(
+                "postgres_changes",
+                {
+
+                    event:
+                        "*",
+
+                    schema:
+                        "public",
+
+                    table:
+                        "audience",
+
+                    filter:
+                        `room_id=eq.${currentRoom.id}`
+
+                },
+                async () => {
+
+                    await loadAudience();
+
+                }
+            )
+            .subscribe();
+
+
+    // --------------------------------------------------------
+    // VOTES
+    // --------------------------------------------------------
+
+    votesChannel =
+        supabaseClient
+            .channel(
+                `audience-votes-${currentRoom.id}-${Date.now()}`
+            )
+            .on(
+                "postgres_changes",
+                {
+
+                    event:
+                        "INSERT",
+
+                    schema:
+                        "public",
+
+                    table:
+                        "votes",
+
+                    filter:
+                        `room_id=eq.${currentRoom.id}`
+
+                },
+                async () => {
+
+                    await loadVoteCounts();
+
+                }
+            )
+            .subscribe();
+
+}
+
+
+// ============================================================
+// BUTTON EVENTS
+// ============================================================
+
+if (createRoomBtn) {
+
+    createRoomBtn.addEventListener(
+        "click",
+        createRoom
+    );
+
+}
+
+
+if (showJoinBtn) {
+
+    showJoinBtn.addEventListener(
+        "click",
+        showJoin
+    );
+
+}
+
+
+if (joinRoomBtn) {
+
+    joinRoomBtn.addEventListener(
+        "click",
+        joinRoom
+    );
+
+}
+
+
+if (backBtn) {
+
+    backBtn.addEventListener(
+        "click",
+        goFreshHome
+    );
+
+}
+
+
+if (startGameBtn) {
+
+    startGameBtn.addEventListener(
+        "click",
+        startGame
+    );
+
+}
+
+
+if (submitMemeBtn) {
+
+    submitMemeBtn.addEventListener(
+        "click",
+        submitMeme
+    );
+
+}
+
+
+// ============================================================
+// AUDIENCE BUTTONS
+// ============================================================
+
+if (showAudienceBtn) {
+
+    showAudienceBtn.addEventListener(
+        "click",
+        showAudienceJoin
+    );
+
+}
+
+
+if (joinAudienceBtn) {
+
+    joinAudienceBtn.addEventListener(
+        "click",
+        joinAudience
+    );
+
+}
+
+
+if (audienceBackBtn) {
+
+    audienceBackBtn.addEventListener(
+        "click",
+        goFreshHome
+    );
+
+}
+
+
+if (votePlayer1Btn) {
+
+    votePlayer1Btn.addEventListener(
+        "click",
+        () =>
+            submitAudienceVote(
+                1
+            )
+    );
+
+}
+
+
+if (votePlayer2Btn) {
+
+    votePlayer2Btn.addEventListener(
+        "click",
+        () =>
+            submitAudienceVote(
+                2
+            )
+    );
+
+}
+
+
+// ============================================================
+// ENTER KEY
+// ============================================================
+
+if (roomCodeInput) {
+
+    roomCodeInput.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                event.preventDefault();
+
+                joinRoom();
+
+            }
+
+        }
+    );
+
+}
+
+
+if (audienceRoomCodeInput) {
+
+    audienceRoomCodeInput.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                event.preventDefault();
+
+                joinAudience();
+
+            }
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// INITIALIZE
+// ============================================================
+//
+// IMPORTANT:
+//
+// Refreshing the page starts a fresh session.
+// The previous room is NOT automatically restored.
+//
+// This was one of your earlier requirements.
+// ============================================================
+
+async function initializeApp() {
+
+    clearLocalSession();
+
+    await resetGameState();
+
+    showScreen(
+        homeScreen
+    );
+
+}
+
+
+// ============================================================
+// START
+// ============================================================
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeApp
+    );
+
+} else {
+
+    initializeApp();
+
+}
+
+
+// ============================================================
+// DEBUG
+// ============================================================
+
+console.log(
+    "😂 MEME BATTLE — multiplayer + audience + voting system loaded."
+);
+
+
+
+</script>
 
 
 </script>
@@ -2083,4 +6366,3 @@ function showToast(message) {
 </body>
 
 </html>
-
