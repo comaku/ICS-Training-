@@ -3065,6 +3065,40 @@ em {
 
 <script>
 
+    /* =====================================================
+   ICS WEBSITE
+   UPDATED JAVASCRIPT
+   Supabase Edge Function + Resend Contact Form
+===================================================== */
+
+
+/* =====================================================
+   SUPABASE CONFIGURATION
+===================================================== */
+
+const SUPABASE_URL =
+    "https://fmscowzyjarjbtkrtlfi.supabase.co";
+
+/*
+   Replace this with your Supabase publishable/anon key.
+
+   NEVER put your Supabase service_role key here.
+   NEVER put your Resend API key here.
+*/
+
+const SUPABASE_ANON_KEY =
+    "PASTE_YOUR_SUPABASE_ANON_KEY_HERE";
+
+
+/*
+   Supabase Edge Function endpoint.
+*/
+
+const CONTACT_FUNCTION_URL =
+    `${SUPABASE_URL}/functions/v1/submit-contact`;
+
+
+
 /* =====================================================
    MOBILE MENU
 ===================================================== */
@@ -3076,22 +3110,27 @@ const mobileMenu =
     document.getElementById("mobileMenu");
 
 
-menuButton.addEventListener("click", () => {
+if (menuButton && mobileMenu) {
 
-    mobileMenu.classList.toggle("open");
+    menuButton.addEventListener("click", () => {
 
-});
-
-
-mobileMenu.querySelectorAll("a").forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        mobileMenu.classList.remove("open");
+        mobileMenu.classList.toggle("open");
 
     });
 
-});
+
+    mobileMenu.querySelectorAll("a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            mobileMenu.classList.remove("open");
+
+        });
+
+    });
+
+}
+
 
 
 /* =====================================================
@@ -3188,6 +3227,7 @@ const projectData = {
 };
 
 
+
 /* =====================================================
    PROJECT ELEMENTS
 ===================================================== */
@@ -3217,6 +3257,7 @@ const detailTags =
     document.getElementById("detailTags");
 
 
+
 /* =====================================================
    OPEN PROJECT
 ===================================================== */
@@ -3226,52 +3267,64 @@ function openProject(projectId) {
     const project =
         projectData[projectId];
 
-    if (!project) return;
+    if (!project || !projectDetail) {
+        return;
+    }
 
 
-    detailTitle.textContent =
-        project.title;
+    if (detailTitle) {
+        detailTitle.textContent = project.title;
+    }
 
-    detailCategory.textContent =
-        project.category;
+    if (detailCategory) {
+        detailCategory.textContent = project.category;
+    }
 
-    detailDescription.textContent =
-        project.description;
+    if (detailDescription) {
+        detailDescription.textContent = project.description;
+    }
 
-    detailImage.src =
-        project.image;
+    if (detailImage) {
 
-    detailImage.alt =
-        project.title;
+        detailImage.src = project.image;
 
+        detailImage.alt = project.title;
 
-    detailTags.innerHTML = "";
-
-
-    project.tags.forEach(tag => {
-
-        const tagElement =
-            document.createElement("span");
-
-        tagElement.textContent =
-            tag;
-
-        detailTags.appendChild(
-            tagElement
-        );
-
-    });
+    }
 
 
-    document.querySelector("main")
-        .querySelectorAll(
-            ".hero, .about, .work, .contact"
-        )
-        .forEach(section => {
+    if (detailTags) {
 
-            section.style.display = "none";
+        detailTags.innerHTML = "";
+
+        project.tags.forEach(tag => {
+
+            const tagElement =
+                document.createElement("span");
+
+            tagElement.textContent = tag;
+
+            detailTags.appendChild(tagElement);
 
         });
+
+    }
+
+
+    const mainElement =
+        document.querySelector("main");
+
+    if (mainElement) {
+
+        mainElement
+            .querySelectorAll(".hero, .about, .work, .contact")
+            .forEach(section => {
+
+                section.style.display = "none";
+
+            });
+
+    }
 
 
     projectDetail.classList.add("active");
@@ -3280,12 +3333,20 @@ function openProject(projectId) {
 
 
     window.scrollTo({
+
         top: 0,
+
         behavior: "smooth"
+
     });
 
 }
 
+
+
+/* =====================================================
+   PROJECT CARD CLICK EVENTS
+===================================================== */
 
 projectCards.forEach(card => {
 
@@ -3301,34 +3362,55 @@ projectCards.forEach(card => {
 });
 
 
+
 /* =====================================================
    CLOSE PROJECT
 ===================================================== */
 
-closeProject.addEventListener("click", () => {
+if (closeProject) {
 
-    projectDetail.classList.remove("active");
+    closeProject.addEventListener("click", () => {
 
-    document.body.classList.remove("project-open");
+        if (projectDetail) {
+            projectDetail.classList.remove("active");
+        }
 
-
-    document.querySelector("main")
-        .querySelectorAll(
-            ".hero, .about, .work, .contact"
-        )
-        .forEach(section => {
-
-            section.style.display = "";
-
-        });
+        document.body.classList.remove("project-open");
 
 
-    document.getElementById("work")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+        const mainElement =
+            document.querySelector("main");
 
-});
+        if (mainElement) {
+
+            mainElement
+                .querySelectorAll(".hero, .about, .work, .contact")
+                .forEach(section => {
+
+                    section.style.display = "";
+
+                });
+
+        }
+
+
+        const workSection =
+            document.getElementById("work");
+
+        if (workSection) {
+
+            workSection.scrollIntoView({
+
+                behavior: "smooth"
+
+            });
+
+        }
+
+    });
+
+}
+
 
 
 /* =====================================================
@@ -3339,7 +3421,9 @@ document.addEventListener("keydown", event => {
 
     if (
         event.key === "Escape" &&
-        projectDetail.classList.contains("active")
+        projectDetail &&
+        projectDetail.classList.contains("active") &&
+        closeProject
     ) {
 
         closeProject.click();
@@ -3349,21 +3433,11 @@ document.addEventListener("keydown", event => {
 });
 
 
+
 /* =====================================================
    CONTACT FORM
+   SUPABASE EDGE FUNCTION + RESEND
 ===================================================== */
-
-/*
-   IMPORTANT:
-
-   After creating your Google Apps Script Web App,
-   paste the Web App URL below.
-
-*/
-
-const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbxbTjjQJ9F6gogeP2WLlclo9HQjV0B7h6Dp-u0XZZdGvR6J7PDtXMDhOAIzGj2lDb9Afw/exec";
-
 
 const contactForm =
     document.getElementById("contactForm");
@@ -3375,152 +3449,350 @@ const formStatus =
     document.getElementById("formStatus");
 
 
-contactForm.addEventListener(
-    "submit",
-    async function(event) {
 
-        event.preventDefault();
+/* =====================================================
+   CONTACT FORM STATUS HELPER
+===================================================== */
 
+function showFormStatus(message, type) {
 
-        /* Check URL */
+    if (!formStatus) {
+        return;
+    }
 
-        if (
-            GOOGLE_SCRIPT_URL ===
-            "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"
-        ) {
+    formStatus.textContent = message;
 
-            formStatus.textContent =
-                "Contact system has not been connected yet.";
+    formStatus.className = `form-status ${type}`;
 
-            formStatus.className =
-                "form-status error";
-
-            return;
-
-        }
+}
 
 
-        const name =
-            document.getElementById("name").value.trim();
 
-        const email =
-            document.getElementById("email").value.trim();
+/* =====================================================
+   CONTACT FORM SUBMISSION
+===================================================== */
 
-        const message =
-            document.getElementById("message").value.trim();
+if (contactForm) {
 
+    contactForm.addEventListener(
+        "submit",
+        async function(event) {
 
-        /* Basic validation */
+            event.preventDefault();
 
-        if (!name || !email || !message) {
-
-            formStatus.textContent =
-                "Please complete all fields.";
-
-            formStatus.className =
-                "form-status error";
-
-            return;
-
-        }
-
-
-        /* Loading */
-
-        contactSubmit.disabled = true;
-
-        contactSubmit.innerHTML =
-            "Sending...";
-
-
-        formStatus.textContent =
-            "Sending your message...";
-
-        formStatus.className =
-            "form-status loading";
-
-
-        try {
 
             /*
-             * URLSearchParams is deliberately used
-             * instead of JSON so the request can be
-             * sent without a CORS preflight.
-             */
+               Check that the Supabase key has been added.
+            */
 
-            const formData =
-                new URLSearchParams();
+            if (
+                !SUPABASE_ANON_KEY ||
+                SUPABASE_ANON_KEY ===
+                "PASTE_YOUR_SUPABASE_ANON_KEY_HERE"
+            ) {
 
-            formData.append(
-                "name",
-                name
+                showFormStatus(
+                    "The contact system has not been configured yet. Please try again later.",
+                    "error"
+                );
+
+                console.error(
+                    "Supabase anon/publishable key is missing."
+                );
+
+                return;
+
+            }
+
+
+
+            /*
+               Get the form fields.
+
+               These IDs must match your HTML.
+            */
+
+            const nameInput =
+                document.getElementById("name");
+
+            const emailInput =
+                document.getElementById("email");
+
+            const companyInput =
+                document.getElementById("company");
+
+            const messageInput =
+                document.getElementById("message");
+
+
+            /*
+               Make sure required fields exist.
+            */
+
+            if (
+                !nameInput ||
+                !emailInput ||
+                !messageInput
+            ) {
+
+                showFormStatus(
+                    "The contact form is missing a required field. Please contact us directly.",
+                    "error"
+                );
+
+                console.error(
+                    "Contact form error: name, email, or message input was not found."
+                );
+
+                return;
+
+            }
+
+
+
+            /*
+               Read the submitted values.
+            */
+
+            const name =
+                nameInput.value.trim();
+
+            const email =
+                emailInput.value.trim();
+
+            const company =
+                companyInput
+                    ? companyInput.value.trim()
+                    : "";
+
+            const message =
+                messageInput.value.trim();
+
+
+
+            /* =========================================
+               BASIC FORM VALIDATION
+            ========================================= */
+
+            if (!name || !email || !message) {
+
+                showFormStatus(
+                    "Please complete your name, email address, and message.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /*
+               Basic email format check.
+            */
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+
+                showFormStatus(
+                    "Please enter a valid email address.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+
+            /* =========================================
+               LOADING STATE
+            ========================================= */
+
+            const originalButtonHTML =
+                contactSubmit
+                    ? contactSubmit.innerHTML
+                    : "";
+
+            if (contactSubmit) {
+
+                contactSubmit.disabled = true;
+
+                contactSubmit.innerHTML = "Sending...";
+
+            }
+
+
+            showFormStatus(
+                "Sending your message...",
+                "loading"
             );
 
-            formData.append(
-                "email",
-                email
-            );
-
-            formData.append(
-                "message",
-                message
-            );
 
 
-            await fetch(
-                GOOGLE_SCRIPT_URL,
-                {
+            /* =========================================
+               SEND TO SUPABASE EDGE FUNCTION
+            ========================================= */
 
-                    method: "POST",
+            try {
 
-                    mode: "no-cors",
+                const response = await fetch(
+                    CONTACT_FUNCTION_URL,
+                    {
 
-                    body: formData
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type": "application/json",
+
+                            "apikey": SUPABASE_ANON_KEY,
+
+                            "Authorization":
+                                `Bearer ${SUPABASE_ANON_KEY}`
+
+                        },
+
+                        body: JSON.stringify({
+
+                            name: name,
+
+                            email: email,
+
+                            company: company,
+
+                            message: message
+
+                        })
+
+                    }
+                );
+
+
+
+                /*
+                   Read the Edge Function response.
+                */
+
+                let result = {};
+
+                const responseText =
+                    await response.text();
+
+                if (responseText) {
+
+                    try {
+
+                        result = JSON.parse(responseText);
+
+                    } catch (parseError) {
+
+                        result = {
+                            message: responseText
+                        };
+
+                    }
 
                 }
-            );
 
 
-            /*
-             * With no-cors, the browser cannot read
-             * Google's response. A successful fetch
-             * means the request was sent.
-             */
 
-            formStatus.textContent =
-                "Message sent successfully. I'll get back to you soon.";
+                /*
+                   Handle unsuccessful responses.
+                */
 
-            formStatus.className =
-                "form-status success";
+                if (!response.ok) {
+
+                    console.error(
+                        "Supabase contact submission failed:",
+                        response.status,
+                        result
+                    );
+
+                    const errorMessage =
+                        result.error ||
+                        result.message ||
+                        "We couldn't send your message. Please try again.";
+
+                    throw new Error(errorMessage);
+
+                }
 
 
-            contactForm.reset();
+
+                /*
+                   Show success.
+
+                   The Edge Function should return a successful
+                   HTTP response after processing the submission.
+                */
+
+                showFormStatus(
+                    "Message sent successfully! Thank you for contacting us. We'll get back to you soon.",
+                    "success"
+                );
 
 
-        } catch (error) {
+                /*
+                   Clear the form after successful submission.
+                */
 
-            console.error(
-                "Contact form error:",
-                error
-            );
+                contactForm.reset();
 
 
-            formStatus.textContent =
-                "Something went wrong. Please try again.";
+                console.log(
+                    "Contact form submitted successfully."
+                );
 
-            formStatus.className =
-                "form-status error";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Contact form error:",
+                    error
+                );
+
+
+                /*
+                   Display a helpful message.
+
+                   A network/CORS error may prevent the browser
+                   from reading the Edge Function response.
+                */
+
+                showFormStatus(
+                    error.message ||
+                    "Something went wrong while sending your message. Please try again.",
+                    "error"
+                );
+
+
+
+            } finally {
+
+                /*
+                   Restore the submit button.
+                */
+
+                if (contactSubmit) {
+
+                    contactSubmit.disabled = false;
+
+                    contactSubmit.innerHTML =
+                        originalButtonHTML ||
+                        'Send message <span>↗</span>';
+
+                }
+
+            }
 
         }
+    );
 
+}
 
-        contactSubmit.disabled = false;
-
-        contactSubmit.innerHTML =
-            'Send message <span>↗</span>';
-
-    }
-);
 
 
 /* =====================================================
@@ -3532,43 +3804,41 @@ document.addEventListener(
     () => {
 
         const loader =
-            document.getElementById(
-                "techLoader"
-            );
+            document.getElementById("techLoader");
 
         const progressBar =
-            document.getElementById(
-                "techProgressBar"
-            );
+            document.getElementById("techProgressBar");
 
         const progressGlow =
-            document.getElementById(
-                "progressGlow"
-            );
+            document.getElementById("progressGlow");
 
         const percentage =
-            document.getElementById(
-                "techPercentage"
-            );
+            document.getElementById("techPercentage");
 
         const loadingText =
-            document.getElementById(
-                "techLoadingText"
-            );
+            document.getElementById("techLoadingText");
 
         const terminalCommand =
-            document.getElementById(
-                "terminalCommand"
-            );
+            document.getElementById("terminalCommand");
 
         const terminalStatus =
-            document.getElementById(
-                "terminalStatus"
-            );
+            document.getElementById("terminalStatus");
 
 
-        if (!loader) return;
+        /*
+           If there is no preloader on the page,
+           skip this section.
+        */
 
+        if (!loader) {
+            return;
+        }
+
+
+
+        /* =============================================
+           PRELOADER MODULES
+        ============================================= */
 
         const modules = [
 
@@ -3585,6 +3855,11 @@ document.addEventListener(
         ];
 
 
+
+        /* =============================================
+           BOOT SEQUENCE
+        ============================================= */
+
         const bootSteps = [
 
             {
@@ -3593,11 +3868,9 @@ document.addEventListener(
 
                 text: "INITIALIZING",
 
-                command:
-                    "booting_core_system",
+                command: "booting_core_system",
 
-                status:
-                    "Starting digital environment..."
+                status: "Starting digital environment..."
 
             },
 
@@ -3607,11 +3880,9 @@ document.addEventListener(
 
                 text: "CONNECTING",
 
-                command:
-                    "establishing_connection",
+                command: "establishing_connection",
 
-                status:
-                    "Connection established."
+                status: "Connection established."
 
             },
 
@@ -3621,11 +3892,9 @@ document.addEventListener(
 
                 text: "LOADING UI",
 
-                command:
-                    "loading_interface",
+                command: "loading_interface",
 
-                status:
-                    "Interface modules loaded."
+                status: "Interface modules loaded."
 
             },
 
@@ -3635,11 +3904,9 @@ document.addEventListener(
 
                 text: "SYNCING DATA",
 
-                command:
-                    "synchronizing_data",
+                command: "synchronizing_data",
 
-                status:
-                    "Data synchronization complete."
+                status: "Data synchronization complete."
 
             },
 
@@ -3649,11 +3916,9 @@ document.addEventListener(
 
                 text: "OPTIMIZING",
 
-                command:
-                    "optimizing_experience",
+                command: "optimizing_experience",
 
-                status:
-                    "Performance optimization complete."
+                status: "Performance optimization complete."
 
             },
 
@@ -3663,11 +3928,9 @@ document.addEventListener(
 
                 text: "FINAL CHECK",
 
-                command:
-                    "running_final_check",
+                command: "running_final_check",
 
-                status:
-                    "All systems operational."
+                status: "All systems operational."
 
             },
 
@@ -3677,19 +3940,23 @@ document.addEventListener(
 
                 text: "SYSTEM ONLINE",
 
-                command:
-                    "system_online",
+                command: "system_online",
 
-                status:
-                    "Welcome to the experience."
+                status: "Welcome to the experience."
 
             }
 
         ];
 
 
+
         let progress = 0;
 
+
+
+        /* =============================================
+           UPDATE PRELOADER DISPLAY
+        ============================================= */
 
         function updateBootState(value) {
 
@@ -3699,10 +3966,7 @@ document.addEventListener(
 
             bootSteps.forEach(step => {
 
-                if (
-                    value >=
-                    step.progress
-                ) {
+                if (value >= step.progress) {
 
                     current = step;
 
@@ -3711,87 +3975,101 @@ document.addEventListener(
             });
 
 
-            loadingText.textContent =
-                current.text;
+
+            /*
+               Update text elements safely.
+            */
+
+            if (loadingText) {
+                loadingText.textContent = current.text;
+            }
+
+            if (terminalCommand) {
+                terminalCommand.textContent = current.command;
+            }
+
+            if (terminalStatus) {
+                terminalStatus.textContent = current.status;
+            }
+
+            if (percentage) {
+                percentage.textContent = value + "%";
+            }
 
 
-            terminalCommand.textContent =
-                current.command;
+
+            /*
+               Update progress bars.
+            */
+
+            if (progressBar) {
+                progressBar.style.width = value + "%";
+            }
+
+            if (progressGlow) {
+                progressGlow.style.width = value + "%";
+            }
 
 
-            terminalStatus.textContent =
-                current.status;
 
+            /*
+               Activate modules as progress increases.
+            */
 
-            percentage.textContent =
-                value + "%";
+            modules.forEach((module, index) => {
 
+                if (!module) {
+                    return;
+                }
 
-            progressBar.style.width =
-                value + "%";
+                const threshold =
+                    (index + 1) * 20;
 
+                if (value >= threshold) {
 
-            progressGlow.style.width =
-                value + "%";
-
-
-            modules.forEach(
-                (module, index) => {
-
-                    const threshold =
-                        (index + 1) * 20;
-
-                    if (
-                        value >=
-                        threshold
-                    ) {
-
-                        module.classList.add(
-                            "active"
-                        );
-
-                    }
+                    module.classList.add("active");
 
                 }
-            );
+
+            });
 
         }
 
+
+
+        /* =============================================
+           START PRELOADER
+        ============================================= */
 
         const bootInterval =
             setInterval(() => {
 
                 progress +=
-                    Math.floor(
-                        Math.random() * 4
-                    ) + 1;
+                    Math.floor(Math.random() * 4) + 1;
 
 
                 if (progress >= 100) {
 
                     progress = 100;
 
-                    clearInterval(
-                        bootInterval
-                    );
+                    clearInterval(bootInterval);
 
                 }
 
 
-                updateBootState(
-                    progress
-                );
+                updateBootState(progress);
 
 
-                if (
-                    progress === 100
-                ) {
+
+                /*
+                   Finish the loading animation.
+                */
+
+                if (progress === 100) {
 
                     setTimeout(() => {
 
-                        loader.classList.add(
-                            "finished"
-                        );
+                        loader.classList.add("finished");
 
                     }, 650);
 
@@ -3802,7 +4080,7 @@ document.addEventListener(
 
     }
 );
-
+    
 </script>
 
 </body>
