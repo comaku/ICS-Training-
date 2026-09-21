@@ -993,23 +993,53 @@
 
    <script>
 
-/* =========================================
+       /* ============================================================
    MUVIA AIR AUTHENTICATION
-   GOOGLE SHEETS + GOOGLE APPS SCRIPT
-========================================= */
+   SUPABASE AUTH
+   Sign Up | Sign In | Forgot Password | Reset Password
+   ============================================================ */
 
 
-/* =========================================
-   GOOGLE APPS SCRIPT API
-========================================= */
+/* ============================================================
+   1. SUPABASE CONFIGURATION
+   ============================================================ */
 
-const API_URL =
-    "https://script.google.com/macros/s/AKfycbwdt284IbZZwMKp6LTlcwUzkxDNmAeWmS0ZtqO3BnwusN1PLiILh5j3DN38VHBJsaUs/exec";
+const SUPABASE_URL =
+    "https://fmscowzyjarjbtkrtlfi.supabase.co";
+
+const SUPABASE_ANON_KEY =
+    "YOUR_SUPABASE_ANON_KEY";
 
 
-/* =========================================
-   FORM ELEMENTS
-========================================= */
+/*
+ * The Supabase JavaScript v2 library must be loaded
+ * in your HTML before this script runs.
+ */
+
+if (!window.supabase) {
+    throw new Error(
+        "Supabase library not found. Load the Supabase JavaScript library before auth.js."
+    );
+}
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
+
+
+/* ============================================================
+   2. PAGE CONFIGURATION
+   ============================================================ */
+
+const SAAS_PAGE = "SAAS.html";
+const SIGNIN_PAGE = "signin.html";
+const RESET_PASSWORD_PAGE = "reset-password.html";
+
+
+/* ============================================================
+   3. FORM ELEMENTS
+   ============================================================ */
 
 const signInForm =
     document.getElementById("signInForm");
@@ -1021,9 +1051,20 @@ const forgotForm =
     document.getElementById("forgotForm");
 
 
-/* =========================================
-   NAVIGATION ELEMENTS
-========================================= */
+/*
+ * Optional form on reset-password.html.
+ *
+ * If your reset page uses different IDs, update
+ * these selectors to match its HTML.
+ */
+
+const resetPasswordForm =
+    document.getElementById("resetPasswordForm");
+
+
+/* ============================================================
+   4. NAVIGATION ELEMENTS
+   ============================================================ */
 
 const showSignUp =
     document.getElementById("showSignUp");
@@ -1038,17 +1079,18 @@ const backToSignIn =
     document.getElementById("backToSignIn");
 
 
-/* =========================================
-   FORM SWITCHING
-========================================= */
+/* ============================================================
+   5. HELPER: SHOW FORM
+   ============================================================ */
 
 function showForm(formToShow) {
-
     if (!formToShow) return;
 
-    signInForm.classList.remove("active");
-    signUpForm.classList.remove("active");
-    forgotForm.classList.remove("active");
+    [signInForm, signUpForm, forgotForm].forEach(form => {
+        if (form) {
+            form.classList.remove("active");
+        }
+    });
 
     formToShow.classList.add("active");
 
@@ -1061,908 +1103,661 @@ function showForm(formToShow) {
 }
 
 
-/* =========================================
-   SIGN UP LINK
-========================================= */
+/* ============================================================
+   6. FORM SWITCHING
+   ============================================================ */
 
 if (showSignUp) {
-
-    showSignUp.addEventListener("click", (event) => {
-
+    showSignUp.addEventListener("click", event => {
         event.preventDefault();
-
         showForm(signUpForm);
-
     });
-
 }
-
-
-/* =========================================
-   SIGN IN LINK
-========================================= */
 
 if (showSignIn) {
-
-    showSignIn.addEventListener("click", (event) => {
-
+    showSignIn.addEventListener("click", event => {
         event.preventDefault();
-
         showForm(signInForm);
-
     });
-
 }
 
-
-/* =========================================
-   FORGOT PASSWORD LINK
-========================================= */
-
 if (forgotFromLogin) {
-
-    forgotFromLogin.addEventListener("click", (event) => {
-
+    forgotFromLogin.addEventListener("click", event => {
         event.preventDefault();
 
         const loginEmail =
-            document.getElementById("loginEmail").value.trim();
+            document.getElementById("loginEmail");
 
-        if (loginEmail) {
+        const forgotEmail =
+            document.getElementById("forgotEmail");
 
-            document.getElementById("forgotEmail").value =
-                loginEmail;
-
+        if (loginEmail && forgotEmail && loginEmail.value.trim()) {
+            forgotEmail.value = loginEmail.value.trim();
         }
 
         showForm(forgotForm);
-
     });
-
 }
-
-
-/* =========================================
-   BACK TO SIGN IN
-========================================= */
 
 if (backToSignIn) {
-
-    backToSignIn.addEventListener("click", (event) => {
-
+    backToSignIn.addEventListener("click", event => {
         event.preventDefault();
-
         showForm(signInForm);
-
     });
-
 }
 
 
-/* =========================================
-   CLEAR MESSAGES
-========================================= */
+/* ============================================================
+   7. MESSAGE HELPERS
+   ============================================================ */
 
 function clearMessages() {
-
-    document.querySelectorAll(".form-message")
-        .forEach(message => {
-
-            message.textContent = "";
-
-            message.className =
-                "form-message";
-
-        });
-
+    document.querySelectorAll(".form-message").forEach(message => {
+        message.textContent = "";
+        message.className = "form-message";
+    });
 }
 
-
-/* =========================================
-   SHOW MESSAGE
-========================================= */
-
-function showMessage(element, message, type) {
-
+function showMessage(element, text, type = "success") {
     if (!element) return;
 
-    element.textContent = message;
-
-    element.className =
-        `form-message ${type}`;
-
+    element.textContent = text;
+    element.className = `form-message ${type}`;
 }
 
 
-/* =========================================
-   PASSWORD VISIBILITY
-========================================= */
-
-document.querySelectorAll(".password-toggle")
-    .forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const targetId =
-                button.dataset.target;
-
-            const input =
-                document.getElementById(targetId);
-
-            if (!input) return;
-
-
-            if (input.type === "password") {
-
-                input.type = "text";
-
-                button.textContent = "◉";
-
-            } else {
-
-                input.type = "password";
-
-                button.textContent = "◉";
-
-            }
-
-        });
-
-    });
-
-
-/* =========================================
-   EMAIL VALIDATION
-========================================= */
-
-function isValidEmail(email) {
-
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        .test(email);
-
-}
-
-
-/* =========================================
-   API REQUEST
-========================================= */
-
-async function sendToGoogleSheets(data) {
-
-    try {
-
-        /*
-         * URLSearchParams is intentionally used
-         * instead of application/json.
-         *
-         * This makes the request much easier
-         * for Google Apps Script to receive
-         * without browser CORS preflight issues.
-         */
-
-        const formData =
-            new URLSearchParams();
-
-        Object.keys(data).forEach(key => {
-
-            formData.append(
-                key,
-                data[key]
-            );
-
-        });
-
-
-        const response =
-            await fetch(API_URL, {
-
-                method: "POST",
-
-                body: formData
-
-            });
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Unable to connect to the server."
-            );
-
-        }
-
-
-        const result =
-            await response.json();
-
-
-        return result;
-
-    } catch (error) {
-
-        console.error(
-            "Authentication error:",
-            error
-        );
-
-        return {
-
-            success: false,
-
-            message:
-                "Unable to connect to Muvia Air. Please check your internet connection and try again."
-
-        };
-
-    }
-
-}
-
-
-/* =========================================
-   DISABLE BUTTON WHILE PROCESSING
-========================================= */
+/* ============================================================
+   8. BUTTON LOADING HELPERS
+   ============================================================ */
 
 function setButtonLoading(button, loadingText) {
-
     if (!button) return;
 
-    button.dataset.originalText =
-        button.innerHTML;
+    if (!button.dataset.originalText) {
+        button.dataset.originalText = button.innerHTML;
+    }
 
-    button.innerHTML =
-        loadingText;
-
+    button.innerHTML = loadingText;
     button.disabled = true;
-
 }
-
-
-/* =========================================
-   RESTORE BUTTON
-========================================= */
 
 function restoreButton(button) {
-
     if (!button) return;
 
     button.innerHTML =
-        button.dataset.originalText ||
-        "Continue";
+        button.dataset.originalText || "Continue";
 
     button.disabled = false;
-
 }
 
 
-/* =========================================
-   SAVE LOGGED-IN USER
-========================================= */
+/* ============================================================
+   9. VALIDATION
+   ============================================================ */
 
-function saveUserSession(user) {
-
-    /*
-     * We only store basic user information
-     * in the browser.
-     *
-     * NEVER store the user's password here.
-     */
-
-    const userSession = {
-
-        name: user.name || "",
-
-        email: user.email || ""
-
-    };
-
-
-    localStorage.setItem(
-        "muviaUser",
-        JSON.stringify(userSession)
-    );
-
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 
-/* =========================================
-   REDIRECT TO MAIN WEBSITE
-========================================= */
+/* ============================================================
+   10. FRIENDLIER AUTH ERROR MESSAGES
+   ============================================================ */
 
-function redirectToDashboard() {
+function getAuthErrorMessage(error, action = "general") {
+    const message = (error?.message || "").toLowerCase();
 
-    window.location.href =
-        "saas.html";
+    if (message.includes("invalid login credentials")) {
+        return "Incorrect email or password. Please try again.";
+    }
 
+    if (
+        message.includes("user already registered") ||
+        message.includes("already been registered")
+    ) {
+        return "An account with this email already exists. Please sign in.";
+    }
+
+    if (message.includes("email not confirmed")) {
+        return "Please confirm your email address before signing in.";
+    }
+
+    if (message.includes("password should be at least")) {
+        return "Your password must meet the minimum password requirements.";
+    }
+
+    if (message.includes("rate limit")) {
+        return "Too many attempts. Please wait a little while and try again.";
+    }
+
+    if (message.includes("same password")) {
+        return "Your new password must be different from your current password.";
+    }
+
+    if (action === "signup") {
+        return "We couldn't create your account. Please check your details and try again.";
+    }
+
+    if (action === "signin") {
+        return "We couldn't sign you in. Please check your details and try again.";
+    }
+
+    if (action === "forgot") {
+        return "We couldn't process your password-reset request. Please try again.";
+    }
+
+    if (action === "reset") {
+        return "We couldn't update your password. Your reset link may have expired.";
+    }
+
+    return error?.message ||
+        "Something went wrong. Please try again.";
 }
 
 
-/* =========================================
-   SIGN UP
-========================================= */
+/* ============================================================
+   11. SIGN UP
+   ============================================================ */
 
 if (signUpForm) {
+    signUpForm.addEventListener("submit", async event => {
+        event.preventDefault();
 
-    signUpForm.addEventListener(
-        "submit",
-        async (event) => {
+        const name =
+            document.getElementById("signupName")?.value.trim() || "";
 
-            event.preventDefault();
+        const email =
+            document.getElementById("signupEmail")?.value.trim().toLowerCase() || "";
 
+        const password =
+            document.getElementById("signupPassword")?.value || "";
 
-            const name =
-                document
-                    .getElementById("signupName")
-                    .value
-                    .trim();
+        const confirmPassword =
+            document.getElementById("confirmPassword")?.value || "";
 
+        const message =
+            document.getElementById("signupMessage");
 
-            const email =
-                document
-                    .getElementById("signupEmail")
-                    .value
-                    .trim()
-                    .toLowerCase();
-
-
-            const password =
-                document
-                    .getElementById("signupPassword")
-                    .value;
+        const button =
+            signUpForm.querySelector('button[type="submit"]');
 
 
-            const confirmPassword =
-                document
-                    .getElementById("confirmPassword")
-                    .value;
+        /* Validate name */
 
-
-            const message =
-                document.getElementById(
-                    "signupMessage"
-                );
-
-
-            const button =
-                signUpForm.querySelector(
-                    'button[type="submit"]'
-                );
-
-
-            /* =================================
-               VALIDATE NAME
-            ================================= */
-
-            if (name.length < 2) {
-
-                showMessage(
-                    message,
-                    "Please enter your full name.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            /* =================================
-               VALIDATE EMAIL
-            ================================= */
-
-            if (!isValidEmail(email)) {
-
-                showMessage(
-                    message,
-                    "Please enter a valid email address.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            /* =================================
-               VALIDATE PASSWORD
-            ================================= */
-
-            if (password.length < 8) {
-
-                showMessage(
-                    message,
-                    "Password must contain at least 8 characters.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            /* =================================
-               PASSWORD MATCH
-            ================================= */
-
-            if (password !== confirmPassword) {
-
-                showMessage(
-                    message,
-                    "Passwords do not match.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            /* =================================
-               START LOADING
-            ================================= */
-
-            setButtonLoading(
-                button,
-                "Creating account..."
-            );
-
-
+        if (name.length < 2) {
             showMessage(
                 message,
-                "Creating your Muvia Air account...",
-                "success"
-            );
-
-
-            /* =================================
-               SEND TO GOOGLE APPS SCRIPT
-            ================================= */
-
-            const result =
-                await sendToGoogleSheets({
-
-                    action: "signup",
-
-                    name: name,
-
-                    email: email,
-
-                    password: password
-
-                });
-
-
-            /* =================================
-               SUCCESS
-            ================================= */
-
-            if (result.success) {
-
-                /*
-                 * Save user session.
-                 */
-
-                saveUserSession({
-
-                    name:
-                        result.user?.name ||
-                        name,
-
-                    email:
-                        result.user?.email ||
-                        email
-
-                });
-
-
-                showMessage(
-                    message,
-                    "Account created successfully. Redirecting...",
-                    "success"
-                );
-
-
-                /*
-                 * Redirect to your main SaaS
-                 * website.
-                 */
-
-                setTimeout(() => {
-
-                    redirectToDashboard();
-
-                }, 800);
-
-
-                return;
-
-            }
-
-
-            /* =================================
-               SIGN UP FAILED
-            ================================= */
-
-            restoreButton(button);
-
-
-            showMessage(
-                message,
-
-                result.message ||
-                "Unable to create your account.",
-
+                "Please enter your full name.",
                 "error"
             );
-
+            return;
         }
-    );
-
-}
 
 
-/* =========================================
-   SIGN IN
-========================================= */
+        /* Validate email */
 
-if (signInForm) {
-
-    signInForm.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
-
-
-            const email =
-                document
-                    .getElementById("loginEmail")
-                    .value
-                    .trim()
-                    .toLowerCase();
-
-
-            const password =
-                document
-                    .getElementById("loginPassword")
-                    .value;
-
-
-            const message =
-                document.getElementById(
-                    "loginMessage"
-                );
-
-
-            const button =
-                signInForm.querySelector(
-                    'button[type="submit"]'
-                );
-
-
-            /* =================================
-               VALIDATE EMAIL
-            ================================= */
-
-            if (!isValidEmail(email)) {
-
-                showMessage(
-                    message,
-                    "Please enter a valid email address.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            /* =================================
-               VALIDATE PASSWORD
-            ================================= */
-
-            if (!password) {
-
-                showMessage(
-                    message,
-                    "Please enter your password.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            /* =================================
-               LOADING
-            ================================= */
-
-            setButtonLoading(
-                button,
-                "Signing in..."
-            );
-
-
+        if (!isValidEmail(email)) {
             showMessage(
                 message,
-                "Checking your account...",
-                "success"
-            );
-
-
-            /* =================================
-               SEND LOGIN REQUEST
-            ================================= */
-
-            const result =
-                await sendToGoogleSheets({
-
-                    action: "login",
-
-                    email: email,
-
-                    password: password
-
-                });
-
-
-            /* =================================
-               LOGIN SUCCESS
-            ================================= */
-
-            if (result.success) {
-
-                /*
-                 * Save session information.
-                 */
-
-                saveUserSession({
-
-                    name:
-                        result.user?.name ||
-                        result.name ||
-                        "",
-
-                    email:
-                        result.user?.email ||
-                        result.email ||
-                        email
-
-                });
-
-
-                showMessage(
-                    message,
-                    "Login successful. Opening Muvia Air...",
-                    "success"
-                );
-
-
-                /*
-                 * Redirect to SaaS website.
-                 */
-
-                setTimeout(() => {
-
-                    redirectToDashboard();
-
-                }, 700);
-
-
-                return;
-
-            }
-
-
-            /* =================================
-               LOGIN FAILED
-            ================================= */
-
-            restoreButton(button);
-
-
-            showMessage(
-                message,
-
-                result.message ||
-                "Incorrect email or password.",
-
+                "Please enter a valid email address.",
                 "error"
             );
-
+            return;
         }
-    );
-
-}
 
 
-/* =========================================
-   FORGOT PASSWORD
-========================================= */
+        /* Validate password */
 
-if (forgotForm) {
-
-    forgotForm.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
-
-
-            const email =
-                document
-                    .getElementById("forgotEmail")
-                    .value
-                    .trim()
-                    .toLowerCase();
-
-
-            const message =
-                document.getElementById(
-                    "forgotMessage"
-                );
-
-
-            const button =
-                forgotForm.querySelector(
-                    'button[type="submit"]'
-                );
-
-
-            /* =================================
-               VALIDATE EMAIL
-            ================================= */
-
-            if (!isValidEmail(email)) {
-
-                showMessage(
-                    message,
-                    "Please enter a valid email address.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            /* =================================
-               LOADING
-            ================================= */
-
-            setButtonLoading(
-                button,
-                "Sending..."
-            );
-
-
+        if (password.length < 8) {
             showMessage(
                 message,
-                "Checking your account...",
-                "success"
-            );
-
-
-            /* =================================
-               SEND RESET REQUEST
-            ================================= */
-
-            const result =
-                await sendToGoogleSheets({
-
-                    action: "forgot",
-
-                    email: email
-
-                });
-
-
-            /* =================================
-               SUCCESS
-            ================================= */
-
-            if (result.success) {
-
-                restoreButton(button);
-
-
-                showMessage(
-                    message,
-
-                    result.message ||
-                    "Password reset instructions have been sent to your email.",
-
-                    "success"
-                );
-
-
-                return;
-
-            }
-
-
-            /* =================================
-               RESET FAILED
-            ================================= */
-
-            restoreButton(button);
-
-
-            showMessage(
-                message,
-
-                result.message ||
-                "Unable to process your password reset request.",
-
+                "Password must contain at least 8 characters.",
                 "error"
             );
-
+            return;
         }
-    );
-
-}
 
 
-/* =========================================
-   CHECK EXISTING SESSION
-========================================= */
+        /* Confirm password */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        /*
-         * If a user is already logged in,
-         * you can optionally redirect them
-         * directly to saas.html.
-         *
-         * This prevents an already logged-in
-         * user from seeing the login page again.
-         */
-
-        const existingUser =
-            localStorage.getItem(
-                "muviaUser"
+        if (password !== confirmPassword) {
+            showMessage(
+                message,
+                "Passwords do not match.",
+                "error"
             );
+            return;
+        }
 
 
-        if (existingUser) {
+        setButtonLoading(button, "Creating account...");
+
+        showMessage(
+            message,
+            "Creating your Muvia Air account...",
+            "success"
+        );
+
+
+        try {
+            const { data, error } =
+                await supabaseClient.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        data: {
+                            full_name: name
+                        },
+                        emailRedirectTo: window.location.origin + "/" + SIGNIN_PAGE
+                    }
+                });
+
+            if (error) {
+                throw error;
+            }
+
 
             /*
-             * Uncomment the next line if you
-             * want automatic redirection.
+             * If email confirmation is enabled, Supabase may
+             * create the account without starting a session.
              */
 
-            // redirectToDashboard();
+            if (data.session) {
+                showMessage(
+                    message,
+                    "Account created successfully. Opening Muvia Air...",
+                    "success"
+                );
 
+                window.location.replace(SAAS_PAGE);
+                return;
+            }
+
+
+            /*
+             * Email confirmation is required before the user
+             * can sign in. Do not pretend they are logged in.
+             */
+
+            restoreButton(button);
+
+            showMessage(
+                message,
+                "Your account has been created. Please check your email and confirm your address before signing in.",
+                "success"
+            );
+
+        } catch (error) {
+            console.error("Sign-up error:", error);
+
+            restoreButton(button);
+
+            showMessage(
+                message,
+                getAuthErrorMessage(error, "signup"),
+                "error"
+            );
+        }
+    });
+}
+
+
+/* ============================================================
+   12. SIGN IN
+   ============================================================ */
+
+if (signInForm) {
+    signInForm.addEventListener("submit", async event => {
+        event.preventDefault();
+
+        const email =
+            document.getElementById("loginEmail")?.value.trim().toLowerCase() || "";
+
+        const password =
+            document.getElementById("loginPassword")?.value || "";
+
+        const message =
+            document.getElementById("loginMessage");
+
+        const button =
+            signInForm.querySelector('button[type="submit"]');
+
+
+        if (!isValidEmail(email)) {
+            showMessage(
+                message,
+                "Please enter a valid email address.",
+                "error"
+            );
+            return;
         }
 
+        if (!password) {
+            showMessage(
+                message,
+                "Please enter your password.",
+                "error"
+            );
+            return;
+        }
+
+
+        setButtonLoading(button, "Signing in...");
+
+        showMessage(
+            message,
+            "Checking your account...",
+            "success"
+        );
+
+
+        try {
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+            if (error) {
+                throw error;
+            }
+
+            if (!data.session || !data.user) {
+                throw new Error("No authenticated session was returned.");
+            }
+
+            showMessage(
+                message,
+                "Login successful. Opening Muvia Air...",
+                "success"
+            );
+
+            window.location.replace(SAAS_PAGE);
+
+        } catch (error) {
+            console.error("Sign-in error:", error);
+
+            restoreButton(button);
+
+            showMessage(
+                message,
+                getAuthErrorMessage(error, "signin"),
+                "error"
+            );
+        }
+    });
+}
+
+
+/* ============================================================
+   13. FORGOT PASSWORD
+   ============================================================ */
+
+if (forgotForm) {
+    forgotForm.addEventListener("submit", async event => {
+        event.preventDefault();
+
+        const email =
+            document.getElementById("forgotEmail")?.value.trim().toLowerCase() || "";
+
+        const message =
+            document.getElementById("forgotMessage");
+
+        const button =
+            forgotForm.querySelector('button[type="submit"]');
+
+
+        if (!isValidEmail(email)) {
+            showMessage(
+                message,
+                "Please enter a valid email address.",
+                "error"
+            );
+            return;
+        }
+
+
+        setButtonLoading(button, "Sending...");
+
+        showMessage(
+            message,
+            "Sending password-reset instructions...",
+            "success"
+        );
+
+
+        try {
+            const redirectURL =
+                new URL(RESET_PASSWORD_PAGE, window.location.href).href;
+
+            const { error } =
+                await supabaseClient.auth.resetPasswordForEmail(email, {
+                    redirectTo: redirectURL
+                });
+
+            if (error) {
+                throw error;
+            }
+
+
+            /*
+             * Use a neutral message so the page does not reveal
+             * whether a particular email address has an account.
+             */
+
+            restoreButton(button);
+
+            showMessage(
+                message,
+                "If an account exists for that email, password-reset instructions will be sent. Please check your inbox and spam folder.",
+                "success"
+            );
+
+        } catch (error) {
+            console.error("Password-reset request error:", error);
+
+            restoreButton(button);
+
+            showMessage(
+                message,
+                getAuthErrorMessage(error, "forgot"),
+                "error"
+            );
+        }
+    });
+}
+
+
+/* ============================================================
+   14. RESET PASSWORD
+   ============================================================ */
+
+/*
+ * This section works on reset-password.html if that page has:
+ *
+ * Form ID: resetPasswordForm
+ * New password input ID: newPassword
+ * Confirm password input ID: confirmNewPassword
+ * Message element ID: resetPasswordMessage
+ *
+ * If your reset page uses different IDs, change them below.
+ */
+
+if (resetPasswordForm) {
+    resetPasswordForm.addEventListener("submit", async event => {
+        event.preventDefault();
+
+        const password =
+            document.getElementById("newPassword")?.value || "";
+
+        const confirmPassword =
+            document.getElementById("confirmNewPassword")?.value || "";
+
+        const message =
+            document.getElementById("resetPasswordMessage");
+
+        const button =
+            resetPasswordForm.querySelector('button[type="submit"]');
+
+
+        if (password.length < 8) {
+            showMessage(
+                message,
+                "Your new password must contain at least 8 characters.",
+                "error"
+            );
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            showMessage(
+                message,
+                "Your passwords do not match.",
+                "error"
+            );
+            return;
+        }
+
+
+        setButtonLoading(button, "Updating password...");
+
+        showMessage(
+            message,
+            "Updating your password...",
+            "success"
+        );
+
+
+        try {
+            /*
+             * Supabase establishes a recovery session when the
+             * user follows a valid password-reset link.
+             */
+
+            const { data: sessionData, error: sessionError } =
+                await supabaseClient.auth.getSession();
+
+            if (sessionError) {
+                throw sessionError;
+            }
+
+            if (!sessionData.session) {
+                throw new Error(
+                    "Your password-reset session is missing or has expired. Please request a new reset link."
+                );
+            }
+
+
+            const { error } =
+                await supabaseClient.auth.updateUser({
+                    password
+                });
+
+            if (error) {
+                throw error;
+            }
+
+
+            /*
+             * Password updated. Sign the user out so they can
+             * sign in again with the new password.
+             */
+
+            await supabaseClient.auth.signOut();
+
+            showMessage(
+                message,
+                "Your password has been updated successfully. Redirecting you to sign in...",
+                "success"
+            );
+
+            setTimeout(() => {
+                window.location.replace(SIGNIN_PAGE);
+            }, 1500);
+
+        } catch (error) {
+            console.error("Password update error:", error);
+
+            restoreButton(button);
+
+            showMessage(
+                message,
+                getAuthErrorMessage(error, "reset"),
+                "error"
+            );
+        }
+    });
+}
+
+
+/* ============================================================
+   15. PASSWORD VISIBILITY TOGGLE
+   ============================================================ */
+
+document.querySelectorAll(".password-toggle").forEach(button => {
+    button.addEventListener("click", () => {
+        const targetId = button.dataset.target;
+        const input = document.getElementById(targetId);
+
+        if (!input) return;
+
+        if (input.type === "password") {
+            input.type = "text";
+        } else {
+            input.type = "password";
+        }
+    });
+});
+
+
+/* ============================================================
+   16. CHECK EXISTING SESSION ON AUTH PAGES
+   ============================================================ */
+
+/*
+ * If a valid Supabase session already exists, send the user
+ * to SAAS.html rather than showing the sign-in/sign-up page.
+ */
+
+async function redirectIfAlreadySignedIn() {
+    if (!signInForm && !signUpForm && !forgotForm) return;
+
+    try {
+        const { data, error } =
+            await supabaseClient.auth.getSession();
+
+        if (error) {
+            console.error("Session check error:", error);
+            return;
+        }
+
+        if (data.session) {
+            window.location.replace(SAAS_PAGE);
+        }
+
+    } catch (error) {
+        console.error("Unable to check session:", error);
     }
-);
+}
+
+redirectIfAlreadySignedIn();
 
 
-/* =========================================
-   PREVENT DOUBLE SUBMISSION
-========================================= */
+/* ============================================================
+   17. RESTORE SUBMIT BUTTONS WHEN PAGE IS RESTORED
+   ============================================================ */
 
-window.addEventListener(
-    "pageshow",
-    () => {
+window.addEventListener("pageshow", () => {
+    document.querySelectorAll('button[type="submit"]').forEach(button => {
+        button.disabled = false;
+    });
+});
 
-        document
-            .querySelectorAll(
-                'button[type="submit"]'
-            )
-            .forEach(button => {
 
-                button.disabled = false;
-
-            });
-
-    }
-);
-
+/* ============================================================
+   MUVIA AIR AUTHENTICATION SCRIPT COMPLETE
+   ============================================================ */
+       
 </script>
 </body>
 </html>
