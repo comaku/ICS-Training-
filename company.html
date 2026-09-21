@@ -4431,7 +4431,7 @@ h2 span {
 
 <script>
 
-/* ==========================================
+    /* ==========================================
    MOBILE MENU
 ========================================== */
 
@@ -4442,82 +4442,41 @@ const nav =
     document.getElementById("nav");
 
 
-menuButton.addEventListener(
-    "click",
-    () => {
-
+if (menuButton && nav) {
+    menuButton.addEventListener("click", () => {
         nav.classList.toggle("open");
 
+        const icon = menuButton.querySelector("i");
 
-        const icon =
-            menuButton.querySelector("i");
-
-
-        if (
-            nav.classList.contains("open")
-        ) {
-
-            icon.classList.remove(
-                "fa-bars"
-            );
-
-            icon.classList.add(
-                "fa-xmark"
-            );
-
-        } else {
-
-            icon.classList.remove(
-                "fa-xmark"
-            );
-
-            icon.classList.add(
-                "fa-bars"
-            );
-
+        if (icon) {
+            if (nav.classList.contains("open")) {
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-xmark");
+            } else {
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            }
         }
-
-    }
-);
-
+    });
+}
 
 
 /* ==========================================
    CLOSE MOBILE MENU
 ========================================== */
 
-document
-    .querySelectorAll(".nav a")
-    .forEach(link => {
+document.querySelectorAll(".nav a").forEach(link => {
+    link.addEventListener("click", () => {
+        if (nav) nav.classList.remove("open");
 
-        link.addEventListener(
-            "click",
-            () => {
+        const icon = menuButton?.querySelector("i");
 
-                nav.classList.remove(
-                    "open"
-                );
-
-
-                const icon =
-                    menuButton.querySelector(
-                        "i"
-                    );
-
-
-                icon.classList.remove(
-                    "fa-xmark"
-                );
-
-                icon.classList.add(
-                    "fa-bars"
-                );
-
-            }
-        );
-
+        if (icon) {
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+        }
     });
-
+});
 
 
 /* ==========================================
@@ -4527,48 +4486,28 @@ document
 const revealElements =
     document.querySelectorAll(".reveal");
 
-
-const revealObserver =
-    new IntersectionObserver(
-        (entries) => {
-
-            entries.forEach(
-                entry => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        revealObserver.unobserve(
-                            entry.target
-                        );
-
-                    }
-
+if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
                 }
-            );
-
+            });
         },
-        {
-            threshold: .12
-        }
+        { threshold: 0.12 }
     );
 
-
-revealElements.forEach(
-    element => {
-
-        revealObserver.observe(
-            element
-        );
-
-    }
-);
-
+    revealElements.forEach(element => {
+        revealObserver.observe(element);
+    });
+} else {
+    // Fallback for browsers without IntersectionObserver
+    revealElements.forEach(element => {
+        element.classList.add("visible");
+    });
+}
 
 
 /* ==========================================
@@ -4576,79 +4515,54 @@ revealElements.forEach(
 ========================================== */
 
 const sections =
-    document.querySelectorAll(
-        "section[id]"
-    );
-
+    document.querySelectorAll("section[id]");
 
 const navLinks =
-    document.querySelectorAll(
-        ".nav a"
-    );
+    document.querySelectorAll(".nav a");
 
+window.addEventListener("scroll", () => {
+    let current = "";
 
-window.addEventListener(
-    "scroll",
-    () => {
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
 
-        let current = "";
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
 
+    navLinks.forEach(link => {
+        link.classList.remove("active");
 
-        sections.forEach(
-            section => {
-
-                const sectionTop =
-                    section.offsetTop - 150;
-
-
-                if (
-                    window.scrollY >=
-                    sectionTop
-                ) {
-
-                    current =
-                        section.getAttribute(
-                            "id"
-                        );
-
-                }
-
-            }
-        );
-
-
-        navLinks.forEach(
-            link => {
-
-                link.classList.remove(
-                    "active"
-                );
-
-
-                if (
-                    link.getAttribute(
-                        "href"
-                    ) ===
-                    `#${current}`
-                ) {
-
-                    link.classList.add(
-                        "active"
-                    );
-
-                }
-
-            }
-        );
-
-    }
-);
-
+        if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+        }
+    });
+});
 
 
 /* ==========================================
    CONTACT FORM
-   PHP + SUPABASE
+   SUPABASE EDGE FUNCTION + RESEND
+========================================== */
+
+// Your Supabase project URL
+const SUPABASE_URL =
+    "https://fmscowzyjarjbtkrtlfi.supabase.co";
+
+// IMPORTANT:
+// Replace the placeholder with your Supabase publishable/anon key.
+// Never put your service_role key or Resend API key in frontend code.
+const SUPABASE_ANON_KEY =
+    "PASTE_YOUR_SUPABASE_ANON_KEY_HERE";
+
+// Deployed Supabase Edge Function
+const CONTACT_FUNCTION_URL =
+    `${SUPABASE_URL}/functions/v1/submit-contact`;
+
+
+/* ==========================================
+   CONTACT FORM ELEMENTS
 ========================================== */
 
 const contactForm =
@@ -4660,32 +4574,51 @@ const submitButton =
 const formStatus =
     document.getElementById("formStatus");
 
+const originalSubmitButtonHTML = `
+    Send Enquiry
+    <i class="fa-solid fa-arrow-right"></i>
+`;
 
-contactForm.addEventListener(
-    "submit",
-    async function(event) {
+
+/* ==========================================
+   DISPLAY FORM STATUS
+========================================== */
+
+function showFormStatus(message, isSuccess = false) {
+    if (!formStatus) return;
+
+    formStatus.textContent = message;
+    formStatus.style.display = "block";
+    formStatus.style.color = isSuccess ? "#238636" : "#b42318";
+}
+
+
+/* ==========================================
+   RESTORE SUBMIT BUTTON
+========================================== */
+
+function restoreSubmitButton() {
+    if (!submitButton) return;
+
+    submitButton.disabled = false;
+    submitButton.style.pointerEvents = "";
+    submitButton.style.background = "";
+    submitButton.innerHTML = originalSubmitButtonHTML;
+}
+
+
+/* ==========================================
+   CONTACT FORM SUBMISSION
+========================================== */
+
+if (contactForm && submitButton && formStatus) {
+
+    contactForm.addEventListener("submit", async function(event) {
 
         event.preventDefault();
 
-
-        /* =========================
-           PREVENT MULTIPLE SUBMISSIONS
-        ========================= */
-
-        submitButton.disabled = true;
-
-        submitButton.style.pointerEvents =
-            "none";
-
-
-        submitButton.innerHTML = `
-            <i class="fa-solid fa-spinner fa-spin"></i>
-            Sending...
-        `;
-
-
-        formStatus.style.display =
-            "none";
+        // Prevent duplicate submissions
+        if (submitButton.disabled) return;
 
 
         /* =========================
@@ -4693,49 +4626,27 @@ contactForm.addEventListener(
         ========================= */
 
         const name =
-            document
-                .getElementById("fullName")
-                .value
-                .trim();
-
+            document.getElementById("fullName")?.value.trim() || "";
 
         const email =
-            document
-                .getElementById("email")
-                .value
-                .trim();
-
+            document.getElementById("email")?.value.trim() || "";
 
         const company =
-            document
-                .getElementById("company")
-                .value
-                .trim();
-
+            document.getElementById("company")?.value.trim() || "";
 
         const message =
-            document
-                .getElementById("message")
-                .value
-                .trim();
+            document.getElementById("message")?.value.trim() || "";
 
 
         /* =========================
-           BASIC FRONTEND VALIDATION
+           BASIC VALIDATION
         ========================= */
 
-        if (
-            name === "" ||
-            email === "" ||
-            message === ""
-        ) {
-
-            showFormError(
-                "Please fill in all required fields."
+        if (!name || !email || !message) {
+            showFormStatus(
+                "Please fill in your name, email address, and message."
             );
-
             return;
-
         }
 
 
@@ -4746,79 +4657,103 @@ contactForm.addEventListener(
         const emailPattern =
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
-        if (
-            !emailPattern.test(email)
-        ) {
-
-            showFormError(
-                "Please enter a valid email address."
-            );
-
+        if (!emailPattern.test(email)) {
+            showFormStatus("Please enter a valid email address.");
             return;
-
         }
 
 
         /* =========================
-           CREATE REQUEST DATA
+           CHECK SUPABASE KEY
+        ========================= */
+
+        if (
+            SUPABASE_ANON_KEY ===
+            "PASTE_YOUR_SUPABASE_ANON_KEY_HERE"
+        ) {
+            console.error(
+                "Please add your Supabase publishable/anon key to the JavaScript."
+            );
+
+            showFormStatus(
+                "The contact form is not configured yet. Please contact us directly."
+            );
+
+            return;
+        }
+
+
+        /* =========================
+           PREPARE REQUEST DATA
         ========================= */
 
         const formData = {
-
             name: name,
-
             email: email,
-
             company: company,
-
             message: message
-
         };
+
+
+        /* =========================
+           SHOW LOADING STATE
+        ========================= */
+
+        submitButton.disabled = true;
+        submitButton.style.pointerEvents = "none";
+
+        submitButton.innerHTML = `
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Sending...
+        `;
+
+        formStatus.style.display = "none";
 
 
         try {
 
             /* =========================
-               SEND TO PHP BACKEND
+               SEND TO SUPABASE EDGE FUNCTION
             ========================= */
 
-            const response =
-                await fetch(
-                    "contact.php",
-                    {
-                        method: "POST",
+            const response = await fetch(CONTACT_FUNCTION_URL, {
+                method: "POST",
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_ANON_KEY,
+                    "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+                },
 
-                        body:
-                            JSON.stringify(
-                                formData
-                            )
-                    }
-                );
+                body: JSON.stringify(formData)
+            });
 
 
             /* =========================
-               READ JSON RESPONSE
+               READ SERVER RESPONSE
             ========================= */
 
-            let result;
+            let result = {};
 
             try {
-
-                result =
-                    await response.json();
-
-            } catch (jsonError) {
-
+                result = await response.json();
+            } catch {
                 throw new Error(
-                    "Invalid server response."
+                    "The server returned an unreadable response."
                 );
+            }
 
+
+            /* =========================
+               HANDLE SERVER ERROR
+            ========================= */
+
+            if (!response.ok || !result.success) {
+                throw new Error(
+                    result.error ||
+                    result.message ||
+                    "Unable to send your enquiry. Please try again."
+                );
             }
 
 
@@ -4826,161 +4761,64 @@ contactForm.addEventListener(
                SUCCESS
             ========================= */
 
-            if (
-                response.ok &&
-                result.success
-            ) {
+            showFormStatus(
+                result.message ||
+                "Your enquiry has been received. We will get back to you soon.",
+                true
+            );
 
-                submitButton.innerHTML = `
-                    <i class="fa-solid fa-check"></i>
-                    Successfully Sent
-                `;
+            submitButton.innerHTML = `
+                <i class="fa-solid fa-check"></i>
+                Successfully Sent
+            `;
 
-
-                submitButton.style.background =
-                    "#238636";
-
-
-                formStatus.textContent =
-                    result.message ||
-                    "Your enquiry has been successfully sent. We will get back to you soon.";
+            submitButton.style.background = "#238636";
 
 
-                formStatus.style.color =
-                    "#238636";
+            /* =========================
+               CLEAR FORM
+            ========================= */
+
+            contactForm.reset();
 
 
-                formStatus.style.display =
-                    "block";
+            /* =========================
+               RESTORE BUTTON
+            ========================= */
 
-
-                /* =========================
-                   CLEAR FORM
-                ========================= */
-
-                contactForm.reset();
-
-
-                /* =========================
-                   RESTORE BUTTON
-                ========================= */
-
-                setTimeout(
-                    function() {
-
-                        submitButton.innerHTML = `
-                            Send Enquiry
-                            <i class="fa-solid fa-arrow-right"></i>
-                        `;
-
-
-                        submitButton.style.background =
-                            "";
-
-
-                        submitButton.disabled =
-                            false;
-
-
-                        submitButton.style.pointerEvents =
-                            "";
-
-                    },
-                    5000
-                );
-
-
-            } else {
-
-                /* =========================
-                   SERVER ERROR
-                ========================= */
-
-                showFormError(
-                    result.message ||
-                    "Unable to send your enquiry. Please try again."
-                );
-
-            }
+            setTimeout(restoreSubmitButton, 5000);
 
 
         } catch (error) {
 
             /* =========================
-               CONNECTION ERROR
+               CONNECTION / REQUEST ERROR
             ========================= */
 
-            console.error(
-                "Contact form error:",
-                error
-            );
+            console.error("Contact form error:", error);
 
-
-            showFormError(
+            showFormStatus(
+                error.message ||
                 "Connection error. Please check your internet connection and try again."
             );
 
-        }
-
-    }
-);
-
-
-
-/* ==========================================
-   ERROR FUNCTION
-========================================== */
-
-function showFormError(message) {
-
-    submitButton.innerHTML = `
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        Try Again
-    `;
-
-
-    submitButton.disabled =
-        false;
-
-
-    submitButton.style.pointerEvents =
-        "";
-
-
-    submitButton.style.background =
-        "#b42318";
-
-
-    formStatus.textContent =
-        message;
-
-
-    formStatus.style.color =
-        "#b42318";
-
-
-    formStatus.style.display =
-        "block";
-
-
-    setTimeout(
-        function() {
-
             submitButton.innerHTML = `
-                Send Enquiry
-                <i class="fa-solid fa-arrow-right"></i>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Try Again
             `;
 
+            submitButton.style.background = "#b42318";
 
-            submitButton.style.background =
-                "";
+            setTimeout(restoreSubmitButton, 4000);
+        }
 
-        },
-        4000
+    });
+
+} else {
+    console.error(
+        "Contact form setup failed. Check that contactForm, submitButton, and formStatus exist in your HTML."
     );
-
 }
-
 
 
 /* ==========================================
@@ -4988,38 +4826,27 @@ function showFormError(message) {
 ========================================== */
 
 const header =
-    document.querySelector(
-        ".header"
-    );
+    document.querySelector(".header");
 
+window.addEventListener("scroll", () => {
 
-window.addEventListener(
-    "scroll",
-    () => {
+    if (!header) return;
 
-        if (
-            window.scrollY > 60
-        ) {
+    if (window.scrollY > 60) {
 
-            header.style.background =
-                "rgba(29, 11, 56, .96)";
+        header.style.background =
+            "rgba(29, 11, 56, .96)";
 
-            header.style.backdropFilter =
-                "blur(12px)";
+        header.style.backdropFilter =
+            "blur(12px)";
 
-        } else {
+    } else {
 
-            header.style.background =
-                "transparent";
-
-            header.style.backdropFilter =
-                "none";
-
-        }
-
+        header.style.background = "transparent";
+        header.style.backdropFilter = "none";
     }
-);
 
+});
 
 
 /* ==========================================
@@ -5043,130 +4870,98 @@ const statusText =
 
 
 const loadingMessages = [
-
     {
         percent: 15,
         text: "INITIALIZING ENERGY SYSTEMS",
         status: "SYSTEM STARTING"
     },
-
     {
         percent: 35,
         text: "CONNECTING OPERATIONS",
         status: "OPERATIONS ONLINE"
     },
-
     {
         percent: 55,
         text: "VERIFYING SAFETY SYSTEMS",
         status: "SAFETY CHECK"
     },
-
     {
         percent: 75,
         text: "PREPARING ENERGY SOLUTIONS",
         status: "SYSTEM READY"
     },
-
     {
         percent: 90,
         text: "FINALIZING EXPERIENCE",
         status: "ALMOST READY"
     },
-
     {
         percent: 100,
         text: "WELCOME TO ENERGIA",
         status: "ALL SYSTEMS ONLINE"
     }
-
 ];
 
 
 let progress = 0;
 
 
+/* ==========================================
+   UPDATE PRELOADER
+========================================== */
+
 function updatePreloader() {
+
+    // If the preloader isn't present, don't run the animation.
+    if (
+        !preloader ||
+        !loadingBar ||
+        !loadingPercent ||
+        !loadingText ||
+        !statusText
+    ) {
+        return;
+    }
 
     progress++;
 
+    loadingBar.style.width = progress + "%";
+    loadingPercent.textContent = progress + "%";
 
-    loadingBar.style.width =
-        progress + "%";
+    let currentMessage = loadingMessages[0];
 
-
-    loadingPercent.textContent =
-        progress + "%";
-
-
-    let currentMessage =
-        loadingMessages[0];
-
-
-    loadingMessages.forEach(
-        message => {
-
-            if (
-                progress >= message.percent
-            ) {
-
-                currentMessage =
-                    message;
-
-            }
-
+    loadingMessages.forEach(message => {
+        if (progress >= message.percent) {
+            currentMessage = message;
         }
-    );
+    });
+
+    loadingText.textContent = currentMessage.text;
+    statusText.textContent = currentMessage.status;
 
 
-    loadingText.textContent =
-        currentMessage.text;
+    if (progress < 100) {
 
-
-    statusText.textContent =
-        currentMessage.status;
-
-
-    if (
-        progress < 100
-    ) {
-
-        setTimeout(
-            updatePreloader,
-            22
-        );
+        setTimeout(updatePreloader, 22);
 
     } else {
 
-        setTimeout(
-            () => {
+        setTimeout(() => {
 
-                preloader.classList.add(
-                    "loaded"
-                );
+            preloader.classList.add("loaded");
+            document.body.classList.add("page-loaded");
 
-
-                document.body.classList.add(
-                    "page-loaded"
-                );
-
-            },
-            650
-        );
+        }, 650);
 
     }
-
 }
 
 
-
 /* ==========================================
-   START
+   START PRELOADER
 ========================================== */
 
-if (
-    document.readyState === "loading"
-) {
+if (document.readyState === "loading") {
 
     document.addEventListener(
         "DOMContentLoaded",
@@ -5178,7 +4973,6 @@ if (
     updatePreloader();
 
 }
-
 
 </script>
 
