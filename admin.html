@@ -2984,21 +2984,31 @@ a:hover {
 
 </main>
 
+
+
 <script>
-/* ============================================================
+    /* ============================================================
    STICKER CLASH SOUND SYSTEM
+   Updated sound system with safe event handling
+============================================================ */
+
+/* ============================================================
+   AUDIO CONFIGURATION
 ============================================================ */
 
 const SOUND_ENABLED = true;
 
-/* ============================================================
-   AUDIO FILES
-   Keep these files in the same folder as your HTML file.
-============================================================ */
+/*
+ * Keep these sound files in the same folder as your HTML file:
+ *
+ * lock.wav
+ * bmg_theme.wav
+ * Game.wav
+ */
 
-const clickSound = new Audio("./lock.wav");
-const winnerSound = new Audio("./bgm_theme.wav");
-const backgroundMusic = new Audio("./Game.wav");
+const clickSound = new Audio("lock.wav");
+const winnerSound = new Audio("bgm_theme.wav");
+const backgroundMusic = new Audio("Game.wav");
 
 /* ============================================================
    AUDIO SETTINGS
@@ -3014,31 +3024,34 @@ backgroundMusic.preload = "auto";
 backgroundMusic.volume = 0.28;
 backgroundMusic.loop = true;
 
-/* Prevent the winner sound from playing repeatedly */
-let winnerSoundPlayed = false;
+/* ============================================================
+   SOUND STATE
+============================================================ */
 
-/* Track whether background music is playing */
+let winnerSoundPlayed = false;
 let backgroundMusicStarted = false;
 
 /* ============================================================
-   PLAY A SOUND
+   SAFE SOUND PLAYBACK
 ============================================================ */
 
 function playSound(sound) {
-    if (!SOUND_ENABLED || !sound) return;
+    if (!SOUND_ENABLED || !sound) {
+        return;
+    }
 
     try {
         sound.currentTime = 0;
 
         const playback = sound.play();
 
-        if (playback !== undefined) {
+        if (playback && typeof playback.catch === "function") {
             playback.catch(error => {
                 console.warn("Unable to play sound:", error);
             });
         }
     } catch (error) {
-        console.warn("Sound error:", error);
+        console.warn("Sound playback error:", error);
     }
 }
 
@@ -3046,12 +3059,29 @@ function playSound(sound) {
    BUTTON CLICK SOUND
 ============================================================ */
 
+/*
+ * This listener only plays the sound.
+ * It does NOT prevent buttons from performing their normal actions.
+ */
+
 document.addEventListener("click", function(event) {
-    if (!SOUND_ENABLED) return;
+    if (!SOUND_ENABLED) {
+        return;
+    }
+
+    /*
+     * Make sure the click target is an HTML element
+     * before using closest().
+     */
+    if (!(event.target instanceof Element)) {
+        return;
+    }
 
     const button = event.target.closest("button");
 
-    if (!button || button.disabled) return;
+    if (!button || button.disabled) {
+        return;
+    }
 
     playSound(clickSound);
 });
@@ -3061,17 +3091,37 @@ document.addEventListener("click", function(event) {
 ============================================================ */
 
 function startBackgroundMusic() {
-    if (!SOUND_ENABLED || backgroundMusicStarted) return;
+    if (!SOUND_ENABLED) {
+        return;
+    }
+
+    /*
+     * Avoid restarting music that is already playing.
+     */
+    if (!backgroundMusic.paused && !backgroundMusic.ended) {
+        backgroundMusicStarted = true;
+        return;
+    }
+
+    if (backgroundMusicStarted) {
+        return;
+    }
 
     backgroundMusicStarted = true;
 
-    backgroundMusic.play().catch(error => {
-        backgroundMusicStarted = false;
-        console.warn(
-            "Background music could not start. The browser may require another user interaction.",
-            error
-        );
-    });
+    const playback = backgroundMusic.play();
+
+    if (playback && typeof playback.catch === "function") {
+        playback.catch(error => {
+            backgroundMusicStarted = false;
+
+            console.warn(
+                "Background music could not start. " +
+                "The browser may require another user interaction.",
+                error
+            );
+        });
+    }
 }
 
 /* ============================================================
@@ -3079,8 +3129,13 @@ function startBackgroundMusic() {
 ============================================================ */
 
 function stopBackgroundMusic() {
-    backgroundMusic.pause();
-    backgroundMusic.currentTime = 0;
+    try {
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+    } catch (error) {
+        console.warn("Unable to stop background music:", error);
+    }
+
     backgroundMusicStarted = false;
 }
 
@@ -3089,24 +3144,55 @@ function stopBackgroundMusic() {
 ============================================================ */
 
 function playWinnerSound() {
-    if (!SOUND_ENABLED || winnerSoundPlayed) return;
+    if (!SOUND_ENABLED || winnerSoundPlayed) {
+        return;
+    }
 
     winnerSoundPlayed = true;
+
+    /*
+     * Stop the background music when the game ends.
+     */
+    stopBackgroundMusic();
 
     playSound(winnerSound);
 }
 
 /* ============================================================
-   RESET SOUND FOR A NEW GAME
+   RESET SOUNDS FOR A NEW GAME
 ============================================================ */
 
 function resetGameSounds() {
     winnerSoundPlayed = false;
+
+    /*
+     * Stop any previous winner sound before a new game.
+     */
+    try {
+        winnerSound.pause();
+        winnerSound.currentTime = 0;
+    } catch (error) {
+        console.warn("Unable to reset winner sound:", error);
+    }
+}
+
+/* ============================================================
+   OPTIONAL: ENABLE SOUND AFTER USER INTERACTION
+============================================================ */
+
+/*
+ * You can call this function from a button that enters the game.
+ * It starts the background music after a user interaction.
+ */
+
+function enableGameSounds() {
+    if (!SOUND_ENABLED) {
+        return;
+    }
+
+    startBackgroundMusic();
 }
 </script>
-
-
-
 
 
     
@@ -3147,7 +3233,7 @@ const NEXT_ROUND_SECONDS = 5;
  * No sound files are requested.
  */
 
-const SOUND_ENABLED = false;
+
 
 
 /* ============================================================
