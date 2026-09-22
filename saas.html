@@ -2733,6 +2733,37 @@ footer {
 
 </footer>
 
+    
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    const SUPABASE_URL = "YOUR_MUVIA_SUPABASE_PROJECT_URL";
+    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+    async function protectSaaSPage() {
+        const { data, error } = await supabaseClient.auth.getSession();
+
+        if (error || !data.session) {
+            window.location.replace("signin.html");
+            return;
+        }
+
+        // A valid session exists.
+        // You can display the signed-in user's details here.
+        const user = data.session.user;
+
+        console.log("Authenticated user:", user.email);
+    }
+
+    protectSaaSPage();
+</script>
+    
+    
 
 <script >
 /* =========================================
