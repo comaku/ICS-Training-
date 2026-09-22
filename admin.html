@@ -21,59 +21,64 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-    <style>
+   <style>
 /* ============================================================
-   MEME BATTLE — ARCADE-INSPIRED GAME DESIGN
-   Theme: Electric Blue | Cyan | Navy | White | Yellow
+   MEME BATTLE
+   ARCADE ARENA INTERFACE
+   Inspired by the supplied Sticker Clash preloader
    ============================================================ */
 
 
 /* ============================================================
-   1. ROOT VARIABLES
+   1. DESIGN TOKENS
    ============================================================ */
 
 :root {
-    --blue: #087cff;
-    --blue-dark: #0054d6;
-    --blue-deep: #063caa;
+    --arena-bg: #06132f;
+    --arena-deep: #030c20;
+    --arena-navy: #091b48;
+    --arena-panel: #0d2456;
+    --arena-panel-light: #12356f;
 
-    --cyan: #08d9f5;
-    --cyan-light: #70f3ff;
+    --arena-blue: #087cff;
+    --arena-blue-light: #319cff;
+    --arena-blue-deep: #064ab7;
 
-    --navy: #071b43;
-    --navy-light: #102b5d;
-    --navy-card: #0c2450;
+    --arena-cyan: #08d9f5;
+    --arena-cyan-light: #9af7ff;
 
-    --yellow: #ffdb26;
-    --yellow-dark: #f5b900;
+    --arena-yellow: #ffe45c;
+    --arena-yellow-dark: #e8ae00;
 
-    --white: #ffffff;
-    --text-light: #eaf5ff;
-    --text-muted: #a9c3e8;
+    --arena-white: #ffffff;
+    --arena-text: #eaf5ff;
+    --arena-muted: #a9c6e9;
 
-    --green: #55f5a5;
-    --red: #ff647c;
+    --arena-green: #70ffb2;
+    --arena-red: #ff6b85;
 
-    --border: rgba(126, 190, 255, 0.2);
-    --border-bright: rgba(8, 217, 245, 0.6);
+    --arena-border: rgba(165, 213, 255, 0.19);
+    --arena-border-bright: rgba(8, 217, 245, 0.55);
 
-    --radius-small: 10px;
-    --radius-medium: 16px;
-    --radius-large: 24px;
+    --arena-radius-sm: 10px;
+    --arena-radius-md: 16px;
+    --arena-radius-lg: 24px;
 
-    --shadow-blue:
-        0 8px 25px rgba(0, 94, 255, 0.22);
+    --arena-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.3);
 
-    --shadow-cyan:
-        0 0 20px rgba(8, 217, 245, 0.18);
+    --arena-blue-glow:
+        0 0 24px rgba(8, 124, 255, 0.22);
 
-    --transition:
-        0.2s ease;
+    --arena-cyan-glow:
+        0 0 22px rgba(8, 217, 245, 0.18);
+
+    --arena-transition: 0.2s ease;
 }
 
 
 /* ============================================================
-   2. GLOBAL RESET
+   2. RESET
    ============================================================ */
 
 * {
@@ -88,40 +93,12 @@ html {
 
 
 body {
+    min-height: 100vh;
+
     margin: 0;
     padding: 20px;
 
-    min-height: 100vh;
-
-    font-family:
-        "Trebuchet MS",
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    color: var(--white);
-
-    background-color: #04132f;
-
-    background-image:
-        radial-gradient(
-            circle at 50% -10%,
-            rgba(0, 151, 255, 0.48),
-            transparent 42%
-        ),
-        radial-gradient(
-            circle at 0% 100%,
-            rgba(0, 217, 245, 0.13),
-            transparent 35%
-        ),
-        linear-gradient(
-            145deg,
-            #061631 0%,
-            #071b43 48%,
-            #031027 100%
-        );
-
-    background-attachment: fixed;
+    position: relative;
 
     display: flex;
     justify-content: center;
@@ -129,11 +106,44 @@ body {
 
     overflow-x: hidden;
 
-    position: relative;
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--arena-white);
+
+    background-color: var(--arena-bg);
+
+    background-image:
+        radial-gradient(
+            ellipse at 50% -15%,
+            rgba(0, 145, 255, 0.5) 0%,
+            transparent 48%
+        ),
+        radial-gradient(
+            ellipse at 100% 55%,
+            rgba(0, 217, 245, 0.1) 0%,
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 0% 100%,
+            rgba(0, 91, 255, 0.18) 0%,
+            transparent 40%
+        ),
+        linear-gradient(
+            150deg,
+            #091b48 0%,
+            #06132f 52%,
+            #020a1c 100%
+        );
+
+    background-attachment: fixed;
 }
 
 
-/* Subtle arcade-style background decoration */
+/* Arcade arena background grid */
 
 body::before {
     content: "";
@@ -141,41 +151,68 @@ body::before {
     position: fixed;
     inset: 0;
 
+    z-index: 0;
+
     pointer-events: none;
 
     background-image:
         linear-gradient(
-            rgba(255, 255, 255, 0.018) 1px,
+            rgba(123, 193, 255, 0.025) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(255, 255, 255, 0.018) 1px,
+            rgba(123, 193, 255, 0.025) 1px,
             transparent 1px
         );
 
-    background-size: 38px 38px;
+    background-size: 36px 36px;
 
     mask-image:
         linear-gradient(
             to bottom,
             black,
-            transparent 85%
+            transparent 90%
         );
+}
+
+
+/* Decorative ambient arena lighting */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 420px;
+    height: 420px;
+
+    top: -250px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: rgba(8, 124, 255, 0.13);
+
+    filter: blur(80px);
+
+    pointer-events: none;
 
     z-index: 0;
 }
 
 
 /* ============================================================
-   3. MAIN CONTAINER
+   3. MAIN GAME CONTAINER
    ============================================================ */
 
 .container {
     position: relative;
     z-index: 1;
 
-    width: min(100%, 760px);
+    width: min(100%, 780px);
 
     margin: auto;
     padding: 30px;
@@ -185,23 +222,23 @@ body::before {
     background:
         linear-gradient(
             145deg,
-            rgba(15, 43, 91, 0.96),
-            rgba(5, 22, 55, 0.97)
+            rgba(13, 36, 86, 0.98),
+            rgba(5, 19, 48, 0.98)
         );
 
-    border: 1px solid var(--border);
+    border: 1px solid rgba(149, 207, 255, 0.22);
 
-    border-radius: var(--radius-large);
+    border-radius: var(--arena-radius-lg);
 
     box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.38),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        0 25px 75px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
 
     overflow: hidden;
 }
 
 
-/* Blue highlight across the top of the main panel */
+/* Multicolour arcade stripe */
 
 .container::before {
     content: "";
@@ -212,97 +249,102 @@ body::before {
     left: 0;
     right: 0;
 
-    height: 5px;
+    height: 6px;
 
     background:
         linear-gradient(
             90deg,
-            var(--cyan),
-            var(--blue),
-            var(--yellow),
-            var(--cyan)
+            var(--arena-cyan),
+            var(--arena-blue),
+            var(--arena-yellow),
+            var(--arena-blue),
+            var(--arena-cyan)
         );
 
-    background-size: 200% 100%;
+    background-size: 220% 100%;
 
-    animation: topBarFlow 7s linear infinite;
+    animation: arenaStripe 8s linear infinite;
 }
 
 
-@keyframes topBarFlow {
+@keyframes arenaStripe {
     from {
         background-position: 0% 50%;
     }
 
     to {
-        background-position: 200% 50%;
+        background-position: 220% 50%;
     }
 }
 
 
 /* ============================================================
-   4. HEADINGS AND TEXT
+   4. HEADINGS
    ============================================================ */
 
 h1 {
-    margin: 10px 0 18px;
+    margin: 12px 0 20px;
 
-    font-size: clamp(32px, 6vw, 48px);
+    color: var(--arena-white);
+
+    font-size: clamp(32px, 6vw, 50px);
 
     font-weight: 1000;
 
-    line-height: 1.1;
+    line-height: 1.08;
 
     letter-spacing: -1.5px;
 
-    color: var(--white);
-
     text-shadow:
-        0 4px 0 var(--blue-deep),
-        0 7px 20px rgba(0, 0, 0, 0.35);
+        0 4px 0 #0753b9,
+        0 7px 0 #042c70,
+        0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
 
 h2 {
     margin-top: 10px;
 
-    color: var(--white);
+    color: var(--arena-white);
 
-    font-size: clamp(22px, 4vw, 30px);
+    font-size: clamp(22px, 4vw, 31px);
 
     font-weight: 900;
 
-    line-height: 1.25;
+    line-height: 1.3;
+
+    text-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 
 h3 {
     margin-bottom: 12px;
 
-    color: var(--cyan-light);
+    color: var(--arena-cyan-light);
 
     font-size: 19px;
 
-    font-weight: 800;
+    font-weight: 900;
 }
 
 
 p {
-    color: var(--text-muted);
-
-    line-height: 1.7;
+    color: var(--arena-muted);
 
     font-size: 15px;
+
+    line-height: 1.7;
 }
 
 
 strong {
-    color: var(--white);
+    color: var(--arena-white);
 }
 
 
 small {
-    color: var(--text-muted);
+    color: var(--arena-muted);
 }
 
 
@@ -312,46 +354,48 @@ small {
 
 input {
     width: 100%;
-    max-width: 400px;
-
-    padding: 15px 17px;
+    max-width: 420px;
 
     margin: 8px 0;
+    padding: 16px 18px;
 
-    border: 2px solid rgba(117, 172, 238, 0.25);
+    color: #091b48;
 
-    border-radius: var(--radius-small);
+    background: #f5faff;
+
+    border: 2px solid rgba(8, 217, 245, 0.25);
+
+    border-radius: 12px;
 
     outline: none;
-
-    background: #f4f9ff;
-
-    color: #071b43;
 
     font-family: inherit;
 
     font-size: 16px;
     font-weight: 600;
 
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.12);
+
     transition:
-        border-color var(--transition),
-        box-shadow var(--transition),
-        transform var(--transition);
+        border-color var(--arena-transition),
+        box-shadow var(--arena-transition),
+        transform var(--arena-transition);
 }
 
 
 input::placeholder {
-    color: #7285a2;
+    color: #778ba9;
 
     font-weight: 400;
 }
 
 
 input:focus {
-    border-color: var(--cyan);
+    border-color: var(--arena-cyan);
 
     box-shadow:
-        0 0 0 4px rgba(8, 217, 245, 0.15),
+        0 0 0 4px rgba(8, 217, 245, 0.14),
         0 0 20px rgba(8, 217, 245, 0.12);
 
     transform: translateY(-1px);
@@ -367,9 +411,24 @@ button {
 
     padding: 14px 25px;
 
-    border: 1px solid transparent;
+    color: var(--arena-white);
+
+    background:
+        linear-gradient(
+            180deg,
+            #2698ff 0%,
+            #087cff 48%,
+            #0562dc 100%
+        );
+
+    border: 1px solid rgba(190, 230, 255, 0.35);
 
     border-radius: 12px;
+
+    box-shadow:
+        0 5px 0 #0346a7,
+        0 9px 20px rgba(0, 86, 220, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
 
     cursor: pointer;
 
@@ -378,37 +437,24 @@ button {
     font-size: 15px;
     font-weight: 900;
 
-    letter-spacing: 0.3px;
-
-    color: var(--white);
-
-    background:
-        linear-gradient(
-            180deg,
-            #168cff,
-            #0063e6
-        );
-
-    box-shadow:
-        0 5px 0 #0345a6,
-        0 9px 18px rgba(0, 87, 220, 0.2);
+    letter-spacing: 0.25px;
 
     transition:
-        transform var(--transition),
-        box-shadow var(--transition),
-        filter var(--transition),
-        background var(--transition);
+        transform var(--arena-transition),
+        box-shadow var(--arena-transition),
+        filter var(--arena-transition);
 }
 
 
 button:hover:not(:disabled) {
     transform: translateY(-3px);
 
-    filter: brightness(1.12);
+    filter: brightness(1.1);
 
     box-shadow:
-        0 7px 0 #0345a6,
-        0 13px 25px rgba(0, 120, 255, 0.3);
+        0 7px 0 #0346a7,
+        0 13px 27px rgba(0, 111, 255, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 
@@ -416,13 +462,13 @@ button:active:not(:disabled) {
     transform: translateY(2px);
 
     box-shadow:
-        0 2px 0 #0345a6,
-        0 4px 10px rgba(0, 87, 220, 0.2);
+        0 2px 0 #0346a7,
+        0 4px 10px rgba(0, 86, 220, 0.2);
 }
 
 
 button:focus-visible {
-    outline: 3px solid var(--yellow);
+    outline: 3px solid var(--arena-yellow);
 
     outline-offset: 4px;
 }
@@ -433,7 +479,7 @@ button:disabled {
 
     cursor: not-allowed;
 
-    filter: grayscale(0.4);
+    filter: grayscale(0.35);
 
     transform: none;
 
@@ -451,11 +497,11 @@ button:disabled {
     justify-content: center;
     align-items: center;
 
+    flex-wrap: wrap;
+
     gap: 14px;
 
     margin-top: 25px;
-
-    flex-wrap: wrap;
 }
 
 
@@ -474,32 +520,32 @@ button:disabled {
 
 
 /* ============================================================
-   9. ROOM CODE PANEL
+   9. ROOM CODE
    ============================================================ */
 
 .room-code {
     position: relative;
 
+    max-width: 350px;
+
     margin: 28px auto;
 
-    padding: 25px 20px;
-
-    max-width: 340px;
+    padding: 26px 20px;
 
     background:
         linear-gradient(
             145deg,
-            #0d3675,
-            #071d49
+            #10428c,
+            #091b48
         );
 
-    border: 2px solid rgba(8, 217, 245, 0.45);
+    border: 2px solid rgba(8, 217, 245, 0.5);
 
-    border-radius: var(--radius-medium);
+    border-radius: 18px;
 
     box-shadow:
-        var(--shadow-blue),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        0 12px 30px rgba(0, 72, 190, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
     overflow: hidden;
 }
@@ -510,26 +556,48 @@ button:disabled {
 
     position: absolute;
 
-    top: -45px;
-    right: -35px;
+    width: 140px;
+    height: 140px;
 
-    width: 120px;
-    height: 120px;
+    top: -65px;
+    right: -40px;
+
+    border-radius: 50%;
 
     background: rgba(8, 217, 245, 0.12);
 
+    pointer-events: none;
+}
+
+
+.room-code::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    bottom: -65px;
+    left: -40px;
+
     border-radius: 50%;
+
+    background: rgba(8, 124, 255, 0.2);
+
+    pointer-events: none;
 }
 
 
 .room-code span {
     position: relative;
+    z-index: 1;
 
     display: block;
 
     margin-bottom: 12px;
 
-    color: var(--cyan-light);
+    color: var(--arena-cyan-light);
 
     font-size: 12px;
 
@@ -543,63 +611,62 @@ button:disabled {
 
 .room-code strong {
     position: relative;
+    z-index: 1;
 
     display: block;
 
-    color: var(--yellow);
+    color: var(--arena-yellow);
 
-    font-size: clamp(28px, 6vw, 38px);
+    font-size: clamp(29px, 6vw, 39px);
 
     font-weight: 1000;
 
     letter-spacing: 6px;
 
     text-shadow:
-        0 3px 0 #9e6b00,
-        0 0 18px rgba(255, 219, 38, 0.18);
+        0 3px 0 #a76f00,
+        0 0 20px rgba(255, 228, 92, 0.2);
 
     overflow-wrap: anywhere;
 }
 
 
 /* ============================================================
-   10. PLAYER LIST
+   10. PLAYERS LIST
    ============================================================ */
 
 #playersList {
+    max-width: 490px;
+
     margin: 22px auto;
 
-    padding: 15px;
+    padding: 12px;
 
-    max-width: 480px;
+    background: rgba(3, 13, 34, 0.72);
 
-    background: rgba(3, 16, 42, 0.7);
+    border: 1px solid var(--arena-border);
 
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius-medium);
+    border-radius: 16px;
 
     line-height: 1.8;
 
     box-shadow:
-        inset 0 2px 8px rgba(0, 0, 0, 0.15);
+        inset 0 2px 10px rgba(0, 0, 0, 0.18);
 }
 
 
 .player {
-    position: relative;
-
     padding: 15px;
 
-    border-bottom: 1px solid rgba(126, 190, 255, 0.15);
+    border-bottom: 1px solid rgba(165, 213, 255, 0.13);
 
     transition:
-        background var(--transition);
+        background var(--arena-transition);
 }
 
 
 .player:hover {
-    background: rgba(8, 124, 255, 0.08);
+    background: rgba(8, 124, 255, 0.1);
 }
 
 
@@ -616,56 +683,62 @@ button:disabled {
 
 
 .player strong {
-    color: var(--white);
+    color: var(--arena-white);
 
     font-size: 17px;
+    font-weight: 900;
 }
 
 
 .player small {
     margin-top: 4px;
 
-    color: var(--text-muted);
+    color: var(--arena-muted);
 
     font-size: 12px;
 }
 
 
 /* ============================================================
-   11. GAME MESSAGES
+   11. STATUS MESSAGE
    ============================================================ */
 
 #message {
     margin-top: 22px;
 
-    padding: 13px 16px;
+    padding: 14px 16px;
 
-    color: var(--text-light);
+    color: var(--arena-text);
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(8, 124, 255, 0.13),
+            rgba(8, 217, 245, 0.06)
+        );
+
+    border: 1px solid rgba(8, 217, 245, 0.25);
+
+    border-radius: 12px;
 
     font-size: 14px;
 
-    line-height: 1.6;
-
-    background: rgba(0, 93, 220, 0.12);
-
-    border: 1px solid rgba(8, 124, 255, 0.25);
-
-    border-radius: var(--radius-small);
+    line-height: 1.65;
 }
 
 
 .status-good {
-    color: var(--green) !important;
+    color: var(--arena-green) !important;
 }
 
 
 .status-warning {
-    color: var(--yellow) !important;
+    color: var(--arena-yellow) !important;
 }
 
 
 .status-error {
-    color: var(--red) !important;
+    color: var(--arena-red) !important;
 }
 
 
@@ -674,20 +747,25 @@ button:disabled {
    ============================================================ */
 
 .round-info {
+    position: relative;
+
     margin-bottom: 25px;
 
-    padding: 16px;
+    padding: 17px;
 
     background:
         linear-gradient(
             100deg,
-            rgba(0, 104, 255, 0.16),
+            rgba(0, 105, 255, 0.2),
             rgba(8, 217, 245, 0.07)
         );
 
-    border: 1px solid rgba(8, 217, 245, 0.22);
+    border: 1px solid rgba(8, 217, 245, 0.3);
 
-    border-radius: var(--radius-medium);
+    border-radius: 16px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 
@@ -696,7 +774,7 @@ button:disabled {
 
     margin-bottom: 8px;
 
-    color: var(--cyan-light);
+    color: var(--arena-cyan-light);
 
     font-size: 12px;
 
@@ -711,14 +789,14 @@ button:disabled {
 .round-info strong {
     display: inline-block;
 
-    color: var(--yellow);
+    color: var(--arena-yellow);
 
-    font-size: clamp(28px, 6vw, 36px);
+    font-size: clamp(29px, 6vw, 38px);
 
     font-weight: 1000;
 
     text-shadow:
-        0 3px 0 rgba(166, 111, 0, 0.6);
+        0 3px 0 rgba(166, 111, 0, 0.5);
 }
 
 
@@ -731,52 +809,82 @@ button:disabled {
 
     margin-bottom: 28px;
 
-    padding: 28px 24px;
+    padding: 30px 25px;
 
     background:
         linear-gradient(
             145deg,
-            #0d3675,
-            #081e4a
+            #10418a 0%,
+            #0b2a60 52%,
+            #081b43 100%
         );
 
-    border: 2px solid rgba(8, 217, 245, 0.35);
+    border: 2px solid rgba(8, 217, 245, 0.42);
 
-    border-radius: var(--radius-large);
+    border-radius: 22px;
 
     box-shadow:
-        var(--shadow-blue),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        0 12px 32px rgba(0, 63, 170, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.09);
 
     overflow: hidden;
 }
 
+
+/* Oversized translucent question mark */
 
 .scenario-box::before {
     content: "?";
 
     position: absolute;
 
-    right: 15px;
-    top: -22px;
+    top: -35px;
+    right: 10px;
 
-    font-size: 115px;
+    color: rgba(8, 217, 245, 0.075);
+
+    font-size: 150px;
+
     font-weight: 1000;
 
     line-height: 1;
-
-    color: rgba(8, 217, 245, 0.055);
 
     pointer-events: none;
 }
 
 
+/* Subtle cyan highlight */
+
+.scenario-box::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 5px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--arena-cyan),
+            var(--arena-blue),
+            transparent
+        );
+
+    opacity: 0.9;
+}
+
+
 .scenario-box p {
     position: relative;
+    z-index: 1;
 
     margin: 0 0 12px;
 
-    color: var(--cyan-light);
+    color: var(--arena-cyan-light);
 
     font-size: 12px;
 
@@ -790,12 +898,13 @@ button:disabled {
 
 .scenario-box h2 {
     position: relative;
+    z-index: 1;
 
     margin: 10px 0 0;
 
-    color: var(--white);
+    color: var(--arena-white);
 
-    font-size: clamp(21px, 4vw, 29px);
+    font-size: clamp(21px, 4.5vw, 30px);
 
     font-weight: 900;
 
@@ -818,13 +927,15 @@ button:disabled {
 
     overflow-x: auto;
 
-    padding: 8px 5px 15px;
+    margin-bottom: 20px;
 
-    margin-bottom: 18px;
+    padding: 8px 5px 15px;
 
     scrollbar-width: thin;
 
-    scrollbar-color: var(--blue) var(--navy);
+    scrollbar-color:
+        var(--arena-blue)
+        var(--arena-navy);
 }
 
 
@@ -844,8 +955,8 @@ button:disabled {
     background:
         linear-gradient(
             90deg,
-            var(--blue),
-            var(--cyan)
+            var(--arena-blue),
+            var(--arena-cyan)
         );
 
     border-radius: 20px;
@@ -857,32 +968,45 @@ button:disabled {
 
     white-space: nowrap;
 
-    padding: 10px 16px;
+    padding: 10px 17px;
 
-    color: var(--text-light);
+    color: var(--arena-text);
 
-    background: #102b5d;
+    background:
+        linear-gradient(
+            180deg,
+            #15366d,
+            #0b214d
+        );
 
-    border: 1px solid rgba(126, 190, 255, 0.2);
+    border: 1px solid rgba(165, 213, 255, 0.2);
 
     border-radius: 30px;
 
-    box-shadow: none;
+    box-shadow:
+        0 3px 0 #061735;
 
     font-size: 13px;
 
-    font-weight: 800;
+    font-weight: 900;
 }
 
 
 #memeCategoryBar button:hover:not(:disabled) {
-    color: var(--white);
+    color: var(--arena-white);
 
-    background: #17458e;
+    background:
+        linear-gradient(
+            180deg,
+            #1a4b91,
+            #10326b
+        );
 
-    border-color: var(--cyan);
+    border-color: var(--arena-cyan);
 
-    box-shadow: var(--shadow-cyan);
+    box-shadow:
+        0 3px 0 #061735,
+        0 0 15px rgba(8, 217, 245, 0.17);
 
     transform: translateY(-2px);
 }
@@ -894,14 +1018,15 @@ button:disabled {
     background:
         linear-gradient(
             135deg,
-            var(--cyan-light),
-            var(--cyan)
+            #b4fbff,
+            var(--arena-cyan)
         );
 
-    border-color: var(--cyan-light);
+    border-color: var(--arena-white);
 
     box-shadow:
-        0 0 15px rgba(8, 217, 245, 0.25);
+        0 3px 0 #04799b,
+        0 0 18px rgba(8, 217, 245, 0.25);
 
     font-weight: 1000;
 }
@@ -914,7 +1039,8 @@ button:disabled {
 #memeGrid {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 18px;
 
@@ -931,55 +1057,63 @@ button:disabled {
 
     min-width: 0;
 
-    border: 3px solid rgba(126, 190, 255, 0.15);
-
-    border-radius: var(--radius-medium);
-
     overflow: hidden;
 
     cursor: pointer;
 
-    background: var(--navy-card);
+    background:
+        linear-gradient(
+            145deg,
+            #12346b,
+            #091d43
+        );
+
+    border: 3px solid rgba(165, 213, 255, 0.16);
+
+    border-radius: 17px;
 
     box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.2);
+        0 8px 20px rgba(0, 0, 0, 0.23),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
     transition:
-        transform var(--transition),
-        border-color var(--transition),
-        box-shadow var(--transition);
+        transform var(--arena-transition),
+        border-color var(--arena-transition),
+        box-shadow var(--arena-transition);
 }
 
 
 .meme-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.01);
 
-    border-color: var(--cyan);
+    border-color: var(--arena-cyan);
 
     box-shadow:
-        0 12px 28px rgba(0, 111, 255, 0.22);
+        0 12px 28px rgba(0, 111, 255, 0.25),
+        0 0 15px rgba(8, 217, 245, 0.1);
 }
 
 
 .meme-card:focus-visible {
-    outline: 3px solid var(--yellow);
+    outline: 3px solid var(--arena-yellow);
 
     outline-offset: 4px;
 }
 
 
 .meme-card.selected {
-    border-color: var(--yellow);
+    border-color: var(--arena-yellow);
+
+    transform: translateY(-4px);
 
     box-shadow:
-        0 0 0 2px rgba(255, 219, 38, 0.2),
-        0 0 24px rgba(255, 219, 38, 0.22);
-
-    transform: translateY(-3px);
+        0 0 0 2px rgba(255, 228, 92, 0.18),
+        0 0 25px rgba(255, 228, 92, 0.2),
+        0 12px 25px rgba(0, 0, 0, 0.24);
 }
 
 
-/* Selected card corner marker */
+/* Yellow selection badge */
 
 .meme-card.selected::after {
     content: "✓";
@@ -989,27 +1123,30 @@ button:disabled {
     top: 10px;
     right: 10px;
 
-    display: flex;
+    display: grid;
+    place-items: center;
 
-    align-items: center;
-    justify-content: center;
-
-    width: 30px;
-    height: 30px;
+    width: 31px;
+    height: 31px;
 
     color: #071b43;
 
-    background: var(--yellow);
+    background:
+        linear-gradient(
+            135deg,
+            #fff7a1,
+            var(--arena-yellow)
+        );
 
-    border: 2px solid var(--white);
+    border: 2px solid var(--arena-white);
 
     border-radius: 50%;
 
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 1000;
 
     box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.3);
+        0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 
@@ -1017,11 +1154,11 @@ button:disabled {
     display: block;
 
     width: 100%;
-    height: 190px;
+    height: 195px;
 
     object-fit: cover;
 
-    background: #061631;
+    background: #04132f;
 
     transition:
         transform 0.3s ease;
@@ -1034,14 +1171,14 @@ button:disabled {
 
 
 .meme-name {
-    padding: 13px 10px;
+    padding: 14px 10px;
 
-    color: var(--white);
+    color: var(--arena-white);
 
     background:
         linear-gradient(
             180deg,
-            #12366d,
+            #14366e,
             #0a2049
         );
 
@@ -1060,7 +1197,8 @@ button:disabled {
 .players-memes {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 20px;
 
@@ -1076,27 +1214,28 @@ button:disabled {
     background:
         linear-gradient(
             145deg,
-            #102b5d,
+            #12366e,
             #091d43
         );
 
-    border: 1px solid var(--border);
+    border: 1px solid var(--arena-border);
 
-    border-radius: var(--radius-medium);
+    border-radius: 18px;
 
     box-shadow:
-        0 8px 22px rgba(0, 0, 0, 0.18);
+        0 9px 24px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
     transition:
-        border-color var(--transition),
-        transform var(--transition);
+        border-color var(--arena-transition),
+        transform var(--arena-transition);
 }
 
 
 .player-meme:hover {
-    border-color: rgba(8, 217, 245, 0.5);
-
     transform: translateY(-3px);
+
+    border-color: var(--arena-border-bright);
 }
 
 
@@ -1108,11 +1247,11 @@ button:disabled {
 
     object-fit: contain;
 
-    border: 1px solid rgba(126, 190, 255, 0.15);
+    background: #04132f;
+
+    border: 1px solid rgba(165, 213, 255, 0.16);
 
     border-radius: 12px;
-
-    background: #04132f;
 }
 
 
@@ -1125,45 +1264,50 @@ button:disabled {
 
     margin-top: 15px;
 
-    padding: 17px 22px;
+    padding: 18px 20px;
 
     color: #071b43;
 
     background:
         linear-gradient(
             135deg,
-            #fff04b,
-            #ffca18
+            #fff69a 0%,
+            var(--arena-yellow) 48%,
+            #ffc91c 100%
         );
 
-    border: 1px solid #fff18a;
+    border: 2px solid rgba(255, 255, 255, 0.65);
+
+    border-radius: 14px;
 
     box-shadow:
-        0 5px 0 #b98000,
-        0 10px 25px rgba(255, 190, 0, 0.18);
+        0 5px 0 #b47c00,
+        0 11px 25px rgba(255, 190, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
 
     font-size: 16px;
 
     font-weight: 1000;
 
-    text-transform: uppercase;
-
     letter-spacing: 0.8px;
+
+    text-transform: uppercase;
 }
 
 
 #submitMemeBtn:hover:not(:disabled) {
-    filter: brightness(1.07);
+    filter: brightness(1.06);
 
     box-shadow:
-        0 7px 0 #b98000,
-        0 14px 28px rgba(255, 190, 0, 0.25);
+        0 7px 0 #b47c00,
+        0 15px 30px rgba(255, 190, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 
 #submitMemeBtn:active:not(:disabled) {
     box-shadow:
-        0 2px 0 #b98000,
+        0 2px 0 #b47c00,
         0 5px 12px rgba(255, 190, 0, 0.18);
 }
 
@@ -1184,18 +1328,18 @@ button:disabled {
 .audience-header {
     margin-bottom: 20px;
 
-    padding: 18px;
+    padding: 20px;
 
     background:
         linear-gradient(
             100deg,
-            rgba(0, 104, 255, 0.16),
+            rgba(0, 105, 255, 0.18),
             rgba(8, 217, 245, 0.07)
         );
 
-    border: 1px solid rgba(8, 217, 245, 0.2);
+    border: 1px solid rgba(8, 217, 245, 0.25);
 
-    border-radius: var(--radius-medium);
+    border-radius: 17px;
 }
 
 
@@ -1209,24 +1353,26 @@ button:disabled {
    ============================================================ */
 
 .audience-count {
+    max-width: 280px;
+
     margin: 20px auto;
 
-    padding: 20px;
-
-    max-width: 270px;
+    padding: 21px;
 
     background:
         linear-gradient(
             145deg,
-            #0d3675,
-            #081e4a
+            #10418a,
+            #091b48
         );
 
-    border: 1px solid rgba(8, 217, 245, 0.4);
+    border: 2px solid rgba(8, 217, 245, 0.4);
 
-    border-radius: var(--radius-medium);
+    border-radius: 17px;
 
-    box-shadow: var(--shadow-blue);
+    box-shadow:
+        0 10px 28px rgba(0, 70, 180, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 
@@ -1237,7 +1383,7 @@ button:disabled {
 
 
 .audience-count span {
-    color: var(--cyan-light);
+    color: var(--arena-cyan-light);
 
     font-size: 12px;
 
@@ -1252,9 +1398,9 @@ button:disabled {
 .audience-count strong {
     margin-top: 8px;
 
-    color: var(--yellow);
+    color: var(--arena-yellow);
 
-    font-size: 36px;
+    font-size: 38px;
 
     font-weight: 1000;
 
@@ -1264,13 +1410,14 @@ button:disabled {
 
 
 /* ============================================================
-   21. AUDIENCE MEME GRID
+   21. AUDIENCE MEME CARDS
    ============================================================ */
 
 .audience-memes {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 20px;
 
@@ -1286,27 +1433,27 @@ button:disabled {
     background:
         linear-gradient(
             145deg,
-            #102b5d,
+            #12366e,
             #091d43
         );
 
-    border: 1px solid var(--border);
+    border: 1px solid var(--arena-border);
 
-    border-radius: var(--radius-medium);
+    border-radius: 18px;
 
     box-shadow:
-        0 8px 22px rgba(0, 0, 0, 0.2);
+        0 9px 24px rgba(0, 0, 0, 0.2);
 
     transition:
-        transform var(--transition),
-        border-color var(--transition);
+        transform var(--arena-transition),
+        border-color var(--arena-transition);
 }
 
 
 .audience-meme:hover {
     transform: translateY(-4px);
 
-    border-color: var(--cyan);
+    border-color: var(--arena-cyan);
 }
 
 
@@ -1318,13 +1465,13 @@ button:disabled {
 
     object-fit: contain;
 
-    border: 1px solid rgba(126, 190, 255, 0.15);
-
-    border-radius: 12px;
+    margin-bottom: 15px;
 
     background: #04132f;
 
-    margin-bottom: 15px;
+    border: 1px solid rgba(165, 213, 255, 0.16);
+
+    border-radius: 12px;
 }
 
 
@@ -1336,22 +1483,23 @@ button:disabled {
     background:
         linear-gradient(
             135deg,
-            var(--yellow),
-            #ffbd17
+            #fff69a,
+            var(--arena-yellow),
+            #ffc91c
         );
 
-    border: 1px solid #fff18a;
+    border: 1px solid rgba(255, 255, 255, 0.65);
 
     box-shadow:
-        0 4px 0 #b98000,
-        0 8px 16px rgba(255, 190, 0, 0.12);
+        0 4px 0 #b47c00,
+        0 8px 18px rgba(255, 190, 0, 0.14);
 }
 
 
 .audience-meme button:hover:not(:disabled) {
     box-shadow:
-        0 6px 0 #b98000,
-        0 12px 22px rgba(255, 190, 0, 0.2);
+        0 6px 0 #b47c00,
+        0 12px 25px rgba(255, 190, 0, 0.24);
 }
 
 
@@ -1367,33 +1515,36 @@ button:disabled {
     background:
         linear-gradient(
             145deg,
-            #103b7d,
-            #081d47
+            #12458d,
+            #0b285b 55%,
+            #071b43
         );
 
-    border: 2px solid rgba(255, 219, 38, 0.55);
+    border: 2px solid rgba(255, 228, 92, 0.65);
 
-    border-radius: var(--radius-large);
+    border-radius: 22px;
 
     box-shadow:
-        0 0 25px rgba(255, 219, 38, 0.08),
-        0 12px 30px rgba(0, 0, 0, 0.2);
+        0 0 28px rgba(255, 228, 92, 0.09),
+        0 12px 32px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 
 #audienceWinnerText {
     margin: 12px 0;
 
-    color: var(--yellow);
+    color: var(--arena-yellow);
 
-    font-size: clamp(22px, 4vw, 32px);
+    font-size: clamp(23px, 4.5vw, 33px);
 
     font-weight: 1000;
 
     line-height: 1.35;
 
     text-shadow:
-        0 3px 0 rgba(166, 111, 0, 0.45);
+        0 3px 0 rgba(166, 111, 0, 0.45),
+        0 0 18px rgba(255, 228, 92, 0.13);
 }
 
 
@@ -1402,38 +1553,40 @@ button:disabled {
    ============================================================ */
 
 #votingTimerBox {
+    max-width: 230px;
+
     margin: 22px auto;
 
     padding: 20px;
 
-    max-width: 220px;
-
     background:
         linear-gradient(
             145deg,
-            #0d3675,
-            #071b43
+            #10418a,
+            #091b48
         );
 
-    border: 2px solid rgba(8, 217, 245, 0.45);
+    border: 2px solid rgba(8, 217, 245, 0.5);
 
-    border-radius: var(--radius-medium);
+    border-radius: 17px;
 
-    box-shadow: var(--shadow-blue);
+    box-shadow:
+        0 10px 28px rgba(0, 70, 180, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 
 #votingTimer {
-    color: var(--cyan-light);
+    color: var(--arena-cyan-light);
 
-    font-size: 38px;
+    font-size: 40px;
 
     font-weight: 1000;
 
     font-variant-numeric: tabular-nums;
 
     text-shadow:
-        0 0 18px rgba(8, 217, 245, 0.22);
+        0 0 20px rgba(8, 217, 245, 0.25);
 }
 
 
@@ -1446,38 +1599,43 @@ button:disabled {
 
     margin-top: 28px;
 
-    padding: 25px 20px;
+    padding: 28px 20px;
 
     background:
         linear-gradient(
             145deg,
-            #123b7b,
+            #14488e,
+            #0a285b 55%,
             #071b43
         );
 
-    border: 2px solid var(--yellow);
+    border: 2px solid var(--arena-yellow);
 
-    border-radius: var(--radius-large);
+    border-radius: 22px;
 
     box-shadow:
-        0 0 25px rgba(255, 219, 38, 0.12),
-        0 12px 30px rgba(0, 0, 0, 0.25);
+        0 0 30px rgba(255, 228, 92, 0.12),
+        0 14px 35px rgba(0, 0, 0, 0.28);
 
     overflow: hidden;
 }
 
+
+/* Decorative star */
 
 #finalGameWinner::before {
     content: "★";
 
     position: absolute;
 
-    top: -25px;
-    right: 12px;
+    top: -35px;
+    right: 8px;
 
-    color: rgba(255, 219, 38, 0.08);
+    color: rgba(255, 228, 92, 0.09);
 
-    font-size: 125px;
+    font-size: 150px;
+
+    line-height: 1;
 
     pointer-events: none;
 }
@@ -1488,14 +1646,15 @@ button:disabled {
 #finalGameWinner p,
 #finalGameWinner strong {
     position: relative;
+    z-index: 1;
 }
 
 
 #finalGameWinner h2 {
-    color: var(--yellow);
+    color: var(--arena-yellow);
 
     text-shadow:
-        0 3px 0 rgba(166, 111, 0, 0.4);
+        0 3px 0 rgba(166, 111, 0, 0.45);
 }
 
 
@@ -1504,37 +1663,43 @@ button:disabled {
    ============================================================ */
 
 a {
-    color: var(--cyan-light);
+    color: var(--arena-cyan-light);
 
     text-decoration: none;
 
     transition:
-        color var(--transition);
+        color var(--arena-transition);
 }
 
 
 a:hover {
-    color: var(--yellow);
+    color: var(--arena-yellow);
 
     text-decoration: underline;
 }
 
 
 /* ============================================================
-   26. SELECTION AND SCROLLBARS
+   26. SELECTION
    ============================================================ */
 
 ::selection {
     color: #061631;
 
-    background: var(--cyan);
+    background: var(--arena-cyan);
 }
 
+
+/* ============================================================
+   27. SCROLLBARS
+   ============================================================ */
 
 * {
     scrollbar-width: thin;
 
-    scrollbar-color: #1269d7 #071b43;
+    scrollbar-color:
+        var(--arena-blue)
+        var(--arena-navy);
 }
 
 
@@ -1553,8 +1718,8 @@ a:hover {
     background:
         linear-gradient(
             180deg,
-            var(--blue),
-            var(--cyan)
+            var(--arena-blue),
+            var(--arena-cyan)
         );
 
     border-radius: 20px;
@@ -1562,7 +1727,7 @@ a:hover {
 
 
 /* ============================================================
-   27. RESPONSIVE DESIGN — TABLETS
+   28. TABLET RESPONSIVENESS
    ============================================================ */
 
 @media (max-width: 760px) {
@@ -1572,9 +1737,9 @@ a:hover {
     }
 
     .container {
-        padding: 24px 18px;
+        padding: 25px 18px;
 
-        border-radius: 20px;
+        border-radius: 21px;
     }
 
     #memeGrid {
@@ -1587,11 +1752,11 @@ a:hover {
     }
 
     .scenario-box {
-        padding: 24px 18px;
+        padding: 25px 19px;
     }
 
     .meme-card img {
-        height: 170px;
+        height: 175px;
     }
 
     .audience-meme img {
@@ -1601,13 +1766,13 @@ a:hover {
 
 
 /* ============================================================
-   28. RESPONSIVE DESIGN — MOBILE
+   29. MOBILE RESPONSIVENESS
    ============================================================ */
 
 @media (max-width: 600px) {
 
     body {
-        padding: 10px;
+        padding: 9px;
 
         align-items: flex-start;
     }
@@ -1615,7 +1780,7 @@ a:hover {
     .container {
         width: 100%;
 
-        margin: 10px auto;
+        margin: 9px auto;
 
         padding: 23px 14px;
 
@@ -1647,7 +1812,7 @@ a:hover {
     }
 
     button {
-        padding: 14px 18px;
+        padding: 14px 17px;
 
         font-size: 14px;
     }
@@ -1667,21 +1832,25 @@ a:hover {
     }
 
     .room-code strong {
-        font-size: 30px;
+        font-size: 29px;
 
         letter-spacing: 4px;
     }
 
     #playersList {
-        padding: 10px;
+        padding: 9px;
+    }
+
+    .player {
+        padding: 13px 9px;
     }
 
     .round-info {
-        padding: 14px;
+        padding: 15px;
     }
 
     .scenario-box {
-        padding: 22px 15px;
+        padding: 23px 15px;
 
         border-radius: 17px;
     }
@@ -1721,7 +1890,7 @@ a:hover {
     .audience-memes {
         grid-template-columns: 1fr;
 
-        gap: 18px;
+        gap: 17px;
     }
 
     .player-meme,
@@ -1748,7 +1917,7 @@ a:hover {
     }
 
     #audienceWinnerArea {
-        padding: 22px 14px;
+        padding: 23px 14px;
     }
 
     #votingTimerBox {
@@ -1756,17 +1925,17 @@ a:hover {
     }
 
     #votingTimer {
-        font-size: 34px;
+        font-size: 35px;
     }
 
     #finalGameWinner {
-        padding: 22px 14px;
+        padding: 23px 14px;
     }
 }
 
 
 /* ============================================================
-   29. SMALL MOBILE SCREENS
+   30. VERY SMALL MOBILE SCREENS
    ============================================================ */
 
 @media (max-width: 360px) {
@@ -1804,11 +1973,15 @@ a:hover {
 
         letter-spacing: 3px;
     }
+
+    .buttons button {
+        padding: 13px 10px;
+    }
 }
 
 
 /* ============================================================
-   30. REDUCED MOTION ACCESSIBILITY
+   31. ACCESSIBILITY — REDUCED MOTION
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1827,7 +2000,6 @@ a:hover {
 }
 
 </style>
-   
 
 </head>
 
