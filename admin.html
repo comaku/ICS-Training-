@@ -2986,99 +2986,6 @@ a:hover {
 
 
 
-    <!-- ========================================
-     STICKER CLASH SOUND SYSTEM
-======================================== -->
-
-<script>
-/* ========================================
-   SOUND SETTINGS
-======================================== */
-
-const SOUND_ENABLED = true;
-
-/* ========================================
-   AUDIO FILES
-======================================== */
-
-const clickSound = new Audio("lock.wav");
-const winnerSound = new Audio("bmg_theme.wav");
-const backgroundMusic = new Audio("Game.wav");
-
-/* ========================================
-   AUDIO CONFIGURATION
-======================================== */
-
-clickSound.volume = 0.55;
-
-winnerSound.volume = 0.8;
-
-backgroundMusic.volume = 0.28;
-backgroundMusic.loop = true;
-
-clickSound.preload = "auto";
-winnerSound.preload = "auto";
-backgroundMusic.preload = "auto";
-
-/* ========================================
-   PLAY SOUND FUNCTION
-======================================== */
-
-function playSound(sound) {
-    if (!SOUND_ENABLED) return;
-
-    sound.currentTime = 0;
-
-    sound.play().catch(error => {
-        console.log("Sound could not play:", error);
-    });
-}
-
-/* ========================================
-   BUTTON CLICK SOUND
-======================================== */
-
-document.addEventListener("click", function(event) {
-    if (!SOUND_ENABLED) return;
-
-    const button = event.target.closest("button");
-
-    if (button && !button.disabled) {
-        playSound(clickSound);
-    }
-});
-
-/* ========================================
-   START BACKGROUND MUSIC
-======================================== */
-
-function startBackgroundMusic() {
-    if (!SOUND_ENABLED) return;
-
-    backgroundMusic.play().catch(error => {
-        console.log("Background music requires user interaction.");
-    });
-}
-
-/* ========================================
-   STOP BACKGROUND MUSIC
-======================================== */
-
-function stopBackgroundMusic() {
-    backgroundMusic.pause();
-    backgroundMusic.currentTime = 0;
-}
-
-/* ========================================
-   PLAY WINNER SOUND
-======================================== */
-
-function playWinnerSound() {
-    if (!SOUND_ENABLED) return;
-
-    playSound(winnerSound);
-}
-</script>
 
 
 <script>
@@ -9157,6 +9064,104 @@ if (
 }
 
 </script>
+
+
+
+    <!-- ========================================
+     STICKER CLASH SOUND SYSTEM
+======================================== -->
+
+<script>
+/* ========================================
+   SOUND SETTINGS
+======================================== */
+
+const SOUND_ENABLED = true;
+
+/* ========================================
+   AUDIO FILES
+======================================== */
+
+const clickSound = new Audio("lock.wav");
+const winnerSound = new Audio("bgm_theme.wav");
+const backgroundMusic = new Audio("Game.wav");
+
+/* ========================================
+   AUDIO CONFIGURATION
+======================================== */
+
+clickSound.volume = 0.55;
+
+winnerSound.volume = 0.8;
+
+backgroundMusic.volume = 0.28;
+backgroundMusic.loop = true;
+
+clickSound.preload = "auto";
+winnerSound.preload = "auto";
+backgroundMusic.preload = "auto";
+
+/* ========================================
+   PLAY SOUND FUNCTION
+======================================== */
+
+function playSound(sound) {
+    if (!SOUND_ENABLED) return;
+
+    sound.currentTime = 0;
+
+    sound.play().catch(error => {
+        console.log("Sound could not play:", error);
+    });
+}
+
+/* ========================================
+   BUTTON CLICK SOUND
+======================================== */
+
+document.addEventListener("click", function(event) {
+    if (!SOUND_ENABLED) return;
+
+    const button = event.target.closest("button");
+
+    if (button && !button.disabled) {
+        playSound(clickSound);
+    }
+});
+
+/* ========================================
+   START BACKGROUND MUSIC
+======================================== */
+
+function startBackgroundMusic() {
+    if (!SOUND_ENABLED) return;
+
+    backgroundMusic.play().catch(error => {
+        console.log("Background music requires user interaction.");
+    });
+}
+
+/* ========================================
+   STOP BACKGROUND MUSIC
+======================================== */
+
+function stopBackgroundMusic() {
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+}
+
+/* ========================================
+   PLAY WINNER SOUND
+======================================== */
+
+function playWinnerSound() {
+    if (!SOUND_ENABLED) return;
+
+    playSound(winnerSound);
+}
+</script>
+    
+    
 
 </body>
 
