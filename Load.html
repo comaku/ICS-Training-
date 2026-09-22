@@ -50,7 +50,7 @@
     <div class="floaters" aria-hidden="true"><span class="float-card c1">★</span><span class="float-card c2">♥</span><span class="float-card c3">✦</span></div>
     <div class="particle-layer" id="particleLayer" aria-hidden="true"></div>
     <header class="hud">
-      <div class="online"><span class="dot"></span><span>STARTING STICKER CLASH</span></div>
+      
       
     </header>
     <div class="art-action"><button class="hype" id="hypeBtn" type="button" aria-label="Tap to hype and shoot stickers, emojis and confetti"><span aria-hidden="true">✦</span> TAP TO HYPE <span class="hype-count" id="hypeCount">0</span></button></div>
@@ -75,7 +75,7 @@
   const params=new URLSearchParams(location.search);
   const mode=params.get('mode')==='manual'||input.mode==='manual'?'manual':'preview';
   const duration=Math.max(1000,Number(input.duration)||7800);
-  const nextUrl=typeof input.nextUrl==='string'&&input.nextUrl.trim()?input.nextUrl:(mode==='preview'?'./game.html':null);
+  const nextUrl=typeof input.nextUrl==='string'&&input.nextUrl.trim()?input.nextUrl:(mode==='preview'?'./admin.html':null);
   const el={splash:$('splash'),fill:$('progressFill'),glint:$('glint'),rail:$('progressRail'),percent:$('percentText'),phase:$('phaseTitle'),status:$('statusText'),stage:$('stageText'),mode:$('modeLabel'),hype:$('hypeBtn'),count:$('hypeCount'),particles:$('particleLayer'),dock:document.querySelector('.load-dock')};
   const steps=[{min:0,title:'Loading the game…',message:'Warming up the arena…',part:'01 / 03'},
     {min:28,title:'Getting stickers ready.',message:'Preparing your reactions…',part:'02 / 03'},
